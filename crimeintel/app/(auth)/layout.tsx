@@ -10,9 +10,9 @@ export default function AuthLayout({
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       <AppSidebar />
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex flex-1 flex-col min-w-0 overflow-hidden">
         <TopHeader />
-        <main className="flex-1 overflow-y-auto bg-slate-50/50 dark:bg-background/95">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden bg-slate-50/50 dark:bg-background/95">
           {children}
         </main>
       </div>
