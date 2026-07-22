@@ -55,11 +55,11 @@ export default function LoginPage() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col pt-2 space-y-4">
-            <Button className="w-full h-11 text-base font-medium" asChild>
-              <Link href="/dashboard">
+            <Link href="/dashboard" className="w-full">
+              <Button className="w-full h-11 text-base font-medium">
                 Authenticate & Enter <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
             <div className="text-center text-xs text-slate-500">
               By accessing this system, you agree to the KSP Data Governance Policy. All actions are audited.
             </div>

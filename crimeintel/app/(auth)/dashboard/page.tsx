@@ -47,8 +47,8 @@ export default function DashboardPage() {
         <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Active Investigations</CardTitle>
-            <div className="p-2 bg-blue-500/10 rounded-md">
-              <FileText className="h-4 w-4 text-blue-500" />
+            <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
+              <FileText className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
             </div>
           </CardHeader>
           <CardContent>
@@ -63,8 +63,8 @@ export default function DashboardPage() {
         <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Persons of Interest</CardTitle>
-            <div className="p-2 bg-indigo-500/10 rounded-md">
-              <Users className="h-4 w-4 text-indigo-500" />
+            <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
+              <Users className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
             </div>
           </CardHeader>
           <CardContent>
@@ -76,11 +76,11 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm border-l-2 border-l-destructive">
+        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">High-Risk Alerts</CardTitle>
-            <div className="p-2 bg-destructive/10 rounded-md">
-              <AlertTriangle className="h-4 w-4 text-destructive" />
+            <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
+              <AlertTriangle className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
             </div>
           </CardHeader>
           <CardContent>
@@ -94,8 +94,8 @@ export default function DashboardPage() {
         <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Resolution Rate</CardTitle>
-            <div className="p-2 bg-emerald-500/10 rounded-md">
-              <ShieldCheck className="h-4 w-4 text-emerald-500" />
+            <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
+              <ShieldCheck className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
             </div>
           </CardHeader>
           <CardContent>
@@ -126,7 +126,7 @@ export default function DashboardPage() {
           <CardHeader className="border-b border-border/50 pb-4">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg font-semibold">Early Warnings</CardTitle>
-              <Badge variant="outline" className="bg-destructive/10 text-destructive border-transparent">3 New</Badge>
+              <Badge variant="outline" className="bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border-transparent">3 New</Badge>
             </div>
             <CardDescription>
               AI-generated predictive alerts.
@@ -143,7 +143,7 @@ export default function DashboardPage() {
                 <div key={i} className="p-4 hover:bg-muted/50 transition-colors group cursor-pointer">
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center space-x-2">
-                      <div className={`h-2 w-2 rounded-full ${alert.variant === 'destructive' ? 'bg-destructive' : alert.variant === 'default' ? 'bg-primary' : 'bg-warning'}`} />
+                      <div className={`h-2 w-2 rounded-full bg-zinc-900 dark:bg-zinc-100`} />
                       <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{alert.title}</p>
                     </div>
                     <span className="text-[10px] text-muted-foreground font-medium">{alert.time}</span>
