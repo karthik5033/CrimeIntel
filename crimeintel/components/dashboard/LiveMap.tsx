@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/lib/LanguageContext";
 import { MapPin, AlertCircle, Shield, TrendingUp, TrendingDown, Users, Activity, Loader2, Layers, Map as MapIcon, Hexagon, Mountain } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -83,6 +85,8 @@ export function LiveMap() {
   const [showWards, setShowWards] = useState(false);
   const [mapStyle, setMapStyle] = useState<'light' | 'dark' | 'satellite'>('light');
 
+  const { t } = useLanguage();
+
   // Live Backend Simulation
   useEffect(() => {
     const interval = setInterval(() => {
@@ -119,9 +123,9 @@ export function LiveMap() {
           <div>
             <CardTitle className="text-lg flex items-center gap-2">
               <MapPin className="h-5 w-5 text-primary" />
-              Karnataka Geospatial Intelligence
+              {t('map.title')}
             </CardTitle>
-            <CardDescription>Interactive real-world map with dynamic layer controls and live deployment tracking.</CardDescription>
+            <CardDescription>{t('map.subtitle')}</CardDescription>
           </div>
           
           {/* Top Layer Controls */}
@@ -130,19 +134,19 @@ export function LiveMap() {
               onClick={() => setMapStyle('light')}
               className={cn("px-3 py-1.5 text-xs font-semibold rounded-md flex items-center gap-1.5 transition-colors", mapStyle === 'light' ? "bg-white shadow-sm text-slate-800" : "text-slate-500 hover:text-slate-700")}
             >
-              <MapIcon className="h-3 w-3" /> 2D Vector
+              <MapIcon className="h-3 w-3" /> {t('map.2dVector')}
             </button>
             <button 
               onClick={() => setMapStyle('satellite')}
               className={cn("px-3 py-1.5 text-xs font-semibold rounded-md flex items-center gap-1.5 transition-colors", mapStyle === 'satellite' ? "bg-slate-800 shadow-sm text-white" : "text-slate-500 hover:text-slate-700")}
             >
-              <Mountain className="h-3 w-3" /> 3D Terrain
+              <Mountain className="h-3 w-3" /> {t('map.3dTerrain')}
             </button>
             <button 
               onClick={() => setMapStyle('dark')}
               className={cn("px-3 py-1.5 text-xs font-semibold rounded-md flex items-center gap-1.5 transition-colors", mapStyle === 'dark' ? "bg-slate-900 shadow-sm text-white" : "text-slate-500 hover:text-slate-700")}
             >
-              <MapIcon className="h-3 w-3" /> Dark Ops
+              <Layers className="h-3 w-3" /> {t('map.darkOps')}
             </button>
           </div>
         </div>
@@ -165,16 +169,17 @@ export function LiveMap() {
             
             {/* Floating Layer Toggles Over Map */}
             <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2">
-              <div className="bg-white/90 backdrop-blur-md p-2 rounded-xl shadow-lg border border-slate-200/50 flex flex-col gap-1 w-40">
-                <div className="px-2 pb-1 mb-1 border-b border-slate-200/50 text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-                  <Layers className="h-3 w-3" /> Data Layers
+              <div className="bg-white/90 backdrop-blur-md p-2 rounded-xl shadow-lg border border-slate-200/50 flex flex-col gap-1 w-48">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2 px-2">
+                  <Layers className="w-3.5 h-3.5" />
+                  {t('map.dataLayers')}
                 </div>
                 
                 <button 
                   onClick={() => setShowHeatmap(!showHeatmap)}
                   className={cn("px-2 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors", showHeatmap ? "bg-blue-50 text-blue-700" : "hover:bg-slate-100 text-slate-600")}
                 >
-                  <span className="flex items-center gap-1.5"><Activity className="h-3 w-3" /> Heatmap</span>
+                  <span className="flex items-center gap-1.5"><Activity className="h-3 w-3" /> {t('map.heatmap')}</span>
                   <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showHeatmap ? "bg-blue-500" : "bg-slate-300")}>
                     <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showHeatmap ? "translate-x-2.5" : "translate-x-0")} />
                   </div>
@@ -184,7 +189,7 @@ export function LiveMap() {
                   onClick={() => setShowBoundaries(!showBoundaries)}
                   className={cn("px-2 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors", showBoundaries ? "bg-emerald-50 text-emerald-700" : "hover:bg-slate-100 text-slate-600")}
                 >
-                  <span className="flex items-center gap-1.5"><MapIcon className="h-3 w-3" /> District</span>
+                  <span className="flex items-center gap-1.5"><MapIcon className="h-3 w-3" /> {t('map.district')}</span>
                   <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showBoundaries ? "bg-emerald-500" : "bg-slate-300")}>
                     <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showBoundaries ? "translate-x-2.5" : "translate-x-0")} />
                   </div>
@@ -194,7 +199,7 @@ export function LiveMap() {
                   onClick={() => setShowWards(!showWards)}
                   className={cn("px-2 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors", showWards ? "bg-purple-50 text-purple-700" : "hover:bg-slate-100 text-slate-600")}
                 >
-                  <span className="flex items-center gap-1.5"><Hexagon className="h-3 w-3" /> Wards Grid</span>
+                  <span className="flex items-center gap-1.5"><Hexagon className="h-3 w-3" /> {t('map.wardsGrid')}</span>
                   <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showWards ? "bg-purple-500" : "bg-slate-300")}>
                     <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showWards ? "translate-x-2.5" : "translate-x-0")} />
                   </div>
@@ -212,7 +217,7 @@ export function LiveMap() {
                   <MapPin className="h-6 w-6 text-primary relative z-10" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-slate-900 leading-tight tracking-tight">{selectedSpot.name}</h3>
+                  <h3 className="text-lg font-black text-slate-900 leading-tight tracking-tight">{t(`map.spot.${selectedSpot.id}.name`)}</h3>
                   <p className="text-xs text-muted-foreground font-mono font-bold tracking-wider opacity-70">NODE-{selectedSpot.id.toUpperCase()}</p>
                 </div>
               </div>
@@ -221,17 +226,17 @@ export function LiveMap() {
                 <div className="flex items-center justify-between p-4 bg-slate-50/50 rounded-xl border border-slate-200/60 shadow-sm transition-colors duration-500">
                   <div className="flex items-center gap-2">
                     <AlertCircle className={cn("h-4 w-4 transition-colors duration-500", selectedSpot.threat === "Critical" ? "text-destructive" : "text-amber-500")} />
-                    <span className="text-sm font-bold text-slate-600 tracking-tight">Threat Level</span>
+                    <span className="text-sm font-bold text-slate-600 tracking-tight">{t('dashboard.threatLevel')}</span>
                   </div>
                   <span className={cn("text-sm font-black uppercase tracking-wider transition-colors duration-500", selectedSpot.threat === "Critical" ? "text-destructive" : "text-amber-600")}>
-                    {selectedSpot.threat}
+                    {selectedSpot.threat === 'Critical' ? t('dashboard.critical') : selectedSpot.threat}
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1 p-4 bg-slate-50/50 rounded-xl border border-slate-200/60 shadow-sm">
                     <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-1.5 mb-1">
-                      <Activity className="h-3 w-3 text-slate-500" /> Active
+                      <Activity className="h-3 w-3 text-slate-500" /> {t('dashboard.active')}
                     </span>
                     <span className="text-3xl font-black text-slate-800 transition-all duration-300 tracking-tighter">{selectedSpot.activeCases}</span>
                     <span className={cn("text-[11px] font-bold flex items-center gap-0.5", selectedSpot.trend === 'up' ? 'text-destructive' : 'text-emerald-500')}>
@@ -242,28 +247,28 @@ export function LiveMap() {
                   
                   <div className="flex flex-col gap-1 p-4 bg-slate-50/50 rounded-xl border border-slate-200/60 shadow-sm">
                     <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-1.5 mb-1">
-                      <Users className="h-3 w-3 text-slate-500" /> Deployed
+                      <Users className="h-3 w-3 text-slate-500" /> {t('dashboard.deployed')}
                     </span>
                     <span className="text-3xl font-black text-slate-800 transition-all duration-300 tracking-tighter">{selectedSpot.officers}</span>
-                    <span className="text-[11px] font-bold text-slate-500">Personnel</span>
+                    <span className="text-[11px] font-bold text-slate-500">{t('dashboard.personnel')}</span>
                   </div>
                 </div>
 
                 <div className="pt-6 border-t border-slate-100">
                   <span className="text-[10px] uppercase font-bold text-slate-400 mb-3 tracking-wider flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.5)]" /> 
-                    Live Intelligence
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                    {t('dashboard.liveIntelligence')}
                   </span>
-                  <p className="text-sm text-slate-700 leading-relaxed font-medium">
-                    {selectedSpot.recentAlert}
+                  <p className="text-sm font-medium text-slate-700 leading-relaxed">
+                    {t(`map.spot.${selectedSpot.id}.alert`)}
                   </p>
                 </div>
                 
                 <div className="mt-auto pt-6">
-                  <button className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group">
-                    <Shield className="h-4 w-4 text-slate-400 group-hover:text-white transition-colors" />
-                    View Node Details
-                  </button>
+                  <Button className="w-full bg-slate-900 hover:bg-slate-800 text-white shadow-sm font-semibold tracking-wide text-xs h-12 rounded-xl transition-all">
+                    <Shield className="mr-2 h-4 w-4 text-slate-400" />
+                    {t('dashboard.viewNodeDetails')}
+                  </Button>
                 </div>
               </div>
             </div>

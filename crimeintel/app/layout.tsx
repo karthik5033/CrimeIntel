@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,12 +30,15 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col font-sans">
-        <ErrorBoundary>
-          {children}
-        </ErrorBoundary>
-        <Toaster position="top-right" richColors />
+        <LanguageProvider>
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
+          <Toaster position="top-right" richColors />
+        </LanguageProvider>
       </body>
     </html>
   );

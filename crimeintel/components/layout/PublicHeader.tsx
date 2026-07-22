@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ShieldAlert, Search, Moon, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export function PublicHeader() {
+  const { language, setLanguage, t } = useLanguage();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center px-4 md:px-8 mx-auto">
@@ -15,9 +20,9 @@ export function PublicHeader() {
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium hidden md:flex">
-            <Link href="#features" className="transition-colors hover:text-foreground/80 text-foreground/60">Features</Link>
-            <Link href="#solutions" className="transition-colors hover:text-foreground/80 text-foreground/60">Solutions</Link>
-            <Link href="#pricing" className="transition-colors hover:text-foreground/80 text-foreground/60">Pricing</Link>
+            <Link href="#features" className="transition-colors hover:text-foreground/80 text-foreground/60">{t('header.features') || 'Features'}</Link>
+            <Link href="#solutions" className="transition-colors hover:text-foreground/80 text-foreground/60">{t('header.solutions') || 'Solutions'}</Link>
+            <Link href="#pricing" className="transition-colors hover:text-foreground/80 text-foreground/60">{t('header.pricing') || 'Pricing'}</Link>
           </nav>
         </div>
         
@@ -38,14 +43,32 @@ export function PublicHeader() {
             
             <div className="w-px h-4 bg-border mx-2"></div>
             
+            {/* Language Toggle */}
+            <div className="flex items-center border rounded-md overflow-hidden bg-muted/30">
+              <button 
+                onClick={() => setLanguage('en')}
+                className={`px-2.5 py-1 text-xs transition-colors ${language === 'en' ? 'font-semibold bg-background border-r shadow-sm text-foreground' : 'font-medium text-muted-foreground hover:text-foreground'}`}
+              >
+                EN
+              </button>
+              <button 
+                onClick={() => setLanguage('kn')}
+                className={`px-2.5 py-1 text-xs transition-colors ${language === 'kn' ? 'font-semibold bg-background border-l shadow-sm text-foreground' : 'font-medium text-muted-foreground hover:text-foreground'}`}
+              >
+                ಕನ್ನಡ
+              </button>
+            </div>
+            
+            <div className="w-px h-4 bg-border mx-2"></div>
+            
             <Link href="/login">
               <Button variant="outline" className="h-9 font-medium px-4">
-                Sign in
+                {t('header.signIn') || 'Sign in'}
               </Button>
             </Link>
             <Link href="/login">
               <Button className="h-9 font-medium px-4 bg-primary text-primary-foreground hover:bg-primary/90">
-                Get all access
+                {t('header.getAllAccess') || 'Get all access'}
               </Button>
             </Link>
           </nav>

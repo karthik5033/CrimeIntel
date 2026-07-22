@@ -13,6 +13,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 import { Activity, Target, AlertCircle, Radio } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 // Sci-Fi Complex Data Telemetry
 const complexData = [
@@ -26,11 +27,13 @@ const complexData = [
 ];
 
 const CustomTooltip = ({ active, payload, label }: any) => {
+  const { t } = useLanguage();
+
   if (active && payload && payload.length) {
     return (
       <div className="bg-card border border-border p-3 rounded-lg shadow-md flex flex-col gap-2 min-w-[180px]">
         <div className="flex items-center justify-between border-b border-border pb-2 mb-1">
-          <span className="text-primary text-[10px] font-bold uppercase tracking-widest">Time: {label}</span>
+          <span className="text-primary text-[10px] font-bold uppercase tracking-widest">{t('chart.time')}: {label}</span>
           <Radio className="h-3 w-3 text-primary animate-pulse" />
         </div>
         
@@ -59,6 +62,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 export function CrimeTrendChart() {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col xl:flex-row gap-6 w-full h-full mt-2">
       {/* Main Chart Area */}
@@ -66,12 +71,12 @@ export function CrimeTrendChart() {
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-foreground text-sm flex items-center gap-2 font-semibold">
             <Activity className="h-4 w-4 text-primary" />
-            Live Pattern Telemetry
+            {t('chart.livePatternTelemetry')}
           </h3>
           <div className="text-[10px] text-muted-foreground uppercase flex gap-4 font-semibold">
-            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-muted-foreground/30" /> Baseline</span>
-            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-primary" /> Actual</span>
-            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-destructive" /> Anomaly</span>
+            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-muted-foreground/30" /> {t('chart.baseline')}</span>
+            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-primary" /> {t('chart.actual')}</span>
+            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-destructive" /> {t('chart.anomaly')}</span>
           </div>
         </div>
 
@@ -158,7 +163,7 @@ export function CrimeTrendChart() {
           <div className="absolute top-0 left-0 w-1 h-full bg-primary/40" />
           <div className="flex items-center gap-2 mb-1">
             <Activity className="h-3.5 w-3.5 text-primary" />
-            <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Accuracy</span>
+            <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">{t('chart.accuracy')}</span>
           </div>
           <div className="text-2xl font-bold text-foreground tracking-tight">94.2<span className="text-sm text-muted-foreground font-medium">%</span></div>
           <div className="w-full bg-muted h-1.5 mt-2 rounded-full overflow-hidden">
@@ -170,11 +175,11 @@ export function CrimeTrendChart() {
           <div className="absolute top-0 left-0 w-1 h-full bg-destructive" />
           <div className="flex items-center gap-2 mb-1">
             <AlertCircle className="h-3.5 w-3.5 text-destructive animate-pulse" />
-            <span className="text-[10px] text-destructive font-bold uppercase tracking-wider">Threat Index</span>
+            <span className="text-[10px] text-destructive font-bold uppercase tracking-wider">{t('chart.threatIndex')}</span>
           </div>
-          <div className="text-lg font-bold text-destructive tracking-wide">CRITICAL</div>
+          <div className="text-lg font-bold text-destructive tracking-wide">{t('dashboard.critical')}</div>
           <div className="text-[10px] text-destructive/80 mt-1 font-medium">
-            Sector 4 Anomaly
+            {t('chart.sectorAnomaly')}
           </div>
         </div>
 
@@ -182,13 +187,13 @@ export function CrimeTrendChart() {
            <div className="absolute top-0 left-0 w-1 h-full bg-primary/40" />
            <div className="flex items-center gap-2 mb-2">
             <Target className="h-3.5 w-3.5 text-primary" />
-            <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Node Status</span>
+            <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">{t('chart.nodeStatus')}</span>
           </div>
           <div className="space-y-2 mt-1">
             {[
-              { id: "SYS-CORE", status: "ONLINE", color: "text-primary" },
-              { id: "PREDICTIVE", status: "SYNCING", color: "text-amber-500" },
-              { id: "CCTV-LINK", status: "ONLINE", color: "text-primary" }
+              { id: "SYS-CORE", status: t('chart.online'), color: "text-primary" },
+              { id: "PREDICTIVE", status: t('chart.syncing'), color: "text-amber-500" },
+              { id: "CCTV-LINK", status: t('chart.online'), color: "text-primary" }
             ].map((node) => (
               <div key={node.id} className="flex items-center justify-between text-[11px] font-medium">
                 <span className="text-muted-foreground">{node.id}</span>

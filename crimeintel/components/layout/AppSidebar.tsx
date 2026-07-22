@@ -21,22 +21,24 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const navItems = [
-  { name: "Command Center", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Intelligence Chat", href: "/chat", icon: MessageSquare },
-  { name: "Criminal Network", href: "/network", icon: Network },
-  { name: "Analytics & Trends", href: "/analytics", icon: LineChart },
-  { name: "Cases", href: "/cases", icon: FileText },
-  { name: "Offenders", href: "/profiles", icon: Users },
-  { name: "Early Warnings", href: "/alerts", icon: BellRing },
-  { name: "Financial Links", href: "/financial", icon: Landmark },
-  { name: "Settings", href: "/settings", icon: Settings },
+  { key: "sidebar.commandCenter", href: "/dashboard", icon: LayoutDashboard },
+  { key: "sidebar.intelligenceChat", href: "/chat", icon: MessageSquare },
+  { key: "sidebar.criminalNetwork", href: "/network", icon: Network },
+  { key: "sidebar.analytics", href: "/analytics", icon: LineChart },
+  { key: "sidebar.cases", href: "/cases", icon: FileText },
+  { key: "sidebar.offenders", href: "/profiles", icon: Users },
+  { key: "sidebar.earlyWarnings", href: "/alerts", icon: BellRing },
+  { key: "sidebar.financialLinks", href: "/financial", icon: Landmark },
+  { key: "sidebar.settings", href: "/settings", icon: Settings },
 ];
 
 export function AppSidebar() {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = React.useState(false);
+  const { t } = useLanguage();
 
   return (
     <div className={cn(
@@ -62,7 +64,7 @@ export function AppSidebar() {
         )}>
           {!isCollapsed && (
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/70 whitespace-nowrap">
-              Main Menu
+              {t('sidebar.mainMenu')}
             </span>
           )}
           <button 
@@ -75,11 +77,12 @@ export function AppSidebar() {
         </div>
         {navItems.map((item) => {
           const isActive = pathname?.startsWith(item.href);
+          const name = t(item.key as any);
           return (
             <Link
-              key={item.name}
+              key={item.key}
               href={item.href}
-              title={isCollapsed ? item.name : undefined}
+              title={isCollapsed ? name : undefined}
               className={cn(
                 "group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 overflow-hidden",
                 isActive 
@@ -94,7 +97,7 @@ export function AppSidebar() {
                   isCollapsed ? "h-5 w-5" : "mr-3 h-4 w-4",
                   isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
                 )} />
-                {!isCollapsed && <span className="whitespace-nowrap">{item.name}</span>}
+                {!isCollapsed && <span className="whitespace-nowrap">{name}</span>}
               </div>
               {!isCollapsed && isActive && (
                 <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary animate-pulse ml-2" />
