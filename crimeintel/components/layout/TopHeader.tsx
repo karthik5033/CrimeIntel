@@ -5,9 +5,21 @@ import { Bell, Search, Menu, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/lib/LanguageContext";
+import { usePathname } from "next/navigation";
 
 export function TopHeader() {
   const { language, setLanguage, t } = useLanguage();
+  const pathname = usePathname();
+
+  let title = t('header.commandCenter');
+  if (pathname?.includes('/chat')) {
+    title = t('sidebar.intelligenceChat');
+  } else if (pathname?.includes('/network')) {
+    title = t('sidebar.criminalNetwork');
+  } else if (pathname?.includes('/dashboard')) {
+    title = t('sidebar.commandCenter');
+  }
+
   return (
     <header className="sticky top-0 z-20 flex h-16 w-full items-center justify-between border-b bg-card/80 px-6 backdrop-blur-md">
       <div className="flex items-center">
@@ -17,7 +29,7 @@ export function TopHeader() {
         <div className="text-sm font-medium text-muted-foreground hidden md:flex items-center">
           <span className="hover:text-foreground cursor-pointer transition-colors">{t('header.workspace')}</span>
           <span className="mx-2 text-border">/</span>
-          <span className="text-foreground font-semibold">{t('header.commandCenter')}</span>
+          <span className="text-foreground font-semibold">{title}</span>
         </div>
       </div>
       

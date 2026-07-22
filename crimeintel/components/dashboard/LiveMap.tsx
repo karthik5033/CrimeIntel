@@ -83,6 +83,7 @@ export function LiveMap() {
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [showBoundaries, setShowBoundaries] = useState(false);
   const [showWards, setShowWards] = useState(false);
+  const [showPredictive, setShowPredictive] = useState(false);
   const [mapStyle, setMapStyle] = useState<'light' | 'dark' | 'satellite'>('light');
 
   const { t } = useLanguage();
@@ -164,6 +165,7 @@ export function LiveMap() {
               showHeatmap={showHeatmap}
               showBoundaries={showBoundaries}
               showWards={showWards}
+              showPredictive={showPredictive}
               mapStyle={mapStyle}
             />
             
@@ -202,6 +204,18 @@ export function LiveMap() {
                   <span className="flex items-center gap-1.5"><Hexagon className="h-3 w-3" /> {t('map.wardsGrid')}</span>
                   <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showWards ? "bg-purple-500" : "bg-slate-300")}>
                     <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showWards ? "translate-x-2.5" : "translate-x-0")} />
+                  </div>
+                </button>
+
+                <div className="my-1 border-t border-slate-200/50" />
+                
+                <button 
+                  onClick={() => setShowPredictive(!showPredictive)}
+                  className={cn("px-2 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors", showPredictive ? "bg-destructive/10 text-destructive" : "hover:bg-slate-100 text-slate-600")}
+                >
+                  <span className="flex items-center gap-1.5"><TrendingUp className="h-3 w-3" /> 7-Day Forecast</span>
+                  <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showPredictive ? "bg-destructive" : "bg-slate-300")}>
+                    <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showPredictive ? "translate-x-2.5" : "translate-x-0")} />
                   </div>
                 </button>
               </div>

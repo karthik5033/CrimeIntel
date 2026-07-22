@@ -31,6 +31,8 @@ import {
 } from "lucide-react";
 import { CrimeTrendChart } from "@/components/charts/CrimeTrendChart";
 import { LiveMap } from "@/components/dashboard/LiveMap";
+import { PredictionEngine } from "@/lib/api/predictionEngine";
+import Link from "next/link";
 
 export default function DashboardPage() {
   const { t } = useLanguage();
@@ -131,8 +133,13 @@ export default function DashboardPage() {
         <Card className="col-span-2 shadow-sm border-border/50 bg-card/50 flex flex-col">
           <CardHeader className="border-b border-border/50 pb-4">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-lg font-semibold">{t('dashboard.earlyWarnings')}</CardTitle>
-              <Badge variant="outline" className="bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border-transparent">3 {t('dashboard.new')}</Badge>
+              <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-warning" />
+                {t('dashboard.earlyWarnings')}
+              </CardTitle>
+              <Badge variant="outline" className="bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border-transparent">
+                {PredictionEngine.getAlerts().length} {t('dashboard.new')}
+              </Badge>
             </div>
             <CardDescription>
               {t('dashboard.predictiveAlerts')}
@@ -140,25 +147,27 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent className="p-0 flex-1 overflow-y-auto">
             <div className="divide-y divide-border/50">
-              {[
-                { title: t('alert.vehicleTheft'), desc: t('alert.vehicleDesc'), time: t('alert.time1'), badge: "High Risk", variant: "destructive" },
-                { title: t('alert.criminalRing'), desc: t('alert.criminalDesc'), time: t('alert.time2'), badge: "Investigation", variant: "default" },
-                { title: t('alert.festivalRisk'), desc: t('alert.festivalDesc'), time: t('alert.time3'), badge: "Warning", variant: "secondary" },
-                { title: t('alert.patternDetected'), desc: t('alert.patternDesc'), time: t('alert.time4'), badge: "Investigation", variant: "default" }
-              ].map((alert, i) => (
-                <div key={i} className="p-4 hover:bg-muted/50 transition-colors group cursor-pointer">
+              {PredictionEngine.getAlerts().slice(0, 4).map((alert, i) => (
+                <Link href="/alerts" key={i} className="block p-4 hover:bg-muted/50 transition-colors group cursor-pointer">
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center space-x-2">
-                      <div className={`h-2 w-2 rounded-full bg-zinc-900 dark:bg-zinc-100`} />
-                      <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{alert.title}</p>
+                      <div className={`h-2 w-2 rounded-full ${alert.severity === 'CRITICAL' ? 'bg-destructive' : alert.severity === 'WARNING' ? 'bg-warning' : 'bg-primary'}`} />
+                      <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-1">{alert.title}</p>
                     </div>
-                    <span className="text-[10px] text-muted-foreground font-medium">{alert.time}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{alert.desc}</p>
-                </div>
+                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{alert.description}</p>
+                </Link>
               ))}
             </div>
           </CardContent>
+          <div className="p-4 border-t border-border/50 bg-muted/20">
+            <Button variant="outline" className="w-full text-sm" asChild>
+              <Link href="/alerts">
+                View All Alerts
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </Button>
+          </div>
         </Card>
       </div>
 

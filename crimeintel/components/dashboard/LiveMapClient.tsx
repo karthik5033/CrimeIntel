@@ -89,6 +89,47 @@ function HeatmapLayer({ isVisible, mapStyle }: { isVisible: boolean, mapStyle: s
   return null;
 }
 
+// Predictive Forecast Heatmap Layer
+function PredictiveHeatmapLayer({ isVisible, mapStyle }: { isVisible: boolean, mapStyle: string }) {
+  const map = useMap();
+  
+  const predictiveData = useMemo(() => [
+    ...generateCluster(12.9716, 77.5946, 180, 0.08), // Expanded Central Zone
+    ...generateCluster(12.9252, 77.6345, 200, 0.06), // Koramangala spread
+    ...generateCluster(13.0604, 77.5812, 150, 0.04), // Yelahanka emerging
+    ...generateCluster(12.9081, 77.5315, 100, 0.05), // Uttarahalli emerging
+  ], []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    require('leaflet.heat');
+    
+    // @ts-ignore
+    if (typeof L.heatLayer === 'function') {
+      // @ts-ignore
+      const heat = L.heatLayer(predictiveData, {
+        radius: 20,
+        blur: 30,
+        maxZoom: 13,
+        minOpacity: 0.1,
+        gradient: {
+          0.2: '#c084fc', // Purple 400
+          0.5: '#a855f7', // Purple 500
+          0.8: '#7e22ce', // Purple 700
+          1.0: '#581c87'  // Purple 900
+        }
+      }).addTo(map);
+
+      return () => {
+        map.removeLayer(heat);
+      };
+    }
+  }, [map, predictiveData, isVisible, mapStyle]);
+
+  return null;
+}
+
 // Generates a tactical "Pro" grid to simulate Ward Zones
 function WardsGridLayer({ isVisible }: { isVisible: boolean }) {
   if (!isVisible) return null;
@@ -130,7 +171,7 @@ function WardsGridLayer({ isVisible }: { isVisible: boolean }) {
   return <LayerGroup>{gridPolygons}</LayerGroup>;
 }
 
-export default function LiveMapClient({ hotspots, selectedSpot, onSelect, showHeatmap, showBoundaries, showWards, mapStyle }: any) {
+export default function LiveMapClient({ hotspots, selectedSpot, onSelect, showHeatmap, showBoundaries, showWards, showPredictive, mapStyle }: any) {
   const defaultCenter: [number, number] = [12.9716, 77.5946]; 
   
   const [geoJsonData, setGeoJsonData] = useState<any>(null);
@@ -182,6 +223,7 @@ export default function LiveMapClient({ hotspots, selectedSpot, onSelect, showHe
         <WardsGridLayer isVisible={showWards} />
         
         <HeatmapLayer isVisible={showHeatmap} mapStyle={mapStyle} />
+        <PredictiveHeatmapLayer isVisible={showPredictive} mapStyle={mapStyle} />
 
         {selectedSpot && <MapCameraUpdater lat={selectedSpot.lat} lng={selectedSpot.lng} />}
       </MapContainer>

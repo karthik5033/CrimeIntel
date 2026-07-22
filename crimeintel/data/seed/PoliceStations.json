@@ -1,0 +1,502 @@
+[
+  {
+    "id": "PS_1",
+    "name_en": "Lake Demond PS",
+    "name_kn": "Duluth ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 13.388,
+    "lng": 74.4187
+  },
+  {
+    "id": "PS_2",
+    "name_en": "Carlton PS",
+    "name_kn": "South Demarco ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_2",
+    "district_name_en": "Mysuru",
+    "district_name_kn": "ಮೈಸೂರು",
+    "lat": 16.9372,
+    "lng": 75.7237
+  },
+  {
+    "id": "PS_3",
+    "name_en": "Schillerboro PS",
+    "name_kn": "Tustin ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_2",
+    "district_name_en": "Mysuru",
+    "district_name_kn": "ಮೈಸೂರು",
+    "lat": 12.9713,
+    "lng": 74.943
+  },
+  {
+    "id": "PS_4",
+    "name_en": "Glenview PS",
+    "name_kn": "South Gonzalofurt ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 17.3122,
+    "lng": 75.425
+  },
+  {
+    "id": "PS_5",
+    "name_en": "Pennyfield PS",
+    "name_kn": "Anderson-Gottliebstad ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_2",
+    "district_name_en": "Mysuru",
+    "district_name_kn": "ಮೈಸೂರು",
+    "lat": 17.5986,
+    "lng": 74.8139
+  },
+  {
+    "id": "PS_6",
+    "name_en": "South Reggiefort PS",
+    "name_kn": "North Celiaville ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 14.7502,
+    "lng": 77.633
+  },
+  {
+    "id": "PS_7",
+    "name_en": "Torpborough PS",
+    "name_kn": "East Vicki ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 17.9745,
+    "lng": 75.5144
+  },
+  {
+    "id": "PS_8",
+    "name_en": "Ondrickabury PS",
+    "name_kn": "North Nelsonshire ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_1",
+    "district_name_en": "Bengaluru Urban",
+    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+    "lat": 14.6562,
+    "lng": 77.1114
+  },
+  {
+    "id": "PS_9",
+    "name_en": "Glendale PS",
+    "name_kn": "Daly City ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 12.9556,
+    "lng": 77.8458
+  },
+  {
+    "id": "PS_10",
+    "name_en": "Cynthiaborough PS",
+    "name_kn": "Fort Johan ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 12.4401,
+    "lng": 76.5522
+  },
+  {
+    "id": "PS_11",
+    "name_en": "West Cristal PS",
+    "name_kn": "Chesapeake ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 15.523,
+    "lng": 77.3296
+  },
+  {
+    "id": "PS_12",
+    "name_en": "Josiannetown PS",
+    "name_kn": "Doloresburgh ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 16.3171,
+    "lng": 75.7541
+  },
+  {
+    "id": "PS_13",
+    "name_en": "Earlboro PS",
+    "name_kn": "New Lester ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 16.7562,
+    "lng": 75.2695
+  },
+  {
+    "id": "PS_14",
+    "name_en": "Greeley PS",
+    "name_kn": "Oscarstad ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 12.1333,
+    "lng": 74.184
+  },
+  {
+    "id": "PS_15",
+    "name_en": "South Chesterton PS",
+    "name_kn": "Oak Park ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 15.7754,
+    "lng": 74.805
+  },
+  {
+    "id": "PS_16",
+    "name_en": "New Lindseyfurt PS",
+    "name_kn": "Fort Iraworth ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 16.9337,
+    "lng": 74.579
+  },
+  {
+    "id": "PS_17",
+    "name_en": "Fort Vidabury PS",
+    "name_kn": "South Orinbury ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 16.6648,
+    "lng": 76.1802
+  },
+  {
+    "id": "PS_18",
+    "name_en": "West Berry PS",
+    "name_kn": "East Jasmineburgh ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_1",
+    "district_name_en": "Bengaluru Urban",
+    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+    "lat": 13.2812,
+    "lng": 75.5754
+  },
+  {
+    "id": "PS_19",
+    "name_en": "Turnerview PS",
+    "name_kn": "South Paige ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 13.398,
+    "lng": 74.7699
+  },
+  {
+    "id": "PS_20",
+    "name_en": "Josephinetown PS",
+    "name_kn": "Kokomo ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 17.6078,
+    "lng": 75.202
+  },
+  {
+    "id": "PS_21",
+    "name_en": "Wauwatosa PS",
+    "name_kn": "Port Dwayneton ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 12.934,
+    "lng": 77.5975
+  },
+  {
+    "id": "PS_22",
+    "name_en": "East Elinorefield PS",
+    "name_kn": "East Alaynafield ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 12.8951,
+    "lng": 74.4386
+  },
+  {
+    "id": "PS_23",
+    "name_en": "Alameda PS",
+    "name_kn": "Fort Candicefort ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 13.0643,
+    "lng": 77.8465
+  },
+  {
+    "id": "PS_24",
+    "name_en": "South Barrett PS",
+    "name_kn": "North Petertown ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_2",
+    "district_name_en": "Mysuru",
+    "district_name_kn": "ಮೈಸೂರು",
+    "lat": 17.766,
+    "lng": 75.6653
+  },
+  {
+    "id": "PS_25",
+    "name_en": "Cape Coral PS",
+    "name_kn": "Harriston ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 14.6559,
+    "lng": 76.0289
+  },
+  {
+    "id": "PS_26",
+    "name_en": "New Guyview PS",
+    "name_kn": "Watsicastad ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_1",
+    "district_name_en": "Bengaluru Urban",
+    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+    "lat": 17.8355,
+    "lng": 75.6752
+  },
+  {
+    "id": "PS_27",
+    "name_en": "Ankundingfield PS",
+    "name_kn": "South Sandy ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 17.1252,
+    "lng": 76.6382
+  },
+  {
+    "id": "PS_28",
+    "name_en": "Trompcester PS",
+    "name_kn": "Rhodamouth ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_2",
+    "district_name_en": "Mysuru",
+    "district_name_kn": "ಮೈಸೂರು",
+    "lat": 13.0901,
+    "lng": 76.4349
+  },
+  {
+    "id": "PS_29",
+    "name_en": "Whiteland PS",
+    "name_kn": "Kendallberg ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 14.9981,
+    "lng": 77.2793
+  },
+  {
+    "id": "PS_30",
+    "name_en": "Scottsdale PS",
+    "name_kn": "North Kacishire ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 16.3051,
+    "lng": 74.8461
+  },
+  {
+    "id": "PS_31",
+    "name_en": "East Duane PS",
+    "name_kn": "Linwoodton ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 13.4642,
+    "lng": 77.6784
+  },
+  {
+    "id": "PS_32",
+    "name_en": "East Jeanetteburgh PS",
+    "name_kn": "Riverton ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 13.6406,
+    "lng": 76.5411
+  },
+  {
+    "id": "PS_33",
+    "name_en": "Country Club PS",
+    "name_kn": "Hempstead ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 15.0553,
+    "lng": 75.7922
+  },
+  {
+    "id": "PS_34",
+    "name_en": "Christiansenstad PS",
+    "name_kn": "North Lindsay ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 12.047,
+    "lng": 74.0428
+  },
+  {
+    "id": "PS_35",
+    "name_en": "Bruenfurt PS",
+    "name_kn": "Oralland ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_2",
+    "district_name_en": "Mysuru",
+    "district_name_kn": "ಮೈಸೂರು",
+    "lat": 17.9866,
+    "lng": 76.2735
+  },
+  {
+    "id": "PS_36",
+    "name_en": "Parker PS",
+    "name_kn": "Port Kaylaport ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 14.5674,
+    "lng": 76.8929
+  },
+  {
+    "id": "PS_37",
+    "name_en": "New Margarettahaven PS",
+    "name_kn": "Hahnburgh ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 12.6399,
+    "lng": 74.7152
+  },
+  {
+    "id": "PS_38",
+    "name_en": "Janiston PS",
+    "name_kn": "Port Henrietta ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_1",
+    "district_name_en": "Bengaluru Urban",
+    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+    "lat": 17.2001,
+    "lng": 75.4956
+  },
+  {
+    "id": "PS_39",
+    "name_en": "South Stan PS",
+    "name_kn": "Sheboygan ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 17.3118,
+    "lng": 75.1179
+  },
+  {
+    "id": "PS_40",
+    "name_en": "Arlenefield PS",
+    "name_kn": "Framingham ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 14.0993,
+    "lng": 75.086
+  },
+  {
+    "id": "PS_41",
+    "name_en": "Brantboro PS",
+    "name_kn": "Paulaside ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 17.8251,
+    "lng": 75.1391
+  },
+  {
+    "id": "PS_42",
+    "name_en": "Port Oscar PS",
+    "name_kn": "Granvillefield ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 12.9912,
+    "lng": 75.8717
+  },
+  {
+    "id": "PS_43",
+    "name_en": "Bernhardland PS",
+    "name_kn": "Pasco ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_1",
+    "district_name_en": "Bengaluru Urban",
+    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+    "lat": 15.8289,
+    "lng": 77.7193
+  },
+  {
+    "id": "PS_44",
+    "name_en": "South Bend PS",
+    "name_kn": "Port Caden ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_2",
+    "district_name_en": "Mysuru",
+    "district_name_kn": "ಮೈಸೂರು",
+    "lat": 13.438,
+    "lng": 76.063
+  },
+  {
+    "id": "PS_45",
+    "name_en": "Moline PS",
+    "name_kn": "East Henrietta ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 14.0751,
+    "lng": 75.2735
+  },
+  {
+    "id": "PS_46",
+    "name_en": "Lake Demarcotown PS",
+    "name_kn": "North Sinceretown ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_4",
+    "district_name_en": "Hubballi-Dharwad",
+    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 14.9448,
+    "lng": 75.1663
+  },
+  {
+    "id": "PS_47",
+    "name_en": "North Ritaside PS",
+    "name_kn": "Huberttown ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 17.5629,
+    "lng": 75.4443
+  },
+  {
+    "id": "PS_48",
+    "name_en": "Gulfport PS",
+    "name_kn": "Phillipburgh ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_1",
+    "district_name_en": "Bengaluru Urban",
+    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+    "lat": 14.6253,
+    "lng": 75.5553
+  },
+  {
+    "id": "PS_49",
+    "name_en": "Sayreville PS",
+    "name_kn": "Shawnhaven ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_5",
+    "district_name_en": "Belagavi",
+    "district_name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 14.488,
+    "lng": 76.8169
+  },
+  {
+    "id": "PS_50",
+    "name_en": "Lenexa PS",
+    "name_kn": "South Beverlybury ಪೊಲೀಸ್ ಠಾಣೆ",
+    "district_id": "DIST_3",
+    "district_name_en": "Mangaluru",
+    "district_name_kn": "ಮಂಗಳೂರು",
+    "lat": 12.4906,
+    "lng": 77.8699
+  }
+]
