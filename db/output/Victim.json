@@ -1,0 +1,2482 @@
+[
+  {
+    "VictimMasterID": 1,
+    "CaseMasterID": 1,
+    "VictimName": "Boyd Lind IV",
+    "AgeYear": 33,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 2,
+    "CaseMasterID": 1,
+    "VictimName": "Myriam Rice",
+    "AgeYear": 65,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 3,
+    "CaseMasterID": 2,
+    "VictimName": "Jessy Swaniawski",
+    "AgeYear": 72,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 4,
+    "CaseMasterID": 2,
+    "VictimName": "Eleanor Cronin",
+    "AgeYear": 41,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 5,
+    "CaseMasterID": 3,
+    "VictimName": "Otho Murphy IV",
+    "AgeYear": 30,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 6,
+    "CaseMasterID": 4,
+    "VictimName": "Sara Champlin",
+    "AgeYear": 70,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 7,
+    "CaseMasterID": 5,
+    "VictimName": "Ted Hermann",
+    "AgeYear": 76,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 8,
+    "CaseMasterID": 5,
+    "VictimName": "Cloyd Gleichner II",
+    "AgeYear": 10,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 9,
+    "CaseMasterID": 6,
+    "VictimName": "Olen Reynolds",
+    "AgeYear": 23,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 10,
+    "CaseMasterID": 6,
+    "VictimName": "Angelica Green",
+    "AgeYear": 13,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 11,
+    "CaseMasterID": 7,
+    "VictimName": "Kathleen Christiansen",
+    "AgeYear": 68,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 12,
+    "CaseMasterID": 8,
+    "VictimName": "Lorenzo Kautzer",
+    "AgeYear": 10,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 13,
+    "CaseMasterID": 9,
+    "VictimName": "Novella Fay Sr.",
+    "AgeYear": 28,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 14,
+    "CaseMasterID": 10,
+    "VictimName": "Baby Corwin Sr.",
+    "AgeYear": 11,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 15,
+    "CaseMasterID": 11,
+    "VictimName": "Hunter Gutkowski DVM",
+    "AgeYear": 14,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 16,
+    "CaseMasterID": 12,
+    "VictimName": "Mr. Glenn Weissnat",
+    "AgeYear": 62,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 17,
+    "CaseMasterID": 12,
+    "VictimName": "Violet Marquardt",
+    "AgeYear": 61,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 18,
+    "CaseMasterID": 13,
+    "VictimName": "Johnpaul Langworth",
+    "AgeYear": 75,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 19,
+    "CaseMasterID": 14,
+    "VictimName": "Miss Eulalia Herzog",
+    "AgeYear": 72,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 20,
+    "CaseMasterID": 14,
+    "VictimName": "Camila Batz",
+    "AgeYear": 47,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 21,
+    "CaseMasterID": 15,
+    "VictimName": "Bert Purdy",
+    "AgeYear": 23,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 22,
+    "CaseMasterID": 16,
+    "VictimName": "Lavern Schmeler",
+    "AgeYear": 34,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 23,
+    "CaseMasterID": 16,
+    "VictimName": "Salvador Kshlerin",
+    "AgeYear": 11,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 24,
+    "CaseMasterID": 17,
+    "VictimName": "Orland Considine",
+    "AgeYear": 63,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 25,
+    "CaseMasterID": 17,
+    "VictimName": "Elyssa Hartmann",
+    "AgeYear": 22,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 26,
+    "CaseMasterID": 18,
+    "VictimName": "Rosalie Schinner II",
+    "AgeYear": 17,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 27,
+    "CaseMasterID": 18,
+    "VictimName": "Jason Ferry",
+    "AgeYear": 76,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 28,
+    "CaseMasterID": 19,
+    "VictimName": "Jules Blick II",
+    "AgeYear": 40,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 29,
+    "CaseMasterID": 19,
+    "VictimName": "Lenny Lebsack",
+    "AgeYear": 41,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 30,
+    "CaseMasterID": 20,
+    "VictimName": "Fleta Cole",
+    "AgeYear": 75,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 31,
+    "CaseMasterID": 21,
+    "VictimName": "Pauline Mohr I",
+    "AgeYear": 80,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 32,
+    "CaseMasterID": 21,
+    "VictimName": "Carroll Auer",
+    "AgeYear": 24,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 33,
+    "CaseMasterID": 22,
+    "VictimName": "Hector Cormier",
+    "AgeYear": 39,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 34,
+    "CaseMasterID": 22,
+    "VictimName": "Mr. Alvin Kutch MD",
+    "AgeYear": 10,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 35,
+    "CaseMasterID": 23,
+    "VictimName": "Rosie Donnelly",
+    "AgeYear": 66,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 36,
+    "CaseMasterID": 23,
+    "VictimName": "Clifford Cremin",
+    "AgeYear": 14,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 37,
+    "CaseMasterID": 24,
+    "VictimName": "Sydni Trantow",
+    "AgeYear": 43,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 38,
+    "CaseMasterID": 24,
+    "VictimName": "Annamarie Beier",
+    "AgeYear": 25,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 39,
+    "CaseMasterID": 25,
+    "VictimName": "Zoila Morissette",
+    "AgeYear": 61,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 40,
+    "CaseMasterID": 25,
+    "VictimName": "Leda Batz",
+    "AgeYear": 58,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 41,
+    "CaseMasterID": 26,
+    "VictimName": "Shaniya Rempel",
+    "AgeYear": 16,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 42,
+    "CaseMasterID": 26,
+    "VictimName": "Cheryl Streich",
+    "AgeYear": 68,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 43,
+    "CaseMasterID": 27,
+    "VictimName": "Timmy Flatley",
+    "AgeYear": 30,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 44,
+    "CaseMasterID": 27,
+    "VictimName": "Kenneth McGlynn",
+    "AgeYear": 29,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 45,
+    "CaseMasterID": 28,
+    "VictimName": "Angelita Bradtke",
+    "AgeYear": 20,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 46,
+    "CaseMasterID": 28,
+    "VictimName": "Nathaniel Gutmann",
+    "AgeYear": 23,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 47,
+    "CaseMasterID": 29,
+    "VictimName": "Wilhelmine Ward",
+    "AgeYear": 13,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 48,
+    "CaseMasterID": 30,
+    "VictimName": "Guillermo Gutkowski",
+    "AgeYear": 46,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 49,
+    "CaseMasterID": 30,
+    "VictimName": "Anika Monahan",
+    "AgeYear": 68,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 50,
+    "CaseMasterID": 31,
+    "VictimName": "Tyrel Kilback",
+    "AgeYear": 33,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 51,
+    "CaseMasterID": 32,
+    "VictimName": "Travis Mann",
+    "AgeYear": 25,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 52,
+    "CaseMasterID": 33,
+    "VictimName": "Dorothea Roob",
+    "AgeYear": 25,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 53,
+    "CaseMasterID": 33,
+    "VictimName": "Aaron Yundt",
+    "AgeYear": 48,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 54,
+    "CaseMasterID": 34,
+    "VictimName": "Verna Hermiston",
+    "AgeYear": 63,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 55,
+    "CaseMasterID": 34,
+    "VictimName": "Alex Haley",
+    "AgeYear": 75,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 56,
+    "CaseMasterID": 35,
+    "VictimName": "Roberto O'Reilly",
+    "AgeYear": 17,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 57,
+    "CaseMasterID": 35,
+    "VictimName": "Mervin Jacobi DDS",
+    "AgeYear": 67,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 58,
+    "CaseMasterID": 36,
+    "VictimName": "Graciela Ebert",
+    "AgeYear": 13,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 59,
+    "CaseMasterID": 36,
+    "VictimName": "Rosemarie Torp",
+    "AgeYear": 12,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 60,
+    "CaseMasterID": 37,
+    "VictimName": "Tasha Harvey V",
+    "AgeYear": 38,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 61,
+    "CaseMasterID": 38,
+    "VictimName": "Tommie Bauch V",
+    "AgeYear": 50,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 62,
+    "CaseMasterID": 39,
+    "VictimName": "Toni Mayert",
+    "AgeYear": 77,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 63,
+    "CaseMasterID": 39,
+    "VictimName": "Lula Runte",
+    "AgeYear": 32,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 64,
+    "CaseMasterID": 40,
+    "VictimName": "Cyrus Rogahn",
+    "AgeYear": 15,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 65,
+    "CaseMasterID": 40,
+    "VictimName": "Gene Reichert",
+    "AgeYear": 33,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 66,
+    "CaseMasterID": 41,
+    "VictimName": "Veronica Emmerich V",
+    "AgeYear": 42,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 67,
+    "CaseMasterID": 42,
+    "VictimName": "Ransom Adams-Green III",
+    "AgeYear": 61,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 68,
+    "CaseMasterID": 42,
+    "VictimName": "Alycia Jacobi IV",
+    "AgeYear": 77,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 69,
+    "CaseMasterID": 43,
+    "VictimName": "Elisabeth Hoeger",
+    "AgeYear": 73,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 70,
+    "CaseMasterID": 44,
+    "VictimName": "D'angelo Moen",
+    "AgeYear": 66,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 71,
+    "CaseMasterID": 44,
+    "VictimName": "Matthew Abbott DDS",
+    "AgeYear": 64,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 72,
+    "CaseMasterID": 45,
+    "VictimName": "Gillian Feest-Boyer",
+    "AgeYear": 34,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 73,
+    "CaseMasterID": 46,
+    "VictimName": "Glenn Bechtelar",
+    "AgeYear": 37,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 74,
+    "CaseMasterID": 46,
+    "VictimName": "Kyleigh Jenkins",
+    "AgeYear": 46,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 75,
+    "CaseMasterID": 47,
+    "VictimName": "Gisselle Quigley",
+    "AgeYear": 46,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 76,
+    "CaseMasterID": 47,
+    "VictimName": "Russell Morissette",
+    "AgeYear": 72,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 77,
+    "CaseMasterID": 48,
+    "VictimName": "Adam Gusikowski III",
+    "AgeYear": 57,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 78,
+    "CaseMasterID": 49,
+    "VictimName": "Harriet Roob",
+    "AgeYear": 26,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 79,
+    "CaseMasterID": 49,
+    "VictimName": "Jaren Reinger",
+    "AgeYear": 55,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 80,
+    "CaseMasterID": 50,
+    "VictimName": "Chandler Rowe",
+    "AgeYear": 43,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 81,
+    "CaseMasterID": 50,
+    "VictimName": "Dr. Dustin Rippin",
+    "AgeYear": 76,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 82,
+    "CaseMasterID": 51,
+    "VictimName": "Lora Reichel",
+    "AgeYear": 30,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 83,
+    "CaseMasterID": 52,
+    "VictimName": "Karla Nikolaus",
+    "AgeYear": 13,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 84,
+    "CaseMasterID": 53,
+    "VictimName": "Gayle Jenkins",
+    "AgeYear": 17,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 85,
+    "CaseMasterID": 53,
+    "VictimName": "Darwin Wilkinson DVM",
+    "AgeYear": 80,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 86,
+    "CaseMasterID": 54,
+    "VictimName": "Paula Reichel",
+    "AgeYear": 56,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 87,
+    "CaseMasterID": 54,
+    "VictimName": "Henrietta Langworth",
+    "AgeYear": 75,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 88,
+    "CaseMasterID": 55,
+    "VictimName": "Raven Reichert",
+    "AgeYear": 61,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 89,
+    "CaseMasterID": 56,
+    "VictimName": "Randi Heathcote",
+    "AgeYear": 44,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 90,
+    "CaseMasterID": 56,
+    "VictimName": "Levi Hoppe",
+    "AgeYear": 37,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 91,
+    "CaseMasterID": 57,
+    "VictimName": "Miss Elaine Dach",
+    "AgeYear": 14,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 92,
+    "CaseMasterID": 58,
+    "VictimName": "Lonnie Parisian-Crooks",
+    "AgeYear": 13,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 93,
+    "CaseMasterID": 58,
+    "VictimName": "Lawrence Hammes",
+    "AgeYear": 50,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 94,
+    "CaseMasterID": 59,
+    "VictimName": "Garrison Jacobson",
+    "AgeYear": 45,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 95,
+    "CaseMasterID": 60,
+    "VictimName": "Dr. Greg Blick",
+    "AgeYear": 74,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 96,
+    "CaseMasterID": 61,
+    "VictimName": "Brandi Hickle",
+    "AgeYear": 38,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 97,
+    "CaseMasterID": 61,
+    "VictimName": "Nona Prohaska",
+    "AgeYear": 22,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 98,
+    "CaseMasterID": 62,
+    "VictimName": "Elmira Leannon",
+    "AgeYear": 18,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 99,
+    "CaseMasterID": 63,
+    "VictimName": "Laurel Brown II",
+    "AgeYear": 64,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 100,
+    "CaseMasterID": 63,
+    "VictimName": "Beth Koepp",
+    "AgeYear": 40,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 101,
+    "CaseMasterID": 64,
+    "VictimName": "Sally Hoeger",
+    "AgeYear": 45,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 102,
+    "CaseMasterID": 65,
+    "VictimName": "Gertrude Homenick-Purdy",
+    "AgeYear": 33,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 103,
+    "CaseMasterID": 65,
+    "VictimName": "Elsie Volkman",
+    "AgeYear": 80,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 104,
+    "CaseMasterID": 66,
+    "VictimName": "Marco Kunde",
+    "AgeYear": 37,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 105,
+    "CaseMasterID": 66,
+    "VictimName": "Alberta Weissnat",
+    "AgeYear": 20,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 106,
+    "CaseMasterID": 67,
+    "VictimName": "Myra Ryan",
+    "AgeYear": 76,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 107,
+    "CaseMasterID": 67,
+    "VictimName": "Kathryne Dicki",
+    "AgeYear": 21,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 108,
+    "CaseMasterID": 68,
+    "VictimName": "Keely Stoltenberg",
+    "AgeYear": 44,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 109,
+    "CaseMasterID": 69,
+    "VictimName": "Destinee Bernier",
+    "AgeYear": 60,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 110,
+    "CaseMasterID": 70,
+    "VictimName": "Adam Moore",
+    "AgeYear": 78,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 111,
+    "CaseMasterID": 70,
+    "VictimName": "Georgianna Collier",
+    "AgeYear": 33,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 112,
+    "CaseMasterID": 71,
+    "VictimName": "Iris Howe",
+    "AgeYear": 34,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 113,
+    "CaseMasterID": 72,
+    "VictimName": "Sienna Turner",
+    "AgeYear": 53,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 114,
+    "CaseMasterID": 72,
+    "VictimName": "Rita Streich",
+    "AgeYear": 12,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 115,
+    "CaseMasterID": 73,
+    "VictimName": "Shemar Zboncak",
+    "AgeYear": 68,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 116,
+    "CaseMasterID": 74,
+    "VictimName": "Shane Ernser",
+    "AgeYear": 51,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 117,
+    "CaseMasterID": 74,
+    "VictimName": "Miriam Denesik",
+    "AgeYear": 61,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 118,
+    "CaseMasterID": 75,
+    "VictimName": "Perry Wisoky",
+    "AgeYear": 63,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 119,
+    "CaseMasterID": 75,
+    "VictimName": "Sheri Bergnaum",
+    "AgeYear": 51,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 120,
+    "CaseMasterID": 76,
+    "VictimName": "Samantha Heller",
+    "AgeYear": 18,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 121,
+    "CaseMasterID": 77,
+    "VictimName": "Mamie Wintheiser",
+    "AgeYear": 12,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 122,
+    "CaseMasterID": 77,
+    "VictimName": "Wanda Langworth",
+    "AgeYear": 10,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 123,
+    "CaseMasterID": 78,
+    "VictimName": "Sandrine Zboncak-Wyman",
+    "AgeYear": 35,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 124,
+    "CaseMasterID": 78,
+    "VictimName": "Cordie Tremblay",
+    "AgeYear": 16,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 125,
+    "CaseMasterID": 79,
+    "VictimName": "Magdalen Beahan-Reynolds",
+    "AgeYear": 59,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 126,
+    "CaseMasterID": 80,
+    "VictimName": "Vicky VonRueden",
+    "AgeYear": 22,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 127,
+    "CaseMasterID": 81,
+    "VictimName": "Kevin Zulauf DDS",
+    "AgeYear": 17,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 128,
+    "CaseMasterID": 81,
+    "VictimName": "Aiden Grady",
+    "AgeYear": 14,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 129,
+    "CaseMasterID": 82,
+    "VictimName": "Katherine Torphy",
+    "AgeYear": 21,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 130,
+    "CaseMasterID": 82,
+    "VictimName": "Evie Bernier",
+    "AgeYear": 37,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 131,
+    "CaseMasterID": 83,
+    "VictimName": "Benny Gottlieb",
+    "AgeYear": 42,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 132,
+    "CaseMasterID": 83,
+    "VictimName": "Billy Steuber",
+    "AgeYear": 37,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 133,
+    "CaseMasterID": 84,
+    "VictimName": "Dorcas Nolan-Fritsch",
+    "AgeYear": 12,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 134,
+    "CaseMasterID": 85,
+    "VictimName": "Joyce Labadie",
+    "AgeYear": 32,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 135,
+    "CaseMasterID": 86,
+    "VictimName": "Luis Kuhic",
+    "AgeYear": 37,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 136,
+    "CaseMasterID": 87,
+    "VictimName": "Karolann Torphy-Goyette Sr.",
+    "AgeYear": 20,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 137,
+    "CaseMasterID": 87,
+    "VictimName": "Viola Kreiger II",
+    "AgeYear": 33,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 138,
+    "CaseMasterID": 88,
+    "VictimName": "Mr. Katrine Harvey Sr.",
+    "AgeYear": 40,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 139,
+    "CaseMasterID": 89,
+    "VictimName": "Brian Franey",
+    "AgeYear": 56,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 140,
+    "CaseMasterID": 90,
+    "VictimName": "Adrian Rice II",
+    "AgeYear": 72,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 141,
+    "CaseMasterID": 90,
+    "VictimName": "Maiya Barton",
+    "AgeYear": 46,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 142,
+    "CaseMasterID": 91,
+    "VictimName": "Dolores Borer",
+    "AgeYear": 47,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 143,
+    "CaseMasterID": 91,
+    "VictimName": "Bobbie Casper",
+    "AgeYear": 13,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 144,
+    "CaseMasterID": 92,
+    "VictimName": "Janis Dooley",
+    "AgeYear": 32,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 145,
+    "CaseMasterID": 93,
+    "VictimName": "Hipolito Wiza",
+    "AgeYear": 61,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 146,
+    "CaseMasterID": 93,
+    "VictimName": "Torrance Pouros",
+    "AgeYear": 14,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 147,
+    "CaseMasterID": 94,
+    "VictimName": "Meggie Oberbrunner",
+    "AgeYear": 70,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 148,
+    "CaseMasterID": 95,
+    "VictimName": "Myron Strosin",
+    "AgeYear": 78,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 149,
+    "CaseMasterID": 96,
+    "VictimName": "Darrin Nitzsche",
+    "AgeYear": 80,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 150,
+    "CaseMasterID": 96,
+    "VictimName": "Dr. Daryl Barrows",
+    "AgeYear": 74,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 151,
+    "CaseMasterID": 97,
+    "VictimName": "Ms. Lonie Franey-Lebsack IV",
+    "AgeYear": 38,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 152,
+    "CaseMasterID": 97,
+    "VictimName": "Herman West",
+    "AgeYear": 28,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 153,
+    "CaseMasterID": 98,
+    "VictimName": "Archie Little",
+    "AgeYear": 68,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 154,
+    "CaseMasterID": 99,
+    "VictimName": "Novella Moen",
+    "AgeYear": 12,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 155,
+    "CaseMasterID": 99,
+    "VictimName": "Elfrieda Mueller",
+    "AgeYear": 42,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 156,
+    "CaseMasterID": 100,
+    "VictimName": "Fredrick Walter",
+    "AgeYear": 24,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 157,
+    "CaseMasterID": 100,
+    "VictimName": "Harvey Cummerata",
+    "AgeYear": 40,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 158,
+    "CaseMasterID": 101,
+    "VictimName": "Mr. Jesse Stracke",
+    "AgeYear": 40,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 159,
+    "CaseMasterID": 102,
+    "VictimName": "Annie Boehm",
+    "AgeYear": 31,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 160,
+    "CaseMasterID": 103,
+    "VictimName": "Wilson Olson",
+    "AgeYear": 12,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 161,
+    "CaseMasterID": 103,
+    "VictimName": "Emmalee Bogisich",
+    "AgeYear": 41,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 162,
+    "CaseMasterID": 104,
+    "VictimName": "Noel Brekke",
+    "AgeYear": 64,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 163,
+    "CaseMasterID": 105,
+    "VictimName": "Aniya Moore",
+    "AgeYear": 75,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 164,
+    "CaseMasterID": 106,
+    "VictimName": "Delilah Maggio",
+    "AgeYear": 51,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 165,
+    "CaseMasterID": 107,
+    "VictimName": "Andrew Pfeffer",
+    "AgeYear": 17,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 166,
+    "CaseMasterID": 107,
+    "VictimName": "Ms. Coy Rosenbaum Sr.",
+    "AgeYear": 17,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 167,
+    "CaseMasterID": 108,
+    "VictimName": "Devon Jacobi",
+    "AgeYear": 72,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 168,
+    "CaseMasterID": 109,
+    "VictimName": "Mrs. Bessie Schroeder Jr.",
+    "AgeYear": 69,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 169,
+    "CaseMasterID": 109,
+    "VictimName": "Marjory Grady",
+    "AgeYear": 75,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 170,
+    "CaseMasterID": 110,
+    "VictimName": "Becky Pagac",
+    "AgeYear": 63,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 171,
+    "CaseMasterID": 110,
+    "VictimName": "Jim Rath",
+    "AgeYear": 51,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 172,
+    "CaseMasterID": 111,
+    "VictimName": "Natalie Maggio DVM",
+    "AgeYear": 62,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 173,
+    "CaseMasterID": 111,
+    "VictimName": "Wendell Beier",
+    "AgeYear": 15,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 174,
+    "CaseMasterID": 112,
+    "VictimName": "Dr. Wallace Kautzer III",
+    "AgeYear": 52,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 175,
+    "CaseMasterID": 113,
+    "VictimName": "Noemy McLaughlin",
+    "AgeYear": 67,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 176,
+    "CaseMasterID": 114,
+    "VictimName": "Miss Hassie Hudson",
+    "AgeYear": 65,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 177,
+    "CaseMasterID": 115,
+    "VictimName": "Jeff Weber",
+    "AgeYear": 53,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 178,
+    "CaseMasterID": 116,
+    "VictimName": "Mr. Vernon Bashirian",
+    "AgeYear": 50,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 179,
+    "CaseMasterID": 116,
+    "VictimName": "Jordy Schuppe MD",
+    "AgeYear": 16,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 180,
+    "CaseMasterID": 117,
+    "VictimName": "Orie Bahringer",
+    "AgeYear": 48,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 181,
+    "CaseMasterID": 118,
+    "VictimName": "David Rowe",
+    "AgeYear": 25,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 182,
+    "CaseMasterID": 119,
+    "VictimName": "Hershel Hyatt IV",
+    "AgeYear": 61,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 183,
+    "CaseMasterID": 120,
+    "VictimName": "Randolph Schmidt",
+    "AgeYear": 64,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 184,
+    "CaseMasterID": 121,
+    "VictimName": "Randy Kris",
+    "AgeYear": 49,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 185,
+    "CaseMasterID": 121,
+    "VictimName": "Luz Hintz",
+    "AgeYear": 21,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 186,
+    "CaseMasterID": 122,
+    "VictimName": "Skye Romaguera",
+    "AgeYear": 49,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 187,
+    "CaseMasterID": 122,
+    "VictimName": "Dexter Will",
+    "AgeYear": 28,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 188,
+    "CaseMasterID": 123,
+    "VictimName": "Mr. Imani Heaney",
+    "AgeYear": 59,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 189,
+    "CaseMasterID": 124,
+    "VictimName": "Geraldine Kozey",
+    "AgeYear": 39,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 190,
+    "CaseMasterID": 124,
+    "VictimName": "Osbaldo Rohan",
+    "AgeYear": 63,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 191,
+    "CaseMasterID": 125,
+    "VictimName": "Amber Rath DVM",
+    "AgeYear": 57,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 192,
+    "CaseMasterID": 126,
+    "VictimName": "Grant Frami",
+    "AgeYear": 77,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 193,
+    "CaseMasterID": 127,
+    "VictimName": "Mr. Tony Boehm",
+    "AgeYear": 80,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 194,
+    "CaseMasterID": 127,
+    "VictimName": "Albert Smith",
+    "AgeYear": 20,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 195,
+    "CaseMasterID": 128,
+    "VictimName": "Keagan Hayes",
+    "AgeYear": 38,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 196,
+    "CaseMasterID": 128,
+    "VictimName": "Joseph Marvin",
+    "AgeYear": 26,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 197,
+    "CaseMasterID": 129,
+    "VictimName": "Frank Strosin",
+    "AgeYear": 22,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 198,
+    "CaseMasterID": 130,
+    "VictimName": "Miss Leonora Larson",
+    "AgeYear": 42,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 199,
+    "CaseMasterID": 130,
+    "VictimName": "Ella Kunze",
+    "AgeYear": 28,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 200,
+    "CaseMasterID": 131,
+    "VictimName": "Cornell Rogahn",
+    "AgeYear": 58,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 201,
+    "CaseMasterID": 131,
+    "VictimName": "Mrs. Stanton Frami I",
+    "AgeYear": 80,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 202,
+    "CaseMasterID": 132,
+    "VictimName": "Lue Hammes DVM",
+    "AgeYear": 63,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 203,
+    "CaseMasterID": 133,
+    "VictimName": "Oliver Rogahn",
+    "AgeYear": 34,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 204,
+    "CaseMasterID": 133,
+    "VictimName": "Theodore Purdy",
+    "AgeYear": 64,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 205,
+    "CaseMasterID": 134,
+    "VictimName": "Cameron Turcotte",
+    "AgeYear": 68,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 206,
+    "CaseMasterID": 135,
+    "VictimName": "Bart Reichert",
+    "AgeYear": 48,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 207,
+    "CaseMasterID": 136,
+    "VictimName": "Celia Batz",
+    "AgeYear": 68,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 208,
+    "CaseMasterID": 136,
+    "VictimName": "Vicky Kutch",
+    "AgeYear": 39,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 209,
+    "CaseMasterID": 137,
+    "VictimName": "Bob Reinger",
+    "AgeYear": 67,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 210,
+    "CaseMasterID": 137,
+    "VictimName": "Lydia Hessel",
+    "AgeYear": 47,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 211,
+    "CaseMasterID": 138,
+    "VictimName": "Michel Mosciski DDS",
+    "AgeYear": 19,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 212,
+    "CaseMasterID": 138,
+    "VictimName": "Sue Gerhold",
+    "AgeYear": 73,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 213,
+    "CaseMasterID": 139,
+    "VictimName": "Ardella Stracke",
+    "AgeYear": 66,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 214,
+    "CaseMasterID": 139,
+    "VictimName": "Randall Skiles",
+    "AgeYear": 26,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 215,
+    "CaseMasterID": 140,
+    "VictimName": "Rosemary Rowe",
+    "AgeYear": 14,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 216,
+    "CaseMasterID": 141,
+    "VictimName": "Miss Cecile Graham",
+    "AgeYear": 62,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 217,
+    "CaseMasterID": 142,
+    "VictimName": "Ima Prosacco",
+    "AgeYear": 49,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 218,
+    "CaseMasterID": 142,
+    "VictimName": "Martin Collier",
+    "AgeYear": 17,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 219,
+    "CaseMasterID": 143,
+    "VictimName": "Daniella Feil-Greenfelder",
+    "AgeYear": 50,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 220,
+    "CaseMasterID": 144,
+    "VictimName": "Mr. Eda Hoppe",
+    "AgeYear": 78,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 221,
+    "CaseMasterID": 145,
+    "VictimName": "Dr. Daniel Konopelski",
+    "AgeYear": 66,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 222,
+    "CaseMasterID": 145,
+    "VictimName": "Vickie Huel",
+    "AgeYear": 25,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 223,
+    "CaseMasterID": 146,
+    "VictimName": "Mandy Monahan",
+    "AgeYear": 63,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 224,
+    "CaseMasterID": 147,
+    "VictimName": "Mrs. Tammy Crooks",
+    "AgeYear": 78,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 225,
+    "CaseMasterID": 147,
+    "VictimName": "Makayla Morissette III",
+    "AgeYear": 25,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 226,
+    "CaseMasterID": 148,
+    "VictimName": "Gustave Bauch",
+    "AgeYear": 29,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 227,
+    "CaseMasterID": 148,
+    "VictimName": "Rosalie Fritsch",
+    "AgeYear": 55,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 228,
+    "CaseMasterID": 149,
+    "VictimName": "Monique Heathcote",
+    "AgeYear": 67,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 229,
+    "CaseMasterID": 149,
+    "VictimName": "Mr. Herbert Schimmel",
+    "AgeYear": 74,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 230,
+    "CaseMasterID": 150,
+    "VictimName": "Ed Senger DVM",
+    "AgeYear": 22,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 231,
+    "CaseMasterID": 150,
+    "VictimName": "Francesco Mante",
+    "AgeYear": 30,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 232,
+    "CaseMasterID": 151,
+    "VictimName": "Kaylah Mueller",
+    "AgeYear": 47,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 233,
+    "CaseMasterID": 152,
+    "VictimName": "Presley Beatty",
+    "AgeYear": 30,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 234,
+    "CaseMasterID": 152,
+    "VictimName": "Cleta Hirthe DVM",
+    "AgeYear": 49,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 235,
+    "CaseMasterID": 153,
+    "VictimName": "Mr. Jacey Carter",
+    "AgeYear": 79,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 236,
+    "CaseMasterID": 154,
+    "VictimName": "Emely Bergstrom",
+    "AgeYear": 49,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 237,
+    "CaseMasterID": 155,
+    "VictimName": "Laron Gutmann",
+    "AgeYear": 17,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 238,
+    "CaseMasterID": 156,
+    "VictimName": "Naomie Doyle",
+    "AgeYear": 74,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 239,
+    "CaseMasterID": 157,
+    "VictimName": "Archie Pfannerstill III",
+    "AgeYear": 13,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 240,
+    "CaseMasterID": 157,
+    "VictimName": "Nina Wiegand",
+    "AgeYear": 49,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 241,
+    "CaseMasterID": 158,
+    "VictimName": "Brent Okuneva",
+    "AgeYear": 46,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 242,
+    "CaseMasterID": 158,
+    "VictimName": "Timmy Torp",
+    "AgeYear": 57,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 243,
+    "CaseMasterID": 159,
+    "VictimName": "Mossie Cruickshank DDS",
+    "AgeYear": 51,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 244,
+    "CaseMasterID": 159,
+    "VictimName": "Destin Senger",
+    "AgeYear": 15,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 245,
+    "CaseMasterID": 160,
+    "VictimName": "Mamie Franecki",
+    "AgeYear": 62,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 246,
+    "CaseMasterID": 160,
+    "VictimName": "Tricia Robel",
+    "AgeYear": 59,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 247,
+    "CaseMasterID": 161,
+    "VictimName": "Janie Buckridge",
+    "AgeYear": 14,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 248,
+    "CaseMasterID": 161,
+    "VictimName": "Wellington O'Connell III",
+    "AgeYear": 20,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 249,
+    "CaseMasterID": 162,
+    "VictimName": "Ms. Geneva Hermiston",
+    "AgeYear": 20,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 250,
+    "CaseMasterID": 162,
+    "VictimName": "Alonzo Zulauf",
+    "AgeYear": 73,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 251,
+    "CaseMasterID": 163,
+    "VictimName": "Barry Macejkovic",
+    "AgeYear": 23,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 252,
+    "CaseMasterID": 163,
+    "VictimName": "Alvin Gibson",
+    "AgeYear": 72,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 253,
+    "CaseMasterID": 164,
+    "VictimName": "Eunice Armstrong",
+    "AgeYear": 69,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 254,
+    "CaseMasterID": 164,
+    "VictimName": "Alanis Frami",
+    "AgeYear": 57,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 255,
+    "CaseMasterID": 165,
+    "VictimName": "Roberto Lehner",
+    "AgeYear": 12,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 256,
+    "CaseMasterID": 165,
+    "VictimName": "Shane Wilkinson",
+    "AgeYear": 31,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 257,
+    "CaseMasterID": 166,
+    "VictimName": "Jeanne Connelly",
+    "AgeYear": 15,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 258,
+    "CaseMasterID": 166,
+    "VictimName": "Melinda Cole",
+    "AgeYear": 42,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 259,
+    "CaseMasterID": 167,
+    "VictimName": "Katlynn Schimmel",
+    "AgeYear": 43,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 260,
+    "CaseMasterID": 168,
+    "VictimName": "Rhonda Schinner",
+    "AgeYear": 43,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 261,
+    "CaseMasterID": 168,
+    "VictimName": "Tracey Rohan",
+    "AgeYear": 74,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 262,
+    "CaseMasterID": 169,
+    "VictimName": "Maureen Brekke",
+    "AgeYear": 67,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 263,
+    "CaseMasterID": 169,
+    "VictimName": "Myron Reinger",
+    "AgeYear": 14,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 264,
+    "CaseMasterID": 170,
+    "VictimName": "Mercedes Weimann V",
+    "AgeYear": 70,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 265,
+    "CaseMasterID": 171,
+    "VictimName": "Elisa Smith V",
+    "AgeYear": 46,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 266,
+    "CaseMasterID": 171,
+    "VictimName": "Mrs. Cathy Bauch",
+    "AgeYear": 54,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 267,
+    "CaseMasterID": 172,
+    "VictimName": "Jon Rolfson",
+    "AgeYear": 36,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 268,
+    "CaseMasterID": 172,
+    "VictimName": "Timothy Beier",
+    "AgeYear": 25,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 269,
+    "CaseMasterID": 173,
+    "VictimName": "Donald Stracke DVM",
+    "AgeYear": 79,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 270,
+    "CaseMasterID": 173,
+    "VictimName": "Karen Bergnaum",
+    "AgeYear": 15,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 271,
+    "CaseMasterID": 174,
+    "VictimName": "Dr. Victor Stoltenberg",
+    "AgeYear": 20,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 272,
+    "CaseMasterID": 174,
+    "VictimName": "Christine Thompson",
+    "AgeYear": 64,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 273,
+    "CaseMasterID": 175,
+    "VictimName": "Dr. Duncan Konopelski",
+    "AgeYear": 24,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 274,
+    "CaseMasterID": 175,
+    "VictimName": "Concepcion Muller",
+    "AgeYear": 30,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 275,
+    "CaseMasterID": 176,
+    "VictimName": "Karelle Runolfsson",
+    "AgeYear": 56,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 276,
+    "CaseMasterID": 177,
+    "VictimName": "Xavier Mohr",
+    "AgeYear": 77,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 277,
+    "CaseMasterID": 177,
+    "VictimName": "Brooke Daugherty",
+    "AgeYear": 29,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 278,
+    "CaseMasterID": 178,
+    "VictimName": "Chaim Batz",
+    "AgeYear": 45,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 279,
+    "CaseMasterID": 178,
+    "VictimName": "Raymond DuBuque",
+    "AgeYear": 30,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 280,
+    "CaseMasterID": 179,
+    "VictimName": "Sibyl Wolf",
+    "AgeYear": 73,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 281,
+    "CaseMasterID": 179,
+    "VictimName": "Hester Schmitt",
+    "AgeYear": 75,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 282,
+    "CaseMasterID": 180,
+    "VictimName": "Neil Schiller",
+    "AgeYear": 65,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 283,
+    "CaseMasterID": 181,
+    "VictimName": "Jeremiah Funk-Crist",
+    "AgeYear": 76,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 284,
+    "CaseMasterID": 182,
+    "VictimName": "Clementina Anderson",
+    "AgeYear": 61,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 285,
+    "CaseMasterID": 182,
+    "VictimName": "Virgil Lemke",
+    "AgeYear": 13,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 286,
+    "CaseMasterID": 183,
+    "VictimName": "Margaret Shields DVM",
+    "AgeYear": 56,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 287,
+    "CaseMasterID": 184,
+    "VictimName": "Bulah Dickens",
+    "AgeYear": 12,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 288,
+    "CaseMasterID": 185,
+    "VictimName": "Wesley Rosenbaum",
+    "AgeYear": 54,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 289,
+    "CaseMasterID": 186,
+    "VictimName": "Dameon Beer",
+    "AgeYear": 55,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 290,
+    "CaseMasterID": 187,
+    "VictimName": "Gage Glover II",
+    "AgeYear": 59,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 291,
+    "CaseMasterID": 187,
+    "VictimName": "Danika Schuster",
+    "AgeYear": 19,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 292,
+    "CaseMasterID": 188,
+    "VictimName": "Genevieve Schneider",
+    "AgeYear": 45,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 293,
+    "CaseMasterID": 189,
+    "VictimName": "Ferne Stracke",
+    "AgeYear": 70,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 294,
+    "CaseMasterID": 190,
+    "VictimName": "Muriel Hartmann",
+    "AgeYear": 57,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 295,
+    "CaseMasterID": 191,
+    "VictimName": "Elvira Thompson",
+    "AgeYear": 56,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 296,
+    "CaseMasterID": 191,
+    "VictimName": "Alonzo McCullough",
+    "AgeYear": 52,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 297,
+    "CaseMasterID": 192,
+    "VictimName": "Mr. Terrell Lakin MD",
+    "AgeYear": 24,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 298,
+    "CaseMasterID": 192,
+    "VictimName": "Miss Faye Schinner",
+    "AgeYear": 54,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 299,
+    "CaseMasterID": 193,
+    "VictimName": "Timothy Gerlach MD",
+    "AgeYear": 43,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 300,
+    "CaseMasterID": 193,
+    "VictimName": "Dr. River Swaniawski",
+    "AgeYear": 19,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 301,
+    "CaseMasterID": 194,
+    "VictimName": "Wendell Champlin",
+    "AgeYear": 23,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 302,
+    "CaseMasterID": 195,
+    "VictimName": "Cristobal Franecki",
+    "AgeYear": 23,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 303,
+    "CaseMasterID": 195,
+    "VictimName": "Mr. Darin Boyer",
+    "AgeYear": 54,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 304,
+    "CaseMasterID": 196,
+    "VictimName": "Benjamin Torp",
+    "AgeYear": 66,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 305,
+    "CaseMasterID": 196,
+    "VictimName": "Cedric Abernathy",
+    "AgeYear": 43,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 306,
+    "CaseMasterID": 197,
+    "VictimName": "Mrs. Laura Nikolaus",
+    "AgeYear": 77,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 307,
+    "CaseMasterID": 198,
+    "VictimName": "Nikki Moen",
+    "AgeYear": 20,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 308,
+    "CaseMasterID": 199,
+    "VictimName": "Luigi Grant Jr.",
+    "AgeYear": 73,
+    "GenderID": 1,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 309,
+    "CaseMasterID": 199,
+    "VictimName": "Percy Wehner",
+    "AgeYear": 29,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  },
+  {
+    "VictimMasterID": 310,
+    "CaseMasterID": 200,
+    "VictimName": "Leola Kerluke",
+    "AgeYear": 75,
+    "GenderID": 2,
+    "VictimPolice": "0"
+  }
+]

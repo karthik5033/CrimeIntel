@@ -1,0 +1,9 @@
+[
+  {
+    "UnitTypeID": 1,
+    "UnitTypeName": "Police Station",
+    "CityDistState": "City",
+    "Hierarchy": 1,
+    "Active": 1
+  }
+]

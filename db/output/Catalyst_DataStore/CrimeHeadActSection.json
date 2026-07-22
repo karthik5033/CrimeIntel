@@ -1,0 +1,12 @@
+[
+  {
+    "CrimeHeadID": 1,
+    "ActCode": "IPC",
+    "SectionCode": "302"
+  },
+  {
+    "CrimeHeadID": 2,
+    "ActCode": "IPC",
+    "SectionCode": "392"
+  }
+]

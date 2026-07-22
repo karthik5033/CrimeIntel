@@ -1,0 +1,18 @@
+[
+  {
+    "ReligionID": 1,
+    "ReligionName": "Hindu"
+  },
+  {
+    "ReligionID": 2,
+    "ReligionName": "Muslim"
+  },
+  {
+    "ReligionID": 3,
+    "ReligionName": "Christian"
+  },
+  {
+    "ReligionID": 4,
+    "ReligionName": "Other"
+  }
+]

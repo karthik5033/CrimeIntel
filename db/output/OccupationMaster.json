@@ -1,0 +1,18 @@
+[
+  {
+    "OccupationID": 1,
+    "OccupationName": "Private Employee"
+  },
+  {
+    "OccupationID": 2,
+    "OccupationName": "Business"
+  },
+  {
+    "OccupationID": 3,
+    "OccupationName": "Student"
+  },
+  {
+    "OccupationID": 4,
+    "OccupationName": "Farmer"
+  }
+]

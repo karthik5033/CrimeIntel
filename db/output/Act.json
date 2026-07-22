@@ -1,0 +1,14 @@
+[
+  {
+    "ActCode": "IPC",
+    "ActDescription": "Indian Penal Code",
+    "ShortName": "IPC",
+    "Active": 1
+  },
+  {
+    "ActCode": "ITACT",
+    "ActDescription": "Information Technology Act",
+    "ShortName": "IT Act",
+    "Active": 1
+  }
+]

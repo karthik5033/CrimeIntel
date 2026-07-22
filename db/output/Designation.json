@@ -1,0 +1,14 @@
+[
+  {
+    "DesignationID": 1,
+    "DesignationName": "Investigating Officer",
+    "Active": 1,
+    "SortOrder": 1
+  },
+  {
+    "DesignationID": 2,
+    "DesignationName": "SHO",
+    "Active": 1,
+    "SortOrder": 2
+  }
+]

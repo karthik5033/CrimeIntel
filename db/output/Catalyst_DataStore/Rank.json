@@ -1,0 +1,14 @@
+[
+  {
+    "RankID": 1,
+    "RankName": "Constable",
+    "Hierarchy": 1,
+    "Active": 1
+  },
+  {
+    "RankID": 3,
+    "RankName": "Inspector",
+    "Hierarchy": 3,
+    "Active": 1
+  }
+]

@@ -1,0 +1,4072 @@
+{
+  "geo_12.95_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      1
+    ]
+  },
+  "geo_12.86_77.51": {
+    "severityScore": 2,
+    "caseIds": [
+      2,
+      961
+    ]
+  },
+  "geo_12.96_77.72": {
+    "severityScore": 3,
+    "caseIds": [
+      3,
+      834
+    ]
+  },
+  "geo_13.00_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      4,
+      29
+    ]
+  },
+  "geo_13.04_77.65": {
+    "severityScore": 6,
+    "caseIds": [
+      5,
+      126,
+      313,
+      708
+    ]
+  },
+  "geo_12.99_77.56": {
+    "severityScore": 3,
+    "caseIds": [
+      6,
+      85,
+      771
+    ]
+  },
+  "geo_13.04_77.77": {
+    "severityScore": 3,
+    "caseIds": [
+      7,
+      8,
+      652
+    ]
+  },
+  "geo_12.96_77.51": {
+    "severityScore": 1,
+    "caseIds": [
+      9
+    ]
+  },
+  "geo_12.89_77.70": {
+    "severityScore": 2,
+    "caseIds": [
+      10
+    ]
+  },
+  "geo_12.98_77.56": {
+    "severityScore": 4,
+    "caseIds": [
+      11,
+      628,
+      712
+    ]
+  },
+  "geo_12.81_77.55": {
+    "severityScore": 2,
+    "caseIds": [
+      12
+    ]
+  },
+  "geo_13.06_77.77": {
+    "severityScore": 2,
+    "caseIds": [
+      13,
+      681
+    ]
+  },
+  "geo_13.05_77.71": {
+    "severityScore": 1,
+    "caseIds": [
+      14
+    ]
+  },
+  "geo_13.07_77.52": {
+    "severityScore": 2,
+    "caseIds": [
+      15,
+      457
+    ]
+  },
+  "geo_12.89_77.74": {
+    "severityScore": 1,
+    "caseIds": [
+      16
+    ]
+  },
+  "geo_12.87_77.72": {
+    "severityScore": 3,
+    "caseIds": [
+      17,
+      359
+    ]
+  },
+  "geo_12.96_77.62": {
+    "severityScore": 2,
+    "caseIds": [
+      18,
+      324
+    ]
+  },
+  "geo_13.02_77.68": {
+    "severityScore": 2,
+    "caseIds": [
+      19
+    ]
+  },
+  "geo_12.94_77.55": {
+    "severityScore": 3,
+    "caseIds": [
+      20,
+      411,
+      811
+    ]
+  },
+  "geo_12.90_77.60": {
+    "severityScore": 3,
+    "caseIds": [
+      21,
+      531
+    ]
+  },
+  "geo_13.09_77.77": {
+    "severityScore": 4,
+    "caseIds": [
+      22,
+      144,
+      884
+    ]
+  },
+  "geo_13.09_77.68": {
+    "severityScore": 3,
+    "caseIds": [
+      23,
+      749,
+      997
+    ]
+  },
+  "geo_13.00_77.70": {
+    "severityScore": 4,
+    "caseIds": [
+      24,
+      138
+    ]
+  },
+  "geo_12.86_77.78": {
+    "severityScore": 1,
+    "caseIds": [
+      25
+    ]
+  },
+  "geo_12.88_77.73": {
+    "severityScore": 2,
+    "caseIds": [
+      26,
+      598
+    ]
+  },
+  "geo_12.94_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      27
+    ]
+  },
+  "geo_13.07_77.78": {
+    "severityScore": 2,
+    "caseIds": [
+      28,
+      269
+    ]
+  },
+  "geo_13.04_77.68": {
+    "severityScore": 2,
+    "caseIds": [
+      30,
+      227
+    ]
+  },
+  "geo_12.94_77.51": {
+    "severityScore": 4,
+    "caseIds": [
+      31,
+      279,
+      398
+    ]
+  },
+  "geo_12.80_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      32,
+      609
+    ]
+  },
+  "geo_12.99_77.70": {
+    "severityScore": 2,
+    "caseIds": [
+      33
+    ]
+  },
+  "geo_12.91_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      34
+    ]
+  },
+  "geo_12.94_77.62": {
+    "severityScore": 4,
+    "caseIds": [
+      35,
+      71,
+      450,
+      551
+    ]
+  },
+  "geo_12.95_77.66": {
+    "severityScore": 3,
+    "caseIds": [
+      36,
+      454,
+      739
+    ]
+  },
+  "geo_12.90_77.66": {
+    "severityScore": 2,
+    "caseIds": [
+      37
+    ]
+  },
+  "geo_12.90_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      38,
+      965
+    ]
+  },
+  "geo_13.05_77.79": {
+    "severityScore": 4,
+    "caseIds": [
+      39,
+      525
+    ]
+  },
+  "geo_12.91_77.60": {
+    "severityScore": 3,
+    "caseIds": [
+      40,
+      251
+    ]
+  },
+  "geo_12.92_77.51": {
+    "severityScore": 1,
+    "caseIds": [
+      41
+    ]
+  },
+  "geo_13.04_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      42
+    ]
+  },
+  "geo_12.90_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      43
+    ]
+  },
+  "geo_13.09_77.56": {
+    "severityScore": 4,
+    "caseIds": [
+      44,
+      294,
+      826
+    ]
+  },
+  "geo_13.03_77.61": {
+    "severityScore": 3,
+    "caseIds": [
+      45,
+      130,
+      231
+    ]
+  },
+  "geo_12.95_77.73": {
+    "severityScore": 5,
+    "caseIds": [
+      46,
+      397,
+      757
+    ]
+  },
+  "geo_12.93_77.62": {
+    "severityScore": 4,
+    "caseIds": [
+      47,
+      421,
+      983
+    ]
+  },
+  "geo_13.05_77.69": {
+    "severityScore": 2,
+    "caseIds": [
+      48,
+      991
+    ]
+  },
+  "geo_12.82_77.52": {
+    "severityScore": 5,
+    "caseIds": [
+      49,
+      731,
+      907
+    ]
+  },
+  "geo_12.92_77.54": {
+    "severityScore": 4,
+    "caseIds": [
+      50,
+      63
+    ]
+  },
+  "geo_12.94_77.75": {
+    "severityScore": 3,
+    "caseIds": [
+      51,
+      203
+    ]
+  },
+  "geo_12.90_77.70": {
+    "severityScore": 1,
+    "caseIds": [
+      52
+    ]
+  },
+  "geo_12.97_77.57": {
+    "severityScore": 2,
+    "caseIds": [
+      53
+    ]
+  },
+  "geo_12.87_77.79": {
+    "severityScore": 7,
+    "caseIds": [
+      54,
+      235,
+      682,
+      725
+    ]
+  },
+  "geo_12.87_77.62": {
+    "severityScore": 3,
+    "caseIds": [
+      55,
+      406
+    ]
+  },
+  "geo_12.97_77.68": {
+    "severityScore": 3,
+    "caseIds": [
+      56,
+      981
+    ]
+  },
+  "geo_13.09_77.66": {
+    "severityScore": 2,
+    "caseIds": [
+      57,
+      464
+    ]
+  },
+  "geo_13.03_77.67": {
+    "severityScore": 1,
+    "caseIds": [
+      58
+    ]
+  },
+  "geo_12.90_77.80": {
+    "severityScore": 1,
+    "caseIds": [
+      59
+    ]
+  },
+  "geo_12.80_77.60": {
+    "severityScore": 4,
+    "caseIds": [
+      60,
+      272
+    ]
+  },
+  "geo_12.89_77.72": {
+    "severityScore": 4,
+    "caseIds": [
+      61,
+      436,
+      607
+    ]
+  },
+  "geo_12.80_77.51": {
+    "severityScore": 2,
+    "caseIds": [
+      62,
+      341
+    ]
+  },
+  "geo_13.03_77.54": {
+    "severityScore": 4,
+    "caseIds": [
+      64,
+      591,
+      592
+    ]
+  },
+  "geo_12.94_77.69": {
+    "severityScore": 4,
+    "caseIds": [
+      65,
+      120
+    ]
+  },
+  "geo_12.86_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      66
+    ]
+  },
+  "geo_12.96_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      67
+    ]
+  },
+  "geo_12.95_77.52": {
+    "severityScore": 1,
+    "caseIds": [
+      68
+    ]
+  },
+  "geo_12.98_77.67": {
+    "severityScore": 4,
+    "caseIds": [
+      69,
+      566
+    ]
+  },
+  "geo_12.96_77.50": {
+    "severityScore": 3,
+    "caseIds": [
+      70,
+      820
+    ]
+  },
+  "geo_12.86_77.64": {
+    "severityScore": 2,
+    "caseIds": [
+      72
+    ]
+  },
+  "geo_13.06_77.66": {
+    "severityScore": 2,
+    "caseIds": [
+      73
+    ]
+  },
+  "geo_12.81_77.51": {
+    "severityScore": 5,
+    "caseIds": [
+      74,
+      100,
+      142
+    ]
+  },
+  "geo_12.93_77.60": {
+    "severityScore": 2,
+    "caseIds": [
+      75,
+      174
+    ]
+  },
+  "geo_12.85_77.55": {
+    "severityScore": 4,
+    "caseIds": [
+      76,
+      431,
+      748
+    ]
+  },
+  "geo_12.83_77.54": {
+    "severityScore": 3,
+    "caseIds": [
+      77,
+      797
+    ]
+  },
+  "geo_12.85_77.70": {
+    "severityScore": 4,
+    "caseIds": [
+      78,
+      344,
+      467
+    ]
+  },
+  "geo_13.00_77.53": {
+    "severityScore": 1,
+    "caseIds": [
+      79
+    ]
+  },
+  "geo_12.95_77.69": {
+    "severityScore": 1,
+    "caseIds": [
+      80
+    ]
+  },
+  "geo_12.80_77.66": {
+    "severityScore": 1,
+    "caseIds": [
+      81
+    ]
+  },
+  "geo_12.89_77.77": {
+    "severityScore": 4,
+    "caseIds": [
+      82,
+      159
+    ]
+  },
+  "geo_12.95_77.55": {
+    "severityScore": 2,
+    "caseIds": [
+      83,
+      714
+    ]
+  },
+  "geo_12.96_77.57": {
+    "severityScore": 2,
+    "caseIds": [
+      84,
+      951
+    ]
+  },
+  "geo_13.02_77.61": {
+    "severityScore": 2,
+    "caseIds": [
+      86,
+      664
+    ]
+  },
+  "geo_12.96_77.58": {
+    "severityScore": 2,
+    "caseIds": [
+      87
+    ]
+  },
+  "geo_12.80_77.52": {
+    "severityScore": 4,
+    "caseIds": [
+      88,
+      202,
+      326
+    ]
+  },
+  "geo_12.99_77.67": {
+    "severityScore": 3,
+    "caseIds": [
+      89,
+      151
+    ]
+  },
+  "geo_13.07_77.73": {
+    "severityScore": 2,
+    "caseIds": [
+      90,
+      400
+    ]
+  },
+  "geo_12.95_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      91
+    ]
+  },
+  "geo_12.84_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      92
+    ]
+  },
+  "geo_12.83_77.71": {
+    "severityScore": 2,
+    "caseIds": [
+      93,
+      354
+    ]
+  },
+  "geo_12.87_77.50": {
+    "severityScore": 2,
+    "caseIds": [
+      94
+    ]
+  },
+  "geo_13.08_77.65": {
+    "severityScore": 2,
+    "caseIds": [
+      95,
+      971
+    ]
+  },
+  "geo_12.98_77.64": {
+    "severityScore": 6,
+    "caseIds": [
+      96,
+      196,
+      475
+    ]
+  },
+  "geo_13.09_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      97
+    ]
+  },
+  "geo_12.99_77.72": {
+    "severityScore": 5,
+    "caseIds": [
+      98,
+      541,
+      547
+    ]
+  },
+  "geo_13.00_77.60": {
+    "severityScore": 2,
+    "caseIds": [
+      99,
+      530
+    ]
+  },
+  "geo_13.09_77.58": {
+    "severityScore": 1,
+    "caseIds": [
+      101
+    ]
+  },
+  "geo_12.83_77.58": {
+    "severityScore": 3,
+    "caseIds": [
+      102,
+      658
+    ]
+  },
+  "geo_13.00_77.58": {
+    "severityScore": 3,
+    "caseIds": [
+      103,
+      859
+    ]
+  },
+  "geo_12.97_77.78": {
+    "severityScore": 3,
+    "caseIds": [
+      104,
+      646
+    ]
+  },
+  "geo_12.95_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      105
+    ]
+  },
+  "geo_13.02_77.76": {
+    "severityScore": 1,
+    "caseIds": [
+      106
+    ]
+  },
+  "geo_12.83_77.66": {
+    "severityScore": 3,
+    "caseIds": [
+      107,
+      751
+    ]
+  },
+  "geo_13.05_77.58": {
+    "severityScore": 2,
+    "caseIds": [
+      108,
+      698
+    ]
+  },
+  "geo_12.82_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      109
+    ]
+  },
+  "geo_12.97_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      110,
+      684
+    ]
+  },
+  "geo_12.90_77.64": {
+    "severityScore": 3,
+    "caseIds": [
+      111,
+      135,
+      544
+    ]
+  },
+  "geo_13.06_77.60": {
+    "severityScore": 2,
+    "caseIds": [
+      112
+    ]
+  },
+  "geo_12.86_77.54": {
+    "severityScore": 4,
+    "caseIds": [
+      113,
+      241,
+      428
+    ]
+  },
+  "geo_13.06_77.58": {
+    "severityScore": 2,
+    "caseIds": [
+      114,
+      853
+    ]
+  },
+  "geo_13.09_77.69": {
+    "severityScore": 3,
+    "caseIds": [
+      115,
+      507,
+      982
+    ]
+  },
+  "geo_12.97_77.51": {
+    "severityScore": 1,
+    "caseIds": [
+      116
+    ]
+  },
+  "geo_12.81_77.53": {
+    "severityScore": 1,
+    "caseIds": [
+      117
+    ]
+  },
+  "geo_13.01_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      118
+    ]
+  },
+  "geo_12.89_77.52": {
+    "severityScore": 2,
+    "caseIds": [
+      119
+    ]
+  },
+  "geo_12.88_77.71": {
+    "severityScore": 2,
+    "caseIds": [
+      121
+    ]
+  },
+  "geo_12.98_77.57": {
+    "severityScore": 3,
+    "caseIds": [
+      122,
+      638
+    ]
+  },
+  "geo_13.01_77.54": {
+    "severityScore": 3,
+    "caseIds": [
+      123,
+      430
+    ]
+  },
+  "geo_12.82_77.78": {
+    "severityScore": 2,
+    "caseIds": [
+      124
+    ]
+  },
+  "geo_12.90_77.72": {
+    "severityScore": 2,
+    "caseIds": [
+      125
+    ]
+  },
+  "geo_12.80_77.80": {
+    "severityScore": 1,
+    "caseIds": [
+      127
+    ]
+  },
+  "geo_12.82_77.65": {
+    "severityScore": 1,
+    "caseIds": [
+      128
+    ]
+  },
+  "geo_13.06_77.55": {
+    "severityScore": 1,
+    "caseIds": [
+      129
+    ]
+  },
+  "geo_12.85_77.65": {
+    "severityScore": 1,
+    "caseIds": [
+      131
+    ]
+  },
+  "geo_12.82_77.55": {
+    "severityScore": 2,
+    "caseIds": [
+      132,
+      353
+    ]
+  },
+  "geo_13.07_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      133,
+      556
+    ]
+  },
+  "geo_13.04_77.76": {
+    "severityScore": 4,
+    "caseIds": [
+      134,
+      206,
+      822
+    ]
+  },
+  "geo_12.93_77.80": {
+    "severityScore": 1,
+    "caseIds": [
+      136
+    ]
+  },
+  "geo_13.10_77.55": {
+    "severityScore": 2,
+    "caseIds": [
+      137,
+      333
+    ]
+  },
+  "geo_13.05_77.75": {
+    "severityScore": 3,
+    "caseIds": [
+      139,
+      885
+    ]
+  },
+  "geo_12.80_77.69": {
+    "severityScore": 1,
+    "caseIds": [
+      140
+    ]
+  },
+  "geo_12.95_77.53": {
+    "severityScore": 3,
+    "caseIds": [
+      141,
+      408
+    ]
+  },
+  "geo_12.92_77.80": {
+    "severityScore": 3,
+    "caseIds": [
+      143,
+      481,
+      863
+    ]
+  },
+  "geo_12.95_77.51": {
+    "severityScore": 2,
+    "caseIds": [
+      145
+    ]
+  },
+  "geo_12.84_77.58": {
+    "severityScore": 6,
+    "caseIds": [
+      146,
+      395,
+      896,
+      939
+    ]
+  },
+  "geo_12.84_77.72": {
+    "severityScore": 2,
+    "caseIds": [
+      147
+    ]
+  },
+  "geo_13.01_77.78": {
+    "severityScore": 3,
+    "caseIds": [
+      148,
+      550
+    ]
+  },
+  "geo_13.00_77.75": {
+    "severityScore": 3,
+    "caseIds": [
+      149,
+      309,
+      1000
+    ]
+  },
+  "geo_13.05_77.68": {
+    "severityScore": 3,
+    "caseIds": [
+      150,
+      736
+    ]
+  },
+  "geo_12.90_77.78": {
+    "severityScore": 1,
+    "caseIds": [
+      152
+    ]
+  },
+  "geo_12.86_77.60": {
+    "severityScore": 3,
+    "caseIds": [
+      153,
+      508
+    ]
+  },
+  "geo_13.02_77.78": {
+    "severityScore": 1,
+    "caseIds": [
+      154
+    ]
+  },
+  "geo_12.80_77.55": {
+    "severityScore": 1,
+    "caseIds": [
+      155
+    ]
+  },
+  "geo_13.00_77.51": {
+    "severityScore": 3,
+    "caseIds": [
+      156,
+      453
+    ]
+  },
+  "geo_13.00_77.64": {
+    "severityScore": 4,
+    "caseIds": [
+      157,
+      911
+    ]
+  },
+  "geo_13.05_77.76": {
+    "severityScore": 3,
+    "caseIds": [
+      158,
+      216
+    ]
+  },
+  "geo_12.96_77.69": {
+    "severityScore": 3,
+    "caseIds": [
+      160,
+      455
+    ]
+  },
+  "geo_12.90_77.69": {
+    "severityScore": 1,
+    "caseIds": [
+      161
+    ]
+  },
+  "geo_13.06_77.78": {
+    "severityScore": 1,
+    "caseIds": [
+      162
+    ]
+  },
+  "geo_13.08_77.70": {
+    "severityScore": 3,
+    "caseIds": [
+      163,
+      248,
+      415
+    ]
+  },
+  "geo_13.07_77.74": {
+    "severityScore": 1,
+    "caseIds": [
+      164
+    ]
+  },
+  "geo_12.83_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      165
+    ]
+  },
+  "geo_12.91_77.78": {
+    "severityScore": 3,
+    "caseIds": [
+      166,
+      707,
+      866
+    ]
+  },
+  "geo_12.99_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      167
+    ]
+  },
+  "geo_13.09_77.73": {
+    "severityScore": 4,
+    "caseIds": [
+      168,
+      310
+    ]
+  },
+  "geo_12.92_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      169,
+      358
+    ]
+  },
+  "geo_13.08_77.76": {
+    "severityScore": 1,
+    "caseIds": [
+      170
+    ]
+  },
+  "geo_13.02_77.62": {
+    "severityScore": 3,
+    "caseIds": [
+      171,
+      803
+    ]
+  },
+  "geo_13.09_77.71": {
+    "severityScore": 7,
+    "caseIds": [
+      172,
+      189,
+      631,
+      995,
+      998
+    ]
+  },
+  "geo_13.02_77.69": {
+    "severityScore": 4,
+    "caseIds": [
+      173,
+      200
+    ]
+  },
+  "geo_13.07_77.60": {
+    "severityScore": 2,
+    "caseIds": [
+      175,
+      601
+    ]
+  },
+  "geo_12.96_77.53": {
+    "severityScore": 2,
+    "caseIds": [
+      176,
+      781
+    ]
+  },
+  "geo_12.82_77.72": {
+    "severityScore": 1,
+    "caseIds": [
+      177
+    ]
+  },
+  "geo_12.81_77.68": {
+    "severityScore": 3,
+    "caseIds": [
+      178,
+      323,
+      650
+    ]
+  },
+  "geo_12.95_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      179
+    ]
+  },
+  "geo_13.04_77.61": {
+    "severityScore": 4,
+    "caseIds": [
+      180,
+      846
+    ]
+  },
+  "geo_13.03_77.73": {
+    "severityScore": 4,
+    "caseIds": [
+      181,
+      407,
+      595
+    ]
+  },
+  "geo_13.08_77.69": {
+    "severityScore": 4,
+    "caseIds": [
+      182,
+      427
+    ]
+  },
+  "geo_13.06_77.73": {
+    "severityScore": 1,
+    "caseIds": [
+      183
+    ]
+  },
+  "geo_12.90_77.73": {
+    "severityScore": 3,
+    "caseIds": [
+      184,
+      865
+    ]
+  },
+  "geo_13.01_77.69": {
+    "severityScore": 2,
+    "caseIds": [
+      185
+    ]
+  },
+  "geo_12.80_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      186
+    ]
+  },
+  "geo_13.08_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      187
+    ]
+  },
+  "geo_12.87_77.68": {
+    "severityScore": 3,
+    "caseIds": [
+      188,
+      585
+    ]
+  },
+  "geo_12.82_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      190,
+      900
+    ]
+  },
+  "geo_13.01_77.65": {
+    "severityScore": 1,
+    "caseIds": [
+      191
+    ]
+  },
+  "geo_12.98_77.80": {
+    "severityScore": 2,
+    "caseIds": [
+      192,
+      552
+    ]
+  },
+  "geo_12.89_77.51": {
+    "severityScore": 6,
+    "caseIds": [
+      193,
+      352,
+      437,
+      891
+    ]
+  },
+  "geo_13.07_77.51": {
+    "severityScore": 3,
+    "caseIds": [
+      194,
+      743
+    ]
+  },
+  "geo_12.99_77.65": {
+    "severityScore": 4,
+    "caseIds": [
+      195,
+      740,
+      908
+    ]
+  },
+  "geo_12.91_77.59": {
+    "severityScore": 6,
+    "caseIds": [
+      197,
+      335,
+      356,
+      360,
+      449
+    ]
+  },
+  "geo_12.87_77.80": {
+    "severityScore": 2,
+    "caseIds": [
+      198
+    ]
+  },
+  "geo_12.88_77.51": {
+    "severityScore": 2,
+    "caseIds": [
+      199
+    ]
+  },
+  "geo_12.89_77.73": {
+    "severityScore": 3,
+    "caseIds": [
+      201,
+      735
+    ]
+  },
+  "geo_13.10_77.72": {
+    "severityScore": 1,
+    "caseIds": [
+      204
+    ]
+  },
+  "geo_12.93_77.55": {
+    "severityScore": 2,
+    "caseIds": [
+      205,
+      986
+    ]
+  },
+  "geo_12.80_77.75": {
+    "severityScore": 3,
+    "caseIds": [
+      207,
+      938
+    ]
+  },
+  "geo_12.83_77.55": {
+    "severityScore": 4,
+    "caseIds": [
+      208,
+      451
+    ]
+  },
+  "geo_12.87_77.70": {
+    "severityScore": 2,
+    "caseIds": [
+      209,
+      338
+    ]
+  },
+  "geo_12.80_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      210
+    ]
+  },
+  "geo_13.09_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      211,
+      375
+    ]
+  },
+  "geo_12.86_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      212
+    ]
+  },
+  "geo_12.92_77.71": {
+    "severityScore": 1,
+    "caseIds": [
+      213
+    ]
+  },
+  "geo_12.93_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      214,
+      624
+    ]
+  },
+  "geo_13.09_77.65": {
+    "severityScore": 4,
+    "caseIds": [
+      215,
+      465,
+      793
+    ]
+  },
+  "geo_12.91_77.51": {
+    "severityScore": 3,
+    "caseIds": [
+      217,
+      254
+    ]
+  },
+  "geo_12.95_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      218
+    ]
+  },
+  "geo_12.89_77.60": {
+    "severityScore": 2,
+    "caseIds": [
+      219,
+      918
+    ]
+  },
+  "geo_12.88_77.57": {
+    "severityScore": 2,
+    "caseIds": [
+      220,
+      366
+    ]
+  },
+  "geo_13.08_77.66": {
+    "severityScore": 4,
+    "caseIds": [
+      221,
+      545
+    ]
+  },
+  "geo_12.88_77.72": {
+    "severityScore": 3,
+    "caseIds": [
+      222,
+      693
+    ]
+  },
+  "geo_12.88_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      223,
+      316
+    ]
+  },
+  "geo_12.81_77.75": {
+    "severityScore": 4,
+    "caseIds": [
+      224,
+      738,
+      976
+    ]
+  },
+  "geo_12.90_77.67": {
+    "severityScore": 2,
+    "caseIds": [
+      225,
+      484
+    ]
+  },
+  "geo_12.95_77.71": {
+    "severityScore": 3,
+    "caseIds": [
+      226,
+      549
+    ]
+  },
+  "geo_13.01_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      228
+    ]
+  },
+  "geo_12.81_77.80": {
+    "severityScore": 2,
+    "caseIds": [
+      229
+    ]
+  },
+  "geo_12.84_77.62": {
+    "severityScore": 4,
+    "caseIds": [
+      230,
+      392,
+      813
+    ]
+  },
+  "geo_12.89_77.61": {
+    "severityScore": 5,
+    "caseIds": [
+      232,
+      332,
+      580
+    ]
+  },
+  "geo_12.85_77.53": {
+    "severityScore": 2,
+    "caseIds": [
+      233
+    ]
+  },
+  "geo_12.94_77.72": {
+    "severityScore": 3,
+    "caseIds": [
+      234,
+      581
+    ]
+  },
+  "geo_12.94_77.65": {
+    "severityScore": 4,
+    "caseIds": [
+      236,
+      244,
+      432
+    ]
+  },
+  "geo_12.83_77.78": {
+    "severityScore": 2,
+    "caseIds": [
+      237,
+      916
+    ]
+  },
+  "geo_12.89_77.64": {
+    "severityScore": 3,
+    "caseIds": [
+      238,
+      476,
+      892
+    ]
+  },
+  "geo_13.10_77.62": {
+    "severityScore": 2,
+    "caseIds": [
+      239,
+      286
+    ]
+  },
+  "geo_12.80_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      240
+    ]
+  },
+  "geo_12.86_77.75": {
+    "severityScore": 1,
+    "caseIds": [
+      242
+    ]
+  },
+  "geo_13.09_77.50": {
+    "severityScore": 2,
+    "caseIds": [
+      243
+    ]
+  },
+  "geo_12.96_77.74": {
+    "severityScore": 1,
+    "caseIds": [
+      245
+    ]
+  },
+  "geo_12.99_77.74": {
+    "severityScore": 1,
+    "caseIds": [
+      246
+    ]
+  },
+  "geo_12.81_77.67": {
+    "severityScore": 3,
+    "caseIds": [
+      247,
+      676
+    ]
+  },
+  "geo_12.80_77.57": {
+    "severityScore": 1,
+    "caseIds": [
+      249
+    ]
+  },
+  "geo_13.01_77.80": {
+    "severityScore": 1,
+    "caseIds": [
+      250
+    ]
+  },
+  "geo_12.89_77.75": {
+    "severityScore": 4,
+    "caseIds": [
+      252,
+      291
+    ]
+  },
+  "geo_12.90_77.61": {
+    "severityScore": 4,
+    "caseIds": [
+      253,
+      462,
+      774
+    ]
+  },
+  "geo_13.07_77.65": {
+    "severityScore": 1,
+    "caseIds": [
+      255
+    ]
+  },
+  "geo_12.94_77.60": {
+    "severityScore": 1,
+    "caseIds": [
+      256
+    ]
+  },
+  "geo_12.82_77.58": {
+    "severityScore": 4,
+    "caseIds": [
+      257,
+      972
+    ]
+  },
+  "geo_12.99_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      258
+    ]
+  },
+  "geo_12.93_77.71": {
+    "severityScore": 1,
+    "caseIds": [
+      259
+    ]
+  },
+  "geo_12.81_77.62": {
+    "severityScore": 2,
+    "caseIds": [
+      260
+    ]
+  },
+  "geo_12.98_77.65": {
+    "severityScore": 1,
+    "caseIds": [
+      261
+    ]
+  },
+  "geo_12.96_77.59": {
+    "severityScore": 3,
+    "caseIds": [
+      262,
+      706
+    ]
+  },
+  "geo_13.10_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      263
+    ]
+  },
+  "geo_13.00_77.73": {
+    "severityScore": 1,
+    "caseIds": [
+      264
+    ]
+  },
+  "geo_12.99_77.76": {
+    "severityScore": 1,
+    "caseIds": [
+      265
+    ]
+  },
+  "geo_12.87_77.54": {
+    "severityScore": 4,
+    "caseIds": [
+      266,
+      364,
+      546
+    ]
+  },
+  "geo_12.89_77.58": {
+    "severityScore": 4,
+    "caseIds": [
+      267,
+      952
+    ]
+  },
+  "geo_12.85_77.74": {
+    "severityScore": 4,
+    "caseIds": [
+      268,
+      473
+    ]
+  },
+  "geo_13.04_77.53": {
+    "severityScore": 6,
+    "caseIds": [
+      270,
+      699,
+      789,
+      849
+    ]
+  },
+  "geo_12.84_77.76": {
+    "severityScore": 1,
+    "caseIds": [
+      271
+    ]
+  },
+  "geo_12.84_77.70": {
+    "severityScore": 4,
+    "caseIds": [
+      273,
+      514,
+      696
+    ]
+  },
+  "geo_12.93_77.64": {
+    "severityScore": 2,
+    "caseIds": [
+      274
+    ]
+  },
+  "geo_12.98_77.60": {
+    "severityScore": 2,
+    "caseIds": [
+      275,
+      683
+    ]
+  },
+  "geo_12.84_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      276
+    ]
+  },
+  "geo_13.06_77.76": {
+    "severityScore": 1,
+    "caseIds": [
+      277
+    ]
+  },
+  "geo_13.01_77.72": {
+    "severityScore": 2,
+    "caseIds": [
+      278
+    ]
+  },
+  "geo_12.98_77.52": {
+    "severityScore": 1,
+    "caseIds": [
+      280
+    ]
+  },
+  "geo_12.98_77.53": {
+    "severityScore": 2,
+    "caseIds": [
+      281,
+      504
+    ]
+  },
+  "geo_12.84_77.52": {
+    "severityScore": 3,
+    "caseIds": [
+      282,
+      944,
+      948
+    ]
+  },
+  "geo_12.87_77.78": {
+    "severityScore": 4,
+    "caseIds": [
+      283,
+      984
+    ]
+  },
+  "geo_12.80_77.56": {
+    "severityScore": 2,
+    "caseIds": [
+      284
+    ]
+  },
+  "geo_12.83_77.59": {
+    "severityScore": 3,
+    "caseIds": [
+      285,
+      765
+    ]
+  },
+  "geo_13.05_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      287
+    ]
+  },
+  "geo_12.88_77.68": {
+    "severityScore": 3,
+    "caseIds": [
+      288,
+      393
+    ]
+  },
+  "geo_13.02_77.55": {
+    "severityScore": 3,
+    "caseIds": [
+      289,
+      637
+    ]
+  },
+  "geo_13.05_77.65": {
+    "severityScore": 4,
+    "caseIds": [
+      290,
+      425,
+      653
+    ]
+  },
+  "geo_12.96_77.52": {
+    "severityScore": 3,
+    "caseIds": [
+      292,
+      777
+    ]
+  },
+  "geo_13.07_77.59": {
+    "severityScore": 1,
+    "caseIds": [
+      293
+    ]
+  },
+  "geo_12.85_77.62": {
+    "severityScore": 2,
+    "caseIds": [
+      295
+    ]
+  },
+  "geo_13.10_77.54": {
+    "severityScore": 1,
+    "caseIds": [
+      296
+    ]
+  },
+  "geo_12.90_77.53": {
+    "severityScore": 2,
+    "caseIds": [
+      297
+    ]
+  },
+  "geo_12.92_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      298
+    ]
+  },
+  "geo_12.85_77.68": {
+    "severityScore": 3,
+    "caseIds": [
+      299,
+      851
+    ]
+  },
+  "geo_12.84_77.51": {
+    "severityScore": 4,
+    "caseIds": [
+      300,
+      663
+    ]
+  },
+  "geo_12.95_77.80": {
+    "severityScore": 2,
+    "caseIds": [
+      301
+    ]
+  },
+  "geo_13.03_77.75": {
+    "severityScore": 1,
+    "caseIds": [
+      302
+    ]
+  },
+  "geo_13.03_77.59": {
+    "severityScore": 2,
+    "caseIds": [
+      303
+    ]
+  },
+  "geo_12.87_77.76": {
+    "severityScore": 4,
+    "caseIds": [
+      304,
+      307,
+      634,
+      667
+    ]
+  },
+  "geo_13.06_77.51": {
+    "severityScore": 1,
+    "caseIds": [
+      305
+    ]
+  },
+  "geo_12.93_77.52": {
+    "severityScore": 2,
+    "caseIds": [
+      306,
+      379
+    ]
+  },
+  "geo_12.93_77.66": {
+    "severityScore": 4,
+    "caseIds": [
+      308,
+      615,
+      839
+    ]
+  },
+  "geo_12.99_77.77": {
+    "severityScore": 3,
+    "caseIds": [
+      311,
+      691
+    ]
+  },
+  "geo_13.00_77.72": {
+    "severityScore": 3,
+    "caseIds": [
+      312,
+      499
+    ]
+  },
+  "geo_13.02_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      314
+    ]
+  },
+  "geo_12.86_77.70": {
+    "severityScore": 2,
+    "caseIds": [
+      315
+    ]
+  },
+  "geo_12.83_77.68": {
+    "severityScore": 2,
+    "caseIds": [
+      317
+    ]
+  },
+  "geo_12.86_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      318
+    ]
+  },
+  "geo_12.93_77.67": {
+    "severityScore": 3,
+    "caseIds": [
+      319,
+      485,
+      886
+    ]
+  },
+  "geo_12.87_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      320
+    ]
+  },
+  "geo_12.99_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      321
+    ]
+  },
+  "geo_13.04_77.72": {
+    "severityScore": 4,
+    "caseIds": [
+      322,
+      482,
+      759
+    ]
+  },
+  "geo_12.96_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      325
+    ]
+  },
+  "geo_13.08_77.74": {
+    "severityScore": 3,
+    "caseIds": [
+      327,
+      410,
+      847
+    ]
+  },
+  "geo_13.01_77.56": {
+    "severityScore": 2,
+    "caseIds": [
+      328
+    ]
+  },
+  "geo_12.87_77.65": {
+    "severityScore": 3,
+    "caseIds": [
+      329,
+      614
+    ]
+  },
+  "geo_12.82_77.63": {
+    "severityScore": 1,
+    "caseIds": [
+      330
+    ]
+  },
+  "geo_12.97_77.67": {
+    "severityScore": 3,
+    "caseIds": [
+      331,
+      647
+    ]
+  },
+  "geo_12.86_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      334
+    ]
+  },
+  "geo_13.08_77.64": {
+    "severityScore": 2,
+    "caseIds": [
+      336
+    ]
+  },
+  "geo_12.96_77.67": {
+    "severityScore": 2,
+    "caseIds": [
+      337
+    ]
+  },
+  "geo_13.07_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      339,
+      513
+    ]
+  },
+  "geo_12.88_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      340
+    ]
+  },
+  "geo_12.89_77.55": {
+    "severityScore": 6,
+    "caseIds": [
+      342,
+      623,
+      827,
+      844
+    ]
+  },
+  "geo_13.05_77.63": {
+    "severityScore": 3,
+    "caseIds": [
+      343,
+      828
+    ]
+  },
+  "geo_12.80_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      345
+    ]
+  },
+  "geo_12.93_77.77": {
+    "severityScore": 3,
+    "caseIds": [
+      346,
+      924
+    ]
+  },
+  "geo_12.95_77.70": {
+    "severityScore": 3,
+    "caseIds": [
+      347,
+      357
+    ]
+  },
+  "geo_13.06_77.68": {
+    "severityScore": 3,
+    "caseIds": [
+      348,
+      763,
+      825
+    ]
+  },
+  "geo_13.04_77.69": {
+    "severityScore": 2,
+    "caseIds": [
+      349,
+      469
+    ]
+  },
+  "geo_13.05_77.70": {
+    "severityScore": 3,
+    "caseIds": [
+      350,
+      659
+    ]
+  },
+  "geo_13.05_77.57": {
+    "severityScore": 3,
+    "caseIds": [
+      351,
+      537
+    ]
+  },
+  "geo_12.84_77.65": {
+    "severityScore": 5,
+    "caseIds": [
+      355,
+      405,
+      447,
+      887
+    ]
+  },
+  "geo_13.05_77.51": {
+    "severityScore": 3,
+    "caseIds": [
+      361,
+      801
+    ]
+  },
+  "geo_13.03_77.66": {
+    "severityScore": 2,
+    "caseIds": [
+      362
+    ]
+  },
+  "geo_12.92_77.72": {
+    "severityScore": 7,
+    "caseIds": [
+      363,
+      479,
+      526,
+      906,
+      980
+    ]
+  },
+  "geo_12.93_77.63": {
+    "severityScore": 1,
+    "caseIds": [
+      365
+    ]
+  },
+  "geo_12.93_77.69": {
+    "severityScore": 1,
+    "caseIds": [
+      367
+    ]
+  },
+  "geo_13.04_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      368
+    ]
+  },
+  "geo_13.02_77.64": {
+    "severityScore": 2,
+    "caseIds": [
+      369,
+      812
+    ]
+  },
+  "geo_13.02_77.75": {
+    "severityScore": 1,
+    "caseIds": [
+      370
+    ]
+  },
+  "geo_12.89_77.65": {
+    "severityScore": 5,
+    "caseIds": [
+      371,
+      946,
+      988
+    ]
+  },
+  "geo_13.04_77.63": {
+    "severityScore": 1,
+    "caseIds": [
+      372
+    ]
+  },
+  "geo_12.93_77.54": {
+    "severityScore": 1,
+    "caseIds": [
+      373
+    ]
+  },
+  "geo_12.87_77.60": {
+    "severityScore": 1,
+    "caseIds": [
+      374
+    ]
+  },
+  "geo_12.92_77.78": {
+    "severityScore": 3,
+    "caseIds": [
+      376,
+      744
+    ]
+  },
+  "geo_13.09_77.74": {
+    "severityScore": 1,
+    "caseIds": [
+      377
+    ]
+  },
+  "geo_12.86_77.77": {
+    "severityScore": 2,
+    "caseIds": [
+      378,
+      975
+    ]
+  },
+  "geo_12.83_77.63": {
+    "severityScore": 1,
+    "caseIds": [
+      380
+    ]
+  },
+  "geo_12.86_77.72": {
+    "severityScore": 1,
+    "caseIds": [
+      381
+    ]
+  },
+  "geo_13.08_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      382
+    ]
+  },
+  "geo_12.80_77.54": {
+    "severityScore": 1,
+    "caseIds": [
+      383
+    ]
+  },
+  "geo_13.07_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      384
+    ]
+  },
+  "geo_12.81_77.61": {
+    "severityScore": 2,
+    "caseIds": [
+      385
+    ]
+  },
+  "geo_13.03_77.55": {
+    "severityScore": 2,
+    "caseIds": [
+      386,
+      880
+    ]
+  },
+  "geo_12.81_77.54": {
+    "severityScore": 1,
+    "caseIds": [
+      387
+    ]
+  },
+  "geo_12.98_77.77": {
+    "severityScore": 2,
+    "caseIds": [
+      388,
+      568
+    ]
+  },
+  "geo_13.01_77.66": {
+    "severityScore": 3,
+    "caseIds": [
+      389,
+      440
+    ]
+  },
+  "geo_13.09_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      390
+    ]
+  },
+  "geo_12.93_77.58": {
+    "severityScore": 2,
+    "caseIds": [
+      391
+    ]
+  },
+  "geo_13.00_77.67": {
+    "severityScore": 1,
+    "caseIds": [
+      394
+    ]
+  },
+  "geo_12.84_77.68": {
+    "severityScore": 2,
+    "caseIds": [
+      396
+    ]
+  },
+  "geo_13.01_77.58": {
+    "severityScore": 1,
+    "caseIds": [
+      399
+    ]
+  },
+  "geo_13.02_77.72": {
+    "severityScore": 3,
+    "caseIds": [
+      401,
+      721
+    ]
+  },
+  "geo_13.08_77.58": {
+    "severityScore": 2,
+    "caseIds": [
+      402,
+      625
+    ]
+  },
+  "geo_12.96_77.56": {
+    "severityScore": 2,
+    "caseIds": [
+      403
+    ]
+  },
+  "geo_12.95_77.54": {
+    "severityScore": 2,
+    "caseIds": [
+      404
+    ]
+  },
+  "geo_12.94_77.70": {
+    "severityScore": 1,
+    "caseIds": [
+      409
+    ]
+  },
+  "geo_12.97_77.71": {
+    "severityScore": 2,
+    "caseIds": [
+      412,
+      989
+    ]
+  },
+  "geo_13.06_77.61": {
+    "severityScore": 1,
+    "caseIds": [
+      413
+    ]
+  },
+  "geo_12.91_77.52": {
+    "severityScore": 1,
+    "caseIds": [
+      414
+    ]
+  },
+  "geo_13.03_77.60": {
+    "severityScore": 2,
+    "caseIds": [
+      416,
+      486
+    ]
+  },
+  "geo_12.85_77.58": {
+    "severityScore": 1,
+    "caseIds": [
+      417
+    ]
+  },
+  "geo_12.92_77.70": {
+    "severityScore": 3,
+    "caseIds": [
+      418,
+      922
+    ]
+  },
+  "geo_12.97_77.58": {
+    "severityScore": 2,
+    "caseIds": [
+      419
+    ]
+  },
+  "geo_12.82_77.53": {
+    "severityScore": 1,
+    "caseIds": [
+      420
+    ]
+  },
+  "geo_13.08_77.75": {
+    "severityScore": 1,
+    "caseIds": [
+      422
+    ]
+  },
+  "geo_13.02_77.70": {
+    "severityScore": 2,
+    "caseIds": [
+      423,
+      494
+    ]
+  },
+  "geo_12.83_77.60": {
+    "severityScore": 6,
+    "caseIds": [
+      424,
+      429,
+      434,
+      674
+    ]
+  },
+  "geo_12.87_77.61": {
+    "severityScore": 3,
+    "caseIds": [
+      426,
+      639
+    ]
+  },
+  "geo_12.97_77.50": {
+    "severityScore": 3,
+    "caseIds": [
+      433,
+      733
+    ]
+  },
+  "geo_12.97_77.74": {
+    "severityScore": 4,
+    "caseIds": [
+      435,
+      496
+    ]
+  },
+  "geo_12.81_77.60": {
+    "severityScore": 5,
+    "caseIds": [
+      438,
+      643,
+      882,
+      898
+    ]
+  },
+  "geo_13.10_77.63": {
+    "severityScore": 1,
+    "caseIds": [
+      439
+    ]
+  },
+  "geo_12.83_77.69": {
+    "severityScore": 3,
+    "caseIds": [
+      441,
+      871
+    ]
+  },
+  "geo_12.99_77.66": {
+    "severityScore": 1,
+    "caseIds": [
+      442
+    ]
+  },
+  "geo_12.97_77.56": {
+    "severityScore": 4,
+    "caseIds": [
+      443,
+      572
+    ]
+  },
+  "geo_13.02_77.71": {
+    "severityScore": 3,
+    "caseIds": [
+      444,
+      925
+    ]
+  },
+  "geo_12.93_77.73": {
+    "severityScore": 4,
+    "caseIds": [
+      445,
+      565,
+      817,
+      852
+    ]
+  },
+  "geo_12.96_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      446
+    ]
+  },
+  "geo_12.81_77.69": {
+    "severityScore": 2,
+    "caseIds": [
+      448,
+      571
+    ]
+  },
+  "geo_12.84_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      452
+    ]
+  },
+  "geo_12.84_77.71": {
+    "severityScore": 3,
+    "caseIds": [
+      456,
+      654
+    ]
+  },
+  "geo_12.94_77.77": {
+    "severityScore": 2,
+    "caseIds": [
+      458
+    ]
+  },
+  "geo_13.09_77.54": {
+    "severityScore": 1,
+    "caseIds": [
+      459
+    ]
+  },
+  "geo_13.10_77.58": {
+    "severityScore": 3,
+    "caseIds": [
+      460,
+      969
+    ]
+  },
+  "geo_13.09_77.52": {
+    "severityScore": 1,
+    "caseIds": [
+      461
+    ]
+  },
+  "geo_12.82_77.50": {
+    "severityScore": 3,
+    "caseIds": [
+      463,
+      970
+    ]
+  },
+  "geo_12.99_77.63": {
+    "severityScore": 1,
+    "caseIds": [
+      466
+    ]
+  },
+  "geo_13.06_77.57": {
+    "severityScore": 1,
+    "caseIds": [
+      468
+    ]
+  },
+  "geo_13.00_77.54": {
+    "severityScore": 2,
+    "caseIds": [
+      470,
+      505
+    ]
+  },
+  "geo_12.85_77.56": {
+    "severityScore": 2,
+    "caseIds": [
+      471
+    ]
+  },
+  "geo_13.03_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      472
+    ]
+  },
+  "geo_13.10_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      474
+    ]
+  },
+  "geo_13.05_77.72": {
+    "severityScore": 4,
+    "caseIds": [
+      477,
+      857,
+      963
+    ]
+  },
+  "geo_12.85_77.59": {
+    "severityScore": 4,
+    "caseIds": [
+      478,
+      776
+    ]
+  },
+  "geo_12.90_77.68": {
+    "severityScore": 2,
+    "caseIds": [
+      480,
+      788
+    ]
+  },
+  "geo_12.94_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      483
+    ]
+  },
+  "geo_13.03_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      487,
+      612
+    ]
+  },
+  "geo_13.06_77.56": {
+    "severityScore": 4,
+    "caseIds": [
+      488,
+      641,
+      768
+    ]
+  },
+  "geo_12.83_77.79": {
+    "severityScore": 3,
+    "caseIds": [
+      489,
+      798
+    ]
+  },
+  "geo_12.82_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      490
+    ]
+  },
+  "geo_12.86_77.63": {
+    "severityScore": 1,
+    "caseIds": [
+      491
+    ]
+  },
+  "geo_13.02_77.67": {
+    "severityScore": 2,
+    "caseIds": [
+      492,
+      677
+    ]
+  },
+  "geo_12.85_77.72": {
+    "severityScore": 5,
+    "caseIds": [
+      493,
+      756,
+      964
+    ]
+  },
+  "geo_12.96_77.71": {
+    "severityScore": 3,
+    "caseIds": [
+      495,
+      702
+    ]
+  },
+  "geo_12.88_77.66": {
+    "severityScore": 1,
+    "caseIds": [
+      497
+    ]
+  },
+  "geo_12.84_77.63": {
+    "severityScore": 5,
+    "caseIds": [
+      498,
+      539,
+      701
+    ]
+  },
+  "geo_12.82_77.51": {
+    "severityScore": 2,
+    "caseIds": [
+      500
+    ]
+  },
+  "geo_12.81_77.72": {
+    "severityScore": 2,
+    "caseIds": [
+      501
+    ]
+  },
+  "geo_12.84_77.55": {
+    "severityScore": 1,
+    "caseIds": [
+      502
+    ]
+  },
+  "geo_12.88_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      503
+    ]
+  },
+  "geo_13.00_77.79": {
+    "severityScore": 1,
+    "caseIds": [
+      506
+    ]
+  },
+  "geo_13.05_77.50": {
+    "severityScore": 2,
+    "caseIds": [
+      509
+    ]
+  },
+  "geo_12.91_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      510,
+      523
+    ]
+  },
+  "geo_12.82_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      511
+    ]
+  },
+  "geo_13.09_77.72": {
+    "severityScore": 1,
+    "caseIds": [
+      512
+    ]
+  },
+  "geo_12.89_77.59": {
+    "severityScore": 3,
+    "caseIds": [
+      515,
+      563,
+      968
+    ]
+  },
+  "geo_13.04_77.54": {
+    "severityScore": 3,
+    "caseIds": [
+      516,
+      914
+    ]
+  },
+  "geo_13.04_77.73": {
+    "severityScore": 2,
+    "caseIds": [
+      517
+    ]
+  },
+  "geo_12.88_77.61": {
+    "severityScore": 1,
+    "caseIds": [
+      518
+    ]
+  },
+  "geo_12.90_77.57": {
+    "severityScore": 6,
+    "caseIds": [
+      519,
+      575,
+      685
+    ]
+  },
+  "geo_12.87_77.77": {
+    "severityScore": 3,
+    "caseIds": [
+      520,
+      932
+    ]
+  },
+  "geo_12.94_77.61": {
+    "severityScore": 2,
+    "caseIds": [
+      521,
+      528
+    ]
+  },
+  "geo_12.82_77.57": {
+    "severityScore": 4,
+    "caseIds": [
+      522,
+      785,
+      910
+    ]
+  },
+  "geo_13.02_77.56": {
+    "severityScore": 2,
+    "caseIds": [
+      524
+    ]
+  },
+  "geo_12.90_77.63": {
+    "severityScore": 3,
+    "caseIds": [
+      527,
+      604
+    ]
+  },
+  "geo_12.87_77.53": {
+    "severityScore": 2,
+    "caseIds": [
+      529
+    ]
+  },
+  "geo_12.91_77.70": {
+    "severityScore": 4,
+    "caseIds": [
+      532,
+      724,
+      754
+    ]
+  },
+  "geo_12.80_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      533
+    ]
+  },
+  "geo_13.01_77.50": {
+    "severityScore": 1,
+    "caseIds": [
+      534
+    ]
+  },
+  "geo_12.89_77.69": {
+    "severityScore": 1,
+    "caseIds": [
+      535
+    ]
+  },
+  "geo_13.08_77.73": {
+    "severityScore": 4,
+    "caseIds": [
+      536,
+      689
+    ]
+  },
+  "geo_12.98_77.72": {
+    "severityScore": 2,
+    "caseIds": [
+      538
+    ]
+  },
+  "geo_13.05_77.60": {
+    "severityScore": 1,
+    "caseIds": [
+      540
+    ]
+  },
+  "geo_13.03_77.72": {
+    "severityScore": 2,
+    "caseIds": [
+      542
+    ]
+  },
+  "geo_13.04_77.80": {
+    "severityScore": 2,
+    "caseIds": [
+      543
+    ]
+  },
+  "geo_13.10_77.65": {
+    "severityScore": 1,
+    "caseIds": [
+      548
+    ]
+  },
+  "geo_12.83_77.72": {
+    "severityScore": 2,
+    "caseIds": [
+      553,
+      613
+    ]
+  },
+  "geo_12.91_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      554
+    ]
+  },
+  "geo_12.95_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      555,
+      713
+    ]
+  },
+  "geo_12.98_77.73": {
+    "severityScore": 1,
+    "caseIds": [
+      557
+    ]
+  },
+  "geo_12.96_77.73": {
+    "severityScore": 2,
+    "caseIds": [
+      558,
+      764
+    ]
+  },
+  "geo_13.06_77.72": {
+    "severityScore": 2,
+    "caseIds": [
+      559
+    ]
+  },
+  "geo_12.99_77.55": {
+    "severityScore": 6,
+    "caseIds": [
+      560,
+      596,
+      904,
+      956
+    ]
+  },
+  "geo_12.89_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      561
+    ]
+  },
+  "geo_12.96_77.68": {
+    "severityScore": 5,
+    "caseIds": [
+      562,
+      594,
+      855
+    ]
+  },
+  "geo_12.99_77.53": {
+    "severityScore": 1,
+    "caseIds": [
+      564
+    ]
+  },
+  "geo_12.91_77.65": {
+    "severityScore": 2,
+    "caseIds": [
+      567,
+      990
+    ]
+  },
+  "geo_13.03_77.56": {
+    "severityScore": 2,
+    "caseIds": [
+      569
+    ]
+  },
+  "geo_12.83_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      570
+    ]
+  },
+  "geo_13.03_77.53": {
+    "severityScore": 2,
+    "caseIds": [
+      573
+    ]
+  },
+  "geo_12.94_77.79": {
+    "severityScore": 1,
+    "caseIds": [
+      574
+    ]
+  },
+  "geo_12.81_77.58": {
+    "severityScore": 2,
+    "caseIds": [
+      576
+    ]
+  },
+  "geo_12.99_77.57": {
+    "severityScore": 1,
+    "caseIds": [
+      577
+    ]
+  },
+  "geo_12.98_77.79": {
+    "severityScore": 1,
+    "caseIds": [
+      578
+    ]
+  },
+  "geo_12.97_77.61": {
+    "severityScore": 5,
+    "caseIds": [
+      579,
+      611,
+      678
+    ]
+  },
+  "geo_13.07_77.64": {
+    "severityScore": 2,
+    "caseIds": [
+      582
+    ]
+  },
+  "geo_13.08_77.78": {
+    "severityScore": 2,
+    "caseIds": [
+      583
+    ]
+  },
+  "geo_13.02_77.63": {
+    "severityScore": 3,
+    "caseIds": [
+      584,
+      935,
+      950
+    ]
+  },
+  "geo_13.04_77.66": {
+    "severityScore": 2,
+    "caseIds": [
+      586,
+      864
+    ]
+  },
+  "geo_12.88_77.64": {
+    "severityScore": 3,
+    "caseIds": [
+      587,
+      927
+    ]
+  },
+  "geo_12.81_77.57": {
+    "severityScore": 3,
+    "caseIds": [
+      588,
+      848
+    ]
+  },
+  "geo_12.96_77.60": {
+    "severityScore": 4,
+    "caseIds": [
+      589,
+      610,
+      867
+    ]
+  },
+  "geo_13.06_77.74": {
+    "severityScore": 1,
+    "caseIds": [
+      590
+    ]
+  },
+  "geo_12.98_77.59": {
+    "severityScore": 1,
+    "caseIds": [
+      593
+    ]
+  },
+  "geo_12.87_77.66": {
+    "severityScore": 5,
+    "caseIds": [
+      597,
+      688,
+      716
+    ]
+  },
+  "geo_12.89_77.66": {
+    "severityScore": 4,
+    "caseIds": [
+      599,
+      622,
+      878
+    ]
+  },
+  "geo_13.06_77.50": {
+    "severityScore": 2,
+    "caseIds": [
+      600
+    ]
+  },
+  "geo_12.81_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      602
+    ]
+  },
+  "geo_12.85_77.71": {
+    "severityScore": 3,
+    "caseIds": [
+      603,
+      656
+    ]
+  },
+  "geo_12.85_77.69": {
+    "severityScore": 3,
+    "caseIds": [
+      605,
+      874
+    ]
+  },
+  "geo_13.06_77.59": {
+    "severityScore": 8,
+    "caseIds": [
+      606,
+      719,
+      856,
+      879
+    ]
+  },
+  "geo_13.05_77.62": {
+    "severityScore": 2,
+    "caseIds": [
+      608
+    ]
+  },
+  "geo_12.91_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      616,
+      657
+    ]
+  },
+  "geo_12.92_77.69": {
+    "severityScore": 1,
+    "caseIds": [
+      617
+    ]
+  },
+  "geo_12.87_77.69": {
+    "severityScore": 2,
+    "caseIds": [
+      618
+    ]
+  },
+  "geo_12.81_77.56": {
+    "severityScore": 1,
+    "caseIds": [
+      619
+    ]
+  },
+  "geo_12.93_77.75": {
+    "severityScore": 3,
+    "caseIds": [
+      620,
+      845
+    ]
+  },
+  "geo_12.92_77.64": {
+    "severityScore": 3,
+    "caseIds": [
+      621,
+      710
+    ]
+  },
+  "geo_12.90_77.76": {
+    "severityScore": 1,
+    "caseIds": [
+      626
+    ]
+  },
+  "geo_12.91_77.53": {
+    "severityScore": 2,
+    "caseIds": [
+      627
+    ]
+  },
+  "geo_13.05_77.67": {
+    "severityScore": 1,
+    "caseIds": [
+      629
+    ]
+  },
+  "geo_13.01_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      630
+    ]
+  },
+  "geo_13.02_77.57": {
+    "severityScore": 1,
+    "caseIds": [
+      632
+    ]
+  },
+  "geo_12.87_77.74": {
+    "severityScore": 2,
+    "caseIds": [
+      633
+    ]
+  },
+  "geo_12.91_77.71": {
+    "severityScore": 2,
+    "caseIds": [
+      635
+    ]
+  },
+  "geo_13.10_77.60": {
+    "severityScore": 1,
+    "caseIds": [
+      636
+    ]
+  },
+  "geo_12.97_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      640
+    ]
+  },
+  "geo_12.82_77.59": {
+    "severityScore": 3,
+    "caseIds": [
+      642,
+      778
+    ]
+  },
+  "geo_12.90_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      644
+    ]
+  },
+  "geo_12.84_77.59": {
+    "severityScore": 1,
+    "caseIds": [
+      645
+    ]
+  },
+  "geo_12.93_77.50": {
+    "severityScore": 1,
+    "caseIds": [
+      648
+    ]
+  },
+  "geo_12.89_77.57": {
+    "severityScore": 2,
+    "caseIds": [
+      649,
+      919
+    ]
+  },
+  "geo_12.88_77.52": {
+    "severityScore": 2,
+    "caseIds": [
+      651
+    ]
+  },
+  "geo_12.95_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      655
+    ]
+  },
+  "geo_12.85_77.73": {
+    "severityScore": 2,
+    "caseIds": [
+      660,
+      752
+    ]
+  },
+  "geo_12.94_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      661,
+      675
+    ]
+  },
+  "geo_12.99_77.71": {
+    "severityScore": 2,
+    "caseIds": [
+      662
+    ]
+  },
+  "geo_12.91_77.61": {
+    "severityScore": 2,
+    "caseIds": [
+      665,
+      821
+    ]
+  },
+  "geo_13.05_77.73": {
+    "severityScore": 4,
+    "caseIds": [
+      666,
+      769,
+      945,
+      947
+    ]
+  },
+  "geo_13.10_77.52": {
+    "severityScore": 2,
+    "caseIds": [
+      668
+    ]
+  },
+  "geo_13.03_77.69": {
+    "severityScore": 1,
+    "caseIds": [
+      669
+    ]
+  },
+  "geo_13.08_77.60": {
+    "severityScore": 1,
+    "caseIds": [
+      670
+    ]
+  },
+  "geo_12.92_77.56": {
+    "severityScore": 2,
+    "caseIds": [
+      671,
+      711
+    ]
+  },
+  "geo_13.10_77.61": {
+    "severityScore": 2,
+    "caseIds": [
+      672
+    ]
+  },
+  "geo_13.01_77.57": {
+    "severityScore": 1,
+    "caseIds": [
+      673
+    ]
+  },
+  "geo_13.01_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      679,
+      905
+    ]
+  },
+  "geo_12.96_77.55": {
+    "severityScore": 3,
+    "caseIds": [
+      680,
+      890
+    ]
+  },
+  "geo_13.07_77.80": {
+    "severityScore": 2,
+    "caseIds": [
+      686
+    ]
+  },
+  "geo_13.04_77.59": {
+    "severityScore": 3,
+    "caseIds": [
+      687,
+      926
+    ]
+  },
+  "geo_13.04_77.71": {
+    "severityScore": 1,
+    "caseIds": [
+      690
+    ]
+  },
+  "geo_12.95_77.58": {
+    "severityScore": 3,
+    "caseIds": [
+      692,
+      824
+    ]
+  },
+  "geo_12.91_77.54": {
+    "severityScore": 2,
+    "caseIds": [
+      694
+    ]
+  },
+  "geo_13.01_77.55": {
+    "severityScore": 1,
+    "caseIds": [
+      695
+    ]
+  },
+  "geo_12.97_77.79": {
+    "severityScore": 3,
+    "caseIds": [
+      697,
+      977
+    ]
+  },
+  "geo_13.01_77.70": {
+    "severityScore": 1,
+    "caseIds": [
+      700
+    ]
+  },
+  "geo_12.97_77.55": {
+    "severityScore": 2,
+    "caseIds": [
+      703
+    ]
+  },
+  "geo_13.03_77.57": {
+    "severityScore": 2,
+    "caseIds": [
+      704
+    ]
+  },
+  "geo_13.00_77.69": {
+    "severityScore": 2,
+    "caseIds": [
+      705,
+      727
+    ]
+  },
+  "geo_13.02_77.74": {
+    "severityScore": 1,
+    "caseIds": [
+      709
+    ]
+  },
+  "geo_12.84_77.69": {
+    "severityScore": 2,
+    "caseIds": [
+      715
+    ]
+  },
+  "geo_13.04_77.67": {
+    "severityScore": 1,
+    "caseIds": [
+      717
+    ]
+  },
+  "geo_13.07_77.69": {
+    "severityScore": 4,
+    "caseIds": [
+      718,
+      728,
+      869
+    ]
+  },
+  "geo_12.88_77.53": {
+    "severityScore": 2,
+    "caseIds": [
+      720
+    ]
+  },
+  "geo_13.02_77.80": {
+    "severityScore": 2,
+    "caseIds": [
+      722
+    ]
+  },
+  "geo_13.01_77.71": {
+    "severityScore": 3,
+    "caseIds": [
+      723,
+      955
+    ]
+  },
+  "geo_12.94_77.67": {
+    "severityScore": 3,
+    "caseIds": [
+      726,
+      747
+    ]
+  },
+  "geo_13.06_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      729
+    ]
+  },
+  "geo_12.81_77.73": {
+    "severityScore": 1,
+    "caseIds": [
+      730
+    ]
+  },
+  "geo_13.08_77.79": {
+    "severityScore": 1,
+    "caseIds": [
+      732
+    ]
+  },
+  "geo_12.92_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      734
+    ]
+  },
+  "geo_13.05_77.54": {
+    "severityScore": 2,
+    "caseIds": [
+      737
+    ]
+  },
+  "geo_12.89_77.53": {
+    "severityScore": 4,
+    "caseIds": [
+      741,
+      760
+    ]
+  },
+  "geo_12.85_77.67": {
+    "severityScore": 1,
+    "caseIds": [
+      742
+    ]
+  },
+  "geo_12.88_77.79": {
+    "severityScore": 6,
+    "caseIds": [
+      745,
+      790,
+      831,
+      854
+    ]
+  },
+  "geo_13.07_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      746
+    ]
+  },
+  "geo_13.02_77.51": {
+    "severityScore": 2,
+    "caseIds": [
+      750,
+      901
+    ]
+  },
+  "geo_12.95_77.74": {
+    "severityScore": 1,
+    "caseIds": [
+      753
+    ]
+  },
+  "geo_12.99_77.73": {
+    "severityScore": 1,
+    "caseIds": [
+      755
+    ]
+  },
+  "geo_13.04_77.70": {
+    "severityScore": 1,
+    "caseIds": [
+      758
+    ]
+  },
+  "geo_12.81_77.66": {
+    "severityScore": 1,
+    "caseIds": [
+      761
+    ]
+  },
+  "geo_12.84_77.73": {
+    "severityScore": 3,
+    "caseIds": [
+      762,
+      799
+    ]
+  },
+  "geo_12.85_77.75": {
+    "severityScore": 1,
+    "caseIds": [
+      766
+    ]
+  },
+  "geo_12.93_77.79": {
+    "severityScore": 3,
+    "caseIds": [
+      767,
+      883
+    ]
+  },
+  "geo_12.83_77.65": {
+    "severityScore": 3,
+    "caseIds": [
+      770,
+      840
+    ]
+  },
+  "geo_12.94_77.68": {
+    "severityScore": 2,
+    "caseIds": [
+      772,
+      920
+    ]
+  },
+  "geo_13.04_77.60": {
+    "severityScore": 1,
+    "caseIds": [
+      773
+    ]
+  },
+  "geo_12.88_77.63": {
+    "severityScore": 1,
+    "caseIds": [
+      775
+    ]
+  },
+  "geo_12.83_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      779
+    ]
+  },
+  "geo_12.86_77.67": {
+    "severityScore": 3,
+    "caseIds": [
+      780,
+      894
+    ]
+  },
+  "geo_12.92_77.52": {
+    "severityScore": 1,
+    "caseIds": [
+      782
+    ]
+  },
+  "geo_12.92_77.53": {
+    "severityScore": 1,
+    "caseIds": [
+      783
+    ]
+  },
+  "geo_12.81_77.63": {
+    "severityScore": 4,
+    "caseIds": [
+      784,
+      876
+    ]
+  },
+  "geo_12.92_77.76": {
+    "severityScore": 1,
+    "caseIds": [
+      786
+    ]
+  },
+  "geo_12.83_77.57": {
+    "severityScore": 1,
+    "caseIds": [
+      787
+    ]
+  },
+  "geo_12.98_77.69": {
+    "severityScore": 1,
+    "caseIds": [
+      791
+    ]
+  },
+  "geo_12.80_77.67": {
+    "severityScore": 2,
+    "caseIds": [
+      792
+    ]
+  },
+  "geo_12.87_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      794,
+      875
+    ]
+  },
+  "geo_12.82_77.79": {
+    "severityScore": 2,
+    "caseIds": [
+      795
+    ]
+  },
+  "geo_13.07_77.58": {
+    "severityScore": 1,
+    "caseIds": [
+      796
+    ]
+  },
+  "geo_12.95_77.78": {
+    "severityScore": 2,
+    "caseIds": [
+      800
+    ]
+  },
+  "geo_12.85_77.57": {
+    "severityScore": 1,
+    "caseIds": [
+      802
+    ]
+  },
+  "geo_13.04_77.75": {
+    "severityScore": 1,
+    "caseIds": [
+      804
+    ]
+  },
+  "geo_13.08_77.71": {
+    "severityScore": 1,
+    "caseIds": [
+      805
+    ]
+  },
+  "geo_12.81_77.78": {
+    "severityScore": 2,
+    "caseIds": [
+      806
+    ]
+  },
+  "geo_13.03_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      807
+    ]
+  },
+  "geo_13.08_77.53": {
+    "severityScore": 1,
+    "caseIds": [
+      808
+    ]
+  },
+  "geo_12.84_77.57": {
+    "severityScore": 2,
+    "caseIds": [
+      809
+    ]
+  },
+  "geo_12.96_77.61": {
+    "severityScore": 1,
+    "caseIds": [
+      810
+    ]
+  },
+  "geo_12.99_77.58": {
+    "severityScore": 1,
+    "caseIds": [
+      814
+    ]
+  },
+  "geo_12.86_77.69": {
+    "severityScore": 3,
+    "caseIds": [
+      815,
+      934
+    ]
+  },
+  "geo_12.87_77.55": {
+    "severityScore": 1,
+    "caseIds": [
+      816
+    ]
+  },
+  "geo_13.00_77.56": {
+    "severityScore": 2,
+    "caseIds": [
+      818
+    ]
+  },
+  "geo_12.97_77.80": {
+    "severityScore": 1,
+    "caseIds": [
+      819
+    ]
+  },
+  "geo_12.91_77.57": {
+    "severityScore": 3,
+    "caseIds": [
+      823,
+      870
+    ]
+  },
+  "geo_12.85_77.61": {
+    "severityScore": 2,
+    "caseIds": [
+      829
+    ]
+  },
+  "geo_13.10_77.78": {
+    "severityScore": 1,
+    "caseIds": [
+      830
+    ]
+  },
+  "geo_12.97_77.59": {
+    "severityScore": 2,
+    "caseIds": [
+      832
+    ]
+  },
+  "geo_12.85_77.77": {
+    "severityScore": 1,
+    "caseIds": [
+      833
+    ]
+  },
+  "geo_12.89_77.67": {
+    "severityScore": 2,
+    "caseIds": [
+      835
+    ]
+  },
+  "geo_13.03_77.71": {
+    "severityScore": 2,
+    "caseIds": [
+      836
+    ]
+  },
+  "geo_12.92_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      837
+    ]
+  },
+  "geo_13.01_77.75": {
+    "severityScore": 2,
+    "caseIds": [
+      838,
+      843
+    ]
+  },
+  "geo_13.07_77.75": {
+    "severityScore": 1,
+    "caseIds": [
+      841
+    ]
+  },
+  "geo_13.01_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      842
+    ]
+  },
+  "geo_12.91_77.73": {
+    "severityScore": 2,
+    "caseIds": [
+      850
+    ]
+  },
+  "geo_12.88_77.58": {
+    "severityScore": 2,
+    "caseIds": [
+      858
+    ]
+  },
+  "geo_13.08_77.80": {
+    "severityScore": 1,
+    "caseIds": [
+      860
+    ]
+  },
+  "geo_13.04_77.62": {
+    "severityScore": 2,
+    "caseIds": [
+      861
+    ]
+  },
+  "geo_12.93_77.59": {
+    "severityScore": 1,
+    "caseIds": [
+      862
+    ]
+  },
+  "geo_13.09_77.57": {
+    "severityScore": 1,
+    "caseIds": [
+      868
+    ]
+  },
+  "geo_12.94_77.63": {
+    "severityScore": 3,
+    "caseIds": [
+      872,
+      889
+    ]
+  },
+  "geo_13.01_77.59": {
+    "severityScore": 1,
+    "caseIds": [
+      873
+    ]
+  },
+  "geo_13.04_77.64": {
+    "severityScore": 2,
+    "caseIds": [
+      877
+    ]
+  },
+  "geo_13.10_77.51": {
+    "severityScore": 2,
+    "caseIds": [
+      881
+    ]
+  },
+  "geo_13.06_77.79": {
+    "severityScore": 1,
+    "caseIds": [
+      888
+    ]
+  },
+  "geo_12.90_77.56": {
+    "severityScore": 4,
+    "caseIds": [
+      893,
+      936,
+      960
+    ]
+  },
+  "geo_12.89_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      895
+    ]
+  },
+  "geo_13.03_77.78": {
+    "severityScore": 2,
+    "caseIds": [
+      897
+    ]
+  },
+  "geo_12.96_77.78": {
+    "severityScore": 1,
+    "caseIds": [
+      899
+    ]
+  },
+  "geo_12.91_77.55": {
+    "severityScore": 2,
+    "caseIds": [
+      902
+    ]
+  },
+  "geo_12.96_77.54": {
+    "severityScore": 1,
+    "caseIds": [
+      903
+    ]
+  },
+  "geo_13.09_77.70": {
+    "severityScore": 1,
+    "caseIds": [
+      909
+    ]
+  },
+  "geo_12.86_77.73": {
+    "severityScore": 2,
+    "caseIds": [
+      912,
+      958
+    ]
+  },
+  "geo_12.82_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      913
+    ]
+  },
+  "geo_12.83_77.53": {
+    "severityScore": 1,
+    "caseIds": [
+      915
+    ]
+  },
+  "geo_12.83_77.51": {
+    "severityScore": 1,
+    "caseIds": [
+      917
+    ]
+  },
+  "geo_12.81_77.77": {
+    "severityScore": 3,
+    "caseIds": [
+      921,
+      931
+    ]
+  },
+  "geo_12.85_77.54": {
+    "severityScore": 1,
+    "caseIds": [
+      923
+    ]
+  },
+  "geo_13.06_77.63": {
+    "severityScore": 3,
+    "caseIds": [
+      928,
+      954
+    ]
+  },
+  "geo_13.00_77.66": {
+    "severityScore": 1,
+    "caseIds": [
+      929
+    ]
+  },
+  "geo_12.92_77.62": {
+    "severityScore": 1,
+    "caseIds": [
+      930
+    ]
+  },
+  "geo_12.91_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      933
+    ]
+  },
+  "geo_12.90_77.58": {
+    "severityScore": 1,
+    "caseIds": [
+      937
+    ]
+  },
+  "geo_12.92_77.61": {
+    "severityScore": 1,
+    "caseIds": [
+      940
+    ]
+  },
+  "geo_12.92_77.57": {
+    "severityScore": 2,
+    "caseIds": [
+      941
+    ]
+  },
+  "geo_13.02_77.79": {
+    "severityScore": 1,
+    "caseIds": [
+      942
+    ]
+  },
+  "geo_12.97_77.73": {
+    "severityScore": 2,
+    "caseIds": [
+      943
+    ]
+  },
+  "geo_12.88_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      949
+    ]
+  },
+  "geo_13.07_77.76": {
+    "severityScore": 2,
+    "caseIds": [
+      953
+    ]
+  },
+  "geo_12.98_77.68": {
+    "severityScore": 1,
+    "caseIds": [
+      957
+    ]
+  },
+  "geo_12.88_77.59": {
+    "severityScore": 1,
+    "caseIds": [
+      959
+    ]
+  },
+  "geo_13.09_77.63": {
+    "severityScore": 2,
+    "caseIds": [
+      962
+    ]
+  },
+  "geo_12.82_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      966
+    ]
+  },
+  "geo_12.87_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      967
+    ]
+  },
+  "geo_12.91_77.64": {
+    "severityScore": 1,
+    "caseIds": [
+      973
+    ]
+  },
+  "geo_12.88_77.67": {
+    "severityScore": 2,
+    "caseIds": [
+      974
+    ]
+  },
+  "geo_12.85_77.78": {
+    "severityScore": 1,
+    "caseIds": [
+      978
+    ]
+  },
+  "geo_13.04_77.51": {
+    "severityScore": 1,
+    "caseIds": [
+      979
+    ]
+  },
+  "geo_12.97_77.53": {
+    "severityScore": 1,
+    "caseIds": [
+      985
+    ]
+  },
+  "geo_13.09_77.60": {
+    "severityScore": 3,
+    "caseIds": [
+      987,
+      999
+    ]
+  },
+  "geo_12.88_77.77": {
+    "severityScore": 2,
+    "caseIds": [
+      992
+    ]
+  },
+  "geo_12.99_77.52": {
+    "severityScore": 1,
+    "caseIds": [
+      993
+    ]
+  },
+  "geo_12.87_77.59": {
+    "severityScore": 2,
+    "caseIds": [
+      994
+    ]
+  },
+  "geo_12.93_77.65": {
+    "severityScore": 1,
+    "caseIds": [
+      996
+    ]
+  }
+}

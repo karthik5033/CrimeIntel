@@ -1,0 +1,18 @@
+[
+  {
+    "CaseCategoryID": 1,
+    "LookupValue": "FIR"
+  },
+  {
+    "CaseCategoryID": 3,
+    "LookupValue": "UDR"
+  },
+  {
+    "CaseCategoryID": 4,
+    "LookupValue": "PAR"
+  },
+  {
+    "CaseCategoryID": 8,
+    "LookupValue": "Zero FIR"
+  }
+]

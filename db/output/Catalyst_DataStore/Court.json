@@ -1,0 +1,16 @@
+[
+  {
+    "CourtID": 1,
+    "CourtName": "1st ACMM Bengaluru",
+    "DistrictID": 443,
+    "StateID": 1,
+    "Active": 1
+  },
+  {
+    "CourtID": 2,
+    "CourtName": "District Sessions Court Mysuru",
+    "DistrictID": 444,
+    "StateID": 1,
+    "Active": 1
+  }
+]

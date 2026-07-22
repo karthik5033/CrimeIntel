@@ -1,0 +1,14 @@
+[
+  {
+    "caste_master_id": 1,
+    "caste_master_name": "General"
+  },
+  {
+    "caste_master_id": 2,
+    "caste_master_name": "OBC"
+  },
+  {
+    "caste_master_id": 3,
+    "caste_master_name": "SC/ST"
+  }
+]

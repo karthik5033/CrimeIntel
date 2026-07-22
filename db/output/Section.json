@@ -1,0 +1,26 @@
+[
+  {
+    "ActCode": "IPC",
+    "SectionCode": "302",
+    "SectionDescription": "Punishment for murder",
+    "Active": 1
+  },
+  {
+    "ActCode": "IPC",
+    "SectionCode": "392",
+    "SectionDescription": "Punishment for robbery",
+    "Active": 1
+  },
+  {
+    "ActCode": "IPC",
+    "SectionCode": "379",
+    "SectionDescription": "Punishment for theft",
+    "Active": 1
+  },
+  {
+    "ActCode": "ITACT",
+    "SectionCode": "66D",
+    "SectionDescription": "Cheating by personation using computer",
+    "Active": 1
+  }
+]
