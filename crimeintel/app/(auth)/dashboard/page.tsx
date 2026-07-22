@@ -27,6 +27,7 @@ import {
   MapPin
 } from "lucide-react";
 import { CrimeTrendChart } from "@/components/charts/CrimeTrendChart";
+import { LiveMap } from "@/components/dashboard/LiveMap";
 
 export default function DashboardPage() {
   return (
@@ -43,8 +44,8 @@ export default function DashboardPage() {
       </div>
 
       {/* KPI Stats Row */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Active Investigations</CardTitle>
             <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
@@ -60,7 +61,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
         
-        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm">
+        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Persons of Interest</CardTitle>
             <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
@@ -76,7 +77,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm">
+        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">High-Risk Alerts</CardTitle>
             <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
@@ -91,7 +92,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50 backdrop-blur-sm">
+        <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Resolution Rate</CardTitle>
             <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
@@ -107,9 +108,9 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-7">
         {/* Main Content Area (Chart) */}
-        <Card className="col-span-4 lg:col-span-5 shadow-sm border-border/50 bg-card/50 backdrop-blur-sm">
+        <Card className="col-span-2 xl:col-span-5 shadow-sm border-border/50 bg-card/50">
           <CardHeader className="border-b border-border/50 pb-4">
             <CardTitle className="text-lg font-semibold">Incident Trends</CardTitle>
             <CardDescription>
@@ -122,7 +123,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Side Panel (Recent Alerts) */}
-        <Card className="col-span-4 lg:col-span-2 shadow-sm border-border/50 bg-card/50 backdrop-blur-sm flex flex-col">
+        <Card className="col-span-2 shadow-sm border-border/50 bg-card/50 flex flex-col">
           <CardHeader className="border-b border-border/50 pb-4">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg font-semibold">Early Warnings</CardTitle>
@@ -156,8 +157,10 @@ export default function DashboardPage() {
         </Card>
       </div>
 
+      <LiveMap />
+
       {/* Recent Cases Table */}
-      <Card className="shadow-sm border-border/50 bg-card/50 backdrop-blur-sm">
+      <Card className="shadow-sm border-border/50 bg-card/50">
         <CardHeader className="border-b border-border/50 pb-4 flex flex-row items-center justify-between">
           <div>
             <CardTitle className="text-lg font-semibold">Recent High-Priority FIRs</CardTitle>

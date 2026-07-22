@@ -1,0 +1,275 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { MapPin, AlertCircle, Shield, TrendingUp, TrendingDown, Users, Activity, Loader2, Layers, Map as MapIcon, Hexagon, Mountain } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const LiveMapClient = dynamic(() => import("./LiveMapClient"), { 
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 flex items-center justify-center bg-slate-50">
+      <Loader2 className="h-8 w-8 text-primary animate-spin" />
+    </div>
+  )
+});
+
+const INITIAL_HOTSPOTS = [
+  { 
+    id: "blr", 
+    name: "Bengaluru Urban", 
+    lat: 12.9716, lng: 77.5946, 
+    threat: "Critical", 
+    activeCases: 245, 
+    officers: 1250, 
+    trend: "up",
+    trendValue: "+14%",
+    recentAlert: "Organized syndicate activity detected in East Zone."
+  },
+  { 
+    id: "mys", 
+    name: "Mysuru", 
+    lat: 12.2958, lng: 76.6394, 
+    threat: "Elevated", 
+    activeCases: 84, 
+    officers: 320, 
+    trend: "up",
+    trendValue: "+5%",
+    recentAlert: "Festival crowd management ongoing. Minor incidents."
+  },
+  { 
+    id: "mlr", 
+    name: "Mangaluru", 
+    lat: 12.9141, lng: 74.8560, 
+    threat: "Medium", 
+    activeCases: 62, 
+    officers: 280, 
+    trend: "down",
+    trendValue: "-2%",
+    recentAlert: "Coastal patrol intercepted contraband."
+  },
+  { 
+    id: "hub", 
+    name: "Hubballi-Dharwad", 
+    lat: 15.3647, lng: 75.1240, 
+    threat: "Medium", 
+    activeCases: 78, 
+    officers: 410, 
+    trend: "down",
+    trendValue: "-8%",
+    recentAlert: "Routine highway checkpoints active."
+  },
+  { 
+    id: "bel", 
+    name: "Belagavi", 
+    lat: 15.8497, lng: 74.4977, 
+    threat: "Low", 
+    activeCases: 34, 
+    officers: 210, 
+    trend: "down",
+    trendValue: "-12%",
+    recentAlert: "Border monitoring normal."
+  },
+];
+
+export function LiveMap() {
+  const [hotspots, setHotspots] = useState(INITIAL_HOTSPOTS);
+  const [selectedSpotId, setSelectedSpotId] = useState(INITIAL_HOTSPOTS[0].id);
+
+  // Layer Controls State
+  const [showHeatmap, setShowHeatmap] = useState(false);
+  const [showBoundaries, setShowBoundaries] = useState(false);
+  const [showWards, setShowWards] = useState(false);
+  const [mapStyle, setMapStyle] = useState<'light' | 'dark' | 'satellite'>('light');
+
+  // Live Backend Simulation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHotspots(current => current.map(spot => {
+        const caseDiff = Math.floor(Math.random() * 5) - 2;
+        const officerDiff = Math.floor(Math.random() * 11) - 5;
+        
+        const newCases = Math.max(0, spot.activeCases + caseDiff);
+        
+        let newThreat = spot.threat;
+        if (newCases > 200) newThreat = "Critical";
+        else if (newCases > 80) newThreat = "Elevated";
+        else if (newCases > 50) newThreat = "Medium";
+        else newThreat = "Low";
+
+        return {
+          ...spot,
+          activeCases: newCases,
+          officers: Math.max(0, spot.officers + officerDiff),
+          threat: newThreat
+        };
+      }));
+    }, 4000); 
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const selectedSpot = hotspots.find(s => s.id === selectedSpotId) || hotspots[0];
+
+  return (
+    <Card className="col-span-full xl:col-span-3 overflow-hidden">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <MapPin className="h-5 w-5 text-primary" />
+              Karnataka Geospatial Intelligence
+            </CardTitle>
+            <CardDescription>Interactive real-world map with dynamic layer controls and live deployment tracking.</CardDescription>
+          </div>
+          
+          {/* Top Layer Controls */}
+          <div className="hidden sm:flex items-center gap-2 bg-slate-100 p-1 rounded-lg border border-slate-200">
+            <button 
+              onClick={() => setMapStyle('light')}
+              className={cn("px-3 py-1.5 text-xs font-semibold rounded-md flex items-center gap-1.5 transition-colors", mapStyle === 'light' ? "bg-white shadow-sm text-slate-800" : "text-slate-500 hover:text-slate-700")}
+            >
+              <MapIcon className="h-3 w-3" /> 2D Vector
+            </button>
+            <button 
+              onClick={() => setMapStyle('satellite')}
+              className={cn("px-3 py-1.5 text-xs font-semibold rounded-md flex items-center gap-1.5 transition-colors", mapStyle === 'satellite' ? "bg-slate-800 shadow-sm text-white" : "text-slate-500 hover:text-slate-700")}
+            >
+              <Mountain className="h-3 w-3" /> 3D Terrain
+            </button>
+            <button 
+              onClick={() => setMapStyle('dark')}
+              className={cn("px-3 py-1.5 text-xs font-semibold rounded-md flex items-center gap-1.5 transition-colors", mapStyle === 'dark' ? "bg-slate-900 shadow-sm text-white" : "text-slate-500 hover:text-slate-700")}
+            >
+              <MapIcon className="h-3 w-3" /> Dark Ops
+            </button>
+          </div>
+        </div>
+      </CardHeader>
+      
+      <CardContent className="p-0 border-t border-slate-100">
+        <div className="flex flex-col md:flex-row h-[500px]">
+          {/* Map Area */}
+          <div className="flex-1 relative bg-slate-50 overflow-hidden group">
+            
+            <LiveMapClient 
+              hotspots={hotspots} 
+              selectedSpot={selectedSpot} 
+              onSelect={(spot: any) => setSelectedSpotId(spot.id)} 
+              showHeatmap={showHeatmap}
+              showBoundaries={showBoundaries}
+              showWards={showWards}
+              mapStyle={mapStyle}
+            />
+            
+            {/* Floating Layer Toggles Over Map */}
+            <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2">
+              <div className="bg-white/90 backdrop-blur-md p-2 rounded-xl shadow-lg border border-slate-200/50 flex flex-col gap-1 w-40">
+                <div className="px-2 pb-1 mb-1 border-b border-slate-200/50 text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                  <Layers className="h-3 w-3" /> Data Layers
+                </div>
+                
+                <button 
+                  onClick={() => setShowHeatmap(!showHeatmap)}
+                  className={cn("px-2 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors", showHeatmap ? "bg-blue-50 text-blue-700" : "hover:bg-slate-100 text-slate-600")}
+                >
+                  <span className="flex items-center gap-1.5"><Activity className="h-3 w-3" /> Heatmap</span>
+                  <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showHeatmap ? "bg-blue-500" : "bg-slate-300")}>
+                    <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showHeatmap ? "translate-x-2.5" : "translate-x-0")} />
+                  </div>
+                </button>
+                
+                <button 
+                  onClick={() => setShowBoundaries(!showBoundaries)}
+                  className={cn("px-2 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors", showBoundaries ? "bg-emerald-50 text-emerald-700" : "hover:bg-slate-100 text-slate-600")}
+                >
+                  <span className="flex items-center gap-1.5"><MapIcon className="h-3 w-3" /> District</span>
+                  <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showBoundaries ? "bg-emerald-500" : "bg-slate-300")}>
+                    <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showBoundaries ? "translate-x-2.5" : "translate-x-0")} />
+                  </div>
+                </button>
+
+                <button 
+                  onClick={() => setShowWards(!showWards)}
+                  className={cn("px-2 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors", showWards ? "bg-purple-50 text-purple-700" : "hover:bg-slate-100 text-slate-600")}
+                >
+                  <span className="flex items-center gap-1.5"><Hexagon className="h-3 w-3" /> Wards Grid</span>
+                  <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showWards ? "bg-purple-500" : "bg-slate-300")}>
+                    <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showWards ? "translate-x-2.5" : "translate-x-0")} />
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Stats Panel */}
+          <div className="w-full md:w-80 flex flex-col bg-white border-l border-slate-100 relative z-[1001] shadow-[-10px_0_15px_-10px_rgba(0,0,0,0.05)]">
+            <div className="p-6 h-full flex flex-col">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-primary/10 rounded-xl relative overflow-hidden shrink-0">
+                  <div className="absolute inset-0 bg-primary/20 animate-ping opacity-20" />
+                  <MapPin className="h-6 w-6 text-primary relative z-10" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-black text-slate-900 leading-tight tracking-tight">{selectedSpot.name}</h3>
+                  <p className="text-xs text-muted-foreground font-mono font-bold tracking-wider opacity-70">NODE-{selectedSpot.id.toUpperCase()}</p>
+                </div>
+              </div>
+
+              <div className="space-y-6 flex-1">
+                <div className="flex items-center justify-between p-4 bg-slate-50/50 rounded-xl border border-slate-200/60 shadow-sm transition-colors duration-500">
+                  <div className="flex items-center gap-2">
+                    <AlertCircle className={cn("h-4 w-4 transition-colors duration-500", selectedSpot.threat === "Critical" ? "text-destructive" : "text-amber-500")} />
+                    <span className="text-sm font-bold text-slate-600 tracking-tight">Threat Level</span>
+                  </div>
+                  <span className={cn("text-sm font-black uppercase tracking-wider transition-colors duration-500", selectedSpot.threat === "Critical" ? "text-destructive" : "text-amber-600")}>
+                    {selectedSpot.threat}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1 p-4 bg-slate-50/50 rounded-xl border border-slate-200/60 shadow-sm">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-1.5 mb-1">
+                      <Activity className="h-3 w-3 text-slate-500" /> Active
+                    </span>
+                    <span className="text-3xl font-black text-slate-800 transition-all duration-300 tracking-tighter">{selectedSpot.activeCases}</span>
+                    <span className={cn("text-[11px] font-bold flex items-center gap-0.5", selectedSpot.trend === 'up' ? 'text-destructive' : 'text-emerald-500')}>
+                      {selectedSpot.trend === 'up' ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                      {selectedSpot.trendValue}
+                    </span>
+                  </div>
+                  
+                  <div className="flex flex-col gap-1 p-4 bg-slate-50/50 rounded-xl border border-slate-200/60 shadow-sm">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-1.5 mb-1">
+                      <Users className="h-3 w-3 text-slate-500" /> Deployed
+                    </span>
+                    <span className="text-3xl font-black text-slate-800 transition-all duration-300 tracking-tighter">{selectedSpot.officers}</span>
+                    <span className="text-[11px] font-bold text-slate-500">Personnel</span>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-slate-100">
+                  <span className="text-[10px] uppercase font-bold text-slate-400 mb-3 tracking-wider flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.5)]" /> 
+                    Live Intelligence
+                  </span>
+                  <p className="text-sm text-slate-700 leading-relaxed font-medium">
+                    {selectedSpot.recentAlert}
+                  </p>
+                </div>
+                
+                <div className="mt-auto pt-6">
+                  <button className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group">
+                    <Shield className="h-4 w-4 text-slate-400 group-hover:text-white transition-colors" />
+                    View Node Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

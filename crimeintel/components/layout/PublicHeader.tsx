@@ -44,7 +44,7 @@ export function PublicHeader() {
               </Button>
             </Link>
             <Link href="/login">
-              <Button className="h-9 font-medium px-4 bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+              <Button className="h-9 font-medium px-4 bg-primary text-primary-foreground hover:bg-primary/90">
                 Get all access
               </Button>
             </Link>

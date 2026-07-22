@@ -2,85 +2,202 @@
 
 import React from "react";
 import {
-  LineChart,
+  ComposedChart,
   Line,
+  Area,
+  Scatter,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
-  Area,
-  AreaChart
+  ResponsiveContainer
 } from "recharts";
+import { Activity, Target, AlertCircle, Radio } from "lucide-react";
 
-const data = [
-  { name: "Jan", total: 1200, solved: 950 },
-  { name: "Feb", total: 1100, solved: 890 },
-  { name: "Mar", total: 1300, solved: 1050 },
-  { name: "Apr", total: 1250, solved: 980 },
-  { name: "May", total: 1400, solved: 1100 },
-  { name: "Jun", total: 1600, solved: 1200 },
-  { name: "Jul", total: 1500, solved: 1250 },
+// Sci-Fi Complex Data Telemetry
+const complexData = [
+  { time: "00:00", baseline: 800, telemetry: 820, forecast: 810, anomaly: null },
+  { time: "04:00", baseline: 850, telemetry: 840, forecast: 860, anomaly: null },
+  { time: "08:00", baseline: 900, telemetry: 910, forecast: 920, anomaly: null },
+  { time: "12:00", baseline: 880, telemetry: 1450, forecast: 890, anomaly: 1450 }, // Major Spike
+  { time: "16:00", baseline: 920, telemetry: 1050, forecast: 950, anomaly: null },
+  { time: "20:00", baseline: 950, telemetry: 980, forecast: 960, anomaly: null },
+  { time: "24:00", baseline: 1000, telemetry: 1020, forecast: 1010, anomaly: null },
 ];
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-card border border-border p-3 rounded-lg shadow-md flex flex-col gap-2 min-w-[180px]">
+        <div className="flex items-center justify-between border-b border-border pb-2 mb-1">
+          <span className="text-primary text-[10px] font-bold uppercase tracking-widest">Time: {label}</span>
+          <Radio className="h-3 w-3 text-primary animate-pulse" />
+        </div>
+        
+        {payload.map((entry: any, index: number) => {
+          if (entry.dataKey === 'anomaly' && !entry.value) return null;
+          
+          let displayName = entry.name;
+          let color = entry.color;
+          if (entry.dataKey === 'anomaly') {
+            color = "var(--destructive)";
+          }
+
+          return (
+            <div key={index} className="flex items-center justify-between text-xs font-medium">
+              <span className="text-muted-foreground uppercase">{displayName}</span>
+              <span className="font-bold" style={{ color }}>
+                {entry.value}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+  return null;
+};
 
 export function CrimeTrendChart() {
   return (
-    <div className="h-[300px] w-full mt-4">
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart
-          data={data}
-          margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
-            </linearGradient>
-            <linearGradient id="colorSolved" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="var(--success)" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="var(--success)" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
-          <XAxis 
-            dataKey="name" 
-            axisLine={false}
-            tickLine={false}
-            tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
-            dy={10}
-          />
-          <YAxis 
-            axisLine={false}
-            tickLine={false}
-            tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
-          />
-          <Tooltip 
-            contentStyle={{ 
-              backgroundColor: 'var(--card)', 
-              borderColor: 'var(--border)',
-              borderRadius: '8px',
-              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
-            }} 
-          />
-          <Area 
-            type="monotone" 
-            dataKey="total" 
-            stroke="var(--primary)" 
-            strokeWidth={2}
-            fillOpacity={1} 
-            fill="url(#colorTotal)" 
-            activeDot={{ r: 6, strokeWidth: 0, fill: "var(--primary)" }}
-          />
-          <Area 
-            type="monotone" 
-            dataKey="solved" 
-            stroke="var(--success)" 
-            strokeWidth={2}
-            fillOpacity={1} 
-            fill="url(#colorSolved)" 
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+    <div className="flex flex-col xl:flex-row gap-6 w-full h-full mt-2">
+      {/* Main Chart Area */}
+      <div className="flex-1 h-[320px] relative z-10">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-foreground text-sm flex items-center gap-2 font-semibold">
+            <Activity className="h-4 w-4 text-primary" />
+            Live Pattern Telemetry
+          </h3>
+          <div className="text-[10px] text-muted-foreground uppercase flex gap-4 font-semibold">
+            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-muted-foreground/30" /> Baseline</span>
+            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-primary" /> Actual</span>
+            <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-destructive" /> Anomaly</span>
+          </div>
+        </div>
+
+        <ResponsiveContainer width="100%" height="90%">
+          <ComposedChart
+            data={complexData}
+            margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+          >
+            <defs>
+              <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.15} />
+                <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" strokeOpacity={0.5} />
+            
+            <XAxis 
+              dataKey="time" 
+              axisLine={false}
+              tickLine={false}
+              tick={{ fill: 'var(--muted-foreground)', fontSize: 11, fontWeight: 500 }}
+              dy={10}
+            />
+            
+            <YAxis 
+              axisLine={false}
+              tickLine={false}
+              tick={{ fill: 'var(--muted-foreground)', fontSize: 11, fontWeight: 500 }}
+              dx={-10}
+            />
+            
+            <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'var(--muted)', strokeWidth: 1, strokeDasharray: '4 4', fill: 'var(--muted)', opacity: 0.1 }} />
+            
+            {/* Baseline Area */}
+            <Area 
+              type="monotone" 
+              dataKey="baseline" 
+              name="Historic Baseline"
+              stroke="var(--muted-foreground)"
+              strokeOpacity={0.3}
+              strokeWidth={1.5}
+              fill="url(#areaFill)" 
+            />
+
+            {/* AI Predicted Line */}
+            <Line 
+              type="monotone" 
+              dataKey="forecast" 
+              name="AI Forecast"
+              stroke="var(--primary)" 
+              strokeOpacity={0.5}
+              strokeWidth={2}
+              strokeDasharray="4 4"
+              dot={false}
+              activeDot={false}
+            />
+
+            {/* Actual Track */}
+            <Line 
+              type="monotone" 
+              dataKey="telemetry" 
+              name="Live Data"
+              stroke="var(--primary)" 
+              strokeWidth={2.5}
+              dot={{ r: 3, fill: "var(--background)", stroke: "var(--primary)", strokeWidth: 2 }}
+              activeDot={{ r: 6, fill: "var(--primary)", stroke: "var(--background)", strokeWidth: 2 }}
+            />
+
+            {/* Anomaly Detection */}
+            <Scatter 
+              dataKey="anomaly" 
+              name="Critical Deviation"
+              fill="var(--destructive)" 
+            />
+            
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Sci-Fi Stats Panel (In-Theme) */}
+      <div className="w-full xl:w-56 flex flex-col gap-3 z-10">
+        <div className="bg-muted/30 border border-border rounded-lg p-3 relative overflow-hidden transition-all">
+          <div className="absolute top-0 left-0 w-1 h-full bg-primary/40" />
+          <div className="flex items-center gap-2 mb-1">
+            <Activity className="h-3.5 w-3.5 text-primary" />
+            <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Accuracy</span>
+          </div>
+          <div className="text-2xl font-bold text-foreground tracking-tight">94.2<span className="text-sm text-muted-foreground font-medium">%</span></div>
+          <div className="w-full bg-muted h-1.5 mt-2 rounded-full overflow-hidden">
+            <div className="bg-primary h-full w-[94.2%]" />
+          </div>
+        </div>
+
+        <div className="bg-destructive/5 border border-destructive/20 rounded-lg p-3 relative overflow-hidden transition-all">
+          <div className="absolute top-0 left-0 w-1 h-full bg-destructive" />
+          <div className="flex items-center gap-2 mb-1">
+            <AlertCircle className="h-3.5 w-3.5 text-destructive animate-pulse" />
+            <span className="text-[10px] text-destructive font-bold uppercase tracking-wider">Threat Index</span>
+          </div>
+          <div className="text-lg font-bold text-destructive tracking-wide">CRITICAL</div>
+          <div className="text-[10px] text-destructive/80 mt-1 font-medium">
+            Sector 4 Anomaly
+          </div>
+        </div>
+
+        <div className="bg-muted/30 border border-border rounded-lg p-3 relative overflow-hidden flex-1 transition-all">
+           <div className="absolute top-0 left-0 w-1 h-full bg-primary/40" />
+           <div className="flex items-center gap-2 mb-2">
+            <Target className="h-3.5 w-3.5 text-primary" />
+            <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Node Status</span>
+          </div>
+          <div className="space-y-2 mt-1">
+            {[
+              { id: "SYS-CORE", status: "ONLINE", color: "text-primary" },
+              { id: "PREDICTIVE", status: "SYNCING", color: "text-amber-500" },
+              { id: "CCTV-LINK", status: "ONLINE", color: "text-primary" }
+            ].map((node) => (
+              <div key={node.id} className="flex items-center justify-between text-[11px] font-medium">
+                <span className="text-muted-foreground">{node.id}</span>
+                <span className={node.color}>{node.status}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

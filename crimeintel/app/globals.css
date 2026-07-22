@@ -16,8 +16,8 @@
   --popover: #ffffff;
   --popover-foreground: #09090b;
   
-  --primary: #18181b;
-  --primary-foreground: #fafafa;
+  --primary: #064e3b; /* emerald-900 */
+  --primary-foreground: #ecfdf5; /* emerald-50 */
   
   --secondary: #f4f4f5;
   --secondary-foreground: #18181b;
@@ -36,7 +36,7 @@
   
   --border: #e4e4e7;
   --input: #e4e4e7;
-  --ring: #18181b;
+  --ring: #064e3b; /* emerald-900 */
   
   --radius: 0.5rem;
 
@@ -68,8 +68,8 @@
   --popover: #09090b;
   --popover-foreground: #fafafa;
   
-  --primary: #fafafa;
-  --primary-foreground: #18181b;
+  --primary: #10b981; /* emerald-500 */
+  --primary-foreground: #022c22; /* emerald-950 */
   
   --secondary: #27272a;
   --secondary-foreground: #fafafa;
@@ -88,7 +88,7 @@
 
   --border: #27272a;
   --input: #27272a;
-  --ring: #d4d4d8;
+  --ring: #10b981; /* emerald-500 */
 
   /* Chart Colors */
   --chart-1: #fafafa;
@@ -199,7 +199,7 @@
   
   @keyframes marquee {
     from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - 2.5rem)); } /* Matches gap-10 (2.5rem) */
+    to { transform: translateX(-50%); } 
   }
 
   .animate-marquee-vertical {
@@ -211,6 +211,26 @@
     to { transform: translateY(-50%); }
   }
 
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes spin-reverse {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+
+  @keyframes spinXZ {
+    from { transform: rotateX(48deg) rotateZ(10deg) rotateY(0deg); }
+    to { transform: rotateX(48deg) rotateZ(10deg) rotateY(360deg); }
+  }
+
+  @keyframes spinYZ {
+    from { transform: rotateY(-54deg) rotateZ(-16deg) rotateX(0deg); }
+    to { transform: rotateY(-54deg) rotateZ(-16deg) rotateX(360deg); }
+  }
+
   .mask-image-linear-edges {
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
@@ -219,5 +239,36 @@
   .mask-image-linear-edges-vertical {
     mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  }
+
+  @keyframes data-flow-down {
+    0% { background-position: 0px -20px; }
+    100% { background-position: 0px 0px; }
+  }
+  
+  @keyframes data-flow-right {
+    0% { background-position: -20px 0px; }
+    100% { background-position: 0px 0px; }
+  }
+
+  .data-flow-line-vertical {
+    background-image: linear-gradient(to bottom, theme(colors.primary.DEFAULT) 50%, transparent 50%);
+    background-size: 100% 20px;
+    animation: data-flow-down 1s linear infinite;
+  }
+
+  .data-flow-line-horizontal {
+    background-image: linear-gradient(to right, theme(colors.primary.DEFAULT) 50%, transparent 50%);
+    background-size: 20px 100%;
+    animation: data-flow-right 1s linear infinite;
+  }
+  
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
   }
 }
