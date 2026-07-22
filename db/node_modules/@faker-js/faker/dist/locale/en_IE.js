@@ -1,0 +1,1 @@
+import{t as e}from"../en_IE-TJBKDGgo.js";export{e as faker};

@@ -1,0 +1,1 @@
+import{t as e}from"../en_GH-Dyqfhw_j.js";export{e as faker};

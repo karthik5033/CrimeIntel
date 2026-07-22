@@ -1,0 +1,1 @@
+import{t as e}from"../en_US-CAUu-_tx.js";export{e as faker};

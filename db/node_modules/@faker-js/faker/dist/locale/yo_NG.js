@@ -1,0 +1,1 @@
+import{t as e}from"../yo_NG-CNRxVns6.js";export{e as faker};

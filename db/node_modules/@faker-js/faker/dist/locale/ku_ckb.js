@@ -1,0 +1,1 @@
+import{t as e}from"../ku_ckb-CYhAKynb.js";export{e as faker};

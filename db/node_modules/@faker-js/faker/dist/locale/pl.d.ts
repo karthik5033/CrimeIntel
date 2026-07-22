@@ -1,0 +1,2 @@
+import { Jt as faker } from "../index-BSUsvzGS.js";
+export { faker };

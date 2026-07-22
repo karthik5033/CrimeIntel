@@ -1,0 +1,2 @@
+import { Vn as faker } from "../index-BSUsvzGS.js";
+export { faker };

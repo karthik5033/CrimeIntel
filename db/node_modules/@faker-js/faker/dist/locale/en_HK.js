@@ -1,0 +1,1 @@
+import{t as e}from"../en_HK-MDnv7NAP.js";export{e as faker};

@@ -1,0 +1,1 @@
+import{t as e}from"../mn_MN_cyrl-dKnSckb4.js";export{e as faker};

@@ -1,0 +1,1 @@
+import{t as e}from"../ku_kmr_latin-DXK-tsdb.js";export{e as faker};

@@ -1,0 +1,1 @@
+import{t as e}from"../ta_IN-AAIhcIpz.js";export{e as faker};

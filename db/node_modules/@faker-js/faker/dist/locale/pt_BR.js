@@ -1,0 +1,1 @@
+import{t as e}from"../pt_BR-BUyajaUv.js";export{e as faker};
