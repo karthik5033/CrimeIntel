@@ -9,7 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState("profile");
-  const { role } = useAuth();
+  const { role, user, userId } = useAuth();
+  const displayName = user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() : 'Loading...';
 
   return (
     <div className="flex flex-col h-full bg-background overflow-hidden">
@@ -87,16 +88,16 @@ export default function SettingsPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label className="text-sm font-medium">Full Name</label>
-                        <Input defaultValue="R. Kumar" />
+                        <Input value={displayName} readOnly />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-medium">Badge Number</label>
-                        <Input defaultValue="KA-0984-BLR" disabled />
+                        <Input value={`KA-${userId}`} disabled />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Email Address</label>
-                      <Input defaultValue="rkumar@ksp.gov.in" />
+                      <Input value={user?.email || 'Loading...'} readOnly />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Current Role</label>

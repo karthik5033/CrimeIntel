@@ -1,26 +1,22 @@
 import { NextResponse } from 'next/server';
-import { MockDataClient } from '@/lib/api/mockDataClient';
+import { DataClient } from '@/lib/api/dataClient';
 
 export async function GET(request: Request) {
   try {
-    const relationships = MockDataClient.getEntityRelationships();
-    
-    // In a real app, this endpoint would accept query params for the seed node and depth.
-    // For this mock demo, we'll return a rich sub-graph containing our specific story entities + some random noise.
-    
-    // We want to ensure we get the nodes related to our 3 main stories:
-    // 1. Rajesh Kumar & Suresh Babu (connected to a vehicle)
-    // 2. Anitha Reddy (Cyber fraud bank transfers)
-    // 3. Murders connected to a vehicle
-    
-    const allPersons = MockDataClient.getPersons();
-    const allFirs = MockDataClient.getFIRs();
-    const allVehicles = MockDataClient.getVehicles();
-    const allBanks = MockDataClient.getBankAccounts();
-    const allPhones = MockDataClient.getPhoneRecords();
-    const allWeapons = MockDataClient.getWeapons();
-    const allCases = MockDataClient.getCases();
-    const allPoliceStations = MockDataClient.getPoliceStations();
+    const [
+      relationships, allPersons, allFirs, allVehicles, allBanks, 
+      allPhones, allWeapons, allCases, allPoliceStations
+    ] = await Promise.all([
+      DataClient.getEntityRelationships(),
+      DataClient.getPersons(),
+      DataClient.getFIRs(),
+      DataClient.getVehicles(),
+      DataClient.getBankAccounts(),
+      DataClient.getPhoneRecords(),
+      DataClient.getWeapons(),
+      DataClient.getCases(),
+      DataClient.getPoliceStations()
+    ]);
 
     // To prevent graph overload in browser, we limit the total nodes.
     // We'll use BFS to extract a connected subgraph of 150 edges starting from the first few relationships

@@ -18,10 +18,12 @@ import {
   ChevronRight,
   PanelLeftClose,
   PanelLeftOpen,
-  ShieldCheck
+  ShieldCheck,
+  BookOpen
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAuth } from "@/lib/AuthContext";
 import { useLanguage } from "@/lib/LanguageContext";
 
 const navItems = [
@@ -39,6 +41,11 @@ const navItems = [
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const { user, role } = useAuth();
+  
+  const displayName = user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() : 'Loading...';
+  const displayInitials = user ? `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase() || 'U' : 'U';
+
   const [isCollapsed, setIsCollapsed] = React.useState(false);
   const { t } = useLanguage();
 
@@ -48,15 +55,17 @@ export function AppSidebar() {
       isCollapsed ? "w-[80px]" : "w-64"
     )}>
       {/* Brand Section */}
-      <div className={cn("flex h-16 items-center border-b border-border/50 transition-all overflow-hidden whitespace-nowrap", isCollapsed ? "justify-center px-0" : "px-6")}>
-        <ShieldAlert className={cn("text-primary shrink-0 transition-all", isCollapsed ? "h-8 w-8" : "h-6 w-6 mr-3")} />
-        {!isCollapsed && (
-          <>
-            <span className="text-lg font-bold tracking-tight text-foreground">CrimeIntel</span>
-            <span className="ml-2 rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">KSP</span>
-          </>
-        )}
-      </div>
+      <Link href="/">
+        <div className={cn("flex h-16 items-center border-b border-border/50 transition-all overflow-hidden whitespace-nowrap", isCollapsed ? "justify-center px-0" : "px-6")}>
+          <ShieldAlert className={cn("text-primary shrink-0 transition-all", isCollapsed ? "h-8 w-8" : "h-6 w-6 mr-3")} />
+          {!isCollapsed && (
+            <>
+              <span className="text-lg font-bold tracking-tight text-foreground">CrimeIntel</span>
+              <span className="ml-2 rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">KSP</span>
+            </>
+          )}
+        </div>
+      </Link>
 
       {/* Navigation Links */}
       <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1 overflow-x-hidden">
@@ -117,13 +126,13 @@ export function AppSidebar() {
         )}>
           <div className="flex items-center space-x-3">
             <Avatar className="h-9 w-9 border border-border shrink-0">
-              <AvatarImage src="" alt="Officer" />
-              <AvatarFallback className="bg-primary/10 text-primary font-semibold">IO</AvatarFallback>
+              <AvatarImage src="" alt={displayName} />
+              <AvatarFallback className="bg-primary/10 text-primary font-semibold">{displayInitials}</AvatarFallback>
             </Avatar>
             {!isCollapsed && (
               <div className="flex flex-col whitespace-nowrap">
-                <span className="text-sm font-medium leading-none mb-1">R. Kumar</span>
-                <span className="text-xs text-muted-foreground">Inspector</span>
+                <span className="text-sm font-medium leading-none mb-1">{displayName}</span>
+                <span className="text-xs text-muted-foreground capitalize">{role.toLowerCase()}</span>
               </div>
             )}
           </div>

@@ -1,4 +1,4 @@
-import { MockDataClient } from '@/lib/api/mockDataClient';
+
 import { ReasoningOutput, ConfidenceLevel, Mechanism, Evidence, AlternativeHypothesis, ConfidenceScore } from './types';
 import { CatalystNoSQL } from '@/lib/catalyst/nosql';
 

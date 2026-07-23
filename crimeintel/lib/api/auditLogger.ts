@@ -47,7 +47,7 @@ export class AuditLogger {
    * Logs audit events directly to Catalyst server-side storage and local browser state.
    */
   static async logEvent(event: Omit<AuditLogEntry, "id" | "timestamp" | "ip_address" | "session_id">) {
-    const logId = `AL-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    const logId = `AL-${crypto.randomUUID()}`;
     const timestamp = new Date().toISOString();
     
     // Dynamic IP detection or Catalyst environment IP
@@ -55,7 +55,7 @@ export class AuditLogger {
       ? "127.0.0.1" 
       : "10.14.2.45";
       
-    const session_id = "SESS-" + Math.random().toString(36).substring(2, 11);
+    const session_id = `SESS-${crypto.randomUUID()}`;
 
     const newLog: AuditLogEntry = {
       ...event,

@@ -1,4 +1,4 @@
-import { MockDataClient } from "../api/mockDataClient";
+
 
 export type Transaction = {
   id: string;
@@ -15,8 +15,8 @@ export type Transaction = {
 export class FinancialGraphEngine {
   private transactions: Transaction[];
   
-  constructor() {
-    this.transactions = MockDataClient.getTransactions() || [];
+  constructor(transactions: Transaction[]) {
+    this.transactions = transactions || [];
   }
 
   // Trace forward flows (Where did the money go?)

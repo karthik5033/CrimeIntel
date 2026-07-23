@@ -1,4 +1,4 @@
-import { MockDataClient } from "@/lib/api/mockDataClient";
+import { DataClient } from "@/lib/api/dataClient";
 import { ClientProfilesList, PersonProfile } from "./ClientProfilesList";
 
 export const metadata = {
@@ -6,9 +6,11 @@ export const metadata = {
   description: "View and manage criminal records and suspect profiles.",
 };
 
-export default function ProfilesPage() {
-  const allPersons = MockDataClient.getPersons();
-  const allRelationships = MockDataClient.getEntityRelationships();
+export default async function ProfilesPage() {
+  const [allPersons, allRelationships] = await Promise.all([
+    DataClient.getPersons(),
+    DataClient.getEntityRelationships()
+  ]);
 
   // Process raw data into PersonProfile
   const initialProfiles: PersonProfile[] = allPersons.map((person: any) => {

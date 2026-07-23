@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { MockDataClient } from '@/lib/api/mockDataClient';
+import { DataClient } from '@/lib/api/dataClient';
 import { getDemoResponse } from '@/lib/demo-mode';
 import { performSemanticSearch } from '@/lib/nlp/semantic-search';
 import { CatalystQuickML } from '@/lib/catalyst/quickml';
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     }
 
     // Perform Semantic RAG Search over records
-    const searchResults = performSemanticSearch(query, 3);
+    const searchResults = await performSemanticSearch(query, 3);
     
     // Attempt QuickML Generative Response if endpoint is active
     const quickMLResponse = await CatalystQuickML.generateResponse(message, { ragContext: searchResults });
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
 
     // 1. Vehicle Theft in Bengaluru
     if (query.includes('vehicle theft') && (query.includes('bengaluru') || query.includes('bangalore'))) {
-      const allFIRs = MockDataClient.getFIRs();
+      const allFIRs = await DataClient.getFIRs();
       const bglrThefts = allFIRs.filter((f: any) => 
         f.crime_type_en === 'Vehicle Theft' && 
         f.district_name_en === 'Bengaluru Urban'
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
 
     // 2. Connections between Rajesh Kumar and Suresh Babu
     if (query.includes('rajesh kumar') && query.includes('suresh babu')) {
-      const allVehicles = MockDataClient.getVehicles();
+      const allVehicles = await DataClient.getVehicles();
       const ringVehicle = allVehicles[0];
       
       return NextResponse.json({
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
 
     // 3. Cyber Fraud / Money Trail
     if (query.includes('money trail') || query.includes('cyber fraud')) {
-      const allBanks = MockDataClient.getBankAccounts();
+      const allBanks = await DataClient.getBankAccounts();
       const bankA = allBanks[0];
       const bankB = allBanks[1];
 

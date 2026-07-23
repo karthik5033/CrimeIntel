@@ -1,502 +1,1269 @@
 [
   {
     "id": "PS_1",
-    "name_en": "Lake Demond PS",
-    "name_kn": "Duluth ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 13.388,
-    "lng": 74.4187
+    "name_en": "Bagalkote District Police Office",
+    "district_id": "DIST_1",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_2",
-    "name_en": "Carlton PS",
-    "name_kn": "South Demarco ಪೊಲೀಸ್ ಠಾಣೆ",
+    "name_en": "Ballari (Bellary) District Police Office",
     "district_id": "DIST_2",
-    "district_name_en": "Mysuru",
-    "district_name_kn": "ಮೈಸೂರು",
-    "lat": 16.9372,
-    "lng": 75.7237
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_3",
-    "name_en": "Schillerboro PS",
-    "name_kn": "Tustin ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_2",
-    "district_name_en": "Mysuru",
-    "district_name_kn": "ಮೈಸೂರು",
-    "lat": 12.9713,
-    "lng": 74.943
+    "name_en": "Belagavi (Belgaum) District Police Office",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_4",
-    "name_en": "Glenview PS",
-    "name_kn": "South Gonzalofurt ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 17.3122,
-    "lng": 75.425
+    "name_en": "Bengaluru Rural District Police Office",
+    "district_id": "DIST_4",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_5",
-    "name_en": "Pennyfield PS",
-    "name_kn": "Anderson-Gottliebstad ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_2",
-    "district_name_en": "Mysuru",
-    "district_name_kn": "ಮೈಸೂರು",
-    "lat": 17.5986,
-    "lng": 74.8139
+    "name_en": "Bengaluru Urban District Police Office",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_6",
-    "name_en": "South Reggiefort PS",
-    "name_kn": "North Celiaville ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 14.7502,
-    "lng": 77.633
+    "name_en": "Bidar District Police Office",
+    "district_id": "DIST_6",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_7",
-    "name_en": "Torpborough PS",
-    "name_kn": "East Vicki ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 17.9745,
-    "lng": 75.5144
+    "name_en": "Chamarajanagara District Police Office",
+    "district_id": "DIST_7",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_8",
-    "name_en": "Ondrickabury PS",
-    "name_kn": "North Nelsonshire ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_1",
-    "district_name_en": "Bengaluru Urban",
-    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
-    "lat": 14.6562,
-    "lng": 77.1114
+    "name_en": "Chikkaballapura District Police Office",
+    "district_id": "DIST_8",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_9",
-    "name_en": "Glendale PS",
-    "name_kn": "Daly City ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 12.9556,
-    "lng": 77.8458
+    "name_en": "Chikkamagaluru District Police Office",
+    "district_id": "DIST_9",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_10",
-    "name_en": "Cynthiaborough PS",
-    "name_kn": "Fort Johan ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 12.4401,
-    "lng": 76.5522
+    "name_en": "Chitradurga District Police Office",
+    "district_id": "DIST_10",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_11",
-    "name_en": "West Cristal PS",
-    "name_kn": "Chesapeake ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 15.523,
-    "lng": 77.3296
+    "name_en": "Dakshina Kannada District Police Office",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_12",
-    "name_en": "Josiannetown PS",
-    "name_kn": "Doloresburgh ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 16.3171,
-    "lng": 75.7541
+    "name_en": "Davanagere District Police Office",
+    "district_id": "DIST_12",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_13",
-    "name_en": "Earlboro PS",
-    "name_kn": "New Lester ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 16.7562,
-    "lng": 75.2695
+    "name_en": "Dharwad District Police Office",
+    "district_id": "DIST_13",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_14",
-    "name_en": "Greeley PS",
-    "name_kn": "Oscarstad ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 12.1333,
-    "lng": 74.184
+    "name_en": "Gadag District Police Office",
+    "district_id": "DIST_14",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_15",
-    "name_en": "South Chesterton PS",
-    "name_kn": "Oak Park ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 15.7754,
-    "lng": 74.805
+    "name_en": "Hassan District Police Office",
+    "district_id": "DIST_15",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_16",
-    "name_en": "New Lindseyfurt PS",
-    "name_kn": "Fort Iraworth ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 16.9337,
-    "lng": 74.579
+    "name_en": "Haveri District Police Office",
+    "district_id": "DIST_16",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_17",
-    "name_en": "Fort Vidabury PS",
-    "name_kn": "South Orinbury ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 16.6648,
-    "lng": 76.1802
+    "name_en": "Kalaburagi (Gulbarga) District Police Office",
+    "district_id": "DIST_17",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_18",
-    "name_en": "West Berry PS",
-    "name_kn": "East Jasmineburgh ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_1",
-    "district_name_en": "Bengaluru Urban",
-    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
-    "lat": 13.2812,
-    "lng": 75.5754
+    "name_en": "Kodagu District Police Office",
+    "district_id": "DIST_18",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_19",
-    "name_en": "Turnerview PS",
-    "name_kn": "South Paige ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 13.398,
-    "lng": 74.7699
+    "name_en": "Kolar District Police Office",
+    "district_id": "DIST_19",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_20",
-    "name_en": "Josephinetown PS",
-    "name_kn": "Kokomo ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 17.6078,
-    "lng": 75.202
+    "name_en": "Koppal District Police Office",
+    "district_id": "DIST_20",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_21",
-    "name_en": "Wauwatosa PS",
-    "name_kn": "Port Dwayneton ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 12.934,
-    "lng": 77.5975
+    "name_en": "Mandya District Police Office",
+    "district_id": "DIST_21",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_22",
-    "name_en": "East Elinorefield PS",
-    "name_kn": "East Alaynafield ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 12.8951,
-    "lng": 74.4386
+    "name_en": "Mysuru District Police Office",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_23",
-    "name_en": "Alameda PS",
-    "name_kn": "Fort Candicefort ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 13.0643,
-    "lng": 77.8465
+    "name_en": "Raichur District Police Office",
+    "district_id": "DIST_23",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_24",
-    "name_en": "South Barrett PS",
-    "name_kn": "North Petertown ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_2",
-    "district_name_en": "Mysuru",
-    "district_name_kn": "ಮೈಸೂರು",
-    "lat": 17.766,
-    "lng": 75.6653
+    "name_en": "Ramanagara District Police Office",
+    "district_id": "DIST_24",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_25",
-    "name_en": "Cape Coral PS",
-    "name_kn": "Harriston ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 14.6559,
-    "lng": 76.0289
+    "name_en": "Shivamogga District Police Office",
+    "district_id": "DIST_25",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_26",
-    "name_en": "New Guyview PS",
-    "name_kn": "Watsicastad ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_1",
-    "district_name_en": "Bengaluru Urban",
-    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
-    "lat": 17.8355,
-    "lng": 75.6752
+    "name_en": "Tumakuru District Police Office",
+    "district_id": "DIST_26",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_27",
-    "name_en": "Ankundingfield PS",
-    "name_kn": "South Sandy ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 17.1252,
-    "lng": 76.6382
+    "name_en": "Udupi District Police Office",
+    "district_id": "DIST_27",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_28",
-    "name_en": "Trompcester PS",
-    "name_kn": "Rhodamouth ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_2",
-    "district_name_en": "Mysuru",
-    "district_name_kn": "ಮೈಸೂರು",
-    "lat": 13.0901,
-    "lng": 76.4349
+    "name_en": "Uttara Kannada District Police Office",
+    "district_id": "DIST_28",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_29",
-    "name_en": "Whiteland PS",
-    "name_kn": "Kendallberg ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 14.9981,
-    "lng": 77.2793
+    "name_en": "Vijayanagara District Police Office",
+    "district_id": "DIST_29",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_30",
-    "name_en": "Scottsdale PS",
-    "name_kn": "North Kacishire ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 16.3051,
-    "lng": 74.8461
+    "name_en": "Vijayapura District Police Office",
+    "district_id": "DIST_30",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_31",
-    "name_en": "East Duane PS",
-    "name_kn": "Linwoodton ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 13.4642,
-    "lng": 77.6784
+    "name_en": "Yadgir District Police Office",
+    "district_id": "DIST_31",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_32",
-    "name_en": "East Jeanetteburgh PS",
-    "name_kn": "Riverton ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 13.6406,
-    "lng": 76.5411
+    "name_en": "Bagalkote Sub-Division",
+    "district_id": "DIST_1",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_33",
-    "name_en": "Country Club PS",
-    "name_kn": "Hempstead ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 15.0553,
-    "lng": 75.7922
+    "name_en": "Ballari (Bellary) Sub-Division",
+    "district_id": "DIST_2",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_34",
-    "name_en": "Christiansenstad PS",
-    "name_kn": "North Lindsay ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 12.047,
-    "lng": 74.0428
+    "name_en": "Belagavi (Belgaum) Sub-Division",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_35",
-    "name_en": "Bruenfurt PS",
-    "name_kn": "Oralland ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_2",
-    "district_name_en": "Mysuru",
-    "district_name_kn": "ಮೈಸೂರು",
-    "lat": 17.9866,
-    "lng": 76.2735
+    "name_en": "Bengaluru Rural Sub-Division",
+    "district_id": "DIST_4",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_36",
-    "name_en": "Parker PS",
-    "name_kn": "Port Kaylaport ಪೊಲೀಸ್ ಠಾಣೆ",
+    "name_en": "Bengaluru Urban Sub-Division",
     "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 14.5674,
-    "lng": 76.8929
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_37",
-    "name_en": "New Margarettahaven PS",
-    "name_kn": "Hahnburgh ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 12.6399,
-    "lng": 74.7152
+    "name_en": "Bidar Sub-Division",
+    "district_id": "DIST_6",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_38",
-    "name_en": "Janiston PS",
-    "name_kn": "Port Henrietta ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_1",
-    "district_name_en": "Bengaluru Urban",
-    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
-    "lat": 17.2001,
-    "lng": 75.4956
+    "name_en": "Chamarajanagara Sub-Division",
+    "district_id": "DIST_7",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_39",
-    "name_en": "South Stan PS",
-    "name_kn": "Sheboygan ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 17.3118,
-    "lng": 75.1179
+    "name_en": "Chikkaballapura Sub-Division",
+    "district_id": "DIST_8",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_40",
-    "name_en": "Arlenefield PS",
-    "name_kn": "Framingham ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 14.0993,
-    "lng": 75.086
+    "name_en": "Chikkamagaluru Sub-Division",
+    "district_id": "DIST_9",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_41",
-    "name_en": "Brantboro PS",
-    "name_kn": "Paulaside ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 17.8251,
-    "lng": 75.1391
+    "name_en": "Chitradurga Sub-Division",
+    "district_id": "DIST_10",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_42",
-    "name_en": "Port Oscar PS",
-    "name_kn": "Granvillefield ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 12.9912,
-    "lng": 75.8717
+    "name_en": "Dakshina Kannada Sub-Division",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_43",
-    "name_en": "Bernhardland PS",
-    "name_kn": "Pasco ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_1",
-    "district_name_en": "Bengaluru Urban",
-    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
-    "lat": 15.8289,
-    "lng": 77.7193
+    "name_en": "Davanagere Sub-Division",
+    "district_id": "DIST_12",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_44",
-    "name_en": "South Bend PS",
-    "name_kn": "Port Caden ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_2",
-    "district_name_en": "Mysuru",
-    "district_name_kn": "ಮೈಸೂರು",
-    "lat": 13.438,
-    "lng": 76.063
+    "name_en": "Dharwad Sub-Division",
+    "district_id": "DIST_13",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_45",
-    "name_en": "Moline PS",
-    "name_kn": "East Henrietta ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 14.0751,
-    "lng": 75.2735
+    "name_en": "Gadag Sub-Division",
+    "district_id": "DIST_14",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_46",
-    "name_en": "Lake Demarcotown PS",
-    "name_kn": "North Sinceretown ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_4",
-    "district_name_en": "Hubballi-Dharwad",
-    "district_name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 14.9448,
-    "lng": 75.1663
+    "name_en": "Hassan Sub-Division",
+    "district_id": "DIST_15",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_47",
-    "name_en": "North Ritaside PS",
-    "name_kn": "Huberttown ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 17.5629,
-    "lng": 75.4443
+    "name_en": "Haveri Sub-Division",
+    "district_id": "DIST_16",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_48",
-    "name_en": "Gulfport PS",
-    "name_kn": "Phillipburgh ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_1",
-    "district_name_en": "Bengaluru Urban",
-    "district_name_kn": "ಬೆಂಗಳೂರು ನಗರ",
-    "lat": 14.6253,
-    "lng": 75.5553
+    "name_en": "Kalaburagi (Gulbarga) Sub-Division",
+    "district_id": "DIST_17",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_49",
-    "name_en": "Sayreville PS",
-    "name_kn": "Shawnhaven ಪೊಲೀಸ್ ಠಾಣೆ",
-    "district_id": "DIST_5",
-    "district_name_en": "Belagavi",
-    "district_name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 14.488,
-    "lng": 76.8169
+    "name_en": "Kodagu Sub-Division",
+    "district_id": "DIST_18",
+    "lat": 12.9716,
+    "lng": 77.5946
   },
   {
     "id": "PS_50",
-    "name_en": "Lenexa PS",
-    "name_kn": "South Beverlybury ಪೊಲೀಸ್ ಠಾಣೆ",
+    "name_en": "Kolar Sub-Division",
+    "district_id": "DIST_19",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_51",
+    "name_en": "Koppal Sub-Division",
+    "district_id": "DIST_20",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_52",
+    "name_en": "Mandya Sub-Division",
+    "district_id": "DIST_21",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_53",
+    "name_en": "Mysuru Sub-Division",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_54",
+    "name_en": "Raichur Sub-Division",
+    "district_id": "DIST_23",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_55",
+    "name_en": "Ramanagara Sub-Division",
+    "district_id": "DIST_24",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_56",
+    "name_en": "Shivamogga Sub-Division",
+    "district_id": "DIST_25",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_57",
+    "name_en": "Tumakuru Sub-Division",
+    "district_id": "DIST_26",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_58",
+    "name_en": "Udupi Sub-Division",
+    "district_id": "DIST_27",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_59",
+    "name_en": "Uttara Kannada Sub-Division",
+    "district_id": "DIST_28",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_60",
+    "name_en": "Vijayanagara Sub-Division",
+    "district_id": "DIST_29",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_61",
+    "name_en": "Vijayapura Sub-Division",
+    "district_id": "DIST_30",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_62",
+    "name_en": "Yadgir Sub-Division",
+    "district_id": "DIST_31",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_63",
+    "name_en": "Bagalkote Circle 1",
+    "district_id": "DIST_1",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_64",
+    "name_en": "Ballari (Bellary) Circle 1",
+    "district_id": "DIST_2",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_65",
+    "name_en": "Belagavi (Belgaum) Circle 1",
     "district_id": "DIST_3",
-    "district_name_en": "Mangaluru",
-    "district_name_kn": "ಮಂಗಳೂರು",
-    "lat": 12.4906,
-    "lng": 77.8699
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_66",
+    "name_en": "Belagavi (Belgaum) Circle 2",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_67",
+    "name_en": "Bengaluru Rural Circle 1",
+    "district_id": "DIST_4",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_68",
+    "name_en": "Bengaluru Urban Circle 1",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_69",
+    "name_en": "Bengaluru Urban Circle 2",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_70",
+    "name_en": "Bengaluru Urban Circle 3",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_71",
+    "name_en": "Bengaluru Urban Circle 4",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_72",
+    "name_en": "Bengaluru Urban Circle 5",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_73",
+    "name_en": "Bidar Circle 1",
+    "district_id": "DIST_6",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_74",
+    "name_en": "Chamarajanagara Circle 1",
+    "district_id": "DIST_7",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_75",
+    "name_en": "Chikkaballapura Circle 1",
+    "district_id": "DIST_8",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_76",
+    "name_en": "Chikkamagaluru Circle 1",
+    "district_id": "DIST_9",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_77",
+    "name_en": "Chitradurga Circle 1",
+    "district_id": "DIST_10",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_78",
+    "name_en": "Dakshina Kannada Circle 1",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_79",
+    "name_en": "Dakshina Kannada Circle 2",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_80",
+    "name_en": "Davanagere Circle 1",
+    "district_id": "DIST_12",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_81",
+    "name_en": "Dharwad Circle 1",
+    "district_id": "DIST_13",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_82",
+    "name_en": "Gadag Circle 1",
+    "district_id": "DIST_14",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_83",
+    "name_en": "Hassan Circle 1",
+    "district_id": "DIST_15",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_84",
+    "name_en": "Haveri Circle 1",
+    "district_id": "DIST_16",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_85",
+    "name_en": "Kalaburagi (Gulbarga) Circle 1",
+    "district_id": "DIST_17",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_86",
+    "name_en": "Kodagu Circle 1",
+    "district_id": "DIST_18",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_87",
+    "name_en": "Kolar Circle 1",
+    "district_id": "DIST_19",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_88",
+    "name_en": "Koppal Circle 1",
+    "district_id": "DIST_20",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_89",
+    "name_en": "Mandya Circle 1",
+    "district_id": "DIST_21",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_90",
+    "name_en": "Mysuru Circle 1",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_91",
+    "name_en": "Mysuru Circle 2",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_92",
+    "name_en": "Mysuru Circle 3",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_93",
+    "name_en": "Raichur Circle 1",
+    "district_id": "DIST_23",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_94",
+    "name_en": "Ramanagara Circle 1",
+    "district_id": "DIST_24",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_95",
+    "name_en": "Shivamogga Circle 1",
+    "district_id": "DIST_25",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_96",
+    "name_en": "Tumakuru Circle 1",
+    "district_id": "DIST_26",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_97",
+    "name_en": "Udupi Circle 1",
+    "district_id": "DIST_27",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_98",
+    "name_en": "Uttara Kannada Circle 1",
+    "district_id": "DIST_28",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_99",
+    "name_en": "Vijayanagara Circle 1",
+    "district_id": "DIST_29",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_100",
+    "name_en": "Vijayapura Circle 1",
+    "district_id": "DIST_30",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_101",
+    "name_en": "Yadgir Circle 1",
+    "district_id": "DIST_31",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_102",
+    "name_en": "Bagalkote Town PS",
+    "district_id": "DIST_1",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_103",
+    "name_en": "Bagalkote Rural PS",
+    "district_id": "DIST_1",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_104",
+    "name_en": "Ballari (Bellary) Town PS",
+    "district_id": "DIST_2",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_105",
+    "name_en": "Ballari (Bellary) Rural PS",
+    "district_id": "DIST_2",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_106",
+    "name_en": "Camp PS",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_107",
+    "name_en": "Market PS",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_108",
+    "name_en": "Tilakwadi PS",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_109",
+    "name_en": "Shahapur PS",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_110",
+    "name_en": "Gandhinagar PS",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_111",
+    "name_en": "Khadebazar PS",
+    "district_id": "DIST_3",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_112",
+    "name_en": "Bengaluru Rural Town PS",
+    "district_id": "DIST_4",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_113",
+    "name_en": "Bengaluru Rural Rural PS",
+    "district_id": "DIST_4",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_114",
+    "name_en": "Cubbon Park PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_115",
+    "name_en": "Whitefield PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_116",
+    "name_en": "Electronic City PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_117",
+    "name_en": "Koramangala PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_118",
+    "name_en": "Jayanagar PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_119",
+    "name_en": "HSR Layout PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_120",
+    "name_en": "Indiranagar PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_121",
+    "name_en": "Marathahalli PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_122",
+    "name_en": "Yelahanka PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_123",
+    "name_en": "KR Puram PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_124",
+    "name_en": "Banashankari PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_125",
+    "name_en": "Rajajinagar PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_126",
+    "name_en": "Hebbal PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_127",
+    "name_en": "Peenya PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_128",
+    "name_en": "Basavanagudi PS",
+    "district_id": "DIST_5",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_129",
+    "name_en": "Bidar Town PS",
+    "district_id": "DIST_6",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_130",
+    "name_en": "Bidar Rural PS",
+    "district_id": "DIST_6",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_131",
+    "name_en": "Chamarajanagara Town PS",
+    "district_id": "DIST_7",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_132",
+    "name_en": "Chamarajanagara Rural PS",
+    "district_id": "DIST_7",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_133",
+    "name_en": "Chikkaballapura Town PS",
+    "district_id": "DIST_8",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_134",
+    "name_en": "Chikkaballapura Rural PS",
+    "district_id": "DIST_8",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_135",
+    "name_en": "Chikkamagaluru Town PS",
+    "district_id": "DIST_9",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_136",
+    "name_en": "Chikkamagaluru Rural PS",
+    "district_id": "DIST_9",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_137",
+    "name_en": "Chitradurga Town PS",
+    "district_id": "DIST_10",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_138",
+    "name_en": "Chitradurga Rural PS",
+    "district_id": "DIST_10",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_139",
+    "name_en": "Mangalore City (Bunder) PS",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_140",
+    "name_en": "Mangalore North PS",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_141",
+    "name_en": "Mangalore South PS",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_142",
+    "name_en": "Mangalore East PS",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_143",
+    "name_en": "Mangalore West PS",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_144",
+    "name_en": "Ullal PS",
+    "district_id": "DIST_11",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_145",
+    "name_en": "Davanagere Town PS",
+    "district_id": "DIST_12",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_146",
+    "name_en": "Davanagere Rural PS",
+    "district_id": "DIST_12",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_147",
+    "name_en": "Dharwad Town PS",
+    "district_id": "DIST_13",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_148",
+    "name_en": "Dharwad Rural PS",
+    "district_id": "DIST_13",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_149",
+    "name_en": "Gadag Town PS",
+    "district_id": "DIST_14",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_150",
+    "name_en": "Gadag Rural PS",
+    "district_id": "DIST_14",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_151",
+    "name_en": "Hassan Town PS",
+    "district_id": "DIST_15",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_152",
+    "name_en": "Hassan Rural PS",
+    "district_id": "DIST_15",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_153",
+    "name_en": "Haveri Town PS",
+    "district_id": "DIST_16",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_154",
+    "name_en": "Haveri Rural PS",
+    "district_id": "DIST_16",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_155",
+    "name_en": "Kalaburagi (Gulbarga) Town PS",
+    "district_id": "DIST_17",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_156",
+    "name_en": "Kalaburagi (Gulbarga) Rural PS",
+    "district_id": "DIST_17",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_157",
+    "name_en": "Kodagu Town PS",
+    "district_id": "DIST_18",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_158",
+    "name_en": "Kodagu Rural PS",
+    "district_id": "DIST_18",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_159",
+    "name_en": "Kolar Town PS",
+    "district_id": "DIST_19",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_160",
+    "name_en": "Kolar Rural PS",
+    "district_id": "DIST_19",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_161",
+    "name_en": "Koppal Town PS",
+    "district_id": "DIST_20",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_162",
+    "name_en": "Koppal Rural PS",
+    "district_id": "DIST_20",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_163",
+    "name_en": "Mandya Town PS",
+    "district_id": "DIST_21",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_164",
+    "name_en": "Mandya Rural PS",
+    "district_id": "DIST_21",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_165",
+    "name_en": "Devaraja PS",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_166",
+    "name_en": "Jayalakshmipuram PS",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_167",
+    "name_en": "Nazarbad PS",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_168",
+    "name_en": "Vijayanagar PS",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_169",
+    "name_en": "Krishnaraja PS",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_170",
+    "name_en": "Vidyaranyapuram PS",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_171",
+    "name_en": "Kuvempunagar PS",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_172",
+    "name_en": "Bannimantap PS",
+    "district_id": "DIST_22",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_173",
+    "name_en": "Raichur Town PS",
+    "district_id": "DIST_23",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_174",
+    "name_en": "Ramanagara Town PS",
+    "district_id": "DIST_24",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_175",
+    "name_en": "Shivamogga Town PS",
+    "district_id": "DIST_25",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_176",
+    "name_en": "Tumakuru Town PS",
+    "district_id": "DIST_26",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_177",
+    "name_en": "Udupi Town PS",
+    "district_id": "DIST_27",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_178",
+    "name_en": "Uttara Kannada Town PS",
+    "district_id": "DIST_28",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_179",
+    "name_en": "Vijayanagara Town PS",
+    "district_id": "DIST_29",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_180",
+    "name_en": "Vijayapura Town PS",
+    "district_id": "DIST_30",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  {
+    "id": "PS_181",
+    "name_en": "Yadgir Town PS",
+    "district_id": "DIST_31",
+    "lat": 12.9716,
+    "lng": 77.5946
   }
 ]

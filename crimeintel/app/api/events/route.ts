@@ -8,7 +8,7 @@ const locations = ['Bengaluru Urban', 'Mysuru', 'Hubballi-Dharwad', 'Mangaluru',
 function generateRandomEvent() {
   const type = eventTypes[Math.floor(Math.random() * eventTypes.length)] as any;
   const location = locations[Math.floor(Math.random() * locations.length)];
-  const id = Math.random().toString(36).substring(7);
+  const id = crypto.randomUUID();
 
   let message = '';
   switch (type) {

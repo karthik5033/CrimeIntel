@@ -1,5 +1,5 @@
 export const catalystConfig = {
-  projectId: process.env.NEXT_PUBLIC_CATALYST_PROJECT_ID || '55949000000013025',
+  projectId: process.env.NEXT_PUBLIC_CATALYST_PROJECT_ID || 'missing-project-id',
   environment: process.env.NEXT_PUBLIC_CATALYST_ENV || 'Development',
 };
 
@@ -18,6 +18,22 @@ export function getCatalystApp(req?: any): any {
           insertRow: async (data: any) => ({ ...data, id: Date.now().toString() }),
         }),
       }),
+      zcql: () => ({
+        executeZCQLQuery: async () => []
+      }),
+      cache: () => ({
+        segment: () => ({
+          get: async () => null,
+          put: async () => {},
+          delete: async () => {}
+        })
+      }),
+      zia: () => ({
+        extractText: async () => ({ text: '' })
+      }),
+      quickml: () => ({
+        embeddings: async () => ({ embedding: [] })
+      })
     };
   }
 
@@ -49,6 +65,22 @@ export function getCatalystApp(req?: any): any {
       functions: () => ({
         execute: async (fn: string, payload: any) => ({ success: true, data: {} }),
       }),
+      zcql: () => ({
+        executeZCQLQuery: async () => []
+      }),
+      cache: () => ({
+        segment: () => ({
+          get: async () => null,
+          put: async () => {},
+          delete: async () => {}
+        })
+      }),
+      zia: () => ({
+        extractText: async () => ({ text: '' })
+      }),
+      quickml: () => ({
+        embeddings: async () => ({ embedding: [] })
+      })
     };
   }
 }

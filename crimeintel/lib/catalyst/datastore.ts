@@ -1,23 +1,23 @@
 import { getCatalystApp } from './index';
-import personsData from '@/data/seed/Persons.json';
-import policeStationsData from '@/data/seed/PoliceStations.json';
-import firsData from '@/data/seed/FIRs.json';
-import casesData from '@/data/seed/Cases.json';
-import vehiclesData from '@/data/seed/Vehicles.json';
-import phoneRecordsData from '@/data/seed/PhoneRecords.json';
-import bankAccountsData from '@/data/seed/BankAccounts.json';
-import weaponsData from '@/data/seed/Weapons.json';
-import entityRelationshipsData from '@/data/seed/EntityRelationships.json';
-import socioEconomicData from '@/data/seed/SocioEconomicData.json';
-import transactionsData from '@/data/seed/Transactions.json';
+import personsSeed from '../../data/seed/Persons.json';
+import policeStationsSeed from '../../data/seed/PoliceStations.json';
+import firsSeed from '../../data/seed/FIRs.json';
+import casesSeed from '../../data/seed/Cases.json';
+import vehiclesSeed from '../../data/seed/Vehicles.json';
+import phoneRecordsSeed from '../../data/seed/PhoneRecords.json';
+import bankAccountsSeed from '../../data/seed/BankAccounts.json';
+import weaponsSeed from '../../data/seed/Weapons.json';
+import entityRelationshipsSeed from '../../data/seed/EntityRelationships.json';
+import socioEconomicSeed from '../../data/seed/SocioEconomicData.json';
+import transactionsSeed from '../../data/seed/Transactions.json';
 
 /**
  * DataStore API layer - Connects Next.js to Catalyst Data Store via ZCQL/SDK
- * with fallback to initial seed datasets.
+ * Automatically falls back to seed dataset if ZCQL returns empty/unconfigured.
  */
 export const CatalystDataStore = {
   // Persons Table
-  getPersons: async () => {
+  getPersons: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -28,12 +28,12 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch Persons falling back to seed:', (e as Error).message);
+      console.warn('Catalyst Data Store fetch Persons note:', (e as Error).message);
     }
-    return personsData;
+    return personsSeed;
   },
 
-  getPersonById: async (id: string) => {
+  getPersonById: async (id: string): Promise<any | null> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -44,13 +44,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      // Fallback
+      console.warn(`Catalyst Data Store fetch Person ${id} note:`, (e as Error).message);
     }
-    return personsData.find((p: any) => p.id === id);
+    return personsSeed.find((p: any) => p.id === id) || null;
   },
 
   // PoliceStations Table
-  getPoliceStations: async () => {
+  getPoliceStations: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -61,13 +61,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch PoliceStations fallback');
+      console.warn('Catalyst Data Store fetch PoliceStations note:', (e as Error).message);
     }
-    return policeStationsData;
+    return policeStationsSeed;
   },
 
   // FIRs Table
-  getFIRs: async () => {
+  getFIRs: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -78,12 +78,12 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch FIRs fallback');
+      console.warn('Catalyst Data Store fetch FIRs note:', (e as Error).message);
     }
-    return firsData;
+    return firsSeed;
   },
 
-  getFIRById: async (id: string) => {
+  getFIRById: async (id: string): Promise<any | null> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -94,13 +94,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      // Fallback
+      console.warn(`Catalyst Data Store fetch FIR ${id} note:`, (e as Error).message);
     }
-    return firsData.find((f: any) => f.id === id);
+    return firsSeed.find((f: any) => f.id === id) || null;
   },
 
   // Cases Table
-  getCases: async () => {
+  getCases: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -111,13 +111,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch Cases fallback');
+      console.warn('Catalyst Data Store fetch Cases note:', (e as Error).message);
     }
-    return casesData;
+    return casesSeed;
   },
 
   // Vehicles Table
-  getVehicles: async () => {
+  getVehicles: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -128,13 +128,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch Vehicles fallback');
+      console.warn('Catalyst Data Store fetch Vehicles note:', (e as Error).message);
     }
-    return vehiclesData;
+    return vehiclesSeed;
   },
 
   // Phone Records Table
-  getPhoneRecords: async () => {
+  getPhoneRecords: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -145,13 +145,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch PhoneRecords fallback');
+      console.warn('Catalyst Data Store fetch PhoneRecords note:', (e as Error).message);
     }
-    return phoneRecordsData;
+    return phoneRecordsSeed;
   },
 
   // Bank Accounts Table
-  getBankAccounts: async () => {
+  getBankAccounts: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -162,13 +162,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch BankAccounts fallback');
+      console.warn('Catalyst Data Store fetch BankAccounts note:', (e as Error).message);
     }
-    return bankAccountsData;
+    return bankAccountsSeed;
   },
 
   // Weapons Table
-  getWeapons: async () => {
+  getWeapons: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -179,13 +179,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch Weapons fallback');
+      console.warn('Catalyst Data Store fetch Weapons note:', (e as Error).message);
     }
-    return weaponsData;
+    return weaponsSeed;
   },
 
   // Entity Relationships (Graph Edges) Table
-  getEntityRelationships: async () => {
+  getEntityRelationships: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -196,18 +196,18 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch EntityRelationships fallback');
+      console.warn('Catalyst Data Store fetch EntityRelationships note:', (e as Error).message);
     }
-    return entityRelationshipsData;
+    return entityRelationshipsSeed;
   },
 
-  getGraphForEntity: async (entityId: string) => {
+  getGraphForEntity: async (entityId: string): Promise<any[]> => {
     const allEdges = await CatalystDataStore.getEntityRelationships();
     return allEdges.filter((edge: any) => edge.source === entityId || edge.target === entityId);
   },
 
   // Socio Economic Data Table
-  getSocioEconomicData: async () => {
+  getSocioEconomicData: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -218,13 +218,13 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch SocioEconomicData fallback');
+      console.warn('Catalyst Data Store fetch SocioEconomicData note:', (e as Error).message);
     }
-    return socioEconomicData;
+    return socioEconomicSeed;
   },
 
   // Financial Transactions Table
-  getTransactions: async () => {
+  getTransactions: async (): Promise<any[]> => {
     try {
       const app = getCatalystApp();
       const zcql = app.zcql();
@@ -235,8 +235,8 @@ export const CatalystDataStore = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Data Store fetch Transactions fallback');
+      console.warn('Catalyst Data Store fetch Transactions note:', (e as Error).message);
     }
-    return transactionsData;
+    return transactionsSeed;
   }
 };

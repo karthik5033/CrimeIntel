@@ -1,24 +1,34 @@
 "use client";
 
 import React from "react";
-import { Bell, Search, Menu, Command } from "lucide-react";
+import { Bell, Search, Menu, Command, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/lib/LanguageContext";
-import { useAuth, Role } from "@/lib/AuthContext";
-import { usePathname } from "next/navigation";
+import { useAuth } from "@/lib/AuthContext";
+import { usePathname, useRouter } from "next/navigation";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function TopHeader() {
   const { language, setLanguage, t } = useLanguage();
-  const { role, setRole } = useAuth();
+  const { role } = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   let title = t('header.commandCenter');
   if (pathname?.includes('/chat')) {
@@ -46,10 +56,12 @@ export function TopHeader() {
       
       <div className="flex flex-1 items-center justify-end space-x-4">
         {/* Global Search */}
-        <div className="relative hidden w-full max-w-md md:flex items-center group">
+        <form onSubmit={handleSearch} className="relative hidden w-full max-w-md md:flex items-center group">
           <Search className="absolute left-2.5 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
           <Input
             type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('header.search')}
             className="w-full bg-muted/50 border-transparent pl-9 pr-12 focus-visible:ring-1 focus-visible:bg-background transition-all"
           />
@@ -57,21 +69,14 @@ export function TopHeader() {
             <Command className="h-3 w-3" />
             <span>K</span>
           </div>
-        </div>
+        </form>
 
-        {/* Role Switcher (Demo) */}
+        {/* User Role Badge */}
         <div className="hidden md:flex items-center">
-          <Select value={role} onValueChange={(val) => setRole(val as Role)}>
-            <SelectTrigger className="w-[140px] h-8 text-xs bg-muted/30">
-              <SelectValue placeholder="Role" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="CONSTABLE">Constable</SelectItem>
-              <SelectItem value="INSPECTOR">Inspector</SelectItem>
-              <SelectItem value="SUPERINTENDENT">Superintendent</SelectItem>
-              <SelectItem value="ADMIN">Admin</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex items-center px-3 py-1.5 bg-muted/50 border rounded-md text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            <ShieldAlert className="w-3.5 h-3.5 mr-1.5 text-primary" />
+            {role}
+          </div>
         </div>
 
         {/* Language Toggle */}
@@ -91,10 +96,33 @@ export function TopHeader() {
         </div>
 
         {/* Notifications */}
-        <Button variant="ghost" size="icon" className="relative">
-          <Bell className="h-5 w-5 text-muted-foreground" />
-          <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-destructive border-2 border-card"></span>
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="relative p-2 rounded-md hover:bg-muted focus-visible:outline-none transition-colors">
+            <Bell className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
+            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-destructive border-2 border-card animate-pulse"></span>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-80">
+            <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <div className="max-h-[300px] overflow-y-auto">
+              <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
+                <span className="font-semibold text-sm">New High-Risk Case Detected</span>
+                <span className="text-xs text-muted-foreground">Case #FIR-2025-089 has been flagged with 92% anomaly score.</span>
+                <span className="text-[10px] text-muted-foreground/70 mt-1">10 minutes ago</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
+                <span className="font-semibold text-sm">Network Syndicate Match</span>
+                <span className="text-xs text-muted-foreground">A known suspect is linked to a new gang in Bengaluru South.</span>
+                <span className="text-[10px] text-muted-foreground/70 mt-1">1 hour ago</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
+                <span className="font-semibold text-sm">Report Export Complete</span>
+                <span className="text-xs text-muted-foreground">Your Q3 Financial Audit report is ready for download.</span>
+                <span className="text-[10px] text-muted-foreground/70 mt-1">Yesterday</span>
+              </DropdownMenuItem>
+            </div>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );

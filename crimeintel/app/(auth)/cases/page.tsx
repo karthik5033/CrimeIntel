@@ -1,4 +1,4 @@
-import { MockDataClient } from "@/lib/api/mockDataClient";
+import { DataClient } from "@/lib/api/dataClient";
 import { ClientCasesList, CaseOverview } from "./ClientCasesList";
 
 export const metadata = {
@@ -6,13 +6,13 @@ export const metadata = {
   description: "Track active investigations and historical cases.",
 };
 
-export default function CasesPage() {
-  const allCases = MockDataClient.getCases();
+export default async function CasesPage() {
+  const allCases = await DataClient.getCases();
 
   // Process raw data into CaseOverview
-  const initialCases: CaseOverview[] = allCases.map((c: any) => {
+  const initialCases: CaseOverview[] = await Promise.all(allCases.map(async (c: any) => {
     // Resolve FIRs to get more info
-    const firsData = (c.firs || []).map((firId: string) => MockDataClient.getFIRById(firId)).filter(Boolean);
+    const firsData = (await Promise.all((c.firs || []).map((firId: string) => DataClient.getFIRById(firId)))).filter(Boolean);
     
     let primaryCrimeType = "";
     let primaryDistrict = "";
@@ -42,7 +42,7 @@ export default function CasesPage() {
       primary_district: primaryDistrict,
       latest_date: latestDate
     };
-  });
+  }));
 
   return <ClientCasesList initialCases={initialCases} />;
 }

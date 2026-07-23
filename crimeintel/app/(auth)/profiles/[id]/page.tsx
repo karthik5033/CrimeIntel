@@ -1,4 +1,4 @@
-import { MockDataClient } from "@/lib/api/mockDataClient";
+import { DataClient } from "@/lib/api/dataClient";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,22 +8,22 @@ import { Button } from "@/components/ui/button";
 import { ClientProfileHeader } from "@/components/profiles/ClientProfileHeader";
 
 export default async function ProfilePage({ params }: { params: { id: string } }) {
-  const person = MockDataClient.getPersonById(params.id);
+  const person = await DataClient.getPersonById(params.id);
   
   if (!person) {
     notFound();
   }
 
   // Get all direct connections
-  const edges = MockDataClient.getGraphForEntity(params.id);
+  const edges = await DataClient.getGraphForEntity(params.id);
   
   // Extract specific connected entities
   const firEdges = edges.filter((e: any) => e.target.startsWith('FIR_') || e.source.startsWith('FIR_'));
-  const firs = firEdges.map((e: any) => {
+  const firs = (await Promise.all(firEdges.map(async (e: any) => {
     const firId = e.source === params.id ? e.target : e.source;
-    const firData = MockDataClient.getFIRById(firId);
+    const firData = await DataClient.getFIRById(firId);
     return { ...firData, relationship: e.type };
-  }).filter((f: any) => f && f.id);
+  }))).filter((f: any) => f && f.id);
 
   // Group other entities by type
   const vehicles = edges.filter((e: any) => e.target.startsWith('VEHICLE_') || e.source.startsWith('VEHICLE_'));

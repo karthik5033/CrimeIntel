@@ -1,4 +1,4 @@
-import { MockDataClient } from '@/lib/api/mockDataClient';
+import { DataClient } from '@/lib/api/dataClient';
 import { CatalystQuickML } from '@/lib/catalyst/quickml';
 
 export interface SemanticSearchResult {
@@ -40,11 +40,13 @@ export async function performSemanticSearchVector(query: string, limit: number =
   return performSemanticSearch(query, limit);
 }
 
-export function performSemanticSearch(query: string, limit: number = 3): SemanticSearchResult[] {
+export async function performSemanticSearch(query: string, limit: number = 3): Promise<SemanticSearchResult[]> {
   const queryTokens = new Set(query.toLowerCase().split(/\s+/).filter(t => t.length > 3));
   
-  const allFIRs = MockDataClient.getFIRs();
-  const allCases = MockDataClient.getCases();
+  const [allFIRs, allCases] = await Promise.all([
+    DataClient.getFIRs(),
+    DataClient.getCases()
+  ]);
   
   const results: SemanticSearchResult[] = [];
 

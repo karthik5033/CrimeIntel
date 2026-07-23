@@ -1,4 +1,4 @@
-import { MockDataClient } from "@/lib/api/mockDataClient";
+import { DataClient } from "@/lib/api/dataClient";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,20 +11,21 @@ import { PrintHeader } from "@/components/reports/PrintHeader";
 import { PrintFooter } from "@/components/reports/PrintFooter";
 
 export default async function CaseDetailPage({ params }: { params: { id: string } }) {
-  const caseData = MockDataClient.getCases().find((c: any) => c.id === params.id);
+  const allCases = await DataClient.getCases();
+  const caseData = allCases.find((c: any) => c.id === params.id);
   
   if (!caseData) {
     notFound();
   }
 
   // Resolve FIRs
-  const firsData = (caseData.firs || []).map((firId: string) => MockDataClient.getFIRById(firId)).filter(Boolean);
+  const firsData = (await Promise.all((caseData.firs || []).map((firId: string) => DataClient.getFIRById(firId)))).filter(Boolean);
   
   // Sort FIRs by date for timeline
   firsData.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   // Aggregate entities from all FIRs in this case
-  const allEdges = MockDataClient.getEntityRelationships();
+  const allEdges = await DataClient.getEntityRelationships();
   
   // Find all edges connecting to any of the FIRs in this case
   const caseEdges = allEdges.filter((e: any) => 
@@ -35,6 +36,12 @@ export default async function CaseDetailPage({ params }: { params: { id: string 
   const persons = caseEdges.filter((e: any) => e.target.startsWith('PERSON_') || e.source.startsWith('PERSON_'));
   const vehicles = caseEdges.filter((e: any) => e.target.startsWith('VEHICLE_') || e.source.startsWith('VEHICLE_'));
   const weapons = caseEdges.filter((e: any) => e.target.startsWith('WEAPON_') || e.source.startsWith('WEAPON_'));
+
+  const personsDetails = await Promise.all(persons.map(async (person: any) => {
+    const personId = person.source.startsWith('PERSON_') ? person.source : person.target;
+    const personData = await DataClient.getPersonById(personId);
+    return { ...person, personId, personData };
+  }));
 
   const getStatusIcon = (status: string) => {
     switch (status.toUpperCase()) {
@@ -158,9 +165,8 @@ export default async function CaseDetailPage({ params }: { params: { id: string 
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {persons.length > 0 ? persons.map((person: any, idx: number) => {
-                  const personId = person.source.startsWith('PERSON_') ? person.source : person.target;
-                  const personData = MockDataClient.getPersonById(personId);
+                {personsDetails.length > 0 ? personsDetails.map((pDetail: any, idx: number) => {
+                  const { personId, personData, type } = pDetail;
                   const displayName = personData ? personData.name_en : personId;
 
                   return (
@@ -169,8 +175,8 @@ export default async function CaseDetailPage({ params }: { params: { id: string 
                         <User className="w-3 h-3" />
                         <ClientMaskedName name={displayName} />
                       </Link>
-                      <Badge variant={person.type === "ACCUSED_IN" ? "destructive" : person.type === "VICTIM_OF" ? "default" : "outline"} className="text-[10px]">
-                        {person.type.replace('_IN', '').replace('_OF', '').replace('_TO', '')}
+                      <Badge variant={type === "ACCUSED_IN" ? "destructive" : type === "VICTIM_OF" ? "default" : "outline"} className="text-[10px]">
+                        {type.replace('_IN', '').replace('_OF', '').replace('_TO', '')}
                       </Badge>
                     </div>
                   );

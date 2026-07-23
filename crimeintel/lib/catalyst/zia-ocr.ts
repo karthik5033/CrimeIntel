@@ -26,7 +26,7 @@ export const CatalystZiaOCR = {
         const ocrResult = await app.zia().extractText(fileBuffer);
         if (ocrResult && ocrResult.text) {
           return {
-            firNo: `FIR/${Math.floor(100 + Math.random() * 900)}/2026`,
+            firNo: `FIR/${crypto.randomUUID().split('-')[0].toUpperCase()}/2026`,
             crimeType: 'Vehicle Theft',
             district: 'Bengaluru Urban',
             accusedName: 'Extracted Suspect',
@@ -41,7 +41,7 @@ export const CatalystZiaOCR = {
     }
 
     return {
-      firNo: `FIR/${Math.floor(100 + Math.random() * 900)}/2026`,
+      firNo: `FIR/${crypto.randomUUID().split('-')[0].toUpperCase()}/2026`,
       crimeType: 'Vehicle Theft',
       district: 'Bengaluru Urban',
       accusedName: 'Extracted Suspect',

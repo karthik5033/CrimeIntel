@@ -1,0 +1,482 @@
+YearMonth,DistrictName,IncidentCount,ViolentCount,PropertyCount
+2024-01,Belagavi (Belgaum),3,1,1
+2024-01,Bengaluru Rural,1,1,0
+2024-01,Bengaluru Urban,11,5,4
+2024-01,Bidar,1,0,1
+2024-01,Chamarajanagara,2,2,0
+2024-01,Chikkaballapura,1,0,1
+2024-01,Chikkamagaluru,3,2,0
+2024-01,Dakshina Kannada,2,2,0
+2024-01,Dharwad,1,0,0
+2024-01,Koppal,1,1,0
+2024-01,Mysuru,5,4,1
+2024-01,Ramanagara,1,1,0
+2024-01,Shivamogga,1,1,0
+2024-01,Tumakuru,1,0,1
+2024-01,Udupi,2,2,0
+2024-01,Uttara Kannada,1,0,0
+2024-02,Belagavi (Belgaum),2,0,1
+2024-02,Bengaluru Rural,1,1,0
+2024-02,Bengaluru Urban,5,5,0
+2024-02,Dakshina Kannada,1,0,1
+2024-02,Dharwad,1,0,1
+2024-02,Kodagu,2,1,1
+2024-02,Koppal,1,0,0
+2024-02,Mysuru,3,2,0
+2024-02,Raichur,1,0,0
+2024-02,Ramanagara,1,0,1
+2024-02,Shivamogga,1,1,0
+2024-02,Tumakuru,1,0,0
+2024-02,Udupi,2,1,1
+2024-02,Vijayanagara,2,2,0
+2024-03,Belagavi (Belgaum),1,1,0
+2024-03,Bengaluru Rural,2,0,1
+2024-03,Bengaluru Urban,11,7,3
+2024-03,Bidar,1,0,0
+2024-03,Chikkaballapura,1,1,0
+2024-03,Chikkamagaluru,2,1,0
+2024-03,Dharwad,1,0,0
+2024-03,Gadag,2,1,1
+2024-03,Kalaburagi (Gulbarga),1,1,0
+2024-03,Kodagu,1,0,0
+2024-03,Mysuru,5,2,3
+2024-03,Tumakuru,2,2,0
+2024-03,Udupi,1,0,1
+2024-03,Vijayanagara,1,1,0
+2024-04,Bagalkote,2,0,0
+2024-04,Ballari (Bellary),2,2,0
+2024-04,Belagavi (Belgaum),2,1,1
+2024-04,Bengaluru Urban,13,6,3
+2024-04,Bidar,2,1,0
+2024-04,Chitradurga,1,0,1
+2024-04,Dakshina Kannada,1,1,0
+2024-04,Dharwad,1,0,1
+2024-04,Gadag,1,1,0
+2024-04,Haveri,1,0,0
+2024-04,Kalaburagi (Gulbarga),1,1,0
+2024-04,Mysuru,1,0,0
+2024-04,Shivamogga,1,0,1
+2024-04,Tumakuru,4,2,2
+2024-04,Uttara Kannada,1,1,0
+2024-04,Vijayapura,2,1,1
+2024-05,Bagalkote,1,0,0
+2024-05,Belagavi (Belgaum),2,1,0
+2024-05,Bengaluru Urban,7,3,4
+2024-05,Chikkamagaluru,1,1,0
+2024-05,Chitradurga,2,2,0
+2024-05,Dakshina Kannada,2,0,2
+2024-05,Davanagere,2,2,0
+2024-05,Dharwad,2,0,1
+2024-05,Gadag,1,1,0
+2024-05,Hassan,1,0,1
+2024-05,Mysuru,2,1,0
+2024-05,Raichur,2,0,2
+2024-05,Tumakuru,1,1,0
+2024-05,Udupi,1,0,1
+2024-05,Uttara Kannada,1,0,1
+2024-05,Vijayanagara,1,1,0
+2024-05,Yadgir,1,0,0
+2024-06,Bagalkote,2,2,0
+2024-06,Ballari (Bellary),1,0,1
+2024-06,Belagavi (Belgaum),1,1,0
+2024-06,Bengaluru Urban,13,7,6
+2024-06,Bidar,1,1,0
+2024-06,Chamarajanagara,1,0,1
+2024-06,Chikkaballapura,2,0,0
+2024-06,Dakshina Kannada,3,1,1
+2024-06,Davanagere,2,1,1
+2024-06,Gadag,2,1,1
+2024-06,Kalaburagi (Gulbarga),2,2,0
+2024-06,Mandya,2,1,0
+2024-06,Mysuru,1,1,0
+2024-06,Raichur,1,1,0
+2024-06,Ramanagara,2,2,0
+2024-06,Shivamogga,1,1,0
+2024-06,Tumakuru,2,1,0
+2024-06,Uttara Kannada,1,0,1
+2024-07,Bagalkote,1,0,1
+2024-07,Belagavi (Belgaum),1,0,1
+2024-07,Bengaluru Urban,9,4,4
+2024-07,Bidar,1,1,0
+2024-07,Chikkamagaluru,1,0,0
+2024-07,Dakshina Kannada,2,1,1
+2024-07,Davanagere,2,0,1
+2024-07,Gadag,2,1,0
+2024-07,Haveri,1,1,0
+2024-07,Kalaburagi (Gulbarga),3,2,1
+2024-07,Koppal,1,1,0
+2024-07,Mysuru,2,1,0
+2024-07,Udupi,1,1,0
+2024-07,Vijayapura,1,0,1
+2024-07,Yadgir,1,1,0
+2024-08,Ballari (Bellary),1,1,0
+2024-08,Belagavi (Belgaum),1,0,1
+2024-08,Bengaluru Rural,1,1,0
+2024-08,Bengaluru Urban,10,5,2
+2024-08,Chamarajanagara,1,0,1
+2024-08,Chikkamagaluru,2,1,0
+2024-08,Dakshina Kannada,2,2,0
+2024-08,Davanagere,2,1,0
+2024-08,Hassan,1,1,0
+2024-08,Haveri,1,1,0
+2024-08,Kalaburagi (Gulbarga),1,1,0
+2024-08,Kolar,1,0,0
+2024-08,Koppal,1,1,0
+2024-08,Mandya,1,1,0
+2024-08,Mysuru,9,4,3
+2024-08,Raichur,1,0,0
+2024-08,Ramanagara,1,0,1
+2024-08,Tumakuru,3,2,1
+2024-08,Udupi,1,1,0
+2024-08,Vijayanagara,1,0,1
+2024-09,Ballari (Bellary),1,1,0
+2024-09,Belagavi (Belgaum),2,1,1
+2024-09,Bengaluru Rural,2,1,1
+2024-09,Bengaluru Urban,18,10,4
+2024-09,Bidar,2,2,0
+2024-09,Chikkaballapura,1,1,0
+2024-09,Chitradurga,1,1,0
+2024-09,Dakshina Kannada,1,1,0
+2024-09,Davanagere,1,1,0
+2024-09,Gadag,2,1,1
+2024-09,Mandya,1,0,1
+2024-09,Mysuru,1,1,0
+2024-09,Udupi,1,1,0
+2024-09,Uttara Kannada,3,1,1
+2024-09,Yadgir,1,1,0
+2024-10,Ballari (Bellary),2,2,0
+2024-10,Bengaluru Rural,1,0,0
+2024-10,Bengaluru Urban,8,2,2
+2024-10,Chikkaballapura,1,1,0
+2024-10,Dakshina Kannada,1,0,0
+2024-10,Haveri,1,0,0
+2024-10,Kodagu,1,1,0
+2024-10,Mandya,1,1,0
+2024-10,Mysuru,2,0,1
+2024-10,Raichur,1,1,0
+2024-10,Shivamogga,1,0,1
+2024-10,Tumakuru,1,1,0
+2024-10,Uttara Kannada,2,1,0
+2024-10,Vijayanagara,1,1,0
+2024-10,Vijayapura,1,1,0
+2024-11,Belagavi (Belgaum),2,0,2
+2024-11,Bengaluru Urban,10,4,2
+2024-11,Bidar,2,1,1
+2024-11,Chamarajanagara,1,1,0
+2024-11,Chikkaballapura,1,1,0
+2024-11,Dakshina Kannada,1,1,0
+2024-11,Gadag,1,1,0
+2024-11,Kalaburagi (Gulbarga),1,0,1
+2024-11,Kolar,1,0,1
+2024-11,Koppal,1,1,0
+2024-11,Mysuru,4,4,0
+2024-11,Shivamogga,1,1,0
+2024-11,Tumakuru,2,2,0
+2024-11,Vijayanagara,2,0,0
+2024-12,Bagalkote,1,1,0
+2024-12,Belagavi (Belgaum),1,1,0
+2024-12,Bengaluru Rural,1,1,0
+2024-12,Bengaluru Urban,9,0,5
+2024-12,Bidar,1,0,0
+2024-12,Chamarajanagara,2,2,0
+2024-12,Chikkamagaluru,2,2,0
+2024-12,Dakshina Kannada,2,1,0
+2024-12,Davanagere,1,1,0
+2024-12,Dharwad,1,0,0
+2024-12,Gadag,1,1,0
+2024-12,Kolar,2,1,0
+2024-12,Mandya,1,1,0
+2024-12,Mysuru,2,2,0
+2024-12,Ramanagara,1,1,0
+2024-12,Udupi,1,1,0
+2024-12,Vijayanagara,1,1,0
+2024-12,Vijayapura,2,1,0
+2025-01,Bagalkote,1,1,0
+2025-01,Ballari (Bellary),1,0,0
+2025-01,Bengaluru Urban,10,8,0
+2025-01,Bidar,1,0,1
+2025-01,Dakshina Kannada,1,1,0
+2025-01,Gadag,1,1,0
+2025-01,Hassan,1,0,0
+2025-01,Kalaburagi (Gulbarga),1,1,0
+2025-01,Kodagu,2,1,1
+2025-01,Mysuru,2,1,1
+2025-01,Ramanagara,1,0,1
+2025-01,Tumakuru,1,0,1
+2025-01,Udupi,2,2,0
+2025-01,Uttara Kannada,1,0,0
+2025-02,Belagavi (Belgaum),1,1,0
+2025-02,Bengaluru Rural,1,1,0
+2025-02,Bengaluru Urban,14,7,5
+2025-02,Chikkamagaluru,1,0,1
+2025-02,Dakshina Kannada,1,1,0
+2025-02,Dharwad,3,2,1
+2025-02,Gadag,1,1,0
+2025-02,Mandya,2,1,0
+2025-02,Mysuru,1,1,0
+2025-02,Raichur,2,1,1
+2025-02,Tumakuru,1,0,1
+2025-03,Bagalkote,1,0,0
+2025-03,Ballari (Bellary),2,0,1
+2025-03,Belagavi (Belgaum),1,0,0
+2025-03,Bengaluru Urban,10,7,1
+2025-03,Bidar,3,1,2
+2025-03,Chikkamagaluru,1,1,0
+2025-03,Chitradurga,3,2,1
+2025-03,Davanagere,1,1,0
+2025-03,Dharwad,1,1,0
+2025-03,Gadag,1,1,0
+2025-03,Haveri,1,1,0
+2025-03,Koppal,1,0,0
+2025-03,Mysuru,2,0,2
+2025-03,Raichur,2,1,1
+2025-03,Tumakuru,2,1,1
+2025-03,Udupi,1,0,1
+2025-03,Uttara Kannada,1,1,0
+2025-03,Yadgir,1,1,0
+2025-04,Bagalkote,2,1,1
+2025-04,Ballari (Bellary),1,0,1
+2025-04,Bengaluru Rural,1,1,0
+2025-04,Bengaluru Urban,8,4,2
+2025-04,Bidar,1,1,0
+2025-04,Chamarajanagara,1,1,0
+2025-04,Dakshina Kannada,1,1,0
+2025-04,Davanagere,1,1,0
+2025-04,Dharwad,1,1,0
+2025-04,Gadag,2,1,1
+2025-04,Kolar,2,1,1
+2025-04,Mandya,3,2,1
+2025-04,Raichur,1,1,0
+2025-04,Shivamogga,1,1,0
+2025-04,Tumakuru,3,3,0
+2025-04,Uttara Kannada,1,1,0
+2025-04,Yadgir,1,0,1
+2025-05,Belagavi (Belgaum),1,0,1
+2025-05,Bengaluru Urban,11,7,3
+2025-05,Chamarajanagara,1,1,0
+2025-05,Dakshina Kannada,2,1,0
+2025-05,Davanagere,1,1,0
+2025-05,Gadag,2,0,1
+2025-05,Kodagu,1,1,0
+2025-05,Mysuru,5,5,0
+2025-05,Ramanagara,1,1,0
+2025-05,Shivamogga,1,0,0
+2025-05,Udupi,2,0,2
+2025-05,Vijayanagara,1,0,1
+2025-06,Ballari (Bellary),1,1,0
+2025-06,Belagavi (Belgaum),1,0,1
+2025-06,Bengaluru Rural,1,0,1
+2025-06,Bengaluru Urban,13,9,4
+2025-06,Bidar,1,0,0
+2025-06,Chamarajanagara,1,0,0
+2025-06,Dharwad,1,1,0
+2025-06,Kalaburagi (Gulbarga),1,1,0
+2025-06,Kodagu,1,1,0
+2025-06,Kolar,1,1,0
+2025-06,Mandya,1,1,0
+2025-06,Mysuru,2,1,0
+2025-06,Tumakuru,1,1,0
+2025-06,Uttara Kannada,1,0,1
+2025-06,Vijayapura,1,1,0
+2025-07,Bagalkote,1,1,0
+2025-07,Ballari (Bellary),1,0,0
+2025-07,Belagavi (Belgaum),4,2,2
+2025-07,Bengaluru Rural,1,1,0
+2025-07,Bengaluru Urban,8,4,3
+2025-07,Bidar,1,1,0
+2025-07,Chamarajanagara,1,1,0
+2025-07,Chitradurga,1,1,0
+2025-07,Dakshina Kannada,3,2,0
+2025-07,Davanagere,1,0,1
+2025-07,Kodagu,1,0,1
+2025-07,Mandya,1,0,1
+2025-07,Mysuru,6,3,1
+2025-07,Raichur,1,0,1
+2025-07,Ramanagara,1,1,0
+2025-07,Tumakuru,2,2,0
+2025-07,Uttara Kannada,1,1,0
+2025-07,Vijayapura,1,1,0
+2025-08,Ballari (Bellary),1,1,0
+2025-08,Belagavi (Belgaum),1,1,0
+2025-08,Bengaluru Rural,1,0,0
+2025-08,Bengaluru Urban,10,4,3
+2025-08,Bidar,3,1,1
+2025-08,Chamarajanagara,1,1,0
+2025-08,Chikkaballapura,2,2,0
+2025-08,Chikkamagaluru,2,2,0
+2025-08,Chitradurga,1,1,0
+2025-08,Dakshina Kannada,1,1,0
+2025-08,Dharwad,2,2,0
+2025-08,Gadag,2,1,1
+2025-08,Kodagu,2,1,0
+2025-08,Kolar,1,0,1
+2025-08,Koppal,3,2,0
+2025-08,Mandya,1,1,0
+2025-08,Mysuru,3,2,1
+2025-08,Raichur,2,1,1
+2025-08,Shivamogga,1,0,1
+2025-08,Tumakuru,1,0,1
+2025-08,Uttara Kannada,3,3,0
+2025-08,Vijayanagara,1,0,0
+2025-09,Bagalkote,1,0,1
+2025-09,Ballari (Bellary),2,2,0
+2025-09,Belagavi (Belgaum),6,3,2
+2025-09,Bengaluru Urban,6,4,1
+2025-09,Bidar,1,1,0
+2025-09,Chikkaballapura,2,2,0
+2025-09,Chitradurga,1,0,1
+2025-09,Dakshina Kannada,1,1,0
+2025-09,Davanagere,1,1,0
+2025-09,Gadag,2,0,2
+2025-09,Haveri,1,1,0
+2025-09,Mysuru,3,2,0
+2025-09,Tumakuru,1,1,0
+2025-09,Udupi,2,2,0
+2025-09,Vijayanagara,1,1,0
+2025-10,Belagavi (Belgaum),3,1,1
+2025-10,Bengaluru Urban,11,9,1
+2025-10,Chamarajanagara,1,1,0
+2025-10,Dakshina Kannada,1,0,0
+2025-10,Dharwad,1,1,0
+2025-10,Gadag,2,0,2
+2025-10,Hassan,1,1,0
+2025-10,Haveri,4,3,0
+2025-10,Kalaburagi (Gulbarga),1,1,0
+2025-10,Koppal,1,0,0
+2025-10,Mysuru,6,5,1
+2025-10,Udupi,2,1,0
+2025-10,Vijayanagara,1,0,1
+2025-10,Vijayapura,2,1,1
+2025-11,Bagalkote,1,0,1
+2025-11,Ballari (Bellary),3,2,1
+2025-11,Bengaluru Rural,1,0,1
+2025-11,Bengaluru Urban,17,13,3
+2025-11,Bidar,1,1,0
+2025-11,Chikkaballapura,1,1,0
+2025-11,Chikkamagaluru,2,2,0
+2025-11,Chitradurga,2,2,0
+2025-11,Gadag,1,1,0
+2025-11,Haveri,3,2,1
+2025-11,Kalaburagi (Gulbarga),2,1,0
+2025-11,Mandya,1,1,0
+2025-11,Mysuru,1,1,0
+2025-11,Ramanagara,1,0,1
+2025-11,Shivamogga,1,0,1
+2025-11,Udupi,1,1,0
+2025-11,Uttara Kannada,2,1,1
+2025-12,Belagavi (Belgaum),3,1,2
+2025-12,Bengaluru Urban,10,3,5
+2025-12,Bidar,2,1,0
+2025-12,Chikkamagaluru,1,1,0
+2025-12,Chitradurga,1,1,0
+2025-12,Dakshina Kannada,3,2,1
+2025-12,Davanagere,1,1,0
+2025-12,Gadag,1,0,0
+2025-12,Haveri,1,1,0
+2025-12,Kalaburagi (Gulbarga),2,1,0
+2025-12,Koppal,1,1,0
+2025-12,Mandya,1,1,0
+2025-12,Mysuru,5,4,1
+2025-12,Raichur,1,1,0
+2025-12,Ramanagara,1,1,0
+2025-12,Tumakuru,3,2,1
+2025-12,Udupi,2,1,1
+2025-12,Uttara Kannada,2,2,0
+2025-12,Vijayapura,2,1,0
+2026-01,Bagalkote,3,3,0
+2026-01,Belagavi (Belgaum),1,0,1
+2026-01,Bengaluru Urban,8,5,2
+2026-01,Bidar,1,0,0
+2026-01,Chikkaballapura,2,2,0
+2026-01,Chikkamagaluru,1,0,1
+2026-01,Dakshina Kannada,4,2,1
+2026-01,Dharwad,1,1,0
+2026-01,Gadag,2,1,1
+2026-01,Haveri,1,0,1
+2026-01,Mysuru,2,1,1
+2026-01,Tumakuru,1,1,0
+2026-01,Udupi,1,0,0
+2026-01,Uttara Kannada,2,0,2
+2026-01,Yadgir,1,1,0
+2026-02,Ballari (Bellary),1,0,1
+2026-02,Belagavi (Belgaum),3,3,0
+2026-02,Bengaluru Rural,1,0,0
+2026-02,Bengaluru Urban,8,3,1
+2026-02,Bidar,1,0,0
+2026-02,Chamarajanagara,2,0,0
+2026-02,Chikkaballapura,1,1,0
+2026-02,Chikkamagaluru,2,1,1
+2026-02,Dharwad,2,1,1
+2026-02,Haveri,1,0,0
+2026-02,Kolar,1,1,0
+2026-02,Koppal,2,1,0
+2026-02,Mandya,2,1,1
+2026-02,Mysuru,2,0,1
+2026-02,Shivamogga,1,0,0
+2026-02,Yadgir,3,2,0
+2026-03,Belagavi (Belgaum),2,1,0
+2026-03,Bengaluru Urban,11,7,2
+2026-03,Chikkaballapura,2,1,1
+2026-03,Dakshina Kannada,1,0,0
+2026-03,Dharwad,1,0,0
+2026-03,Hassan,1,1,0
+2026-03,Koppal,1,1,0
+2026-03,Mysuru,4,2,1
+2026-03,Ramanagara,1,0,1
+2026-03,Shivamogga,1,1,0
+2026-03,Tumakuru,1,0,0
+2026-03,Vijayanagara,2,2,0
+2026-03,Yadgir,1,0,1
+2026-04,Belagavi (Belgaum),2,1,1
+2026-04,Bengaluru Rural,2,1,0
+2026-04,Bengaluru Urban,8,6,2
+2026-04,Chikkamagaluru,1,1,0
+2026-04,Chitradurga,3,1,0
+2026-04,Dharwad,1,1,0
+2026-04,Gadag,1,1,0
+2026-04,Kolar,1,1,0
+2026-04,Mysuru,1,0,1
+2026-04,Raichur,1,0,0
+2026-04,Uttara Kannada,1,1,0
+2026-04,Yadgir,2,0,1
+2026-05,Bagalkote,1,0,1
+2026-05,Belagavi (Belgaum),1,1,0
+2026-05,Bengaluru Urban,4,3,1
+2026-05,Chikkaballapura,1,0,1
+2026-05,Dakshina Kannada,4,2,1
+2026-05,Gadag,1,0,1
+2026-05,Kodagu,1,1,0
+2026-05,Kolar,1,0,1
+2026-05,Koppal,1,0,1
+2026-05,Mysuru,2,2,0
+2026-05,Raichur,1,0,0
+2026-05,Shivamogga,1,0,1
+2026-05,Tumakuru,1,0,0
+2026-05,Vijayapura,1,0,0
+2026-06,Bagalkote,1,1,0
+2026-06,Belagavi (Belgaum),2,0,1
+2026-06,Bengaluru Rural,1,1,0
+2026-06,Bengaluru Urban,11,9,1
+2026-06,Bidar,1,1,0
+2026-06,Chamarajanagara,1,1,0
+2026-06,Chikkamagaluru,2,2,0
+2026-06,Chitradurga,2,2,0
+2026-06,Dakshina Kannada,2,2,0
+2026-06,Davanagere,1,1,0
+2026-06,Haveri,1,0,0
+2026-06,Mandya,1,0,0
+2026-06,Mysuru,4,2,1
+2026-06,Tumakuru,3,2,1
+2026-06,Uttara Kannada,1,1,0
+2026-06,Yadgir,2,2,0
+2026-07,Belagavi (Belgaum),1,0,0
+2026-07,Bengaluru Urban,9,5,3
+2026-07,Bidar,1,0,1
+2026-07,Chamarajanagara,1,1,0
+2026-07,Chitradurga,1,0,0
+2026-07,Dakshina Kannada,1,1,0
+2026-07,Dharwad,2,1,1
+2026-07,Kodagu,1,1,0
+2026-07,Mysuru,2,1,0
+2026-07,Udupi,1,0,0
+2026-07,Uttara Kannada,1,1,0

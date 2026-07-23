@@ -41,7 +41,7 @@ export const CatalystHealth = {
       timestamp: new Date().toISOString(),
       services: servicesStatus,
       environment: process.env.NEXT_PUBLIC_CATALYST_ENV || 'Development',
-      projectId: process.env.NEXT_PUBLIC_CATALYST_PROJECT_ID || '55949000000013025',
+      projectId: process.env.NEXT_PUBLIC_CATALYST_PROJECT_ID || 'missing-project-id',
     };
   }
 };

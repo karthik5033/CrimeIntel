@@ -1,4 +1,4 @@
-import { MockDataClient } from "./mockDataClient";
+import { DataClient } from "./dataClient";
 import { CatalystCache } from "@/lib/catalyst/cache";
 
 export type AlertSeverity = "CRITICAL" | "WARNING" | "INFO";
@@ -25,8 +25,8 @@ export type DistrictRisk = {
 export class PredictionEngine {
   
   // Predict risk for districts based on FIR volume with Catalyst Cache
-  static getDistrictRiskScores(): DistrictRisk[] {
-    const firs = MockDataClient.getFIRs();
+  static async getDistrictRiskScores(): Promise<DistrictRisk[]> {
+    const firs = await DataClient.getFIRs();
     const districtCounts: Record<string, number> = {};
     
     // Calculate raw counts
@@ -60,10 +60,10 @@ export class PredictionEngine {
   }
 
   // Generate automated alerts (Anomalies & Early Warnings)
-  static getAlerts(): Alert[] {
+  static async getAlerts(): Promise<Alert[]> {
     const alerts: Alert[] = [];
-    const districtRisks = this.getDistrictRiskScores();
-    const persons = MockDataClient.getPersons();
+    const districtRisks = await this.getDistrictRiskScores();
+    const persons = await DataClient.getPersons();
     
     // 1. High Risk District Alerts
     const criticalDistricts = districtRisks.filter(d => d.risk_score >= 85);

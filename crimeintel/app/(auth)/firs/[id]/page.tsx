@@ -1,4 +1,4 @@
-import { MockDataClient } from "@/lib/api/mockDataClient";
+import { DataClient } from "@/lib/api/dataClient";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,21 +8,28 @@ import { Button } from "@/components/ui/button";
 import { ClientMaskedName } from "@/components/shared/ClientMaskedName";
 
 export default async function FIRDetailPage({ params }: { params: { id: string } }) {
-  const firData = MockDataClient.getFIRById(params.id);
+  const [firData, edges, allCases] = await Promise.all([
+    DataClient.getFIRById(params.id),
+    DataClient.getGraphForEntity(params.id),
+    DataClient.getCases()
+  ]);
   
   if (!firData) {
     notFound();
   }
-
-  // Get connected entities from the graph
-  const edges = MockDataClient.getGraphForEntity(params.id);
   
   const persons = edges.filter((e: any) => e.target.startsWith('PERSON_') || e.source.startsWith('PERSON_'));
   const vehicles = edges.filter((e: any) => e.target.startsWith('VEHICLE_') || e.source.startsWith('VEHICLE_'));
   const weapons = edges.filter((e: any) => e.target.startsWith('WEAPON_') || e.source.startsWith('WEAPON_'));
   
+  // Pre-fetch person data for display
+  const personsDetails = await Promise.all(persons.map(async (person: any) => {
+    const personId = person.source.startsWith('PERSON_') ? person.source : person.target;
+    const personData = await DataClient.getPersonById(personId);
+    return { ...person, personId, personData };
+  }));
+  
   // Find case
-  const allCases = MockDataClient.getCases();
   const linkedCase = allCases.find((c: any) => c.firs.includes(params.id));
 
   return (
@@ -109,9 +116,8 @@ export default async function FIRDetailPage({ params }: { params: { id: string }
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {persons.length > 0 ? persons.map((person: any, idx: number) => {
-                  const personId = person.source.startsWith('PERSON_') ? person.source : person.target;
-                  const personData = MockDataClient.getPersonById(personId);
+                {personsDetails.length > 0 ? personsDetails.map((pDetail: any, idx: number) => {
+                  const { personId, personData, type } = pDetail;
                   const displayName = personData ? personData.name_en : personId;
                   
                   return (
@@ -120,8 +126,8 @@ export default async function FIRDetailPage({ params }: { params: { id: string }
                         <User className="w-3 h-3" /> 
                         <ClientMaskedName name={displayName} />
                       </Link>
-                      <Badge variant={person.type === "ACCUSED_IN" ? "destructive" : person.type === "VICTIM_OF" ? "default" : "outline"} className="text-[10px]">
-                        {person.type.replace('_IN', '').replace('_OF', '').replace('_TO', '')}
+                      <Badge variant={type === "ACCUSED_IN" ? "destructive" : type === "VICTIM_OF" ? "default" : "outline"} className="text-[10px]">
+                        {type.replace('_IN', '').replace('_OF', '').replace('_TO', '')}
                       </Badge>
                     </div>
                   );
