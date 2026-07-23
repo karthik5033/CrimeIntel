@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useChatStore } from "@/lib/store/chatStore";
 import { ChatMessage } from "@/components/chat/ChatMessage";
 import { ChatInput } from "@/components/chat/ChatInput";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ChatPage() {
   const { 
@@ -18,6 +19,8 @@ export default function ChatPage() {
     updateLastMessage,
     deleteSession
   } = useChatStore();
+
+  const { t } = useLanguage();
 
   const [leftOpen, setLeftOpen] = useState(true);
   const [rightOpen, setRightOpen] = useState(true);
@@ -96,7 +99,7 @@ export default function ChatPage() {
         leftOpen ? "w-64" : "w-0 overflow-hidden border-r-0"
       )}>
         <div className="p-4 border-b border-border flex items-center justify-between">
-          <h2 className="font-semibold text-foreground">Investigations</h2>
+          <h2 className="font-semibold text-foreground">{t('chat.investigations')}</h2>
           <button 
             onClick={createNewSession}
             className="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
@@ -141,7 +144,7 @@ export default function ChatPage() {
               <SidebarIcon className="h-5 w-5" />
             </button>
             <h1 className="font-semibold text-foreground truncate">
-              {activeSession?.title || "New Investigation"}
+              {activeSession?.title || t('chat.newInvestigation')}
             </h1>
           </div>
           <button 
@@ -161,9 +164,9 @@ export default function ChatPage() {
                   <ShieldAlert className="h-8 w-8 text-primary" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-foreground">CrimeIntel Assistant</h2>
+                  <h2 className="text-xl font-bold text-foreground">{t('chat.assistantTitle')}</h2>
                   <p className="text-muted-foreground max-w-md mt-2">
-                    I can query FIRs, analyze criminal networks, and identify sociological patterns. Ask me anything about the current cases.
+                    {t('chat.assistantDesc')}
                   </p>
                 </div>
               </div>
@@ -188,14 +191,14 @@ export default function ChatPage() {
         rightOpen ? "w-72" : "w-0 overflow-hidden border-l-0"
       )}>
         <div className="p-4 border-b border-border">
-          <h2 className="font-semibold text-foreground">Active Context</h2>
+          <h2 className="font-semibold text-foreground">{t('chat.activeContext')}</h2>
         </div>
         <div className="flex-1 overflow-y-auto p-4">
           <div className="space-y-6">
             <div>
-              <h3 className="text-xs font-semibold uppercase text-muted-foreground mb-3 tracking-wider">Entities in Context</h3>
+              <h3 className="text-xs font-semibold uppercase text-muted-foreground mb-3 tracking-wider">{t('chat.entitiesInContext')}</h3>
               {contextEntities.length === 0 ? (
-                <p className="text-sm text-muted-foreground italic">No specific entities tracked yet.</p>
+                <p className="text-sm text-muted-foreground italic">{t('chat.noEntities')}</p>
               ) : (
                 <div className="flex flex-wrap gap-2">
                   {contextEntities.map((ent, i) => (
@@ -208,8 +211,8 @@ export default function ChatPage() {
             </div>
             
             <div>
-              <h3 className="text-xs font-semibold uppercase text-muted-foreground mb-3 tracking-wider">Applied Filters</h3>
-              <p className="text-sm text-muted-foreground italic">No filters active</p>
+              <h3 className="text-xs font-semibold uppercase text-muted-foreground mb-3 tracking-wider">{t('chat.appliedFilters')}</h3>
+              <p className="text-sm text-muted-foreground italic">{t('chat.noFilters')}</p>
             </div>
           </div>
         </div>

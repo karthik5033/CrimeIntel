@@ -6,6 +6,7 @@ import { NetworkGraph } from "@/components/network/NetworkGraph";
 import { GraphSidebar } from "@/components/network/GraphSidebar";
 import { Network, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function NetworkPage() {
   const [nodes, setNodes] = useState([]);
@@ -15,6 +16,7 @@ export default function NetworkPage() {
   const [nodeNotes, setNodeNotes] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  const { t } = useLanguage();
 
   useEffect(() => {
     async function fetchGraphData() {
@@ -47,9 +49,9 @@ export default function NetworkPage() {
       {/* Header */}
       <div className="h-14 border-b border-border flex items-center px-4 bg-card shrink-0 shadow-sm z-10">
         <Network className="h-5 w-5 text-primary mr-2" />
-        <h1 className="font-semibold text-foreground">Criminal Network Intelligence</h1>
+        <h1 className="font-semibold text-foreground">{t('network.title')}</h1>
         <div className="ml-4 px-2 py-0.5 rounded-full bg-destructive/10 text-destructive text-xs font-semibold">
-          LIVE
+          {t('network.live')}
         </div>
       </div>
 
@@ -61,7 +63,7 @@ export default function NetworkPage() {
           {isLoading ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/50 backdrop-blur-sm z-50">
               <Loader2 className="h-8 w-8 text-primary animate-spin mb-4" />
-              <p className="text-muted-foreground font-medium animate-pulse">Running Deep Graph Extraction...</p>
+              <p className="text-muted-foreground font-medium animate-pulse">{t('network.loading')}</p>
             </div>
           ) : (
             <ReactFlowProvider>

@@ -27,6 +27,8 @@ export function TopHeader() {
     title = t('sidebar.criminalNetwork');
   } else if (pathname?.includes('/dashboard')) {
     title = t('sidebar.commandCenter');
+  } else if (pathname?.includes('/analytics')) {
+    title = t('sidebar.analytics');
   }
 
   return (

@@ -14,8 +14,8 @@ import {
   useReactFlow
 } from '@xyflow/react';
 import dagre from 'dagre';
-import '@xyflow/react/dist/style.css';
 import { CustomNode } from './CustomNodes';
+import { useLanguage } from '@/lib/LanguageContext';
 
 const nodeTypes = {
   customNode: CustomNode,
@@ -149,6 +149,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
   const [searchQuery, setSearchQuery] = useState('');
   const [layoutDirection, setLayoutDirection] = useState<'TB' | 'LR'>('TB');
   const [isPinned, setIsPinned] = useState(false);
+  const { t } = useLanguage();
 
   const handleZoomIn = () => zoomTo(getZoom() * 2.5, { duration: 100 });
   const handleZoomOut = () => zoomTo(getZoom() / 2.5, { duration: 100 });
@@ -291,7 +292,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
         maxZoom={4}
       >
         <Panel position="top-left" className="bg-card/80 p-2 rounded-md shadow-sm border border-border backdrop-blur-sm text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-          Intelligence Graph Canvas
+          {t('network.canvas')}
         </Panel>
 
         <Panel position="top-right" className="flex flex-col gap-2 items-end">
@@ -299,7 +300,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-foreground ml-1"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input 
               type="text" 
-              placeholder="Search graph..." 
+              placeholder={t('network.search')}
               className="bg-transparent border-none focus:outline-none text-sm px-2 w-48 text-foreground placeholder:text-muted-foreground"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -315,13 +316,13 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
                 onClick={() => setLayoutDirection('TB')}
                 className={`flex-1 text-[10px] font-bold px-2 py-1 rounded transition-colors ${layoutDirection === 'TB' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
               >
-                Vertical
+                {t('network.vertical')}
               </button>
               <button 
                 onClick={() => setLayoutDirection('LR')}
                 className={`flex-1 text-[10px] font-bold px-2 py-1 rounded transition-colors ${layoutDirection === 'LR' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
               >
-                Horizontal
+                {t('network.horizontal')}
               </button>
             </div>
             
@@ -331,7 +332,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
               className={`text-xs font-medium px-3 py-1.5 rounded flex items-center justify-center gap-2 transition-colors w-full ${!selectedNodeId ? 'bg-muted text-muted-foreground opacity-50 cursor-not-allowed' : isPinned ? 'bg-amber-500 text-white shadow-sm' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'}`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="17" x2="12" y2="22"></line><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.68V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3v4.68a2 2 0 0 1-1.11 1.87l-1.78.9A2 2 0 0 0 5 15.24Z"></path></svg>
-              {isPinned ? 'Unpin Focus' : 'Pin Focus'}
+              {isPinned ? t('network.unpinFocus') : t('network.pinFocus')}
             </button>
 
             <button 
@@ -339,7 +340,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
               className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-medium px-3 py-1.5 rounded flex items-center justify-center gap-2 transition-colors w-full"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-              Add Node
+              {t('network.addNode')}
             </button>
             
             <button 
@@ -347,7 +348,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
               className="bg-yellow-500 hover:bg-yellow-600 text-white text-xs font-medium px-3 py-1.5 rounded flex items-center justify-center gap-2 transition-colors w-full shadow-sm"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              Add Note
+              {t('network.addNote')}
             </button>
           </div>
         </Panel>

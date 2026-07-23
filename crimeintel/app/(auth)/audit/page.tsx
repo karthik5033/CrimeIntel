@@ -65,17 +65,17 @@ export default function AuditDashboard() {
       {/* Left Panel: Log List */}
       <div className="flex-1 flex flex-col min-w-0 border-r border-border/50">
         <div className="p-6 border-b border-border/50 bg-card">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                <ShieldCheck className="w-6 h-6 text-primary" />
-                System Governance & Audit Trail
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold text-foreground flex items-center gap-2 ">
+                <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
+                <span>System Governance & Audit Trail</span>
               </h1>
-              <p className="text-muted-foreground mt-1 text-sm">
+              <p className="text-muted-foreground mt-1 text-sm max-w-2xl">
                 Immutable record of all system queries, data access, and AI operations.
               </p>
             </div>
-            <Button onClick={handleGenerateReport} className="gap-2">
+            <Button onClick={handleGenerateReport} className="gap-2 shrink-0">
               <FileText className="w-4 h-4" />
               Generate Compliance Report
             </Button>
