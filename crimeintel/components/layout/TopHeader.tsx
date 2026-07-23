@@ -5,10 +5,19 @@ import { Bell, Search, Menu, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useAuth, Role } from "@/lib/AuthContext";
 import { usePathname } from "next/navigation";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function TopHeader() {
   const { language, setLanguage, t } = useLanguage();
+  const { role, setRole } = useAuth();
   const pathname = usePathname();
 
   let title = t('header.commandCenter');
@@ -46,6 +55,21 @@ export function TopHeader() {
             <Command className="h-3 w-3" />
             <span>K</span>
           </div>
+        </div>
+
+        {/* Role Switcher (Demo) */}
+        <div className="hidden md:flex items-center">
+          <Select value={role} onValueChange={(val) => setRole(val as Role)}>
+            <SelectTrigger className="w-[140px] h-8 text-xs bg-muted/30">
+              <SelectValue placeholder="Role" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="CONSTABLE">Constable</SelectItem>
+              <SelectItem value="INSPECTOR">Inspector</SelectItem>
+              <SelectItem value="SUPERINTENDENT">Superintendent</SelectItem>
+              <SelectItem value="ADMIN">Admin</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Language Toggle */}

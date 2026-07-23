@@ -17,7 +17,8 @@ import {
   LogOut,
   ChevronRight,
   PanelLeftClose,
-  PanelLeftOpen
+  PanelLeftOpen,
+  ShieldCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -32,6 +33,7 @@ const navItems = [
   { key: "sidebar.offenders", href: "/profiles", icon: Users },
   { key: "sidebar.earlyWarnings", href: "/alerts", icon: BellRing },
   { key: "sidebar.financialLinks", href: "/financial", icon: Landmark },
+  { key: "sidebar.audit", href: "/audit", icon: ShieldCheck },
   { key: "sidebar.settings", href: "/settings", icon: Settings },
 ];
 

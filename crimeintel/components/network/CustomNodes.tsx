@@ -2,12 +2,12 @@
 
 import { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
-import { User, FileText, Car, Landmark, Activity } from 'lucide-react';
+import { User, FileText, Car, Landmark, Activity, StickyNote } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NodeData {
   label: string;
-  entityType: 'Person' | 'FIR' | 'Vehicle' | 'Bank' | 'Phone' | 'Location' | 'Unknown';
+  entityType: 'Person' | 'FIR' | 'Vehicle' | 'Bank' | 'Phone' | 'Location' | 'Note' | 'Unknown';
   details?: any;
   isDimmed?: boolean;
 }
@@ -46,6 +46,14 @@ const getStylesForType = (type: string) => {
         icon: Landmark,
         shape: 'rounded-sm px-4 py-3 min-w-[160px]'
       };
+    case 'Note':
+      return {
+        bg: 'bg-yellow-200 dark:bg-yellow-200/90',
+        border: 'border-yellow-400',
+        text: 'text-yellow-900',
+        icon: StickyNote,
+        shape: 'rounded-sm px-4 py-3 min-w-[150px]'
+      };
     default:
       return {
         bg: 'bg-slate-700 dark:bg-slate-700/90',
@@ -75,14 +83,14 @@ const CustomNodeComponent = ({ data, selected }: { data: NodeData, selected: boo
           data.isDimmed ? "opacity-30 grayscale" : "opacity-100"
         )}
       >
-        <div className="shrink-0 bg-black/20 p-2 rounded-full border border-white/20">
-          <Icon className="h-5 w-5 drop-shadow-md text-white" />
+        <div className={cn("shrink-0 p-2 rounded-full border", data.entityType === 'Note' ? "bg-yellow-500/20 border-yellow-500/30 text-yellow-900" : "bg-black/20 border-white/20 text-white")}>
+          <Icon className={cn("h-5 w-5 drop-shadow-md", data.entityType === 'Note' ? "" : "text-white")} />
         </div>
         <div className="flex flex-col text-center w-full">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-white/80">
+          <span className={cn("text-[10px] font-bold uppercase tracking-wider", data.entityType === 'Note' ? "text-yellow-900/80" : "text-white/80")}>
             {data.entityType}
           </span>
-          <span className="font-semibold text-sm leading-tight mt-0.5 truncate max-w-[100px] text-white">
+          <span className={cn("font-semibold text-sm leading-tight mt-0.5 truncate max-w-[100px]", data.entityType === 'Note' ? "text-yellow-900" : "text-white")}>
             {data.label}
           </span>
         </div>

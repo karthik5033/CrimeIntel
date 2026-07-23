@@ -11,6 +11,7 @@ export const translations = {
     'sidebar.offenders': 'Offenders',
     'sidebar.earlyWarnings': 'Early Warnings',
     'sidebar.financialLinks': 'Financial Links',
+    'sidebar.audit': 'Audit & Governance',
     'sidebar.settings': 'Settings',
     'sidebar.mainMenu': 'MAIN MENU',
 
@@ -188,7 +189,23 @@ export const translations = {
     'chart.sectorAnomaly': 'Sector 4 Anomaly',
     'chart.nodeStatus': 'Node Status',
     'chart.online': 'ONLINE',
-    'chart.syncing': 'SYNCING'
+    'chart.syncing': 'SYNCING',
+
+    // Chat & Voice
+    'chat.placeholder': 'Ask CrimeIntel anything... (Shift+Enter for newline)',
+    'chat.listening': 'Listening... Speak now',
+    'chat.voiceNotSupported': 'Voice input is not supported in this browser.',
+    'chat.examplesTitle': 'Suggested Queries (Trigger Mock Stories)',
+    'chat.disclaimer': 'CrimeIntel AI can make mistakes. Verify important information using the citations.',
+    'chat.listenAI': 'Listen',
+    'chat.stopListening': 'Stop',
+    
+    // Chat Examples
+    'chat.example1': 'Show vehicle theft cases in Bengaluru, last 6 months',
+    'chat.example2': 'What connects suspects Rajesh Kumar and Suresh Babu?',
+    'chat.example3': 'Show me the money trail for the cyber fraud case',
+    'chat.example4': 'Is there a link between the recent murder cases?',
+    'chat.example5': 'Show me the district level socio-economic correlations'
   },
   kn: {
     // Sidebar
@@ -199,7 +216,8 @@ export const translations = {
     'sidebar.cases': 'ಪ್ರಕರಣಗಳು',
     'sidebar.offenders': 'ಅಪರಾಧಿಗಳು',
     'sidebar.earlyWarnings': 'ಮುನ್ನೆಚ್ಚರಿಕೆಗಳು',
-    'sidebar.financialLinks': 'ಹಣಕಾಸು ಲಿಂಕ್‌ಗಳು',
+    'sidebar.financialLinks': 'ಹಣಕಾಸಿನ ಕೊಂಡಿಗಳು',
+    'sidebar.audit': 'ಆಡಿಟ್ ಮತ್ತು ಆಡಳಿತ',
     'sidebar.settings': 'ಸೆಟ್ಟಿಂಗ್‌ಗಳು',
     'sidebar.mainMenu': 'ಮುಖ್ಯ ಮೆನು',
 
@@ -377,6 +395,22 @@ export const translations = {
     'chart.sectorAnomaly': 'ಸೆಕ್ಟರ್ 4 ವೈಪರೀತ್ಯ',
     'chart.nodeStatus': 'ನೋಡ್ ಸ್ಥಿತಿ',
     'chart.online': 'ಆನ್‌ಲೈನ್',
-    'chart.syncing': 'ಸಿಂಕ್ ಆಗುತ್ತಿದೆ'
+    'chart.syncing': 'ಸಿಂಕ್ ಆಗುತ್ತಿದೆ',
+
+    // Chat & Voice
+    'chat.placeholder': 'CrimeIntel ಗೆ ಏನನ್ನಾದರೂ ಕೇಳಿ... (ಹೊಸ ಲೈನ್‌ಗಾಗಿ Shift+Enter)',
+    'chat.listening': 'ಆಲಿಸಲಾಗುತ್ತಿದೆ... ಈಗ ಮಾತನಾಡಿ',
+    'chat.voiceNotSupported': 'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.',
+    'chat.examplesTitle': 'ಸೂಚಿಸಿದ ಪ್ರಶ್ನೆಗಳು (ಮಾದರಿ ಕಥೆಗಳನ್ನು ಪ್ರಚೋದಿಸಿ)',
+    'chat.disclaimer': 'CrimeIntel AI ತಪ್ಪುಗಳನ್ನು ಮಾಡಬಹುದು. ಉಲ್ಲೇಖಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಪ್ರಮುಖ ಮಾಹಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ.',
+    'chat.listenAI': 'ಆಲಿಸಿ',
+    'chat.stopListening': 'ನಿಲ್ಲಿಸಿ',
+    
+    // Chat Examples
+    'chat.example1': 'ಕಳೆದ 6 ತಿಂಗಳುಗಳಲ್ಲಿ ಬೆಂಗಳೂರಿನಲ್ಲಿ ವಾಹನ ಕಳ್ಳತನ ಪ್ರಕರಣಗಳನ್ನು ತೋರಿಸಿ',
+    'chat.example2': 'ಶಂಕಿತರಾದ ರಾಜೇಶ್ ಕುಮಾರ್ ಮತ್ತು ಸುರೇಶ್ ಬಾಬು ಅವರನ್ನು ಯಾವುದು ಸಂಪರ್ಕಿಸುತ್ತದೆ?',
+    'chat.example3': 'ಸೈಬರ್ ವಂಚನೆ ಪ್ರಕರಣದ ಹಣದ ಹರಿವನ್ನು ನನಗೆ ತೋರಿಸಿ',
+    'chat.example4': 'ಇತ್ತೀಚಿನ ಕೊಲೆ ಪ್ರಕರಣಗಳ ನಡುವೆ ಲಿಂಕ್ ಇದೆಯೇ?',
+    'chat.example5': 'ಜಿಲ್ಲಾ ಮಟ್ಟದ ಸಾಮಾಜಿಕ-ಆರ್ಥಿಕ ಸಂಬಂಧಗಳನ್ನು ನನಗೆ ತೋರಿಸಿ'
   }
 };

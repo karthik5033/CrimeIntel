@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 import { LanguageProvider } from "@/lib/LanguageContext";
+import { AuthProvider } from "@/lib/AuthContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,12 +34,14 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col font-sans">
-        <LanguageProvider>
-          <ErrorBoundary>
-            {children}
-          </ErrorBoundary>
-          <Toaster position="top-right" richColors />
-        </LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
+            <Toaster position="top-right" richColors />
+          </LanguageProvider>
+        </AuthProvider>
       </body>
     </html>
   );

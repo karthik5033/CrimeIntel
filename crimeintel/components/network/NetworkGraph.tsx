@@ -143,26 +143,27 @@ interface NetworkGraphProps {
 }
 
 export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selectedNodeId }: NetworkGraphProps) {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { setCenter, screenToFlowPosition, getZoom, zoomTo, getViewport, setViewport } = useReactFlow();
+  const [nodes, setNodes, onNodesChange] = useNodesState<any>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<any>([]);
+  const { setCenter, screenToFlowPosition, getZoom, zoomTo } = useReactFlow();
   const [searchQuery, setSearchQuery] = useState('');
+  const [layoutDirection, setLayoutDirection] = useState<'TB' | 'LR'>('TB');
+  const [isPinned, setIsPinned] = useState(false);
 
   const handleZoomIn = () => zoomTo(getZoom() * 2.5, { duration: 100 });
   const handleZoomOut = () => zoomTo(getZoom() / 2.5, { duration: 100 });
 
   useEffect(() => {
-    // Only layout elements if nodes state is completely empty, 
-    // to prevent recalculating layout when data refreshes or nodes are added
-    if (initialNodes.length && initialEdges.length && nodes.length === 0) {
+    if (initialNodes.length && initialEdges.length) {
       const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
         initialNodes,
-        initialEdges
+        initialEdges,
+        layoutDirection
       );
       setNodes(layoutedNodes);
       setEdges(layoutedEdges);
     }
-  }, [initialNodes, initialEdges, nodes.length, setNodes, setEdges]);
+  }, [initialNodes, initialEdges, layoutDirection, setNodes, setEdges]);
 
   // Focus Mode Effect
   useEffect(() => {
@@ -193,13 +194,13 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
            ...e,
            style: { 
              ...e.style, 
-             opacity: isConnected ? 1 : 0.25,
+             opacity: isConnected ? 1 : (isPinned ? 0.1 : 0.25),
              strokeWidth: isConnected ? 2 : 1
            }
         };
       });
     });
-  }, [selectedNodeId, setNodes, setEdges]);
+  }, [selectedNodeId, isPinned, setNodes, setEdges]);
 
   const onConnect = useCallback(
     (params: any) => setEdges((eds) => addEdge({ ...params, type: ConnectionLineType.SmoothStep, animated: true }, eds)),
@@ -216,13 +217,30 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
         entityType: 'Unknown',
         details: { Status: 'Manually Added' }
       },
-      // Place node centrally based on current viewport instead of random coordinates
       position: screenToFlowPosition({ 
         x: window.innerWidth / 2, 
         y: window.innerHeight / 2 
       })
     };
     setNodes((nds) => [...nds, newNode]);
+  };
+
+  const handleAddNote = () => {
+    const customId = `NOTE_${Date.now()}`;
+    const newNote = {
+      id: customId,
+      type: 'custom',
+      data: {
+        label: 'User Note (Double click to edit)',
+        entityType: 'Note',
+        details: { Author: 'Current User' }
+      },
+      position: screenToFlowPosition({ 
+        x: window.innerWidth / 2 + 50, 
+        y: window.innerHeight / 2 + 50 
+      })
+    };
+    setNodes((nds) => [...nds, newNote]);
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -250,7 +268,22 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
-        onNodeClick={(_, node) => onNodeClick(node)}
+        onNodeClick={(_, node) => {
+          if (!isPinned || selectedNodeId === node.id) {
+            onNodeClick(node);
+          }
+        }}
+        onNodeDoubleClick={(_, node) => {
+          if (node.type === 'custom') {
+            const newLabel = window.prompt("Edit Node Label:", node.data.label);
+            if (newLabel) {
+              setNodes((nds) => nds.map(n => n.id === node.id ? { ...n, data: { ...n.data, label: newLabel } } : n));
+            }
+          }
+        }}
+        onPaneClick={() => {
+          if (!isPinned) onNodeClick(null);
+        }}
         nodeTypes={nodeTypes}
         fitView
         className="dark:bg-background"
@@ -276,13 +309,45 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
             </button>
           </form>
 
-          <div className="bg-card/80 p-1.5 rounded-md shadow-sm border border-border backdrop-blur-sm">
+          <div className="bg-card/80 p-1.5 rounded-md shadow-sm border border-border backdrop-blur-sm flex flex-col gap-1.5 w-full">
+            <div className="flex gap-1">
+              <button 
+                onClick={() => setLayoutDirection('TB')}
+                className={`flex-1 text-[10px] font-bold px-2 py-1 rounded transition-colors ${layoutDirection === 'TB' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
+              >
+                Vertical
+              </button>
+              <button 
+                onClick={() => setLayoutDirection('LR')}
+                className={`flex-1 text-[10px] font-bold px-2 py-1 rounded transition-colors ${layoutDirection === 'LR' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'}`}
+              >
+                Horizontal
+              </button>
+            </div>
+            
+            <button 
+              onClick={() => setIsPinned(!isPinned)}
+              disabled={!selectedNodeId}
+              className={`text-xs font-medium px-3 py-1.5 rounded flex items-center justify-center gap-2 transition-colors w-full ${!selectedNodeId ? 'bg-muted text-muted-foreground opacity-50 cursor-not-allowed' : isPinned ? 'bg-amber-500 text-white shadow-sm' : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'}`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="17" x2="12" y2="22"></line><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.68V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3v4.68a2 2 0 0 1-1.11 1.87l-1.78.9A2 2 0 0 0 5 15.24Z"></path></svg>
+              {isPinned ? 'Unpin Focus' : 'Pin Focus'}
+            </button>
+
             <button 
               onClick={handleAddNode}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-medium px-3 py-1.5 rounded flex items-center gap-2 transition-colors w-full justify-center"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-medium px-3 py-1.5 rounded flex items-center justify-center gap-2 transition-colors w-full"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-              Add Custom Node
+              Add Node
+            </button>
+            
+            <button 
+              onClick={handleAddNote}
+              className="bg-yellow-500 hover:bg-yellow-600 text-white text-xs font-medium px-3 py-1.5 rounded flex items-center justify-center gap-2 transition-colors w-full shadow-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              Add Note
             </button>
           </div>
         </Panel>

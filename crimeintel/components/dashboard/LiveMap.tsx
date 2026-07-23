@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/LanguageContext";
+import { ExplainabilityBadge } from "@/components/ui/explainability-badge";
 import { MapPin, AlertCircle, Shield, TrendingUp, TrendingDown, Users, Activity, Loader2, Layers, Map as MapIcon, Hexagon, Mountain } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -231,7 +232,7 @@ export function LiveMap() {
                   <MapPin className="h-6 w-6 text-primary relative z-10" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-slate-900 leading-tight tracking-tight">{t(`map.spot.${selectedSpot.id}.name`)}</h3>
+                  <h3 className="text-lg font-bold text-slate-900 leading-tight tracking-tight">{t(`map.spot.${selectedSpot.id}.name` as any)}</h3>
                   <p className="text-xs text-muted-foreground font-mono font-bold tracking-wider opacity-70">NODE-{selectedSpot.id.toUpperCase()}</p>
                 </div>
               </div>
@@ -269,12 +270,22 @@ export function LiveMap() {
                 </div>
 
                 <div className="pt-6 border-t border-slate-100">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 mb-3 tracking-wider flex items-center gap-2">
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                    {t('dashboard.liveIntelligence')}
-                  </span>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-2">
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                      {t('dashboard.liveIntelligence')}
+                    </span>
+                    <ExplainabilityBadge 
+                      data={{
+                        mechanism: "Predictive spatial modeling using historical incident density and real-time personnel deployment data.",
+                        confidence: 85,
+                        dataSources: ["Dispatch Logs", "Historical FIRs (Last 30 Days)"],
+                      }}
+                      contextId={`map-alert-${selectedSpot.id}`}
+                    />
+                  </div>
                   <p className="text-sm font-medium text-slate-700 leading-relaxed">
-                    {t(`map.spot.${selectedSpot.id}.alert`)}
+                    {t(`map.spot.${selectedSpot.id}.alert` as any)}
                   </p>
                 </div>
                 

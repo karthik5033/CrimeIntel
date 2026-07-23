@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { FileText, Calendar, MapPin, Building2, ShieldAlert, Sparkles, User, Link as LinkIcon, Network } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ClientMaskedName } from "@/components/shared/ClientMaskedName";
 
 export default async function FIRDetailPage({ params }: { params: { id: string } }) {
   const firData = MockDataClient.getFIRById(params.id);
@@ -32,11 +33,11 @@ export default async function FIRDetailPage({ params }: { params: { id: string }
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-3">
             <h1 className="text-4xl font-bold text-foreground">{firData.id}</h1>
-            <Badge variant={firData.status === "Pending" ? "warning" : "outline"} className="text-sm uppercase">
-              {firData.status || "Registered"}
+            <Badge variant={firData.status_en === "Pending" ? "secondary" : "outline"} className="text-sm uppercase tracking-wider">
+              {firData.status_en || "Registered"}
             </Badge>
           </div>
-          <p className="text-2xl text-primary font-medium">{firData.crime_type}</p>
+          <p className="text-2xl text-primary font-medium">{firData.crime_type_en}</p>
           
           <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-1">
@@ -45,11 +46,11 @@ export default async function FIRDetailPage({ params }: { params: { id: string }
             </div>
             <div className="flex items-center gap-1">
               <Building2 className="w-4 h-4" />
-              {firData.station_id}
+              {firData.police_station_id}
             </div>
             <div className="flex items-center gap-1">
               <MapPin className="w-4 h-4" />
-              {firData.district_id} ({firData.latitude}, {firData.longitude})
+              {firData.lat}, {firData.lng}
             </div>
           </div>
         </div>
@@ -110,10 +111,14 @@ export default async function FIRDetailPage({ params }: { params: { id: string }
               <div className="space-y-3">
                 {persons.length > 0 ? persons.map((person: any, idx: number) => {
                   const personId = person.source.startsWith('PERSON_') ? person.source : person.target;
+                  const personData = MockDataClient.getPersonById(personId);
+                  const displayName = personData ? personData.name_en : personId;
+                  
                   return (
                     <div key={idx} className="flex items-center justify-between text-sm">
                       <Link href={`/profiles/${personId}`} className="font-medium hover:underline flex items-center gap-2 text-foreground">
-                        <User className="w-3 h-3" /> {personId}
+                        <User className="w-3 h-3" /> 
+                        <ClientMaskedName name={displayName} />
                       </Link>
                       <Badge variant={person.type === "ACCUSED_IN" ? "destructive" : person.type === "VICTIM_OF" ? "default" : "outline"} className="text-[10px]">
                         {person.type.replace('_IN', '').replace('_OF', '').replace('_TO', '')}

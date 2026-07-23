@@ -2,9 +2,10 @@ import { MockDataClient } from "@/lib/api/mockDataClient";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Calendar, CheckCircle2, Activity, Clock, ShieldAlert, Sparkles, Network, ArrowRight } from "lucide-react";
+import { FileText, Calendar, MapPin, ShieldAlert, Clock, ArrowRight, User, Network, FileSearch, Sparkles, Activity, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ClientMaskedName } from "@/components/shared/ClientMaskedName";
 
 export default async function CaseDetailPage({ params }: { params: { id: string } }) {
   const caseData = MockDataClient.getCases().find((c: any) => c.id === params.id);
@@ -54,11 +55,11 @@ export default async function CaseDetailPage({ params }: { params: { id: string 
             </Badge>
           </div>
           <p className="text-xl text-muted-foreground">
-            {firsData.length > 0 ? firsData[0].crime_type : "Multiple Offenses"}
+            {firsData.length > 0 ? firsData[0]?.crime_type_en : "Multiple Offenses"}
           </p>
           <div className="flex items-center gap-2 mt-4 text-sm text-muted-foreground">
             <Calendar className="w-4 h-4" />
-            <span>Started: {firsData.length > 0 ? firsData[0].date : "Unknown"}</span>
+            <span>Started: {firsData.length > 0 ? firsData[0]?.date : "Unknown"}</span>
           </div>
         </div>
 
@@ -150,10 +151,14 @@ export default async function CaseDetailPage({ params }: { params: { id: string 
               <div className="space-y-3">
                 {persons.length > 0 ? persons.map((person: any, idx: number) => {
                   const personId = person.source.startsWith('PERSON_') ? person.source : person.target;
+                  const personData = MockDataClient.getPersonById(personId);
+                  const displayName = personData ? personData.name_en : personId;
+
                   return (
                     <div key={idx} className="flex items-center justify-between text-sm">
                       <Link href={`/profiles/${personId}`} className="font-medium hover:underline flex items-center gap-2 text-foreground">
-                        {personId}
+                        <User className="w-3 h-3" />
+                        <ClientMaskedName name={displayName} />
                       </Link>
                       <Badge variant={person.type === "ACCUSED_IN" ? "destructive" : person.type === "VICTIM_OF" ? "default" : "outline"} className="text-[10px]">
                         {person.type.replace('_IN', '').replace('_OF', '').replace('_TO', '')}

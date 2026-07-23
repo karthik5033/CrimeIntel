@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ShieldAlert, MapPin, Activity, History, Users, Phone, Car, Link as LinkIcon, User } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ClientProfileHeader } from "@/components/profiles/ClientProfileHeader";
 
 export default async function ProfilePage({ params }: { params: { id: string } }) {
   const person = MockDataClient.getPersonById(params.id);
@@ -37,46 +38,7 @@ export default async function ProfilePage({ params }: { params: { id: string } }
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto p-6 animate-in fade-in duration-500">
       
       {/* Header Section */}
-      <div className="flex flex-col md:flex-row gap-6 items-start">
-        <div className="flex-shrink-0">
-          <div className="w-32 h-32 rounded-full bg-muted flex items-center justify-center border-4 border-card shadow-sm">
-            <User className="w-16 h-16 text-muted-foreground/50" />
-          </div>
-        </div>
-        
-        <div className="flex-1 space-y-2">
-          <div className="flex items-center gap-3">
-            <h1 className="text-4xl font-bold text-foreground">{person.name_en}</h1>
-            <Badge variant={role === "ACCUSED" ? "destructive" : role === "VICTIM" ? "default" : "secondary"} className="text-sm">
-              {role}
-            </Badge>
-          </div>
-          <p className="text-xl text-muted-foreground">{person.name_kn}</p>
-          
-          <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <span className="font-semibold text-foreground">Age:</span> {person.age}
-            </div>
-            <div className="flex items-center gap-1">
-              <span className="font-semibold text-foreground">Gender:</span> {person.gender}
-            </div>
-            <div className="flex items-center gap-1">
-              <MapPin className="w-4 h-4" />
-              {person.address_en} ({person.district_id})
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center justify-center bg-card border rounded-lg p-6 min-w-[150px] shadow-sm">
-          <div className="text-sm font-medium text-muted-foreground mb-2">Risk Score</div>
-          <div className="flex items-center gap-2">
-            {person.risk_score >= 80 && <ShieldAlert className="w-6 h-6 text-destructive" />}
-            <span className={`text-4xl font-bold ${person.risk_score >= 80 ? "text-destructive" : person.risk_score >= 50 ? "text-warning" : "text-success"}`}>
-              {person.risk_score || 0}
-            </span>
-          </div>
-        </div>
-      </div>
+      <ClientProfileHeader person={person} roleType={role} />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
         

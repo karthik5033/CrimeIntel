@@ -1,10 +1,13 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Shield, User, FileText, Database } from "lucide-react";
+import { Shield, User, FileText, Database, Volume2, VolumeX } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 import { ReasoningBlock } from "./ReasoningBlock";
+import { ExplainabilityBadge } from "../ui/explainability-badge";
 import { ChatMessage as ChatMessageType } from "@/lib/store/chatStore";
 
 interface ChatMessageProps {
@@ -13,6 +16,46 @@ interface ChatMessageProps {
 
 export function ChatMessage({ message }: ChatMessageProps) {
   const isAI = message.role === "assistant";
+  const { language, t } = useLanguage();
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Stop playing if unmounted
+  useEffect(() => {
+    return () => {
+      if (isPlaying && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [isPlaying]);
+
+  const toggleSpeech = () => {
+    if (!window.speechSynthesis) return;
+
+    if (isPlaying) {
+      window.speechSynthesis.cancel();
+      setIsPlaying(false);
+    } else {
+      if (!message.content) return;
+      
+      const utterance = new SpeechSynthesisUtterance(message.content);
+      
+      // Select voice based on language
+      const voices = window.speechSynthesis.getVoices();
+      if (language === 'kn') {
+        utterance.lang = 'kn-IN';
+        const kannadaVoice = voices.find(v => v.lang.includes('kn'));
+        if (kannadaVoice) utterance.voice = kannadaVoice;
+      } else {
+        utterance.lang = 'en-US';
+      }
+
+      utterance.onend = () => setIsPlaying(false);
+      utterance.onerror = () => setIsPlaying(false);
+      
+      window.speechSynthesis.speak(utterance);
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <div className={cn(
@@ -96,6 +139,30 @@ export function ChatMessage({ message }: ChatMessageProps) {
                   {cite.label}
                 </span>
               ))}
+            </div>
+          )}
+
+          {/* AI Actions */}
+          {isAI && message.content && !message.isThinking && (
+            <div className="mt-1 flex items-center gap-2">
+              <button 
+                onClick={toggleSpeech}
+                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors p-1"
+                title={isPlaying ? t('chat.stopListening') : t('chat.listenAI')}
+              >
+                {isPlaying ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                <span className="sr-only">{isPlaying ? t('chat.stopListening') : t('chat.listenAI')}</span>
+              </button>
+              
+              <ExplainabilityBadge 
+                data={{
+                  mechanism: "Retrieval-Augmented Generation (RAG) using semantic search across FIR, Case, and Offender Profile databases.",
+                  confidence: 92,
+                  dataSources: ["FIR Database", "Intelligence Graph", "Crime Patterns"],
+                  alternatives: ["Generated response from general knowledge (discarded)"]
+                }}
+                contextId={`chat-${message.id}`}
+              />
             </div>
           )}
         </div>

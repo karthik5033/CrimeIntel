@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, Filter, ShieldAlert, ArrowUpDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useAuth } from "@/lib/AuthContext";
+import { maskName } from "@/lib/utils/dataMasking";
 
 export type PersonProfile = {
   id: string;
@@ -27,6 +29,7 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
   const [sortDesc, setSortDesc] = useState(true);
   const router = useRouter();
   const { t } = useLanguage();
+  const { role } = useAuth();
 
   const handleSort = (field: keyof PersonProfile) => {
     if (sortField === field) setSortDesc(!sortDesc);
@@ -74,7 +77,7 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
             />
           </div>
           
-          <Select value={roleFilter} onValueChange={setRoleFilter}>
+          <Select value={roleFilter} onValueChange={(val) => setRoleFilter(val || "ALL")}>
             <SelectTrigger className="w-[150px] bg-card">
               <Filter className="h-4 w-4 mr-2" />
               <SelectValue placeholder="Role" />
@@ -116,7 +119,7 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
                 className="cursor-pointer hover:bg-accent/10 transition-colors"
                 onClick={() => router.push(`/profiles/${person.id}`)}
               >
-                <TableCell className="font-medium text-foreground">{person.name}</TableCell>
+                <TableCell className="font-medium text-foreground">{maskName(person.name, role)}</TableCell>
                 <TableCell className="text-muted-foreground">{person.age}</TableCell>
                 <TableCell className="text-muted-foreground">{person.gender}</TableCell>
                 <TableCell>

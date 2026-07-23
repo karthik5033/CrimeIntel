@@ -88,7 +88,7 @@ export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[]
             />
           </div>
           
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <Select value={statusFilter} onValueChange={(val) => setStatusFilter(val || "ALL")}>
             <SelectTrigger className="w-[150px] bg-card">
               <Filter className="h-4 w-4 mr-2" />
               <SelectValue placeholder="Status" />

@@ -30,8 +30,8 @@ export class PredictionEngine {
     
     // Calculate raw counts
     for (const fir of firs) {
-      if (!fir.district_id) continue;
-      districtCounts[fir.district_id] = (districtCounts[fir.district_id] || 0) + 1;
+      if (!fir.police_station_id) continue;
+      districtCounts[fir.police_station_id] = (districtCounts[fir.police_station_id] || 0) + 1;
     }
 
     // Convert to mock risk scores
@@ -51,7 +51,7 @@ export class PredictionEngine {
         district_id,
         risk_score,
         primary_factor,
-        trend: risk_score > 75 ? "UP" : risk_score < 40 ? "DOWN" : "STABLE"
+        trend: (risk_score > 75 ? "UP" : risk_score < 40 ? "DOWN" : "STABLE") as "UP" | "DOWN" | "STABLE"
       };
     }).sort((a, b) => b.risk_score - a.risk_score);
   }
