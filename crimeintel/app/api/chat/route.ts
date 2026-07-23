@@ -1,13 +1,51 @@
 import { NextResponse } from 'next/server';
 import { MockDataClient } from '@/lib/api/mockDataClient';
+import { getDemoResponse } from '@/lib/demo-mode';
+import { performSemanticSearch } from '@/lib/nlp/semantic-search';
+import { CatalystQuickML } from '@/lib/catalyst/quickml';
 
 export async function POST(request: Request) {
   try {
     const { message } = await request.json();
     const query = message.toLowerCase();
 
-    // Simulate AI processing delay
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    // Check demo responses for instant execution during scripted demos
+    const demoResp = getDemoResponse(query);
+    if (demoResp) {
+      return NextResponse.json(
+        demoResp.type === 'reasoning' ? {
+          text_summary: demoResp.text,
+          reasoning_block: {
+            understanding: "Analyzing complex query based on multiple crime theories...",
+            retrieving: "Gathering historical crime data, socioeconomic factors, and network topology...",
+            analyzing: "Synthesizing factors for risk assessment...",
+            mechanism: demoResp.reasoning.mechanism,
+            evidence: demoResp.reasoning.factors.join("\n") + "\n\nReferenced FIRs: " + demoResp.reasoning.evidence.join(", "),
+            alternatives: demoResp.reasoning.alternatives.map((a:any) => `${a.text}: ${a.rejected ? 'REJECTED' : 'SUPPORTED'} - ${a.reason}`).join("\n")
+          }
+        } : demoResp.type === 'table' ? {
+          text_summary: demoResp.text,
+          data_table: demoResp.data,
+        } : demoResp.type === 'graph' ? {
+          text_summary: demoResp.text,
+          graph_data: demoResp.graphData
+        } : {
+          text_summary: demoResp.text
+        }
+      );
+    }
+
+    // Perform Semantic RAG Search over records
+    const searchResults = performSemanticSearch(query, 3);
+    
+    // Attempt QuickML Generative Response if endpoint is active
+    const quickMLResponse = await CatalystQuickML.generateResponse(message, { ragContext: searchResults });
+    if (quickMLResponse) {
+      return NextResponse.json({
+        text_summary: quickMLResponse,
+        rag_context: searchResults,
+      });
+    }
 
     // 1. Vehicle Theft in Bengaluru
     if (query.includes('vehicle theft') && (query.includes('bengaluru') || query.includes('bangalore'))) {
@@ -15,14 +53,14 @@ export async function POST(request: Request) {
       const bglrThefts = allFIRs.filter((f: any) => 
         f.crime_type_en === 'Vehicle Theft' && 
         f.district_name_en === 'Bengaluru Urban'
-      ).slice(0, 5); // Just show top 5 for demo
+      ).slice(0, 5);
 
       return NextResponse.json({
         text_summary: "I found **several Vehicle Theft cases** in Bengaluru Urban over the requested period. Here is a summary of the most relevant FIRs. Notice that some cases share similar MOs involving late-night street parking.",
         data_table: bglrThefts.map((f: any) => ({
           'FIR No': f.fir_no,
           'Date': new Date(f.date).toLocaleDateString(),
-          'Station': f.police_station_id, // in real app, we map to name
+          'Station': f.police_station_id,
           'Status': f.status_en
         })),
         citations: bglrThefts.map((f: any) => ({ id: f.id, label: f.fir_no, type: 'FIR' }))
@@ -31,11 +69,7 @@ export async function POST(request: Request) {
 
     // 2. Connections between Rajesh Kumar and Suresh Babu
     if (query.includes('rajesh kumar') && query.includes('suresh babu')) {
-      const allRels = MockDataClient.getEntityRelationships();
-      const allFirs = MockDataClient.getFIRs();
       const allVehicles = MockDataClient.getVehicles();
-
-      // Find the specific ring vehicle and FIRs
       const ringVehicle = allVehicles[0];
       
       return NextResponse.json({
@@ -81,42 +115,21 @@ export async function POST(request: Request) {
       });
     }
 
-    // 4. Murder cases link
-    if (query.includes('murder')) {
+    // Default Fallback with RAG Semantic Search
+    if (searchResults.length > 0) {
       return NextResponse.json({
-        text_summary: "Yes, there is a hidden link. **FIR/M1/2024** and **FIR/M2/2024** occurred in different districts, but ANPR (Automatic Number Plate Recognition) logs show the **exact same vehicle** was spotted near both crime scenes within hours of the incidents.",
-        reasoning_block: {
-          understanding: "Scanning for cross-case entity overlaps",
-          retrieving: "Checking shared nodes between FIR/M1/2024 and FIR/M2/2024",
-          analyzing: "Found intersection at Vehicle node via 'SPOTTED_AT' edges",
-          mechanism: "Crime Pattern Theory: Serial offenders utilize consistent transport across different geographic targets.",
-          evidence: "Vehicle ID #V2 was recorded by traffic cameras at both locations.",
-          alternatives: "Coincidence of vehicle presence (e.g. public transport or taxi), though statistically improbable given the locations."
-        },
-        citations: [
-          { id: 'FIR/M1/2024', label: 'FIR/M1/2024', type: 'FIR' },
-          { id: 'FIR/M2/2024', label: 'FIR/M2/2024', type: 'FIR' }
-        ]
+        text_summary: "I found contextually relevant crime intelligence using semantic search and RAG retrieval across records.",
+        data_table: searchResults.map(r => ({
+          'Type': r.type,
+          'Title': r.title,
+          'Snippet': r.snippet
+        })),
+        rag_context: searchResults
       });
     }
 
-    // 5. Socio-economic
-    if (query.includes('socio-economic')) {
-      const stats = MockDataClient.getSocioEconomicData();
-      return NextResponse.json({
-        text_summary: "Here is the district-level socio-economic data. Notice that districts with higher unemployment rates are showing a statistically significant correlation with property crimes (like Vehicle Theft and Robbery).",
-        data_table: stats.map((s: any) => ({
-          'District': s.district_id,
-          'Unemployment %': s.unemployment_rate,
-          'Literacy %': s.literacy_rate,
-          'Pop Density': s.population_density
-        }))
-      });
-    }
-
-    // Default Fallback
     return NextResponse.json({
-      text_summary: "I've searched the database but couldn't find specific intelligence matching your query. Try asking about the vehicle theft rings, cyber fraud money trails, or repeat offenders.",
+      text_summary: "I've searched the database but couldn't find specific intelligence matching your query. Try asking about vehicle theft rings, cyber fraud money trails, or repeat offenders.",
     });
 
   } catch (error) {

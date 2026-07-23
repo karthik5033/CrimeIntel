@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, BrainCircuit, Search, Network, CheckCircle2, ShieldAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ReasoningBlock as NewReasoningBlock } from "@/components/reasoning/ReasoningBlock";
 
 interface ReasoningBlockProps {
   isThinking?: boolean;
@@ -62,6 +63,11 @@ export function ReasoningBlock({ isThinking, data }: ReasoningBlockProps) {
   }
 
   if (!data) return null;
+
+  // Check if it's the new ReasoningOutput format (has claim)
+  if ('claim' in data) {
+    return <NewReasoningBlock output={data as any} />;
+  }
 
   return (
     <div className="my-2 border border-border rounded-lg overflow-hidden bg-card">

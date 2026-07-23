@@ -272,3 +272,47 @@
     animation: marquee 30s linear infinite;
   }
 }
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background-color: white !important;
+    color: black !important;
+  }
+
+  /* Hide UI elements that shouldn't be printed */
+  .no-print, nav, header, aside, .sidebar-container, button, .lucide-chevron-up, .lucide-panel-right {
+    display: none !important;
+  }
+
+  /* Ensure main content takes full width */
+  main, .flex-1, .w-full {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Break rules */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+  
+  img, table, .card, .chart-container {
+    page-break-inside: avoid;
+  }
+
+  /* Remove shadows and borders for cleaner print */
+  .card, .glass-panel, .glass-card {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+    background: transparent !important;
+  }
+}

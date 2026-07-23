@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { ReasoningOutput } from '@/lib/reasoning/types';
+import { CatalystNoSQL } from '@/lib/catalyst/nosql';
 
 export interface ChatMessage {
   id: string;
@@ -8,14 +10,8 @@ export interface ChatMessage {
   timestamp: string;
   isThinking?: boolean;
   tableData?: any[];
-  reasoningBlock?: {
-    understanding: string;
-    retrieving: string;
-    analyzing: string;
-    mechanism: string;
-    evidence: string;
-    alternatives: string;
-  };
+  reasoningBlock?: ReasoningOutput | any;
+  ragContext?: any[];
   citations?: { id: string; label: string; type: string }[];
 }
 
@@ -58,8 +54,10 @@ export const useChatStore = create<ChatState>()(
         set((state) => ({
           sessions: [newSession, ...state.sessions],
           activeSessionId: newSession.id,
-          contextEntities: [], // Clear context for new session
+          contextEntities: [],
         }));
+        // Sync to Catalyst NoSQL
+        CatalystNoSQL.saveChatSession(newSession.id, newSession);
       },
 
       setActiveSession: (id) => set({ activeSessionId: id }),
@@ -76,14 +74,16 @@ export const useChatStore = create<ChatState>()(
 
           const updatedSessions = state.sessions.map((session) => {
             if (session.id === state.activeSessionId) {
-              // Update title if this is the first user message
               const isFirstUserMessage = session.messages.length === 0 && message.role === 'user';
-              return {
+              const updated = {
                 ...session,
                 title: isFirstUserMessage ? message.content.slice(0, 30) + '...' : session.title,
                 messages: [...session.messages, newMessage],
                 updatedAt: new Date().toISOString(),
               };
+              // Async sync to Catalyst NoSQL
+              CatalystNoSQL.saveChatSession(updated.id, updated);
+              return updated;
             }
             return session;
           });
@@ -103,7 +103,10 @@ export const useChatStore = create<ChatState>()(
                 const lastIndex = messages.length - 1;
                 messages[lastIndex] = { ...messages[lastIndex], ...updates };
               }
-              return { ...session, messages, updatedAt: new Date().toISOString() };
+              const updated = { ...session, messages, updatedAt: new Date().toISOString() };
+              // Async sync to Catalyst NoSQL
+              CatalystNoSQL.saveChatSession(updated.id, updated);
+              return updated;
             }
             return session;
           });
@@ -126,7 +129,6 @@ export const useChatStore = create<ChatState>()(
 
       addContextEntity: (entity) => {
         set((state) => {
-          // Prevent duplicates
           if (state.contextEntities.some(e => e.id === entity.id)) return state;
           return { contextEntities: [...state.contextEntities, entity] };
         });
@@ -135,7 +137,7 @@ export const useChatStore = create<ChatState>()(
       clearContext: () => set({ contextEntities: [] }),
     }),
     {
-      name: 'crimeintel-chat-storage', // key in localStorage
+      name: 'crimeintel-chat-storage',
     }
   )
 );

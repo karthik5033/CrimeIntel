@@ -1,4 +1,5 @@
 import { MockDataClient } from "./mockDataClient";
+import { CatalystCache } from "@/lib/catalyst/cache";
 
 export type AlertSeverity = "CRITICAL" | "WARNING" | "INFO";
 
@@ -23,7 +24,7 @@ export type DistrictRisk = {
 
 export class PredictionEngine {
   
-  // Predict risk for districts based on FIR volume
+  // Predict risk for districts based on FIR volume with Catalyst Cache
   static getDistrictRiskScores(): DistrictRisk[] {
     const firs = MockDataClient.getFIRs();
     const districtCounts: Record<string, number> = {};
@@ -34,14 +35,11 @@ export class PredictionEngine {
       districtCounts[fir.police_station_id] = (districtCounts[fir.police_station_id] || 0) + 1;
     }
 
-    // Convert to mock risk scores
     const maxCount = Math.max(...Object.values(districtCounts), 1);
     
-    return Object.entries(districtCounts).map(([district_id, count]) => {
-      // Normalize score out of 100
-      const baseScore = (count / maxCount) * 100;
-      // Add some random variance to simulate dynamic risk
-      const risk_score = Math.min(100, Math.max(0, Math.round(baseScore + (Math.random() * 20 - 10))));
+    const results = Object.entries(districtCounts).map(([district_id, count]) => {
+      // Deterministic scoring derived from FIR density
+      const risk_score = Math.min(100, Math.max(10, Math.round((count / maxCount) * 100)));
       
       let primary_factor = "Routine Activity";
       if (risk_score > 80) primary_factor = "Spike in Property Crimes";
@@ -54,6 +52,11 @@ export class PredictionEngine {
         trend: (risk_score > 75 ? "UP" : risk_score < 40 ? "DOWN" : "STABLE") as "UP" | "DOWN" | "STABLE"
       };
     }).sort((a, b) => b.risk_score - a.risk_score);
+
+    // Save to Catalyst Cache segment for fast retrieval
+    CatalystCache.put('district_risk_scores', results, 15);
+
+    return results;
   }
 
   // Generate automated alerts (Anomalies & Early Warnings)
@@ -118,7 +121,6 @@ export class PredictionEngine {
       action_label: "View Money Trail"
     });
 
-    // Sort newest first
     return alerts.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
   }
 }

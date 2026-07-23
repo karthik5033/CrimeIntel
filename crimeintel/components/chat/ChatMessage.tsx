@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import { Shield, User, FileText, Database, Volume2, VolumeX } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 import { ReasoningBlock } from "./ReasoningBlock";
+import { SemanticSearchWidget } from "./SemanticSearchWidget";
 import { ExplainabilityBadge } from "../ui/explainability-badge";
 import { ChatMessage as ChatMessageType } from "@/lib/store/chatStore";
 
@@ -100,6 +101,13 @@ export function ChatMessage({ message }: ChatMessageProps) {
                 isThinking={message.isThinking} 
                 data={message.reasoningBlock} 
               />
+            </div>
+          )}
+
+          {/* RAG Context */}
+          {message.ragContext && message.ragContext.length > 0 && (
+            <div className="mt-2">
+              <SemanticSearchWidget context={message.ragContext} />
             </div>
           )}
 

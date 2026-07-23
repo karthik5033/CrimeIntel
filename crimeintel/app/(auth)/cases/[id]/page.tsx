@@ -6,6 +6,9 @@ import { FileText, Calendar, MapPin, ShieldAlert, Clock, ArrowRight, User, Netwo
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ClientMaskedName } from "@/components/shared/ClientMaskedName";
+import { PrintButton } from "@/components/reports/PrintButton";
+import { PrintHeader } from "@/components/reports/PrintHeader";
+import { PrintFooter } from "@/components/reports/PrintFooter";
 
 export default async function CaseDetailPage({ params }: { params: { id: string } }) {
   const caseData = MockDataClient.getCases().find((c: any) => c.id === params.id);
@@ -43,10 +46,15 @@ export default async function CaseDetailPage({ params }: { params: { id: string 
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto p-6 animate-in fade-in duration-500">
+    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto p-6 animate-in fade-in duration-500 bg-background print:max-w-full print:p-0">
       
+      <PrintHeader 
+        title={`Case Report: ${caseData.case_no || caseData.id}`} 
+        subtitle={`Primary Offense: ${firsData.length > 0 ? firsData[0]?.crime_type_en : "Multiple Offenses"}`}
+      />
+
       {/* Header Section */}
-      <div className="flex flex-col md:flex-row gap-6 items-start justify-between">
+      <div className="flex flex-col md:flex-row gap-6 items-start justify-between no-print">
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-3">
             <h1 className="text-4xl font-bold text-foreground">{caseData.case_no || caseData.id}</h1>
@@ -64,6 +72,7 @@ export default async function CaseDetailPage({ params }: { params: { id: string 
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3">
+          <PrintButton label="Generate Report" variant="outline" className="border-primary/30 text-primary hover:bg-primary/5 hover:text-primary" />
           <Button variant="outline" asChild>
             <Link href={`/network?focus=${caseData.id}`}>
               <Network className="w-4 h-4 mr-2" />
@@ -223,6 +232,8 @@ export default async function CaseDetailPage({ params }: { params: { id: string 
 
         </div>
       </div>
+      
+      <PrintFooter />
     </div>
   );
 }

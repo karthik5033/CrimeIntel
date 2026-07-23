@@ -20,6 +20,7 @@ export function InfiniteMarquee({ images }: InfiniteMarqueeProps) {
               src={src}
               alt={`App Interface Preview ${index + 1}`}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>

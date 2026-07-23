@@ -17,6 +17,7 @@ import dagre from 'dagre';
 import '@xyflow/react/dist/style.css';
 import { CustomNode } from './CustomNodes';
 import { useLanguage } from '@/lib/LanguageContext';
+import { predictLinks, detectCommunities } from '@/lib/graph/algorithms';
 
 const nodeTypes = {
   customNode: CustomNode,
@@ -24,113 +25,39 @@ const nodeTypes = {
 
 const getLayoutedElements = (nodes: any[], edges: any[], direction = 'TB') => {
   const isHorizontal = direction === 'LR';
+  const dagreGraph = new dagre.graphlib.Graph();
   
-  // 1. Build adjacency list to find connected components
-  const adj = new Map<string, string[]>();
-  nodes.forEach(n => adj.set(n.id, []));
-  edges.forEach(e => {
-    if (adj.has(e.source) && adj.has(e.target)) {
-      adj.get(e.source)!.push(e.target);
-      adj.get(e.target)!.push(e.source);
-    }
+  dagreGraph.setDefaultEdgeLabel(() => ({}));
+  dagreGraph.setGraph({ 
+    rankdir: direction,
+    nodesep: 80,
+    ranksep: 200,
+    edgesep: 80
   });
 
-  // 2. Find connected components using BFS
-  const visited = new Set<string>();
-  const components: any[][] = [];
-  
-  nodes.forEach(node => {
-    if (!visited.has(node.id)) {
-      const compNodes: any[] = [];
-      const q = [node.id];
-      visited.add(node.id);
-      
-      while (q.length > 0) {
-        const curr = q.shift()!;
-        const currNode = nodes.find(n => n.id === curr);
-        if (currNode) compNodes.push(currNode);
-        
-        (adj.get(curr) || []).forEach(neighbor => {
-          if (!visited.has(neighbor)) {
-            visited.add(neighbor);
-            q.push(neighbor);
-          }
-        });
-      }
-      components.push(compNodes);
-    }
+  nodes.forEach((node) => {
+    dagreGraph.setNode(node.id, { width: 250, height: 100 });
   });
 
-  // Sort components by size (largest first)
-  components.sort((a, b) => b.length - a.length);
+  edges.forEach((edge) => {
+    dagreGraph.setEdge(edge.source, edge.target);
+  });
 
-  const newNodes: any[] = [];
-  let currentYOffset = 0;
+  dagre.layout(dagreGraph);
 
-  // 3. Layout each component and stack them
-  components.forEach(comp => {
-    if (comp.length === 0) return;
+  const newNodes = nodes.map((node) => {
+    const nodeWithPosition = dagreGraph.node(node.id);
+    if (!nodeWithPosition) return node;
     
-    const dagreGraph = new dagre.graphlib.Graph();
-    dagreGraph.setDefaultEdgeLabel(() => ({}));
-    dagreGraph.setGraph({ 
-      rankdir: direction,
-      nodesep: 150,
-      ranksep: 250,
-      edgesep: 80
-    });
-
-    const compNodeIds = new Set(comp.map(n => n.id));
-    
-    comp.forEach((node) => {
-      dagreGraph.setNode(node.id, { width: 220, height: 120 });
-    });
-
-    edges.forEach((edge) => {
-      if (compNodeIds.has(edge.source) && compNodeIds.has(edge.target)) {
-        dagreGraph.setEdge(edge.source, edge.target);
-      }
-    });
-
-    dagre.layout(dagreGraph);
-
-    let compMinY = Infinity;
-    let compMaxY = -Infinity;
-    
-    comp.forEach(node => {
-      const pos = dagreGraph.node(node.id);
-      if (pos) {
-        compMinY = Math.min(compMinY, pos.y);
-        compMaxY = Math.max(compMaxY, pos.y + pos.height);
-      }
-    });
-    
-    // Shift component so its minY matches currentYOffset
-    const shiftY = compMinY === Infinity ? currentYOffset : currentYOffset - compMinY;
-    
-    comp.forEach((node) => {
-      const nodeWithPosition = dagreGraph.node(node.id);
-      if (!nodeWithPosition) {
-         newNodes.push(node);
-         return;
-      }
-      
-      newNodes.push({
-        ...node,
-        targetPosition: isHorizontal ? 'left' : 'top',
-        sourcePosition: isHorizontal ? 'right' : 'bottom',
-        position: {
-          x: nodeWithPosition.x - 110,
-          y: nodeWithPosition.y - 60 + shiftY,
-        },
-      });
-    });
-    
-    if (compMaxY !== -Infinity && compMinY !== Infinity) {
-      currentYOffset += (compMaxY - compMinY) + 300; // 300px gap between subgraphs
-    } else {
-      currentYOffset += 200;
-    }
+    return {
+      ...node,
+      targetPosition: isHorizontal ? 'left' : 'top',
+      sourcePosition: isHorizontal ? 'right' : 'bottom',
+      position: {
+        x: nodeWithPosition.x - 125,
+        y: nodeWithPosition.y - 50,
+      },
+    };
   });
 
   return { nodes: newNodes, edges };
@@ -150,6 +77,8 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
   const [searchQuery, setSearchQuery] = useState('');
   const [layoutDirection, setLayoutDirection] = useState<'TB' | 'LR'>('TB');
   const [isPinned, setIsPinned] = useState(false);
+  const [showPredictedLinks, setShowPredictedLinks] = useState(false);
+  const [showCommunities, setShowCommunities] = useState(false);
   const { t } = useLanguage();
 
   const handleZoomIn = () => zoomTo(getZoom() * 2.5, { duration: 100 });
@@ -157,15 +86,36 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
 
   useEffect(() => {
     if (initialNodes.length && initialEdges.length) {
+      let finalEdges = [...initialEdges];
+      let finalNodes = [...initialNodes];
+
+      if (showPredictedLinks) {
+        const predicted = predictLinks(finalNodes, finalEdges, 0.5);
+        finalEdges = [...finalEdges, ...predicted];
+      }
+
+      if (showCommunities) {
+        const communityMap = detectCommunities(finalNodes, initialEdges);
+        // Simple color palette for communities
+        const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+        finalNodes = finalNodes.map(n => ({
+          ...n,
+          data: {
+            ...n.data,
+            communityColor: colors[(communityMap.get(n.id) || 0) % colors.length]
+          }
+        }));
+      }
+
       const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
-        initialNodes,
-        initialEdges,
+        finalNodes,
+        finalEdges,
         layoutDirection
       );
       setNodes(layoutedNodes);
       setEdges(layoutedEdges);
     }
-  }, [initialNodes, initialEdges, layoutDirection, setNodes, setEdges]);
+  }, [initialNodes, initialEdges, layoutDirection, showPredictedLinks, showCommunities, setNodes, setEdges]);
 
   // Focus Mode Effect
   useEffect(() => {
@@ -352,6 +302,30 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
               {t('network.addNote')}
             </button>
           </div>
+
+          <div className="bg-card/80 p-2 rounded-md shadow-sm border border-border backdrop-blur-sm flex flex-col gap-2 w-full mt-2">
+            <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider mb-1">Advanced Analytics</span>
+            
+            <label className="flex items-center space-x-2 cursor-pointer text-xs">
+              <input 
+                type="checkbox" 
+                className="rounded border-border text-primary focus:ring-primary h-3 w-3"
+                checked={showPredictedLinks}
+                onChange={(e) => setShowPredictedLinks(e.target.checked)}
+              />
+              <span className="text-foreground">Predict Hidden Links</span>
+            </label>
+            
+            <label className="flex items-center space-x-2 cursor-pointer text-xs">
+              <input 
+                type="checkbox" 
+                className="rounded border-border text-primary focus:ring-primary h-3 w-3"
+                checked={showCommunities}
+                onChange={(e) => setShowCommunities(e.target.checked)}
+              />
+              <span className="text-foreground">Detect Communities</span>
+            </label>
+          </div>
         </Panel>
         
         <Background gap={12} size={1} />
@@ -366,7 +340,8 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
             return '#fff';
           }}
           maskColor="rgba(0, 0, 0, 0.1)"
-          className="bg-card border-border" 
+          className="bg-card border-border overflow-hidden rounded-md shadow-md"
+          style={{ width: 220, height: 160, bottom: 20, right: 20 }}
           pannable
           zoomable
         />

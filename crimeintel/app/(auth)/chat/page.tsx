@@ -7,6 +7,9 @@ import { useChatStore } from "@/lib/store/chatStore";
 import { ChatMessage } from "@/components/chat/ChatMessage";
 import { ChatInput } from "@/components/chat/ChatInput";
 import { useLanguage } from "@/lib/LanguageContext";
+import { PrintHeader } from "@/components/reports/PrintHeader";
+import { PrintFooter } from "@/components/reports/PrintFooter";
+import { FileDown } from "lucide-react";
 
 export default function ChatPage() {
   const { 
@@ -77,6 +80,7 @@ export default function ChatPage() {
         content: data.text_summary || "I couldn't process that query.",
         tableData: data.data_table,
         reasoningBlock: data.reasoning_block,
+        ragContext: data.rag_context,
         citations: data.citations
       });
     } catch (error) {
@@ -135,7 +139,7 @@ export default function ChatPage() {
       {/* CENTER (Chat Area) */}
       <div className="flex-1 flex flex-col h-full min-w-0 bg-background relative">
         {/* Chat Header */}
-        <div className="h-14 border-b border-border flex items-center justify-between px-4 bg-card shrink-0 shadow-sm z-10">
+        <div className="h-14 border-b border-border flex items-center justify-between px-4 bg-card shrink-0 shadow-sm z-10 no-print">
           <div className="flex items-center gap-3">
             <button 
               onClick={() => setLeftOpen(!leftOpen)}
@@ -147,17 +151,27 @@ export default function ChatPage() {
               {activeSession?.title || t('chat.newInvestigation')}
             </h1>
           </div>
-          <button 
-            onClick={() => setRightOpen(!rightOpen)}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <PanelRight className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => window.print()}
+              className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground bg-secondary/50 hover:bg-secondary rounded-md transition-colors"
+            >
+              <FileDown className="h-4 w-4" />
+              Export PDF
+            </button>
+            <button 
+              onClick={() => setRightOpen(!rightOpen)}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <PanelRight className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
         {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-20 scroll-smooth">
-          <div className="max-w-4xl mx-auto">
+        <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-20 scroll-smooth bg-background print:overflow-visible print:h-auto">
+          <PrintHeader title={`Conversation Transcript: ${activeSession?.title || 'Investigation'}`} />
+          <div className="max-w-4xl mx-auto print:max-w-full">
             {!activeSession?.messages.length ? (
               <div className="flex flex-col items-center justify-center h-[50vh] text-center space-y-4">
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
@@ -175,12 +189,17 @@ export default function ChatPage() {
                 <ChatMessage key={msg.id} message={msg} />
               ))
             )}
+            {activeSession?.messages.length ? (
+              <div className="mt-8">
+                <PrintFooter />
+              </div>
+            ) : null}
             <div ref={messagesEndRef} />
           </div>
         </div>
 
         {/* Input Area */}
-        <div className="p-4 bg-gradient-to-t from-background via-background to-transparent pt-10">
+        <div className="p-4 bg-gradient-to-t from-background via-background to-transparent pt-10 no-print">
           <ChatInput onSend={handleSendMessage} disabled={isProcessing} />
         </div>
       </div>

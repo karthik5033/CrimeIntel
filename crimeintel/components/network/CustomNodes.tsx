@@ -10,6 +10,7 @@ interface NodeData {
   entityType: 'Person' | 'FIR' | 'Vehicle' | 'Bank' | 'Phone' | 'Location' | 'Note' | 'Unknown';
   details?: any;
   isDimmed?: boolean;
+  communityColor?: string;
 }
 
 const getStylesForType = (type: string) => {
@@ -79,9 +80,11 @@ const CustomNodeComponent = ({ data, selected }: { data: NodeData, selected: boo
           styles.bg,
           styles.text,
           styles.shape,
-          selected ? `ring-2 ring-offset-2 ring-offset-background ${styles.border}` : `${styles.border} border-opacity-70 hover:border-opacity-100 hover:shadow-lg`,
+          selected ? `ring-2 ring-offset-2 ring-offset-background` : `hover:shadow-lg`,
+          !data.communityColor && (selected ? styles.border : `${styles.border} border-opacity-70 hover:border-opacity-100`),
           data.isDimmed ? "opacity-30 grayscale" : "opacity-100"
         )}
+        style={data.communityColor ? { borderColor: data.communityColor, borderWidth: '3px' } : {}}
       >
         <div className={cn("shrink-0 p-2 rounded-full border", data.entityType === 'Note' ? "bg-yellow-500/20 border-yellow-500/30 text-yellow-900" : "bg-black/20 border-white/20 text-white")}>
           <Icon className={cn("h-5 w-5 drop-shadow-md", data.entityType === 'Note' ? "" : "text-white")} />

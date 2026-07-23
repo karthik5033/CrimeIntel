@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { BellRing, ShieldAlert, AlertTriangle, Info, MapPin, TrendingUp, TrendingDown, Minus, BrainCircuit, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { formatDistanceToNow } from 'date-fns';
+import { PrintButton } from "@/components/reports/PrintButton";
+import { PrintHeader } from "@/components/reports/PrintHeader";
+import { PrintFooter } from "@/components/reports/PrintFooter";
 
 export default function AlertsDashboard() {
   const alerts = PredictionEngine.getAlerts();
@@ -32,14 +35,18 @@ export default function AlertsDashboard() {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto p-6 animate-in fade-in duration-500">
+    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto p-6 animate-in fade-in duration-500 print:max-w-full print:p-0">
       
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <PrintHeader title="Early Warning & Alert History Report" />
+
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 no-print">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Early Warning System</h1>
           <p className="text-muted-foreground mt-1">Predictive analytics and anomaly detection.</p>
         </div>
-        <div className="flex bg-muted p-1 rounded-lg">
+        <div className="flex items-center gap-3">
+          <PrintButton label="Export Alert History" variant="outline" />
+          <div className="flex bg-muted p-1 rounded-lg">
           <button 
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === "ALERTS" ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
             onClick={() => setActiveTab("ALERTS")}
@@ -50,8 +57,8 @@ export default function AlertsDashboard() {
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === "DISTRICTS" ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
             onClick={() => setActiveTab("DISTRICTS")}
           >
-            District Forecasts
           </button>
+          </div>
         </div>
       </div>
 
@@ -171,6 +178,7 @@ export default function AlertsDashboard() {
         </div>
       )}
 
+      <PrintFooter />
     </div>
   );
 }

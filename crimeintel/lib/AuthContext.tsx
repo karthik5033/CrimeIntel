@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { AuditLogger } from "./api/auditLogger";
+import { CatalystAuth, CatalystUser } from "./catalyst/auth";
 
 export type Role = "CONSTABLE" | "INSPECTOR" | "SUPERINTENDENT" | "ADMIN";
 
@@ -9,24 +10,37 @@ interface AuthContextType {
   role: Role;
   setRole: (role: Role) => void;
   userId: string;
+  user: CatalystUser | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [role, setRoleState] = useState<Role>("INSPECTOR");
-  const [userId] = useState<string>("U10943"); // Mock user ID
+  const [userId, setUserId] = useState<string>("U10943");
+  const [user, setUser] = useState<CatalystUser | null>(null);
 
   useEffect(() => {
-    const savedRole = localStorage.getItem("crimeintel_role") as Role;
-    if (savedRole && ["CONSTABLE", "INSPECTOR", "SUPERINTENDENT", "ADMIN"].includes(savedRole)) {
-      setRoleState(savedRole);
-    }
+    // Hydrate from Catalyst Authentication
+    CatalystAuth.getCurrentUser().then(catalystUser => {
+      setUser(catalystUser);
+      setUserId(catalystUser.id);
+      
+      const savedRole = localStorage.getItem("crimeintel_role") as Role;
+      if (savedRole && ["CONSTABLE", "INSPECTOR", "SUPERINTENDENT", "ADMIN"].includes(savedRole)) {
+        setRoleState(savedRole);
+      } else if (catalystUser.role) {
+        setRoleState(catalystUser.role);
+      }
+    });
   }, []);
 
   const setRole = (newRole: Role) => {
     setRoleState(newRole);
     localStorage.setItem("crimeintel_role", newRole);
+    if (user) {
+      setUser({ ...user, role: newRole });
+    }
     AuditLogger.logEvent({
       event_type: "AUTH",
       user_id: userId,
@@ -36,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ role, setRole, userId }}>
+    <AuthContext.Provider value={{ role, setRole, userId, user }}>
       {children}
     </AuthContext.Provider>
   );

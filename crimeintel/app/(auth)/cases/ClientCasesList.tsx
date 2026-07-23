@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Filter, ArrowUpDown, FileText, CheckCircle2, Clock, AlertCircle } from "lucide-react";
+import { Search, Filter, ArrowUpDown, FileText, CheckCircle2, Clock, AlertCircle, FolderSearch } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { EmptyState } from "@/components/shared/EmptyState";
 
 export type CaseOverview = {
   id: string;
@@ -166,9 +167,16 @@ export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[]
           </div>
         )}
         {filteredAndSorted.length === 0 && (
-          <div className="p-12 text-center text-muted-foreground">
-            No cases found matching your search.
-          </div>
+          <EmptyState 
+            icon={FolderSearch}
+            title="No cases found"
+            description="We couldn't find any cases matching your current search or status filters. Try adjusting your search query."
+            actionLabel="Clear Filters"
+            onAction={() => {
+              setSearch("");
+              setStatusFilter("ALL");
+            }}
+          />
         )}
       </div>
     </div>

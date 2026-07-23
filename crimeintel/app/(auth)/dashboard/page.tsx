@@ -31,22 +31,28 @@ import {
 } from "lucide-react";
 import { CrimeTrendChart } from "@/components/charts/CrimeTrendChart";
 import { LiveMap } from "@/components/dashboard/LiveMap";
+import { LiveEventFeed } from "@/components/dashboard/LiveEventFeed";
 import { PredictionEngine } from "@/lib/api/predictionEngine";
 import Link from "next/link";
+import { PrintButton } from "@/components/reports/PrintButton";
+import { PrintHeader } from "@/components/reports/PrintHeader";
+import { PrintFooter } from "@/components/reports/PrintFooter";
 
 export default function DashboardPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="flex-1 space-y-8 p-8 pt-6 max-w-7xl mx-auto w-full">
-      <div className="flex items-center justify-between space-y-2">
+    <div className="flex-1 space-y-8 p-8 pt-6 max-w-7xl mx-auto w-full print:max-w-full print:p-0">
+      <PrintHeader title="Command Center Dashboard Report" />
+      
+      <div className="flex items-center justify-between space-y-2 no-print">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{t('dashboard.title')}</h2>
           <p className="text-muted-foreground mt-1">{t('dashboard.subtitle')}</p>
         </div>
         <div className="flex items-center space-x-2">
           <Button variant="outline">{t('dashboard.downloadCsv')}</Button>
-          <Button className="bg-primary hover:bg-primary/90 shadow-sm">{t('dashboard.generateReport')}</Button>
+          <PrintButton label={t('dashboard.generateReport') || 'Generate Report'} className="bg-primary hover:bg-primary/90 shadow-sm text-white" />
         </div>
       </div>
 
@@ -129,46 +135,19 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        {/* Side Panel (Recent Alerts) */}
-        <Card className="col-span-2 shadow-sm border-border/50 bg-card/50 flex flex-col">
-          <CardHeader className="border-b border-border/50 pb-4">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-warning" />
-                {t('dashboard.earlyWarnings')}
-              </CardTitle>
-              <Badge variant="outline" className="bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border-transparent">
-                {PredictionEngine.getAlerts().length} {t('dashboard.new')}
-              </Badge>
-            </div>
-            <CardDescription>
-              {t('dashboard.predictiveAlerts')}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="p-0 flex-1 overflow-y-auto">
-            <div className="divide-y divide-border/50">
-              {PredictionEngine.getAlerts().slice(0, 4).map((alert, i) => (
-                <Link href="/alerts" key={i} className="block p-4 hover:bg-muted/50 transition-colors group cursor-pointer">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <div className="flex items-center space-x-2">
-                      <div className={`h-2 w-2 rounded-full ${alert.severity === 'CRITICAL' ? 'bg-destructive' : alert.severity === 'WARNING' ? 'bg-warning' : 'bg-primary'}`} />
-                      <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-1">{alert.title}</p>
-                    </div>
-                  </div>
-                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{alert.description}</p>
-                </Link>
-              ))}
-            </div>
-          </CardContent>
-          <div className="p-4 border-t border-border/50 bg-muted/20">
+        {/* Side Panel (Live Event Feed) */}
+        <div className="col-span-2 flex flex-col h-full">
+          <LiveEventFeed />
+          
+          <div className="mt-4 p-4 border border-border/50 bg-muted/20 rounded-lg shadow-sm">
             <Button variant="outline" className="w-full text-sm" asChild>
               <Link href="/alerts">
-                View All Alerts
+                View All Historical Alerts
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
 
       <LiveMap />
@@ -226,6 +205,8 @@ export default function DashboardPage() {
           </Table>
         </CardContent>
       </Card>
+
+      <PrintFooter />
     </div>
   );
 }

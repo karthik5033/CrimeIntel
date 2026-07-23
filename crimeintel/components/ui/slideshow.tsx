@@ -27,6 +27,7 @@ export function Slideshow({ images, interval = 3000 }: SlideshowProps) {
           src={src}
           alt={`Preview ${index + 1}`}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className={`object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out ${
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
