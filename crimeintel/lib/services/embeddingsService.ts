@@ -305,7 +305,7 @@ export class EmbeddingsService {
 
       // Sort by similarity and return top N
       return similarities
-        .sort((a, b) => b.similarity - a.similarity)
+        .sort((a: any, b: any) => b.similarity - a.similarity)
         .slice(0, limit);
 
     } catch (error) {
@@ -376,7 +376,7 @@ export class EmbeddingsService {
 
       // Sort by score and return top N
       return results
-        .sort((a, b) => b.score - a.score)
+        .sort((a: any, b: any) => b.score - a.score)
         .slice(0, limit);
 
     } catch (error) {

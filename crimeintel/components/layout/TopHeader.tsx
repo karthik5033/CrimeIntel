@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { NotificationCenter } from "./NotificationCenter";
 
 export function TopHeader() {
   const { language, setLanguage, t } = useLanguage();
@@ -96,33 +97,7 @@ export function TopHeader() {
         </div>
 
         {/* Notifications */}
-        <DropdownMenu>
-          <DropdownMenuTrigger className="relative p-2 rounded-md hover:bg-muted focus-visible:outline-none transition-colors">
-            <Bell className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
-            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-destructive border-2 border-card animate-pulse"></span>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80">
-            <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <div className="max-h-[300px] overflow-y-auto">
-              <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
-                <span className="font-semibold text-sm">New High-Risk Case Detected</span>
-                <span className="text-xs text-muted-foreground">Case #FIR-2025-089 has been flagged with 92% anomaly score.</span>
-                <span className="text-[10px] text-muted-foreground/70 mt-1">10 minutes ago</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
-                <span className="font-semibold text-sm">Network Syndicate Match</span>
-                <span className="text-xs text-muted-foreground">A known suspect is linked to a new gang in Bengaluru South.</span>
-                <span className="text-[10px] text-muted-foreground/70 mt-1">1 hour ago</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
-                <span className="font-semibold text-sm">Report Export Complete</span>
-                <span className="text-xs text-muted-foreground">Your Q3 Financial Audit report is ready for download.</span>
-                <span className="text-[10px] text-muted-foreground/70 mt-1">Yesterday</span>
-              </DropdownMenuItem>
-            </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <NotificationCenter />
       </div>
     </header>
   );

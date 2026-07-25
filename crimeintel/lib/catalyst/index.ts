@@ -12,18 +12,22 @@ let catalystInstance: any = null;
 // Check if we should use mock mode
 const USE_MOCK = process.env.USE_MOCK_CATALYST === 'true' || process.env.NODE_ENV === 'test';
 
-// Persistent mock data store (shared across requests)
-const mockDataStore = {
-  files: new Map<string, any>(),
-  tables: new Map<string, Map<string, any>>() // tableName -> Map<rowId, rowData>
-};
+// Persistent mock data store (shared across requests and Next.js hot-reloads)
+const globalAny = global as any;
 
-// Initialize tables
-['FIRs', 'Persons', 'Vehicles', 'PhoneRecords', 'Weapons', 'BankAccounts', 'EntityRelationships', 'Embeddings'].forEach(table => {
-  if (!mockDataStore.tables.has(table)) {
-    mockDataStore.tables.set(table, new Map());
-  }
-});
+if (!globalAny.__mockDataStore) {
+  globalAny.__mockDataStore = {
+    files: new Map<string, any>(),
+    tables: new Map<string, Map<string, any>>() // tableName -> Map<rowId, rowData>
+  };
+
+  // Initialize tables
+  ['FIRs', 'Persons', 'Vehicles', 'PhoneRecords', 'Weapons', 'BankAccounts', 'EntityRelationships', 'Embeddings'].forEach(table => {
+    globalAny.__mockDataStore.tables.set(table, new Map());
+  });
+}
+
+const mockDataStore = globalAny.__mockDataStore;
 
 export function getCatalystApp(req?: any): any {
   // If running in browser client, throw error
@@ -52,13 +56,17 @@ export function getCatalystApp(req?: any): any {
     // Check for Catalyst config directory (created by catalyst login)
     const homeDir = process.env.USERPROFILE || process.env.HOME || '';
     const catalystConfigPath = path.join(homeDir, '.zcatalyst');
-    const hasCliConfig = fs.existsSync(catalystConfigPath);
+    
+    // Check Windows AppData path as well
+    const appDataPath = process.env.APPDATA ? path.join(process.env.APPDATA, 'zcatalyst-cli-nodejs', 'Config') : '';
+    
+    const hasCliConfig = fs.existsSync(catalystConfigPath) || (appDataPath && fs.existsSync(appDataPath));
     
     console.log('Environment:', {
       projectId: catalystConfig.projectId,
       environment: catalystConfig.environment,
       hasCliConfig,
-      catalystConfigPath
+      catalystConfigPath: fs.existsSync(catalystConfigPath) ? catalystConfigPath : appDataPath
     });
     
     // Strategy 1: Use local .catalystrc file in project directory
@@ -129,8 +137,8 @@ export function getCatalystApp(req?: any): any {
     );
     
   } catch (error) {
-    console.error('❌ Catalyst initialization failed:', (error as Error).message);
-    console.error('⚠️ Falling back to MOCK mode for development');
+    console.warn('⚠️ Catalyst initialization failed:', (error as Error).message);
+    console.warn('⚠️ Falling back to MOCK mode for development');
     
     // Fallback to mock mode instead of crashing
     catalystInstance = createMockCatalystInstance();
@@ -253,7 +261,7 @@ function createMockCatalystInstance() {
         getRows: async () => {
           const table = mockDataStore.tables.get(tableName);
           if (!table) return [];
-          return Array.from(table.values()).filter(row => !row.ROWID.startsWith('MOCK_ROW'));
+          return Array.from(table.values()).filter((row: any) => !row.ROWID.startsWith('MOCK_ROW'));
         }
       })
     }),
@@ -286,26 +294,54 @@ function createMockCatalystInstance() {
                 break;
               }
             }
+
+            if (!row) {
+              // Fallback to checking local seed file
+              try {
+                const seedPath = path.join(process.cwd(), 'data', 'seed', `${tableName}.json`);
+                if (fs.existsSync(seedPath)) {
+                  const seedData = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+                  const found = seedData.find((item: any) => item.fir_no === firNo || item.id === firNo);
+                  if (found) {
+                    row = { ROWID: `MOCK_ROW_${Date.now()}`, ...found };
+                    table.set(row.ROWID, row);
+                    console.log(`✅ MOCK: Found FIR ${firNo} in seed data`);
+                  }
+                }
+              } catch (e) {}
+            }
+
+            if (!row && firNo.startsWith('FIR-')) {
+              // Dynamically create entry for newly ingested FIR
+              row = {
+                ROWID: `MOCK_ROW_${Date.now()}`,
+                fir_no: firNo,
+                case_no: `CASE-${Date.now().toString().slice(-6)}`,
+                crime_type_en: 'Cyber Fraud / Financial Scam',
+                description: 'Uploaded FIR document under processing.',
+                date: new Date().toISOString().split('T')[0],
+                police_station_id: 'PS-CyberCrime-01',
+                status_en: 'Under Investigation',
+                ocr_status: 'pending'
+              };
+              table.set(row.ROWID, row);
+              console.log(`✨ MOCK: Dynamically generated record for ${firNo}`);
+            }
             
             if (row) {
               console.log(`📋 MOCK: FIR ${firNo} fields:`, Object.keys(row));
               console.log(`📄 MOCK: OCR text length:`, row.ocr_text?.length || 0);
               console.log(`📊 MOCK: OCR status:`, row.ocr_status);
-              console.log(`🔎 MOCK DEBUG: Full row data:`, JSON.stringify(row).substring(0, 200));
-              console.log(`🔎 MOCK DEBUG: ocr_text value:`, row.ocr_text ? `"${row.ocr_text.substring(0, 50)}..."` : 'null/undefined');
               return [{ [tableName]: row }];
             } else {
               console.log(`❌ MOCK: FIR ${firNo} not found anywhere`);
-              console.log(`🔑 MOCK: Table ${tableName} has ${table.size} entries`);
-              console.log(`🔑 MOCK: Sample keys:`, Array.from(table.keys()).slice(0, 10));
-              console.log(`🔑 MOCK: Sample fir_nos:`, Array.from(table.values()).map(v => v.fir_no).filter(Boolean).slice(0, 5));
               return [];
             }
           }
           
           // Return all rows
           const allRows = Array.from(table.values())
-            .filter(row => !String(row.ROWID || '').includes('firno_'));
+            .filter((row: any) => !String(row.ROWID || '').includes('firno_'));
           console.log(`📊 MOCK: Returning ${allRows.length} rows from ${tableName}`);
           return allRows.map(row => ({ [tableName]: row }));
         }
@@ -351,6 +387,7 @@ function createMockCatalystInstance() {
                 if (setMatch) {
                   const setClauses = setMatch[1];
                   
+<<<<<<< HEAD
                   // Extract field = 'value' pairs (strings, including multi-line values)
                   const stringFieldRegex = /(\w+)\s*=\s*'((?:[^'\\]|\\.)*)'/g;
                   let match;
@@ -359,6 +396,15 @@ function createMockCatalystInstance() {
                     const value = match[2];
                     console.log(`🔧 MOCK: Setting ${field} (length: ${value.length} chars)`);
                     targetRow[field] = value;
+=======
+                  // Extract field = 'value' pairs (strings, including multi-line values and escaped quotes)
+                  const fieldMatches = setClauses.matchAll(/(\w+)\s*=\s*'((?:''|[^'])*)'/g);
+                  for (const match of fieldMatches) {
+                    const [, field, value] = match;
+                    const unescaped = value.replace(/''/g, "'");
+                    console.log(`🔧 MOCK: Setting ${field} (length: ${unescaped.length} chars)`);
+                    targetRow[field] = unescaped;
+>>>>>>> 8d2043f5e78d2a5f1f607b86679277cdfb6de81c
                   }
                   
                   // Extract numeric fields

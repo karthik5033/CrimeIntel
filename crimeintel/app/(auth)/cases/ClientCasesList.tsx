@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, Filter, ArrowUpDown, FileText, CheckCircle2, Clock, AlertCircle, FolderSearch } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export type CaseOverview = {
   id: string;
@@ -22,6 +23,7 @@ export type CaseOverview = {
 };
 
 export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[] }) {
+  const { t } = useLanguage();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [sortField, setSortField] = useState<keyof CaseOverview>("latest_date");
@@ -44,8 +46,8 @@ export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[]
       return matchSearch && matchStatus;
     })
     .sort((a, b) => {
-      let valA = a[sortField] || "";
-      let valB = b[sortField] || "";
+      const valA = a[sortField] || "";
+      const valB = b[sortField] || "";
       
       if (typeof valA === 'string' && typeof valB === 'string') {
         return sortDesc ? valB.localeCompare(valA) : valA.localeCompare(valB);
@@ -74,15 +76,15 @@ export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[]
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto p-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Case Management</h1>
-          <p className="text-muted-foreground mt-1">Track active investigations and historical cases.</p>
+          <h1 className="text-3xl font-bold text-foreground">{t('cases.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('cases.subtitle')}</p>
         </div>
         
         <div className="flex items-center gap-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input 
-              placeholder="Search by case number..." 
+              placeholder={t('cases.search')} 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-9 w-[250px] bg-card"
@@ -92,13 +94,13 @@ export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[]
           <Select value={statusFilter} onValueChange={(val) => setStatusFilter(val || "ALL")}>
             <SelectTrigger className="w-[150px] bg-card">
               <Filter className="h-4 w-4 mr-2" />
-              <SelectValue placeholder="Status" />
+              <SelectValue placeholder={t('cases.statusLabel')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ALL">All Statuses</SelectItem>
-              <SelectItem value="ACTIVE">Active</SelectItem>
-              <SelectItem value="PENDING">Pending</SelectItem>
-              <SelectItem value="CLOSED">Closed</SelectItem>
+              <SelectItem value="ALL">{t('cases.statusAll')}</SelectItem>
+              <SelectItem value="ACTIVE">{t('cases.statusActive')}</SelectItem>
+              <SelectItem value="PENDING">{t('cases.statusPending')}</SelectItem>
+              <SelectItem value="CLOSED">{t('cases.statusClosed')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -109,18 +111,18 @@ export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[]
           <TableHeader className="bg-muted/50">
             <TableRow>
               <TableHead onClick={() => handleSort("case_no")} className="cursor-pointer hover:bg-muted/80">
-                <div className="flex items-center gap-2">Case No <ArrowUpDown className="h-3 w-3" /></div>
+                <div className="flex items-center gap-2">{t('cases.caseNo')} <ArrowUpDown className="h-3 w-3" /></div>
               </TableHead>
               <TableHead onClick={() => handleSort("latest_date")} className="cursor-pointer hover:bg-muted/80 w-32">
-                <div className="flex items-center gap-2">Date <ArrowUpDown className="h-3 w-3" /></div>
+                <div className="flex items-center gap-2">{t('cases.date')} <ArrowUpDown className="h-3 w-3" /></div>
               </TableHead>
-              <TableHead>Primary Type</TableHead>
-              <TableHead>District</TableHead>
+              <TableHead>{t('cases.primaryType')}</TableHead>
+              <TableHead>{t('cases.district')}</TableHead>
               <TableHead onClick={() => handleSort("fir_count")} className="cursor-pointer hover:bg-muted/80 text-center">
-                <div className="flex items-center justify-center gap-2">FIRs <ArrowUpDown className="h-3 w-3" /></div>
+                <div className="flex items-center justify-center gap-2">{t('cases.firs')} <ArrowUpDown className="h-3 w-3" /></div>
               </TableHead>
               <TableHead onClick={() => handleSort("status")} className="cursor-pointer hover:bg-muted/80 text-right">
-                <div className="flex items-center justify-end gap-2">Status <ArrowUpDown className="h-3 w-3" /></div>
+                <div className="flex items-center justify-end gap-2">{t('cases.statusLabel')} <ArrowUpDown className="h-3 w-3" /></div>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -152,7 +154,10 @@ export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[]
                       c.status.toUpperCase() === "ACTIVE" ? "text-warning" :
                       c.status.toUpperCase() === "CLOSED" ? "text-success" : "text-muted-foreground"
                     }`}>
-                      {c.status}
+                      {c.status.toUpperCase() === "ACTIVE" ? t('cases.statusActive') :
+                       c.status.toUpperCase() === "PENDING" ? t('cases.statusPending') :
+                       c.status.toUpperCase() === "CLOSED" ? t('cases.statusClosed') :
+                       c.status}
                     </span>
                   </div>
                 </TableCell>
@@ -163,15 +168,15 @@ export function ClientCasesList({ initialCases }: { initialCases: CaseOverview[]
         
         {filteredAndSorted.length > 50 && (
           <div className="p-4 text-center border-t border-border text-sm text-muted-foreground bg-muted/20">
-            Showing top 50 of {filteredAndSorted.length} matching cases
+            {t('cases.showingTop').replace('{count}', String(filteredAndSorted.length))}
           </div>
         )}
         {filteredAndSorted.length === 0 && (
           <EmptyState 
             icon={FolderSearch}
-            title="No cases found"
-            description="We couldn't find any cases matching your current search or status filters. Try adjusting your search query."
-            actionLabel="Clear Filters"
+            title={t('cases.emptyTitle')}
+            description={t('cases.emptyDesc')}
+            actionLabel={t('cases.clearFilters')}
             onAction={() => {
               setSearch("");
               setStatusFilter("ALL");

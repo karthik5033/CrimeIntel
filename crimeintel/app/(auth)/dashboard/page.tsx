@@ -34,6 +34,8 @@ import { CrimeTrendChart } from "@/components/charts/CrimeTrendChart";
 import { LiveMap } from "@/components/dashboard/LiveMap";
 import { LiveEventFeed } from "@/components/dashboard/LiveEventFeed";
 import { PredictionEngine } from "@/lib/api/predictionEngine";
+import { EarlyWarningSection } from "@/components/dashboard/EarlyWarningSection";
+import { QuickMLBar } from "@/components/dashboard/QuickMLBar";
 import Link from "next/link";
 import { PrintButton } from "@/components/reports/PrintButton";
 import { PrintHeader } from "@/components/reports/PrintHeader";
@@ -140,9 +142,11 @@ export default function DashboardPage() {
 
   return (
     <div className="flex-1 space-y-8 p-8 pt-6 max-w-7xl mx-auto w-full print:max-w-full print:p-0">
-      <PrintHeader title="Command Center Dashboard Report" />
-      
-      <div className="flex items-center justify-between space-y-2 no-print">
+      <PrintHeader title="Command Center Dashboard" subtitle="Real-time operations overview" />
+
+      <QuickMLBar />
+
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 no-print">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{t('dashboard.title')}</h2>
           <p className="text-muted-foreground mt-1">{t('dashboard.subtitle')}</p>
@@ -153,7 +157,9 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* KPI Stats Row */}
+      <EarlyWarningSection />
+
+      {/* KPI Cards Row */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Card className="shadow-sm border-border/50 hover:shadow-md transition-shadow bg-card/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -247,7 +253,7 @@ export default function DashboardPage() {
           <div className="mt-4 p-4 border border-border/50 bg-muted/20 rounded-lg shadow-sm">
             <Button variant="outline" className="w-full text-sm" asChild>
               <Link href="/alerts">
-                View All Historical Alerts
+                {t('dashboard.viewAllAlerts')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
@@ -287,7 +293,7 @@ export default function DashboardPage() {
                 </TableRow>
               ) : (
                 recentFIRs.map((fir) => (
-                  <TableRow key={fir.id} className="hover:bg-muted/30">
+                  <TableRow key={fir.fir_no || fir.id || Math.random()} className="hover:bg-muted/30">
                     <TableCell className="font-medium">{fir.fir_no}</TableCell>
                     <TableCell>{fir.crime_type_en}</TableCell>
                     <TableCell>

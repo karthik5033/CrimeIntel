@@ -41,13 +41,13 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
 
   const filteredAndSorted = initialProfiles
     .filter((p) => {
-      const matchSearch = p.name.toLowerCase().includes(search.toLowerCase());
+      const matchSearch = (p.name || '').toLowerCase().includes(search.toLowerCase());
       const matchRole = roleFilter === "ALL" || p.role === roleFilter;
       return matchSearch && matchRole;
     })
     .sort((a, b) => {
-      let valA = a[sortField];
-      let valB = b[sortField];
+      const valA = a[sortField];
+      const valB = b[sortField];
       
       if (typeof valA === 'string' && typeof valB === 'string') {
         return sortDesc ? valB.localeCompare(valA) : valA.localeCompare(valB);
@@ -62,15 +62,15 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto p-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Offender Profiles</h1>
-          <p className="text-muted-foreground mt-1">Search and manage criminal records and suspect profiles.</p>
+          <h1 className="text-3xl font-bold text-foreground">{t('profiles.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('profiles.subtitle')}</p>
         </div>
         
         <div className="flex items-center gap-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input 
-              placeholder="Search by name..." 
+              placeholder={t('profiles.search')} 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-9 w-[250px] bg-card"
@@ -80,13 +80,13 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
           <Select value={roleFilter} onValueChange={(val) => setRoleFilter(val || "ALL")}>
             <SelectTrigger className="w-[150px] bg-card">
               <Filter className="h-4 w-4 mr-2" />
-              <SelectValue placeholder="Role" />
+              <SelectValue placeholder={t('profiles.roleLabel')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ALL">All Roles</SelectItem>
-              <SelectItem value="ACCUSED">Accused</SelectItem>
-              <SelectItem value="VICTIM">Victim</SelectItem>
-              <SelectItem value="WITNESS">Witness</SelectItem>
+              <SelectItem value="ALL">{t('profiles.roleAll')}</SelectItem>
+              <SelectItem value="ACCUSED">{t('profiles.roleAccused')}</SelectItem>
+              <SelectItem value="VICTIM">{t('profiles.roleVictim')}</SelectItem>
+              <SelectItem value="WITNESS">{t('profiles.roleWitness')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -97,18 +97,18 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
           <TableHeader className="bg-muted/50">
             <TableRow>
               <TableHead onClick={() => handleSort("name")} className="cursor-pointer hover:bg-muted/80">
-                <div className="flex items-center gap-2">Name <ArrowUpDown className="h-3 w-3" /></div>
+                <div className="flex items-center gap-2">{t('profiles.name')} <ArrowUpDown className="h-3 w-3" /></div>
               </TableHead>
               <TableHead onClick={() => handleSort("age")} className="cursor-pointer hover:bg-muted/80 w-24">
-                <div className="flex items-center gap-2">Age <ArrowUpDown className="h-3 w-3" /></div>
+                <div className="flex items-center gap-2">{t('profiles.age')} <ArrowUpDown className="h-3 w-3" /></div>
               </TableHead>
-              <TableHead>Gender</TableHead>
-              <TableHead>Role</TableHead>
+              <TableHead>{t('profiles.gender')}</TableHead>
+              <TableHead>{t('profiles.roleLabel')}</TableHead>
               <TableHead onClick={() => handleSort("fir_count")} className="cursor-pointer hover:bg-muted/80">
-                <div className="flex items-center gap-2">FIRs Linked <ArrowUpDown className="h-3 w-3" /></div>
+                <div className="flex items-center gap-2">{t('profiles.firsLinked')} <ArrowUpDown className="h-3 w-3" /></div>
               </TableHead>
               <TableHead onClick={() => handleSort("risk_score")} className="cursor-pointer hover:bg-muted/80 text-right">
-                <div className="flex items-center justify-end gap-2">Risk Score <ArrowUpDown className="h-3 w-3" /></div>
+                <div className="flex items-center justify-end gap-2">{t('profiles.riskScore')} <ArrowUpDown className="h-3 w-3" /></div>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -119,12 +119,14 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
                 className="cursor-pointer hover:bg-accent/10 transition-colors"
                 onClick={() => router.push(`/profiles/${person.id}`)}
               >
-                <TableCell className="font-medium text-foreground">{maskName(person.name, role)}</TableCell>
+                <TableCell className="font-medium text-foreground">{maskName(person.name || 'Unknown', role)}</TableCell>
                 <TableCell className="text-muted-foreground">{person.age}</TableCell>
                 <TableCell className="text-muted-foreground">{person.gender}</TableCell>
                 <TableCell>
                   <Badge variant={person.role === "ACCUSED" ? "destructive" : person.role === "VICTIM" ? "default" : "secondary"}>
-                    {person.role}
+                    {person.role === "ACCUSED" ? t('profiles.roleAccused') :
+                     person.role === "VICTIM" ? t('profiles.roleVictim') :
+                     person.role === "WITNESS" ? t('profiles.roleWitness') : person.role}
                   </Badge>
                 </TableCell>
                 <TableCell>
@@ -150,12 +152,12 @@ export function ClientProfilesList({ initialProfiles }: { initialProfiles: Perso
         
         {filteredAndSorted.length > 50 && (
           <div className="p-4 text-center border-t border-border text-sm text-muted-foreground bg-muted/20">
-            Showing top 50 of {filteredAndSorted.length} matching profiles
+            {t('profiles.showingTop').replace('{count}', String(filteredAndSorted.length))}
           </div>
         )}
         {filteredAndSorted.length === 0 && (
           <div className="p-12 text-center text-muted-foreground">
-            No profiles found matching your search.
+            {t('profiles.emptyMessage')}
           </div>
         )}
       </div>

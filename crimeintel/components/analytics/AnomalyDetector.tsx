@@ -15,23 +15,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { AlertTriangle, TrendingUp } from 'lucide-react';
 import { ExplainabilityBadge } from '@/components/ui/explainability-badge';
 
-// Synthetic Time-Series Data with Anomalies
-const anomalyData = [
-  { date: '2023-01', incidents: 120 },
-  { date: '2023-02', incidents: 125 },
-  { date: '2023-03', incidents: 118 },
-  { date: '2023-04', incidents: 132 },
-  { date: '2023-05', incidents: 128 },
-  { date: '2023-06', incidents: 195, isAnomaly: true }, // Spike
-  { date: '2023-07', incidents: 135 },
-  { date: '2023-08', incidents: 140 },
-  { date: '2023-09', incidents: 138 },
-  { date: '2023-10', incidents: 210, isAnomaly: true }, // Spike
-  { date: '2023-11', incidents: 145 },
-  { date: '2023-12', incidents: 150 },
-];
+import { Loader2 } from 'lucide-react';
 
 export function AnomalyDetector() {
+  const [anomalyData, setAnomalyData] = React.useState<any[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [detectedSpikes, setDetectedSpikes] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    fetch('/api/analytics/anomalies')
+      .then(res => res.json())
+      .then(data => {
+        setAnomalyData(data);
+        setDetectedSpikes(data.filter((d: any) => d.isAnomaly));
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <Card className="col-span-1 lg:col-span-2">
@@ -41,36 +44,46 @@ export function AnomalyDetector() {
         </CardHeader>
         <CardContent>
           <div className="h-[350px] w-full mt-4">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={anomalyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis dataKey="date" className="text-xs" />
-                <YAxis className="text-xs" />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: 'var(--card)', borderColor: 'var(--border)', borderRadius: '6px' }}
-                  itemStyle={{ color: 'var(--foreground)' }}
-                />
-                
-                {/* Highlight Anomalies */}
-                <ReferenceArea x1="2023-05" x2="2023-07" fill="hsl(var(--destructive))" fillOpacity={0.15} />
-                <ReferenceArea x1="2023-09" x2="2023-11" fill="hsl(var(--destructive))" fillOpacity={0.15} />
-
-                <Line 
-                  type="monotone" 
-                  dataKey="incidents" 
-                  stroke="hsl(var(--primary))" 
-                  strokeWidth={2}
-                  activeDot={{ r: 8 }} 
-                  dot={(props: any) => {
-                    const { cx, cy, payload } = props;
-                    if (payload.isAnomaly) {
-                      return <circle cx={cx} cy={cy} r={6} fill="hsl(var(--destructive))" stroke="white" strokeWidth={2} />;
-                    }
-                    return <circle cx={cx} cy={cy} r={4} fill="hsl(var(--primary))" stroke="none" />;
-                  }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            {loading ? (
+              <div className="flex h-full items-center justify-center">
+                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={anomalyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <XAxis dataKey="date" className="text-xs" />
+                  <YAxis className="text-xs" />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: 'var(--card)', borderColor: 'var(--border)', borderRadius: '6px' }}
+                    itemStyle={{ color: 'var(--foreground)' }}
+                  />
+                  
+                  {/* Highlight Anomalies Dynamically */}
+                  {detectedSpikes.map((spike, idx) => {
+                     // Very simple highlight logic for the month
+                     return (
+                       <ReferenceArea key={idx} x1={spike.date} x2={spike.date} fill="hsl(var(--destructive))" fillOpacity={0.15} />
+                     );
+                  })}
+  
+                  <Line 
+                    type="monotone" 
+                    dataKey="incidents" 
+                    stroke="hsl(var(--primary))" 
+                    strokeWidth={2}
+                    activeDot={{ r: 8 }} 
+                    dot={(props: any) => {
+                      const { cx, cy, payload } = props;
+                      if (payload.isAnomaly) {
+                        return <circle key={`dot-${payload.date}`} cx={cx} cy={cy} r={6} fill="hsl(var(--destructive))" stroke="white" strokeWidth={2} />;
+                      }
+                      return <circle key={`dot-${payload.date}`} cx={cx} cy={cy} r={4} fill="hsl(var(--primary))" stroke="none" />;
+                    }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -86,32 +99,30 @@ export function AnomalyDetector() {
               <ExplainabilityBadge 
                 data={{
                   confidence: 94,
-                  mechanism: "CUSUM Change-Point Detection and Z-Score thresholding over 12-month rolling window.",
-                  dataSources: ["Live FIR Database", "Historical Crime Records"],
+                  mechanism: "Z-Score thresholding (|z| > 1.5) over real monthly FIR counts from FIRs.json date field.",
+                  dataSources: ["FIRs.json (Catalyst DataStore)"],
                 }}
               />
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-3 bg-card rounded-md shadow-sm border border-border">
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-semibold text-sm">October 2023</span>
-                <span className="text-xs font-bold text-destructive">+48% Dev</span>
+            {detectedSpikes.length > 0 ? detectedSpikes.map((spike, idx) => (
+              <div key={idx} className="p-3 bg-card rounded-md shadow-sm border border-border">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-sm">{spike.date}</span>
+                  <span className="text-xs font-bold text-destructive">Z={spike.zScore}</span>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {spike.incidents} incidents this month — statistically significant spike detected (Z-Score: {spike.zScore}).
+                </p>
               </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Statistically significant spike in property crimes detected. The anomaly correlates with the festival season (Dasara), matching historical patterns but exceeding expected thresholds.
-              </p>
-            </div>
-            
-            <div className="p-3 bg-card rounded-md shadow-sm border border-border">
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-semibold text-sm">June 2023</span>
-                <span className="text-xs font-bold text-destructive">+32% Dev</span>
+            )) : (
+              <div className="p-3 bg-card rounded-md shadow-sm border border-border">
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  No statistically significant anomalies detected in the current window.
+                </p>
               </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Unseasonal spike in cyber fraud incidents. Analysis attributes this to a localized phishing campaign targeting educational institutions during admission season.
-              </p>
-            </div>
+            )}
           </CardContent>
         </Card>
         
@@ -124,7 +135,10 @@ export function AnomalyDetector() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              Offender behavioral shift detected: <strong className="text-foreground">Gang Alpha</strong> historically operated between 01:00-04:00. Recent associated FIRs in Oct 2023 show operations shifting to 14:00-16:00.
+              {detectedSpikes.length > 0
+                ? `${detectedSpikes.length} anomalous month(s) detected across the FIR timeline. Months with Z-Scores exceeding ±1.5 suggest unusual surges or drops in filing activity worth investigating for root-cause patterns.`
+                : 'No behavioral anomalies detected. Monthly FIR volumes remain within expected statistical bounds.'
+              }
             </p>
           </CardContent>
         </Card>

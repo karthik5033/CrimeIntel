@@ -77,7 +77,7 @@ export default function ChatPage() {
       // The API should take ~4 seconds to return to simulate thinking
       updateLastMessage({
         isThinking: false,
-        content: data.text_summary || "I couldn't process that query.",
+        content: data.text_summary || t('chat.errorProcess'),
         tableData: data.data_table,
         reasoningBlock: data.reasoning_block,
         ragContext: data.rag_context,
@@ -87,7 +87,7 @@ export default function ChatPage() {
       console.error(error);
       updateLastMessage({
         isThinking: false,
-        content: "Sorry, I encountered an error connecting to the intelligence engine."
+        content: t('chat.errorConnect')
       });
     } finally {
       setIsProcessing(false);
@@ -123,7 +123,7 @@ export default function ChatPage() {
             >
               <div className="flex items-center gap-2 truncate">
                 <MessageSquare className="h-4 w-4 flex-shrink-0" />
-                <span className="text-sm truncate">{session.title}</span>
+                <span className="text-sm truncate">{session.title === 'New Investigation' ? t('chat.newInvestigation') : session.title}</span>
               </div>
               <button 
                 onClick={(e) => { e.stopPropagation(); deleteSession(session.id); }}
@@ -148,7 +148,7 @@ export default function ChatPage() {
               <SidebarIcon className="h-5 w-5" />
             </button>
             <h1 className="font-semibold text-foreground truncate">
-              {activeSession?.title || t('chat.newInvestigation')}
+              {activeSession?.title === 'New Investigation' ? t('chat.newInvestigation') : (activeSession?.title || t('chat.newInvestigation'))}
             </h1>
           </div>
           <div className="flex items-center gap-2">
@@ -157,7 +157,7 @@ export default function ChatPage() {
               className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground bg-secondary/50 hover:bg-secondary rounded-md transition-colors"
             >
               <FileDown className="h-4 w-4" />
-              Export PDF
+              {t('chat.exportPdf')}
             </button>
             <button 
               onClick={() => setRightOpen(!rightOpen)}
@@ -170,7 +170,7 @@ export default function ChatPage() {
 
         {/* Chat Messages */}
         <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-20 scroll-smooth bg-background print:overflow-visible print:h-auto">
-          <PrintHeader title={`Conversation Transcript: ${activeSession?.title || 'Investigation'}`} />
+          <PrintHeader title={`${t('chat.transcript')} ${activeSession?.title || 'Investigation'}`} />
           <div className="max-w-4xl mx-auto print:max-w-full">
             {!activeSession?.messages.length ? (
               <div className="flex flex-col items-center justify-center h-[50vh] text-center space-y-4">

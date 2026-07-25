@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { AuditLogger, AuditLogEntry } from "@/lib/api/auditLogger";
 import { ShieldCheck, Search, Filter, Download, FileText, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +21,7 @@ export default function AuditDashboard() {
   const [logs, setLogs] = useState<AuditLogEntry[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLog, setSelectedLog] = useState<AuditLogEntry | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Initial load
@@ -69,15 +71,15 @@ export default function AuditDashboard() {
             <div className="flex-1">
               <h1 className="text-2xl font-bold text-foreground flex items-center gap-2 ">
                 <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
-                <span>System Governance & Audit Trail</span>
+                <span>{t('audit.title')}</span>
               </h1>
               <p className="text-muted-foreground mt-1 text-sm max-w-2xl">
-                Immutable record of all system queries, data access, and AI operations.
+                {t('audit.subtitle')}
               </p>
             </div>
             <Button onClick={handleGenerateReport} className="gap-2 shrink-0">
               <FileText className="w-4 h-4" />
-              Generate Compliance Report
+              {t('audit.generateReport')}
             </Button>
           </div>
 
@@ -85,7 +87,7 @@ export default function AuditDashboard() {
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input 
-                placeholder="Search logs by user, event, or details..."
+                placeholder={t('audit.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-9 bg-background"
@@ -93,10 +95,10 @@ export default function AuditDashboard() {
             </div>
             <Button variant="outline" className="gap-2">
               <Filter className="w-4 h-4" />
-              Filters
+              {t('audit.filters')}
             </Button>
             <Button variant="outline" className="gap-2" onClick={() => AuditLogger.clearLogs()}>
-              Clear (Dev Only)
+              {t('audit.clear')}
             </Button>
           </div>
         </div>
@@ -105,10 +107,10 @@ export default function AuditDashboard() {
           <Table>
             <TableHeader className="bg-muted/50 sticky top-0 z-10">
               <TableRow>
-                <TableHead>Timestamp</TableHead>
-                <TableHead>Event Type</TableHead>
-                <TableHead>User / Role</TableHead>
-                <TableHead>IP / Session</TableHead>
+                <TableHead>{t('audit.colTimestamp')}</TableHead>
+                <TableHead>{t('audit.colEventType')}</TableHead>
+                <TableHead>{t('audit.colUserRole')}</TableHead>
+                <TableHead>{t('audit.colIpSession')}</TableHead>
                 <TableHead className="w-[50px]"></TableHead>
               </TableRow>
             </TableHeader>
@@ -116,7 +118,7 @@ export default function AuditDashboard() {
               {filteredLogs.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={5} className="text-center h-32 text-muted-foreground">
-                    No audit logs found. Interact with the system to generate logs.
+                    {t('audit.noLogs')}
                   </TableCell>
                 </TableRow>
               ) : (
@@ -156,42 +158,42 @@ export default function AuditDashboard() {
       {selectedLog ? (
         <div className="w-[400px] flex-shrink-0 bg-card overflow-y-auto border-l border-border/50 animate-in slide-in-from-right-8 duration-300">
           <div className="p-6 border-b border-border/50 sticky top-0 bg-card z-10 flex items-center justify-between">
-            <h2 className="font-semibold text-lg">Log Details</h2>
+            <h2 className="font-semibold text-lg">{t('audit.logDetails')}</h2>
             <Badge variant="outline" className="font-mono text-xs">{selectedLog.id}</Badge>
           </div>
           
           <div className="p-6 space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">Event Type</div>
+                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">{t('audit.eventType')}</div>
                 <Badge variant="outline" className={getEventBadgeColor(selectedLog.event_type)}>
                   {selectedLog.event_type}
                 </Badge>
               </div>
               <div>
-                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">Timestamp</div>
+                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">{t('audit.timestamp')}</div>
                 <div className="text-sm font-mono">{format(new Date(selectedLog.timestamp), "yyyy-MM-dd HH:mm:ss")}</div>
               </div>
               <div>
-                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">User ID</div>
+                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">{t('audit.userId')}</div>
                 <div className="text-sm font-mono">{selectedLog.user_id}</div>
               </div>
               <div>
-                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">Role</div>
+                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">{t('audit.role')}</div>
                 <div className="text-sm">{selectedLog.user_role}</div>
               </div>
               <div>
-                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">IP Address</div>
+                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">{t('audit.ipAddress')}</div>
                 <div className="text-sm font-mono">{selectedLog.ip_address}</div>
               </div>
               <div>
-                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">Session</div>
+                <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-1">{t('audit.session')}</div>
                 <div className="text-sm font-mono text-muted-foreground">{selectedLog.session_id}</div>
               </div>
             </div>
 
             <div>
-              <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-2">Event Payload (JSON)</div>
+              <div className="text-xs text-muted-foreground uppercase font-semibold tracking-wider mb-2">{t('audit.eventPayload')}</div>
               <div className="bg-slate-950 p-4 rounded-lg overflow-x-auto border border-slate-800">
                 <pre className="text-emerald-400 font-mono text-xs leading-relaxed">
                   {JSON.stringify(selectedLog.details, null, 2)}
@@ -202,10 +204,10 @@ export default function AuditDashboard() {
             {selectedLog.event_type === "REASONING" && (
               <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-4">
                 <h3 className="text-purple-600 font-semibold mb-2 flex items-center gap-2">
-                  <span className="text-lg">🧠</span> AI Explainability Trace
+                  <span className="text-lg">🧠</span> {t('audit.aiTraceTitle')}
                 </h3>
                 <p className="text-sm text-slate-700 dark:text-slate-300">
-                  This log contains a full deterministic trace of the model's reasoning chain, compatible with external auditing tools for bias and accuracy evaluation.
+                  {t('audit.aiTraceDesc')}
                 </p>
               </div>
             )}
@@ -215,7 +217,7 @@ export default function AuditDashboard() {
         <div className="w-[400px] flex-shrink-0 bg-muted/30 flex items-center justify-center border-l border-border/50">
           <div className="text-center p-8 text-muted-foreground">
             <ShieldCheck className="w-12 h-12 mx-auto mb-4 opacity-20" />
-            <p>Select an audit log entry to view full cryptographic details and reasoning traces.</p>
+            <p>{t('audit.selectLog')}</p>
           </div>
         </div>
       )}

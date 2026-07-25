@@ -65,7 +65,7 @@ export function GraphSidebar({ selectedNode, leads, onCloseNode, onLeadClick, no
                 </h4>
                 <textarea
                   className="w-full min-h-[120px] p-2 text-sm bg-background border border-border rounded-md resize-y focus:outline-none focus:ring-1 focus:ring-primary"
-                  placeholder="Add your notes about this entity here..."
+                  placeholder={t('network.addNotePlaceholder')}
                   value={nodeNote || ''}
                   onChange={(e) => onUpdateNote(e.target.value)}
                 />
@@ -134,7 +134,7 @@ export function GraphSidebar({ selectedNode, leads, onCloseNode, onLeadClick, no
                 ))}
                 
                 {leads.length === 0 && (
-                  <p className="text-xs text-muted-foreground italic">No leads detected in current graph view.</p>
+                  <p className="text-xs text-muted-foreground italic">{t('network.noLeadsDetected')}</p>
                 )}
               </div>
             </div>

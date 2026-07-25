@@ -40,7 +40,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         {payload.map((entry: any, index: number) => {
           if (entry.dataKey === 'anomaly' && !entry.value) return null;
           
-          let displayName = entry.name;
+          const displayName = entry.name;
           let color = entry.color;
           if (entry.dataKey === 'anomaly') {
             color = "var(--destructive)";

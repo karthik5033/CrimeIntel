@@ -67,4 +67,5 @@ export const ServerDataLoader = {
 
   getSocioEconomicData: () => queryTable('SocioEconomicData'),
   getTransactions: () => queryTable('Transactions'),
+  getAuditLogs: () => queryTable('AuditLogs'),
 };
