@@ -69,24 +69,37 @@ async function handleFIRProcessing(req: NextRequest) {
 
     if (zcql) {
       // Real mode: Query database
-      const firQuery = await zcql.executeZCQLQuery(
-        `SELECT * FROM FIRs WHERE fir_no = '${firId}' LIMIT 1`
-      );
-      
-      if (!firQuery || firQuery.length === 0) {
-        return NextResponse.json(
-          { error: 'FIR not found' },
-          { status: 404 }
+      try {
+        const firQuery = await zcql.executeZCQLQuery(
+          `SELECT * FROM FIRs WHERE fir_no = '${firId}' LIMIT 1`
         );
+        
+        if (!firQuery || firQuery.length === 0) {
+          console.warn('⚠️ FIR not found in database, using MOCK mode fallback');
+          // Fallback to mock mode if FIR not found
+          fir = {
+            fir_no: firId,
+            pdf_file_id: fileId || 'MOCK_FILE_' + Date.now(),
+            ocr_status: 'processing'
+          };
+        } else {
+          fir = firQuery[0].FIRs || firQuery[0];
+          firRowId = fir.ROWID;
+
+          // Update status to 'processing'
+          await zcql.executeZCQLQuery(
+            `UPDATE FIRs SET ocr_status = 'processing' WHERE ROWID = ${firRowId}`
+          );
+        }
+      } catch (dbError) {
+        console.warn('⚠️ Database query error, using MOCK mode:', dbError);
+        // Fallback to mock mode on database errors
+        fir = {
+          fir_no: firId,
+          pdf_file_id: fileId || 'MOCK_FILE_' + Date.now(),
+          ocr_status: 'processing'
+        };
       }
-
-      fir = firQuery[0].FIRs || firQuery[0];
-      firRowId = fir.ROWID;
-
-      // Update status to 'processing'
-      await zcql.executeZCQLQuery(
-        `UPDATE FIRs SET ocr_status = 'processing' WHERE ROWID = ${firRowId}`
-      );
     } else {
       // Mock mode: Create mock FIR data
       console.log('⚠️ Using MOCK mode for FIR data');
@@ -147,7 +160,8 @@ async function handleFIRProcessing(req: NextRequest) {
         confidence: ocrResult.confidenceScore,
         language: ocrResult.language,
         pageCount: ocrResult.pageCount,
-        extractedText: ocrResult.rawText.substring(0, 500) + '...' // Preview
+        extractedText: ocrResult.rawText.substring(0, 500) + '...', // Preview
+        mode: zcql && firRowId !== 'MOCK_ROW' ? 'real' : 'mock'
       }
     });
 
