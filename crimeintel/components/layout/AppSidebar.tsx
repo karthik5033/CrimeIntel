@@ -90,7 +90,7 @@ export function AppSidebar() {
         </div>
         {navItems.map((item) => {
           const isActive = pathname?.startsWith(item.href);
-          const name = t(item.key as any) || item.label;
+          const name = t(item.key as any) || item.key;
           return (
             <Link
               key={item.key}

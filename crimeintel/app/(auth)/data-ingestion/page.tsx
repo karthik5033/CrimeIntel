@@ -513,11 +513,11 @@ export default function DataIngestionPage() {
                     {processingResult.ocr && (
                       <li>{t('dataIngestion.extractedChars').replace('{count}', processingResult.ocr.data.textLength)}</li>
                     )}
-                    {processingResult.extract && (
+                    {processingResult.extraction && (
                       <li>{t('dataIngestion.foundEntities')
-                            .replace('{persons}', processingResult.extract.data.entities.persons)
-                            .replace('{vehicles}', processingResult.extract.data.entities.vehicles)
-                            .replace('{phones}', processingResult.extract.data.entities.phones)}</li>
+                            .replace('{persons}', (processingResult.extraction.stats?.extraction?.personsCount || 0).toString())
+                            .replace('{vehicles}', (processingResult.extraction.stats?.extraction?.vehiclesCount || 0).toString())
+                            .replace('{phones}', (processingResult.extraction.stats?.extraction?.phonesCount || 0).toString())}</li>
                     )}
                     {processingResult.graph && (
                       <li>{t('dataIngestion.builtGraph').replace('{count}', processingResult.graph.data.relationshipsCreated)}</li>
