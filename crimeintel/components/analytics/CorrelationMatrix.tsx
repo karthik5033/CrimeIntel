@@ -16,28 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ExplainabilityBadge } from '@/components/ui/explainability-badge';
 import { useLanguage } from '@/lib/LanguageContext';
 
-const correlationData = {
-  unemployment: [
-    { district: "Bengaluru Central", value: 6.2, crimeRate: 450, population: 2000000 },
-    { district: "Mysuru", value: 5.1, crimeRate: 310, population: 1200000 },
-    { district: "Hubballi-Dharwad", value: 7.4, crimeRate: 380, population: 950000 },
-    { district: "Mangaluru", value: 4.8, crimeRate: 290, population: 700000 },
-    { district: "Belagavi", value: 8.1, crimeRate: 410, population: 650000 },
-    { district: "Kalaburagi", value: 9.5, crimeRate: 520, population: 550000 },
-    { district: "Davangere", value: 6.8, crimeRate: 340, population: 450000 },
-    { district: "Ballari", value: 7.9, crimeRate: 460, population: 410000 },
-  ],
-  literacy: [
-    { district: "Bengaluru Central", value: 87.6, crimeRate: 450, population: 2000000 },
-    { district: "Mysuru", value: 82.8, crimeRate: 310, population: 1200000 },
-    { district: "Hubballi-Dharwad", value: 86.7, crimeRate: 380, population: 950000 },
-    { district: "Mangaluru", value: 94.0, crimeRate: 290, population: 700000 },
-    { district: "Belagavi", value: 73.4, crimeRate: 410, population: 650000 },
-    { district: "Kalaburagi", value: 64.8, crimeRate: 520, population: 550000 },
-    { district: "Davangere", value: 75.7, crimeRate: 340, population: 450000 },
-    { district: "Ballari", value: 67.4, crimeRate: 460, population: 410000 },
-  ]
-};
+import { Loader2 } from 'lucide-react';
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
@@ -46,7 +25,7 @@ const CustomTooltip = ({ active, payload }: any) => {
       <div className="bg-card border border-border p-3 rounded-md shadow-lg text-sm">
         <p className="font-bold mb-1">{data.district}</p>
         <p><span className="text-muted-foreground">Factor Value:</span> <span className="font-medium">{data.value}%</span></p>
-        <p><span className="text-muted-foreground">Crime Rate:</span> <span className="font-medium">{data.crimeRate} / 100k</span></p>
+        <p><span className="text-muted-foreground">FIR Count:</span> <span className="font-medium">{data.crimeRate}</span></p>
       </div>
     );
   }
@@ -55,8 +34,24 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 export function CorrelationMatrix() {
   const [factor, setFactor] = useState<'unemployment' | 'literacy'>('unemployment');
-  const data = correlationData[factor];
+  const [correlationData, setCorrelationData] = useState<any>({ unemployment: [], literacy: [] });
+  const [loading, setLoading] = useState(true);
   const { t } = useLanguage();
+
+  React.useEffect(() => {
+    fetch('/api/analytics/correlations')
+      .then(res => res.json())
+      .then(data => {
+        setCorrelationData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  const data = correlationData[factor] || [];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -78,30 +73,36 @@ export function CorrelationMatrix() {
         </CardHeader>
         <CardContent>
           <div className="h-[400px] w-full mt-4">
-            <ResponsiveContainer width="100%" height="100%">
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis 
-                  type="number" 
-                  dataKey="value" 
-                  name={factor} 
-                  unit="%" 
-                  domain={['auto', 'auto']}
-                  className="text-xs"
-                />
-                <YAxis 
-                  type="number" 
-                  dataKey="crimeRate" 
-                  name="Crime Rate" 
-                  domain={['auto', 'auto']}
-                  className="text-xs"
-                  label={{ value: t('analytics.yAxis'), angle: -90, position: 'insideLeft', offset: -10, style: { fontSize: '12px', fill: 'currentColor' } }}
-                />
-                <ZAxis type="number" dataKey="population" range={[50, 400]} />
-                <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
-                <Scatter name="Districts" data={data} fill="hsl(var(--primary))" opacity={0.7} />
-              </ScatterChart>
-            </ResponsiveContainer>
+            {loading ? (
+              <div className="flex h-full items-center justify-center">
+                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <XAxis 
+                    type="number" 
+                    dataKey="value" 
+                    name={factor} 
+                    unit="%" 
+                    domain={['auto', 'auto']}
+                    className="text-xs"
+                  />
+                  <YAxis 
+                    type="number" 
+                    dataKey="crimeRate" 
+                    name="FIR Count" 
+                    domain={['auto', 'auto']}
+                    className="text-xs"
+                    label={{ value: 'FIR Count', angle: -90, position: 'insideLeft', offset: -10, style: { fontSize: '12px', fill: 'currentColor' } }}
+                  />
+                  <ZAxis type="number" dataKey="population" range={[50, 400]} />
+                  <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
+                  <Scatter name="Districts" data={data} fill="hsl(var(--primary))" opacity={0.7} />
+                </ScatterChart>
+              </ResponsiveContainer>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -113,9 +114,9 @@ export function CorrelationMatrix() {
             <ExplainabilityBadge 
               data={{
                 confidence: 88,
-                mechanism: "Linear Regression Analysis across 30 districts over the past 5 years.",
-                dataSources: ["National Crime Records Bureau (NCRB)", "Census 2011", "State Economic Survey 2024"],
-                alternatives: ["Correlation may be skewed by reporting biases in highly educated districts (where literacy correlates with higher reporting rates, not necessarily higher actual crime)."]
+                mechanism: "Scatter analysis across Karnataka districts using real FIR counts joined with SocioEconomicData seed.",
+                dataSources: ["FIRs.json (Catalyst DataStore)", "SocioEconomicData.json", "PoliceStations.json"],
+                alternatives: ["Only 5 districts have socio-economic data in the current seed. Correlation accuracy improves as more district-level metrics are added."]
               }}
             />
           </div>

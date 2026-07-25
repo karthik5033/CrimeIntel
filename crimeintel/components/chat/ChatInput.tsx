@@ -192,7 +192,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
                 ? 'text-destructive bg-destructive/10 hover:bg-destructive/20' 
                 : 'text-muted-foreground hover:text-primary hover:bg-primary/10'
             }`}
-            title={isListening ? t('chat.stopListening') : "Voice Input"}
+            title={isListening ? t('chat.stopListening') : t('chat.voiceInput')}
           >
             {isListening && (
               <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-destructive animate-ping"></span>

@@ -69,7 +69,7 @@ export class SearchService {
     console.log('🔍 Starting unified search:', query);
 
     const searchMethods: string[] = [];
-    let allResults: SearchResult[] = [];
+    const allResults: SearchResult[] = [];
 
     try {
       // 1. Full-text search (always included)

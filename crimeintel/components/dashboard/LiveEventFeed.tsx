@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Activity, AlertTriangle, FileText, CheckCircle, ShieldAlert } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/lib/LanguageContext';
 
 export interface CrimeEvent {
   id: string;
@@ -14,6 +15,7 @@ export interface CrimeEvent {
 export function LiveEventFeed() {
   const [events, setEvents] = useState<CrimeEvent[]>([]);
   const [isConnected, setIsConnected] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const eventSource = new EventSource('/api/events');
@@ -53,12 +55,29 @@ export function LiveEventFeed() {
     }
   };
 
+  const getTranslatedMessage = (evt: CrimeEvent) => {
+    const loc = t(`location.${evt.location}` as any) || evt.location;
+    switch (evt.type) {
+      case 'FIR_CREATED':
+        return t('dashboard.events.firCreated').replace('{location}', loc);
+      case 'ALERT_TRIGGERED':
+        return t('dashboard.events.alertTriggered').replace('{location}', loc);
+      case 'SUSPECT_SPOTTED':
+        return t('dashboard.events.suspectSpotted').replace('{location}', loc);
+      case 'CASE_CLOSED':
+        const caseId = evt.id.replace('evt_', '').toUpperCase();
+        return t('dashboard.events.caseClosed').replace('{location}', loc).replace('{id}', caseId);
+      default:
+        return evt.message;
+    }
+  };
+
   return (
     <div className="w-full bg-card border border-border rounded-lg shadow-sm overflow-hidden flex flex-col h-[300px]">
       <div className="p-3 border-b border-border bg-muted/30 flex items-center justify-between sticky top-0 z-10">
         <h3 className="text-sm font-semibold text-foreground flex items-center">
           <Activity className="w-4 h-4 mr-2 text-primary" />
-          Live Event Feed
+          {t('dashboard.liveFeed')}
         </h3>
         <div className="flex items-center gap-2">
           <span className="relative flex h-2.5 w-2.5">
@@ -66,7 +85,7 @@ export function LiveEventFeed() {
             <span className={cn("relative inline-flex rounded-full h-2.5 w-2.5", isConnected ? "bg-success" : "bg-muted-foreground")}></span>
           </span>
           <span className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">
-            {isConnected ? 'Live' : 'Offline'}
+            {isConnected ? t('dashboard.live') : t('dashboard.offline')}
           </span>
         </div>
       </div>
@@ -75,7 +94,7 @@ export function LiveEventFeed() {
         <AnimatePresence initial={false}>
           {events.length === 0 && (
             <div className="h-full flex items-center justify-center text-sm text-muted-foreground italic">
-              Waiting for incoming signals...
+              {t('dashboard.waitingSignals')}
             </div>
           )}
           {events.map((evt) => (
@@ -91,9 +110,9 @@ export function LiveEventFeed() {
                 {getEventIcon(evt.type)}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-foreground truncate">{evt.message}</p>
+                <p className="text-sm font-medium text-foreground truncate">{getTranslatedMessage(evt)}</p>
                 <div className="flex items-center justify-between mt-1">
-                  <span className="text-[10px] text-muted-foreground uppercase">{evt.location}</span>
+                  <span className="text-[10px] text-muted-foreground uppercase">{t(`location.${evt.location}` as any) || evt.location}</span>
                   <span className="text-[10px] text-muted-foreground">
                     {new Date(evt.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                   </span>

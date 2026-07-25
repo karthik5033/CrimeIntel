@@ -12,9 +12,9 @@ export class ReasoningEngine {
     const lowerQuery = query.toLowerCase();
     
     let claim = "Analysis complete based on provided context.";
-    let mechanisms: Mechanism[] = [];
-    let evidence: Evidence[] = [];
-    let alternatives: AlternativeHypothesis[] = [];
+    const mechanisms: Mechanism[] = [];
+    const evidence: Evidence[] = [];
+    const alternatives: AlternativeHypothesis[] = [];
     let confidence: ConfidenceScore = {
       level: 'Low',
       score: 30,

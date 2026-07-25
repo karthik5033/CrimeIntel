@@ -29,7 +29,7 @@ async function loadAllData() {
   try {
     // 1. Load Police Stations
     console.log('📍 Loading Police Stations...');
-    await CatalystDataStore.insertPoliceStations?.(policeStationsSeed);
+    await (CatalystDataStore as any).insertPoliceStations?.(policeStationsSeed);
     console.log(`✅ Loaded ${policeStationsSeed.length} police stations\n`);
     
     // 2. Load FIRs

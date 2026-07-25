@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { User, Bell, Shield, Palette, Key, ShieldAlert } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
+import { useLanguage } from "@/lib/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -10,15 +11,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState("profile");
   const { role, user, userId } = useAuth();
+  const { t } = useLanguage();
   const displayName = user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() : 'Loading...';
 
   return (
     <div className="flex flex-col h-full bg-background overflow-hidden">
       <main className="flex-1 overflow-y-auto p-6 lg:p-8 max-w-6xl mx-auto w-full">
         <div className="flex flex-col gap-2 mb-8">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">Settings</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">{t('settings.title')}</h1>
           <p className="text-sm text-muted-foreground">
-            Manage your account settings, preferences, and security configurations.
+            {t('settings.subtitle')}
           </p>
         </div>
 
@@ -35,7 +37,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <User className="w-4 h-4" />
-                Profile Information
+                {t('settings.tabProfile')}
               </button>
               <button
                 onClick={() => setActiveTab("appearance")}
@@ -46,7 +48,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <Palette className="w-4 h-4" />
-                Appearance
+                {t('settings.tabAppearance')}
               </button>
               <button
                 onClick={() => setActiveTab("notifications")}
@@ -57,7 +59,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <Bell className="w-4 h-4" />
-                Notifications
+                {t('settings.tabNotifications')}
               </button>
               <button
                 onClick={() => setActiveTab("security")}
@@ -68,7 +70,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <Shield className="w-4 h-4" />
-                Security & Access
+                {t('settings.tabSecurity')}
               </button>
             </nav>
           </aside>
@@ -79,37 +81,37 @@ export default function SettingsPage() {
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Profile Details</CardTitle>
+                    <CardTitle>{t('settings.profileTitle')}</CardTitle>
                     <CardDescription>
-                      This information will be displayed on your audit logs and reports.
+                      {t('settings.profileDesc')}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-sm font-medium">Full Name</label>
+                        <label className="text-sm font-medium">{t('settings.fullName')}</label>
                         <Input value={displayName} readOnly />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium">Badge Number</label>
+                        <label className="text-sm font-medium">{t('settings.badgeNumber')}</label>
                         <Input value={`KA-${userId}`} disabled />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">Email Address</label>
+                      <label className="text-sm font-medium">{t('settings.email')}</label>
                       <Input value={user?.email || 'Loading...'} readOnly />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">Current Role</label>
+                      <label className="text-sm font-medium">{t('settings.currentRole')}</label>
                       <div className="flex items-center gap-2 px-3 py-2 bg-muted/50 rounded-md border text-sm font-medium text-foreground">
                         <ShieldAlert className="w-4 h-4 text-primary" />
                         {role}
                       </div>
-                      <p className="text-xs text-muted-foreground">Your role is managed by the central AD system.</p>
+                      <p className="text-xs text-muted-foreground">{t('settings.roleDesc')}</p>
                     </div>
                   </CardContent>
                   <CardFooter className="border-t px-6 py-4">
-                    <Button>Save Changes</Button>
+                    <Button>{t('settings.saveChanges')}</Button>
                   </CardFooter>
                 </Card>
               </div>

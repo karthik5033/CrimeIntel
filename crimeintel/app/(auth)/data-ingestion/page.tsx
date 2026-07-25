@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useCallback } from "react";
-import { UploadCloud, FileText, Database, ArrowRight, CheckCircle2, ShieldAlert, Loader2, Clock, Eye, Trash2, XCircle, AlertCircle, CheckCircle } from "lucide-react";
+import { UploadCloud, FileText, Database, ArrowRight, CheckCircle2, ShieldAlert, Loader2, Clock, Eye, Trash2, XCircle, AlertCircle, CheckCircle, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,8 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
+import Link from "next/link";
+import { useLanguage } from "@/lib/LanguageContext";
 
 /**
  * Unified Data Ingestion Page
@@ -34,12 +36,14 @@ interface ProcessingResult {
 }
 
 export default function DataIngestionPage() {
+  const { t } = useLanguage();
+  
   const [file, setFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>({
     stage: 'idle',
     progress: 0,
-    message: 'Ready to upload FIR PDF or document'
+    message: t('dataIngestion.ready')
   });
   const [processingResult, setProcessingResult] = useState<ProcessingResult>({});
   const [formData, setFormData] = useState({
@@ -56,10 +60,10 @@ export default function DataIngestionPage() {
       setUploadStatus({
         stage: 'error',
         progress: 0,
-        message: 'Only PDF and image files are allowed',
+        message: t('dataIngestion.errorOnlyPdf'),
         error: 'Invalid file type'
       });
-      toast.error('Only PDF and image files are allowed');
+      toast.error(t('dataIngestion.errorOnlyPdf'));
       return;
     }
 
@@ -67,10 +71,10 @@ export default function DataIngestionPage() {
       setUploadStatus({
         stage: 'error',
         progress: 0,
-        message: 'File size exceeds 10MB limit',
+        message: t('dataIngestion.errorSize'),
         error: 'File too large'
       });
-      toast.error('File size exceeds 10MB limit');
+      toast.error(t('dataIngestion.errorSize'));
       return;
     }
 
@@ -78,7 +82,7 @@ export default function DataIngestionPage() {
     setUploadStatus({
       stage: 'idle',
       progress: 0,
-      message: `Ready to upload: ${selectedFile.name}`
+      message: `${t('dataIngestion.ready')}: ${selectedFile.name}`
     });
   }, []);
 
@@ -118,7 +122,7 @@ export default function DataIngestionPage() {
       setUploadStatus({
         stage: 'uploading',
         progress: 10,
-        message: 'Uploading file to Stratus...'
+        message: t('dataIngestion.uploadingStratus')
       });
 
       const uploadFormData = new FormData();
@@ -143,7 +147,7 @@ export default function DataIngestionPage() {
       setUploadStatus({
         stage: 'uploaded',
         progress: 25,
-        message: 'File uploaded successfully. Starting OCR...',
+        message: t('dataIngestion.uploadSuccess'),
         fileId: uploadResult.data.fileId,
         firNumber: uploadResult.data.firNumber
       });
@@ -154,7 +158,7 @@ export default function DataIngestionPage() {
         ...prev,
         stage: 'ocr',
         progress: 40,
-        message: 'Extracting text using Zia OCR...'
+        message: t('dataIngestion.ocrExtracting')
       }));
 
       const ocrResponse = await fetch('/api/ocr', {
@@ -176,7 +180,7 @@ export default function DataIngestionPage() {
       setUploadStatus(prev => ({
         ...prev,
         progress: 60,
-        message: `OCR completed. Extracted ${ocrResult.data.textLength} characters.`
+        message: t('dataIngestion.ocrComplete').replace('{chars}', ocrResult.data.textLength)
       }));
       toast.success('OCR processing complete');
 
@@ -185,7 +189,7 @@ export default function DataIngestionPage() {
         ...prev,
         stage: 'extraction',
         progress: 75,
-        message: 'Extracting entities (persons, vehicles, phones)...'
+        message: t('dataIngestion.extractingEntities')
       }));
 
       const extractResponse = await fetch('/api/extract', {
@@ -211,7 +215,7 @@ export default function DataIngestionPage() {
         ...prev,
         stage: 'graph',
         progress: 90,
-        message: 'Building knowledge graph and relationships...'
+        message: t('dataIngestion.buildingGraph')
       }));
 
       const graphResponse = await fetch('/api/graph', {
@@ -236,7 +240,7 @@ export default function DataIngestionPage() {
       setUploadStatus({
         stage: 'completed',
         progress: 100,
-        message: 'FIR processing completed successfully!',
+        message: t('dataIngestion.completedSuccess'),
         firNumber: uploadResult.data.firNumber
       });
       toast.success('All processing completed successfully!');
@@ -246,7 +250,7 @@ export default function DataIngestionPage() {
       setUploadStatus({
         stage: 'error',
         progress: 0,
-        message: 'Processing failed',
+        message: t('dataIngestion.processingFailed'),
         error: (error as Error).message
       });
       toast.error('Processing failed: ' + (error as Error).message);
@@ -259,7 +263,7 @@ export default function DataIngestionPage() {
     setUploadStatus({
       stage: 'idle',
       progress: 0,
-      message: 'Ready to upload FIR PDF or document'
+      message: t('dataIngestion.ready')
     });
     setProcessingResult({});
     setFormData({
@@ -280,16 +284,16 @@ export default function DataIngestionPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-2">
             <Database className="w-8 h-8 text-primary" />
-            Data Ingestion & Intelligence Pipeline
+            {t('dataIngestion.title')}
           </h1>
           <p className="text-zinc-500 dark:text-zinc-400 mt-2">
-            Upload FIR PDFs for complete AI-powered processing: OCR → Entity Extraction → Knowledge Graph → Search
+            {t('dataIngestion.subtitle')}
           </p>
         </div>
         {uploadStatus.stage !== 'idle' && (
           <Button variant="outline" onClick={handleReset}>
             <Trash2 className="mr-2 h-4 w-4" />
-            Reset
+            {t('dataIngestion.reset')}
           </Button>
         )}
       </div>
@@ -299,7 +303,7 @@ export default function DataIngestionPage() {
         {/* Upload Section */}
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm p-6 flex flex-col space-y-6">
           <h2 className="text-lg font-semibold flex items-center gap-2">
-            <UploadCloud className="w-5 h-5 text-zinc-500" /> Upload FIR Document
+            <UploadCloud className="w-5 h-5 text-zinc-500" /> {t('dataIngestion.uploadFir')}
           </h2>
           
           {/* Drag & Drop Area */}
@@ -339,14 +343,14 @@ export default function DataIngestionPage() {
                     handleReset();
                   }}
                 >
-                  Clear Selection
+                  {t('dataIngestion.clearSelection')}
                 </Button>
                </div>
             ) : (
               <div className="text-center">
                 <UploadCloud className="w-12 h-12 text-zinc-400 mx-auto mb-3" />
-                <p className="font-medium text-zinc-700 dark:text-zinc-300">Drop PDF here or click to browse</p>
-                <p className="text-sm text-zinc-500 mt-1">Supports PDF and images up to 10MB</p>
+                <p className="font-medium text-zinc-700 dark:text-zinc-300">{t('dataIngestion.dropPdf')}</p>
+                <p className="text-sm text-zinc-500 mt-1">{t('dataIngestion.supportsPdf')}</p>
               </div>
             )}
           </div>
@@ -354,7 +358,7 @@ export default function DataIngestionPage() {
           {/* Form Fields */}
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="firNumber" className="text-sm font-medium">FIR Number (Optional)</Label>
+              <Label htmlFor="firNumber" className="text-sm font-medium">{t('dataIngestion.firNumber')}</Label>
               <Input
                 id="firNumber"
                 placeholder="e.g., FIR/2026/001234"
@@ -365,10 +369,10 @@ export default function DataIngestionPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description" className="text-sm font-medium">Brief Description</Label>
+              <Label htmlFor="description" className="text-sm font-medium">{t('dataIngestion.description')}</Label>
               <Textarea
                 id="description"
-                placeholder="Brief description of the incident..."
+                placeholder={t('dataIngestion.descriptionPlaceholder')}
                 value={formData.description}
                 onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                 disabled={uploadStatus.stage !== 'idle'}
@@ -378,30 +382,30 @@ export default function DataIngestionPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="crimeType" className="text-sm font-medium">Crime Type</Label>
+                <Label htmlFor="crimeType" className="text-sm font-medium">{t('dataIngestion.crimeType')}</Label>
                 <Select
                   value={formData.crimeType}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, crimeType: value }))}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, crimeType: value || '' }))}
                   disabled={uploadStatus.stage !== 'idle'}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select type" />
+                    <SelectValue placeholder={t('dataIngestion.selectType')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="theft">Theft</SelectItem>
-                    <SelectItem value="robbery">Robbery</SelectItem>
-                    <SelectItem value="murder">Murder</SelectItem>
-                    <SelectItem value="assault">Assault</SelectItem>
-                    <SelectItem value="fraud">Fraud</SelectItem>
-                    <SelectItem value="burglary">Burglary</SelectItem>
-                    <SelectItem value="kidnapping">Kidnapping</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    <SelectItem value="theft">{t('dataIngestion.theft')}</SelectItem>
+                    <SelectItem value="robbery">{t('dataIngestion.robbery')}</SelectItem>
+                    <SelectItem value="murder">{t('dataIngestion.murder')}</SelectItem>
+                    <SelectItem value="assault">{t('dataIngestion.assault')}</SelectItem>
+                    <SelectItem value="fraud">{t('dataIngestion.fraud')}</SelectItem>
+                    <SelectItem value="burglary">{t('dataIngestion.burglary')}</SelectItem>
+                    <SelectItem value="kidnapping">{t('dataIngestion.kidnapping')}</SelectItem>
+                    <SelectItem value="other">{t('dataIngestion.other')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="policeStation" className="text-sm font-medium">Police Station</Label>
+                <Label htmlFor="policeStation" className="text-sm font-medium">{t('dataIngestion.policeStation')}</Label>
                 <Input
                   id="policeStation"
                   placeholder="e.g., Whitefield PS"
@@ -422,11 +426,11 @@ export default function DataIngestionPage() {
           >
             {['uploading', 'ocr', 'extraction', 'graph'].includes(uploadStatus.stage) ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Processing Pipeline...
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('dataIngestion.processing')}
               </>
             ) : (
               <>
-                <ArrowRight className="mr-2 h-4 w-4" /> Process FIR Document
+                <ArrowRight className="mr-2 h-4 w-4" /> {t('dataIngestion.processFir')}
               </>
             )}
           </Button>
@@ -435,13 +439,13 @@ export default function DataIngestionPage() {
         {/* Results & Status Section */}
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm p-6 flex flex-col space-y-6">
           <h2 className="text-lg font-semibold flex items-center gap-2">
-            <CheckCircle2 className="w-5 h-5 text-emerald-500" /> Processing Status
+            <CheckCircle2 className="w-5 h-5 text-emerald-500" /> {t('dataIngestion.status')}
           </h2>
           
           {/* Progress Bar */}
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="font-medium">Progress</span>
+              <span className="font-medium">{t('dataIngestion.progress')}</span>
               <span className="text-zinc-600 dark:text-zinc-400">{uploadStatus.progress}%</span>
             </div>
             <Progress value={uploadStatus.progress} className="w-full h-2" />
@@ -450,12 +454,12 @@ export default function DataIngestionPage() {
 
           {/* Pipeline Stages */}
           <div className="space-y-3">
-            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Pipeline Stages:</p>
+            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{t('dataIngestion.stages')}</p>
             {[
-              { key: 'upload', label: 'File Upload to Stratus', stage: 'uploaded' },
-              { key: 'ocr', label: 'OCR Text Extraction', stage: 'ocr' },
-              { key: 'extraction', label: 'Entity Extraction', stage: 'extraction' },
-              { key: 'graph', label: 'Knowledge Graph Building', stage: 'graph' },
+              { key: 'upload', label: t('dataIngestion.stageUpload'), stage: 'uploaded' },
+              { key: 'ocr', label: t('dataIngestion.stageOcr'), stage: 'ocr' },
+              { key: 'extraction', label: t('dataIngestion.stageExtract'), stage: 'extraction' },
+              { key: 'graph', label: t('dataIngestion.stageGraph'), stage: 'graph' },
             ].map((item) => {
               const stageOrder = ['idle', 'uploading', 'uploaded', 'ocr', 'extraction', 'graph', 'completed'];
               const currentIndex = stageOrder.indexOf(uploadStatus.stage);
@@ -466,13 +470,13 @@ export default function DataIngestionPage() {
               return (
                 <div key={item.key} className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 dark:bg-zinc-950/50">
                   {isCompleted ? (
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-emerald-500 flex-shrink-0" />
                   ) : isActive ? (
                     <Loader2 className="h-5 w-5 text-blue-500 animate-spin flex-shrink-0" />
                   ) : (
                     <Clock className="h-5 w-5 text-zinc-300 flex-shrink-0" />
                   )}
-                  <span className={`flex-1 text-sm ${isCompleted ? 'text-green-700 dark:text-green-400 font-medium' : isActive ? 'text-blue-700 dark:text-blue-400 font-medium' : 'text-zinc-500'}`}>
+                  <span className={`flex-1 text-sm ${isCompleted ? 'text-emerald-700 dark:text-emerald-400 font-medium' : isActive ? 'text-blue-700 dark:text-blue-400 font-medium' : 'text-zinc-500'}`}>
                     {item.label}
                   </span>
                   {processingResult[item.key as keyof ProcessingResult] && (
@@ -499,50 +503,43 @@ export default function DataIngestionPage() {
           {/* Success Display */}
           {uploadStatus.stage === 'completed' && (
             <>
-              <Alert className="border-green-200 bg-green-50 dark:bg-green-950/30">
-                <CheckCircle className="h-4 w-4 text-green-600" />
-                <AlertTitle className="text-green-800 dark:text-green-400">Processing Complete!</AlertTitle>
-                <AlertDescription className="text-green-700 dark:text-green-300">
-                  FIR <strong>{uploadStatus.firNumber}</strong> has been processed successfully.
-                  <div className="mt-3 space-y-1.5 text-sm">
+              <Alert className="border-emerald-200 bg-emerald-50 dark:bg-emerald-950/30">
+                <AlertTitle className="text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4" /> {t('dataIngestion.processingComplete')}
+                </AlertTitle>
+                <AlertDescription className="text-emerald-700/80 dark:text-emerald-400/80 mt-2 space-y-2">
+                  <p>{t('dataIngestion.firProcessed').replace('{firNumber}', uploadStatus.firNumber || formData.firNumber || 'Unknown')}</p>
+                  <ul className="list-disc pl-5 space-y-1 text-sm mt-3">
                     {processingResult.ocr && (
-                      <p className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4" />
-                        Extracted {processingResult.ocr.data?.textLength || 0} characters via OCR
-                      </p>
+                      <li>{t('dataIngestion.extractedChars').replace('{count}', processingResult.ocr.data.textLength)}</li>
                     )}
-                    {processingResult.extraction && (
-                      <p className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4" />
-                        Found {processingResult.extraction.stats?.extraction?.personsCount || 0} persons, 
-                        {' '}{processingResult.extraction.stats?.extraction?.vehiclesCount || 0} vehicles,
-                        {' '}{processingResult.extraction.stats?.extraction?.phonesCount || 0} phone records
-                      </p>
+                    {processingResult.extract && (
+                      <li>{t('dataIngestion.foundEntities')
+                            .replace('{persons}', processingResult.extract.data.entities.persons)
+                            .replace('{vehicles}', processingResult.extract.data.entities.vehicles)
+                            .replace('{phones}', processingResult.extract.data.entities.phones)}</li>
                     )}
                     {processingResult.graph && (
-                      <p className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4" />
-                        Built knowledge graph with {processingResult.graph.stats?.relationships?.created || 0} relationships
-                      </p>
+                      <li>{t('dataIngestion.builtGraph').replace('{count}', processingResult.graph.data.relationshipsCreated)}</li>
                     )}
-                  </div>
+                  </ul>
                 </AlertDescription>
               </Alert>
 
               {/* Action Buttons */}
               {uploadStatus.firNumber && (
                 <div className="flex gap-3">
-                  <Button variant="outline" size="sm" className="flex-1" asChild>
-                    <a href={`/firs/${uploadStatus.firNumber}`}>
-                      <Eye className="mr-2 h-4 w-4" />
-                      View FIR Details
-                    </a>
+                  <Button variant="outline" className="flex-1 bg-white hover:bg-emerald-50 dark:bg-zinc-900 border-emerald-200 dark:border-emerald-800" asChild>
+                    <Link href={`/firs/${uploadStatus.firNumber || 'new'}`}>
+                      <FileText className="w-4 h-4 mr-2" />
+                      {t('dataIngestion.viewFirDetails')}
+                    </Link>
                   </Button>
-                  <Button variant="outline" size="sm" className="flex-1" asChild>
-                    <a href={`/network?focus=${uploadStatus.firNumber}`}>
-                      <Database className="mr-2 h-4 w-4" />
-                      View Knowledge Graph
-                    </a>
+                  <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white" asChild>
+                    <Link href={`/network?focus=${uploadStatus.firNumber || 'new'}`}>
+                      <Network className="w-4 h-4 mr-2" />
+                      {t('dataIngestion.viewGraph')}
+                    </Link>
                   </Button>
                 </div>
               )}
@@ -551,10 +548,10 @@ export default function DataIngestionPage() {
 
           {/* Idle State */}
           {uploadStatus.stage === 'idle' && !file && (
-            <div className="flex-1 flex flex-col items-center justify-center text-center text-zinc-500 py-8">
-              <ShieldAlert className="w-12 h-12 opacity-30 mb-3" />
-              <p className="text-sm">No document uploaded yet</p>
-              <p className="text-xs text-zinc-400 mt-1">Upload a PDF to start the intelligence pipeline</p>
+            <div className="flex flex-col items-center justify-center py-8 text-center bg-zinc-50 dark:bg-zinc-800/50 rounded-xl border border-zinc-100 dark:border-zinc-800">
+              <Database className="w-8 h-8 text-zinc-300 dark:text-zinc-600 mb-3" />
+              <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">{t('dataIngestion.noDocument')}</p>
+              <p className="text-xs text-zinc-500 mt-1">{t('dataIngestion.uploadToStart')}</p>
             </div>
           )}
         </div>

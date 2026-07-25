@@ -12,8 +12,17 @@ export default async function ProfilesPage() {
     DataClient.getEntityRelationships()
   ]);
 
+  // Deduplicate persons by id
+  const uniquePersonsMap = new Map();
+  allPersons.forEach((person: any) => {
+    if (person && person.id && !uniquePersonsMap.has(person.id)) {
+      uniquePersonsMap.set(person.id, person);
+    }
+  });
+  const uniquePersons = Array.from(uniquePersonsMap.values());
+
   // Process raw data into PersonProfile
-  const initialProfiles: PersonProfile[] = allPersons.map((person: any) => {
+  const initialProfiles: PersonProfile[] = uniquePersons.map((person: any) => {
     // Find all edges for this person
     const personEdges = allRelationships.filter(
       (edge: any) => edge.source === person.id || edge.target === person.id

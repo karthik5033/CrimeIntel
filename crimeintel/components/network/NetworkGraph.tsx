@@ -165,9 +165,9 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
       id: customId,
       type: 'custom',
       data: {
-        label: 'New Investigation Node',
-        entityType: 'Unknown',
-        details: { Status: 'Manually Added' }
+        label: t('network.newInvestigationNode'),
+        entityType: t('network.unknown'),
+        details: { [t('network.status')]: t('network.manuallyAdded') }
       },
       position: screenToFlowPosition({ 
         x: window.innerWidth / 2, 
@@ -183,9 +183,9 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
       id: customId,
       type: 'custom',
       data: {
-        label: 'User Note (Double click to edit)',
-        entityType: 'Note',
-        details: { Author: 'Current User' }
+        label: t('network.userNote'),
+        entityType: t('network.note'),
+        details: { [t('network.author')]: t('network.currentUser') }
       },
       position: screenToFlowPosition({ 
         x: window.innerWidth / 2 + 50, 
@@ -227,7 +227,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
         }}
         onNodeDoubleClick={(_, node) => {
           if (node.type === 'custom') {
-            const newLabel = window.prompt("Edit Node Label:", node.data.label);
+            const newLabel = window.prompt(t('network.editNodeLabel'), node.data.label);
             if (newLabel) {
               setNodes((nds) => nds.map(n => n.id === node.id ? { ...n, data: { ...n.data, label: newLabel } } : n));
             }
@@ -304,7 +304,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
           </div>
 
           <div className="bg-card/80 p-2 rounded-md shadow-sm border border-border backdrop-blur-sm flex flex-col gap-2 w-full mt-2">
-            <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider mb-1">Advanced Analytics</span>
+            <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider mb-1">{t('network.advancedAnalytics')}</span>
             
             <label className="flex items-center space-x-2 cursor-pointer text-xs">
               <input 
@@ -313,7 +313,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
                 checked={showPredictedLinks}
                 onChange={(e) => setShowPredictedLinks(e.target.checked)}
               />
-              <span className="text-foreground">Predict Hidden Links</span>
+              <span className="text-foreground">{t('network.predictHiddenLinks')}</span>
             </label>
             
             <label className="flex items-center space-x-2 cursor-pointer text-xs">
@@ -323,7 +323,7 @@ export function NetworkGraph({ initialNodes, initialEdges, onNodeClick, selected
                 checked={showCommunities}
                 onChange={(e) => setShowCommunities(e.target.checked)}
               />
-              <span className="text-foreground">Detect Communities</span>
+              <span className="text-foreground">{t('network.detectCommunities')}</span>
             </label>
           </div>
         </Panel>

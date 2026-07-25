@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, BrainCircuit, Search, Network, CheckCircle2, ShieldAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ReasoningBlock as NewReasoningBlock } from "@/components/reasoning/ReasoningBlock";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface ReasoningBlockProps {
   isThinking?: boolean;
@@ -18,6 +19,7 @@ interface ReasoningBlockProps {
 }
 
 export function ReasoningBlock({ isThinking, data }: ReasoningBlockProps) {
+  const { t } = useLanguage();
   const [expanded, setExpanded] = useState(false);
   const [thinkingStep, setThinkingStep] = useState(0);
 
@@ -33,11 +35,11 @@ export function ReasoningBlock({ isThinking, data }: ReasoningBlockProps) {
 
   if (isThinking) {
     const steps = [
-      { icon: Search, text: "Understanding your query..." },
-      { icon: CheckCircle2, text: "Retrieving relevant records..." },
-      { icon: Network, text: "Analyzing relationships..." },
-      { icon: BrainCircuit, text: "Applying investigative reasoning..." },
-      { icon: ShieldAlert, text: "Composing response..." }
+      { icon: Search, text: t('reasoning.step1') },
+      { icon: CheckCircle2, text: t('reasoning.step2') },
+      { icon: Network, text: t('reasoning.step3') },
+      { icon: BrainCircuit, text: t('reasoning.step4') },
+      { icon: ShieldAlert, text: t('reasoning.step5') }
     ];
 
     return (
@@ -77,8 +79,8 @@ export function ReasoningBlock({ isThinking, data }: ReasoningBlockProps) {
       >
         <div className="flex items-center gap-2">
           <BrainCircuit className="h-4 w-4 text-primary" />
-          <span>AI Reasoning Trace</span>
-          <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full ml-2">Crime Pattern Theory</span>
+          <span>{t('reasoning.trace')}</span>
+          <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full ml-2">{t('reasoning.theory')}</span>
         </div>
         {expanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
       </button>
@@ -86,15 +88,15 @@ export function ReasoningBlock({ isThinking, data }: ReasoningBlockProps) {
       {expanded && (
         <div className="p-4 space-y-4 text-sm bg-card border-t border-border">
           <div>
-            <h4 className="font-semibold text-foreground mb-1 text-xs uppercase tracking-wider text-muted-foreground">Mechanism</h4>
+            <h4 className="font-semibold text-foreground mb-1 text-xs uppercase tracking-wider text-muted-foreground">{t('reasoning.mechanism')}</h4>
             <p className="text-foreground/90">{data.mechanism}</p>
           </div>
           <div>
-            <h4 className="font-semibold text-foreground mb-1 text-xs uppercase tracking-wider text-muted-foreground">Evidence</h4>
+            <h4 className="font-semibold text-foreground mb-1 text-xs uppercase tracking-wider text-muted-foreground">{t('reasoning.evidence')}</h4>
             <p className="text-foreground/90">{data.evidence}</p>
           </div>
           <div>
-            <h4 className="font-semibold text-foreground mb-1 text-xs uppercase tracking-wider text-muted-foreground">Alternative Hypotheses Rejected</h4>
+            <h4 className="font-semibold text-foreground mb-1 text-xs uppercase tracking-wider text-muted-foreground">{t('reasoning.alternatives')}</h4>
             <p className="text-foreground/90 italic">{data.alternatives}</p>
           </div>
         </div>

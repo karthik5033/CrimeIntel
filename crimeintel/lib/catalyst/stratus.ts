@@ -34,7 +34,7 @@ export const CatalystStratus = {
   uploadFIR: async (file: File | Buffer, firNumber?: string): Promise<UploadResult> => {
     console.log('🔧 Starting uploadFIR...');
     console.log('File type:', file instanceof Buffer ? 'Buffer' : 'File');
-    console.log('File size:', file instanceof Buffer ? file.length : file.size);
+    console.log('File size:', file instanceof Buffer ? file.length : (file as File).size);
     
     const app = getCatalystApp();
     const filestream = app.filestore();
@@ -68,11 +68,11 @@ export const CatalystStratus = {
       } else {
         console.log('🔄 Converting File to Buffer...');
         try {
-          const arrayBuffer = await file.arrayBuffer();
+          const arrayBuffer = await (file as File).arrayBuffer();
           console.log('✅ Got ArrayBuffer, size:', arrayBuffer.byteLength);
           fileBuffer = Buffer.from(arrayBuffer);
           console.log('✅ Converted to Buffer, size:', fileBuffer.length);
-          fileSize = file.size;
+          fileSize = (file as File).size;
         } catch (conversionError) {
           console.error('❌ Failed to convert file:', conversionError);
           throw new Error(`File conversion failed: ${(conversionError as Error).message}`);
@@ -202,7 +202,7 @@ export const CatalystStratus = {
           fileobj: file
         });
       } else {
-        const buffer = Buffer.from(await file.arrayBuffer());
+        const buffer = Buffer.from(await (file as File).arrayBuffer());
         uploadedFile = await bucket.uploadFile({
           code: fileName,
           name: fileName,
@@ -216,7 +216,7 @@ export const CatalystStratus = {
         fileUrl: uploadedFile.url || `${EVIDENCE_BUCKET_NAME}/${fileName}`,
         bucketName: EVIDENCE_BUCKET_NAME,
         uploadTime: new Date().toISOString(),
-        fileSize: file instanceof Buffer ? file.length : file.size
+        fileSize: file instanceof Buffer ? file.length : (file as File).size
       };
     } catch (error) {
       console.error('Evidence upload error:', error);
