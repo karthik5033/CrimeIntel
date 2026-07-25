@@ -266,22 +266,22 @@ function createMockCatalystInstance() {
               }
               
               if (targetRow) {
-                // Parse SET clauses
-                const setMatch = query.match(/SET\s+(.+?)\s+WHERE/i);
+                // Parse SET clauses (handle multi-line queries)
+                const setMatch = query.match(/SET\s+([\s\S]+?)\s+WHERE/i);
                 if (setMatch) {
                   const setClauses = setMatch[1];
                   
-                  // Extract field = 'value' pairs (strings)
-                  const fieldMatches = setClauses.matchAll(/(\w+)\s*=\s*'([^']*)'/g);
+                  // Extract field = 'value' pairs (strings, including multi-line values)
+                  const fieldMatches = setClauses.matchAll(/(\w+)\s*=\s*'((?:[^'\\]|\\.)*)'/gs);
                   for (const match of fieldMatches) {
                     const [, field, value] = match;
-                    console.log(`🔧 MOCK: Setting ${field} = "${value.substring(0, 50)}..."`);
+                    console.log(`🔧 MOCK: Setting ${field} (length: ${value.length} chars)`);
                     targetRow[field] = value;
                   }
                   
                   // Extract numeric fields
                   const numMatches = setClauses.matchAll(/(\w+)\s*=\s*([0-9.]+)/g);
-                  for (const match of fieldMatches) {
+                  for (const match of numMatches) {
                     const [, field, value] = match;
                     const numValue = parseFloat(value);
                     console.log(`🔧 MOCK: Setting ${field} = ${numValue}`);
