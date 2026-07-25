@@ -10,8 +10,9 @@ import { getCatalystApp } from './index';
  * - Support OCR processing workflow
  */
 
-const FIR_BUCKET_NAME = 'fir_documents';
-const EVIDENCE_BUCKET_NAME = 'evidence_files';
+// Updated to match actual Catalyst Stratus bucket name (no underscores allowed)
+const FIR_BUCKET_NAME = 'firdocuments';
+const EVIDENCE_BUCKET_NAME = 'evidencefiles';
 
 interface UploadResult {
   fileId: string;
