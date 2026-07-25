@@ -61,7 +61,21 @@ export function getCatalystApp(req?: any): any {
       catalystConfigPath
     });
     
-    // Strategy 1: Use CLI authentication (from catalyst login)
+    // Strategy 1: Use local .catalystrc file in project directory
+    const projectCatalystRc = path.join(process.cwd(), '.catalystrc');
+    if (fs.existsSync(projectCatalystRc)) {
+      try {
+        console.log('📋 Using local .catalystrc from project directory:', projectCatalystRc);
+        // Initialize without auth - SDK will use local .catalystrc
+        catalystInstance = catalyst.initialize();
+        console.log('✅ Local .catalystrc authentication successful');
+        return catalystInstance;
+      } catch (localConfigError) {
+        console.warn('⚠️ Local .catalystrc authentication failed:', (localConfigError as Error).message);
+      }
+    }
+    
+    // Strategy 2: Use CLI authentication (from catalyst login in home directory)
     if (hasCliConfig) {
       try {
         console.log('📋 Using CLI authentication from', catalystConfigPath);
@@ -73,7 +87,7 @@ export function getCatalystApp(req?: any): any {
       }
     }
     
-    // Strategy 2: Token-based
+    // Strategy 3: Token-based
     const token = process.env.CATALYST_TOKEN;
     if (token) {
       try {
