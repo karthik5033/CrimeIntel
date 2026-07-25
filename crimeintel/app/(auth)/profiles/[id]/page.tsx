@@ -7,20 +7,21 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ClientProfileHeader } from "@/components/profiles/ClientProfileHeader";
 
-export default async function ProfilePage({ params }: { params: { id: string } }) {
-  const person = await DataClient.getPersonById(params.id);
+export default async function ProfilePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const person = await DataClient.getPersonById(id);
   
   if (!person) {
     notFound();
   }
 
   // Get all direct connections
-  const edges = await DataClient.getGraphForEntity(params.id);
+  const edges = await DataClient.getGraphForEntity(id);
   
   // Extract specific connected entities
   const firEdges = edges.filter((e: any) => e.target.startsWith('FIR_') || e.source.startsWith('FIR_'));
   const firs = (await Promise.all(firEdges.map(async (e: any) => {
-    const firId = e.source === params.id ? e.target : e.source;
+    const firId = e.source === id ? e.target : e.source;
     const firData = await DataClient.getFIRById(firId);
     return { ...firData, relationship: e.type };
   }))).filter((f: any) => f && f.id);
@@ -29,7 +30,7 @@ export default async function ProfilePage({ params }: { params: { id: string } }
   const vehicles = edges.filter((e: any) => e.target.startsWith('VEHICLE_') || e.source.startsWith('VEHICLE_'));
   const phones = edges.filter((e: any) => e.target.startsWith('PHONE_') || e.source.startsWith('PHONE_'));
   const associates = edges.filter((e: any) => e.target.startsWith('PERSON_') || e.source.startsWith('PERSON_'))
-                          .filter((e: any) => e.source !== params.id || e.target !== params.id); // Exclude self if somehow linked
+                          .filter((e: any) => e.source !== id || e.target !== id); // Exclude self if somehow linked
 
   const role = firEdges.some((e: any) => e.type === "ACCUSED_IN") ? "ACCUSED" : 
                firEdges.some((e: any) => e.type === "VICTIM_OF") ? "VICTIM" : "WITNESS";
@@ -124,7 +125,7 @@ export default async function ProfilePage({ params }: { params: { id: string } }
             <CardContent>
               <div className="space-y-3">
                 {associates.length > 0 ? associates.map((assoc: any, idx: number) => {
-                  const assocId = assoc.source === params.id ? assoc.target : assoc.source;
+                  const assocId = assoc.source === id ? assoc.target : assoc.source;
                   return (
                     <div key={idx} className="flex items-center justify-between text-sm">
                       <Link href={`/profiles/${assocId}`} className="font-medium hover:underline flex items-center gap-2">
@@ -137,7 +138,7 @@ export default async function ProfilePage({ params }: { params: { id: string } }
               </div>
               <div className="mt-4 pt-4 border-t">
                 <Button variant="outline" className="w-full" asChild>
-                  <Link href={`/network?focus=${params.id}`}>
+                  <Link href={`/network?focus=${id}`}>
                     <LinkIcon className="w-4 h-4 mr-2" />
                     View Full Network
                   </Link>
@@ -156,7 +157,7 @@ export default async function ProfilePage({ params }: { params: { id: string } }
             <CardContent>
               <div className="space-y-2">
                 {vehicles.length > 0 ? vehicles.map((veh: any, idx: number) => {
-                  const vehId = veh.source === params.id ? veh.target : veh.source;
+                  const vehId = veh.source === id ? veh.target : veh.source;
                   return (
                     <div key={idx} className="flex items-center justify-between text-sm bg-muted/50 p-2 rounded">
                       <span className="font-mono">{vehId}</span>
@@ -178,7 +179,7 @@ export default async function ProfilePage({ params }: { params: { id: string } }
             <CardContent>
               <div className="space-y-2">
                 {phones.length > 0 ? phones.map((phone: any, idx: number) => {
-                  const phoneId = phone.source === params.id ? phone.target : phone.source;
+                  const phoneId = phone.source === id ? phone.target : phone.source;
                   return (
                     <div key={idx} className="flex items-center justify-between text-sm bg-muted/50 p-2 rounded">
                       <span className="font-mono">{phoneId}</span>

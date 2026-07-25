@@ -10,9 +10,10 @@ import { PrintButton } from "@/components/reports/PrintButton";
 import { PrintHeader } from "@/components/reports/PrintHeader";
 import { PrintFooter } from "@/components/reports/PrintFooter";
 
-export default async function CaseDetailPage({ params }: { params: { id: string } }) {
+export default async function CaseDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const allCases = await DataClient.getCases();
-  const caseData = allCases.find((c: any) => c.id === params.id);
+  const caseData = allCases.find((c: any) => c.id === id);
   
   if (!caseData) {
     notFound();

@@ -7,10 +7,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ClientMaskedName } from "@/components/shared/ClientMaskedName";
 
-export default async function FIRDetailPage({ params }: { params: { id: string } }) {
+export default async function FIRDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const [firData, edges, allCases] = await Promise.all([
-    DataClient.getFIRById(params.id),
-    DataClient.getGraphForEntity(params.id),
+    DataClient.getFIRById(id),
+    DataClient.getGraphForEntity(id),
     DataClient.getCases()
   ]);
   
@@ -30,7 +31,7 @@ export default async function FIRDetailPage({ params }: { params: { id: string }
   }));
   
   // Find case
-  const linkedCase = allCases.find((c: any) => c.firs.includes(params.id));
+  const linkedCase = allCases.find((c: any) => c.firs.includes(id));
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto p-6 animate-in fade-in duration-500">
