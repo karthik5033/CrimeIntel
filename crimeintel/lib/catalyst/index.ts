@@ -282,6 +282,15 @@ function createMockCatalystInstance() {
               } else if (rowId) {
                 targetRow = table.get(rowId);
                 allKeys = [rowId];
+                
+                // CRITICAL: Also find the firno_ indexed key if it exists
+                if (targetRow && targetRow.fir_no) {
+                  const indexedKey = `firno_${targetRow.fir_no}`;
+                  if (table.has(indexedKey)) {
+                    allKeys.push(indexedKey);
+                    console.log(`🔗 MOCK: Found indexed key: ${indexedKey}`);
+                  }
+                }
               }
               
               if (targetRow) {
