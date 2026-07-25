@@ -125,12 +125,16 @@ Given the highly sensitive nature of law enforcement data, CrimeIntel implements
 
 ## 🚀 Development Setup
 
-Follow these steps to run the CrimeIntel frontend locally:
+Follow these steps to run the CrimeIntel frontend locally.
 
 ### Prerequisites
 - Node.js 18.x or higher
 - npm or pnpm
-- Zoho Catalyst CLI (for backend deployment)
+- Zoho Catalyst CLI if you want to connect to live Catalyst services
+- Git
+
+### Recommended workspace path
+The application code lives in `crimeintel/`, so most local commands should be run from that directory.
 
 ### 1. Clone the repository
 ```bash
@@ -148,14 +152,244 @@ Create a `.env.local` file in the root directory:
 ```env
 NEXT_PUBLIC_ZOHO_PROJECT_ID=your_project_id
 ZOHO_CATALYST_API_KEY=your_api_key
+CATALYST_PROJECT_ID=55949000000013025
+CATALYST_ENV=Development
+CATALYST_TOKEN=optional_token_if_you_use_token_auth
+USE_MOCK_CATALYST=false
 ```
 
-### 4. Start the development server
+Notes:
+- `CATALYST_PROJECT_ID` and `CATALYST_ENV` are the primary server-side values used by the Catalyst SDK wrapper.
+- `NEXT_PUBLIC_CATALYST_PROJECT_ID` and `NEXT_PUBLIC_CATALYST_ENV` are also supported if you need client-visible configuration.
+- Set `USE_MOCK_CATALYST=true` when you want the app to run entirely against the in-memory mock Catalyst layer.
+- If you have already authenticated with the Catalyst CLI, the app can initialize from the local `~/.zcatalyst` credentials instead of a token.
+
+### 4. Optional: authenticate with Catalyst CLI
+If you want to hit live File Store or Data Store services, log in first:
+```bash
+catalyst login
+```
+
+### 5. Start the development server
 ```bash
 npm run dev
 ```
 
 The application will be available at `http://localhost:3000`.
+
+### 6. Validate the build
+```bash
+npm run lint
+npm run build
+```
+
+### Development modes
+- Live mode: uses Catalyst credentials and real backend services.
+- Mock mode: sets `USE_MOCK_CATALYST=true` and uses in-memory stores for fast UI development.
+- Hybrid mode: uses local seed data from `data/seed/` when server-side Catalyst access is unavailable.
+
+### Common local commands
+```bash
+npm run dev
+npm run lint
+npm run build
+```
+
+### Backend seed function
+The repository also includes a Catalyst function at `functions/SeedFunction/` for seeding or bootstrapping backend data when you are working with live Catalyst services.
+
+---
+
+## Product Surface
+
+CrimeIntel is organized around investigation workflows rather than just screens. The main user-facing areas are:
+
+| Area | Purpose |
+| --- | --- |
+| Dashboard | High-level operational summary, live feed, alerts, and trending signals |
+| Cases | Case lists, case detail views, FIR-centric investigation workspaces |
+| FIRs | FIR drill-down, document review, and metadata access |
+| Profiles | Suspect, witness, and entity profiles with linked records |
+| Network | Relationship graphing across people, vehicles, phones, and accounts |
+| Analytics | Charts, correlations, anomalies, and summary views |
+| Search | Cross-reference and semantic lookup across records |
+| Financial | Money flow and account-linked investigation support |
+| Alerts | Active alerts and operational notifications |
+| Chat | Investigator assistant / reasoning workspace |
+| Audit | Query and activity audit trail |
+| Data Ingestion | Document upload and intake |
+| Admin | Data loader and operational utilities |
+
+### Route map
+The app router includes a public landing page and the authenticated workstation:
+
+| Route | Description |
+| --- | --- |
+| `/` | Public landing page |
+| `/login` | Authentication entry point |
+| `/dashboard` | Operational dashboard |
+| `/search` | Search workspace |
+| `/cases` | Case list |
+| `/cases/[id]` | Case detail |
+| `/profiles` | Profile list |
+| `/profiles/[id]` | Profile detail |
+| `/firs/[id]` | FIR detail |
+| `/network` | Entity graph workspace |
+| `/analytics` | Analytics and trends |
+| `/financial` | Financial intelligence workspace |
+| `/alerts` | Alert center |
+| `/chat` | Investigator chat assistant |
+| `/audit` | Audit trail viewer |
+| `/settings` | User and workspace settings |
+| `/data-ingestion` | Document upload and intake |
+| `/admin/data-loader` | Administrative data loading |
+| `/test-upload` | Upload diagnostics and testing |
+
+---
+
+## Flowcharts
+
+### User journey flow
+```mermaid
+flowchart LR
+  A[Public Landing Page] --> B[Login]
+  B --> C[Dashboard]
+  C --> D[Search]
+  C --> E[Cases]
+  C --> F[Profiles]
+  C --> G[Network Graph]
+  C --> H[Analytics]
+  C --> I[Alerts]
+  C --> J[Chat Assistant]
+  E --> K[Case Detail]
+  F --> L[Profile Detail]
+  E --> M[FIR Detail]
+  D --> N[Cross Reference Results]
+```
+
+### FIR intake and enrichment flow
+```mermaid
+flowchart TD
+  A[Upload FIR PDF or evidence file] --> B[/api/upload/]
+  B --> C[Store file in Catalyst Stratus or mock store]
+  B --> D[/api/ocr/]
+  D --> E[Extract text and metadata]
+  E --> F[/api/embeddings/]
+  F --> G[Generate semantic vectors]
+  E --> H[/api/search/]
+  E --> I[/api/graph/]
+  G --> J[Persist into Data Store or seed JSON]
+  H --> K[Search workspace]
+  I --> L[Entity graph workspace]
+  J --> M[Dashboard and case views]
+```
+
+### Runtime request flow
+```mermaid
+flowchart LR
+  U[Officer Browser] --> N[Next.js App Router]
+  N --> R[Server Component or API Route]
+  R --> S[Catalyst SDK Wrapper]
+  S --> T{Live Catalyst available?}
+  T -- Yes --> V[Data Store / Stratus / Signals / OCR]
+  T -- No --> W[Mock Catalyst Instance]
+  W --> X[In-memory Store and Seed Files]
+  V --> Y[Dashboard / Search / Case Views]
+  X --> Y
+```
+
+---
+
+## Repository Structure
+
+```text
+CrimeIntel/
+├── crimeintel/                # Next.js application
+│   ├── app/                   # App Router pages, layouts, and API routes
+│   ├── components/           # Reusable UI and domain components
+│   ├── lib/                  # Catalyst wrappers, data loaders, helpers
+│   ├── data/                 # Seed data, schemas, migrations
+│   ├── docs/                 # Implementation guides and schema docs
+│   ├── functions/            # Zoho Catalyst serverless functions
+│   ├── public/               # Images and static assets
+│   ├── scripts/              # Maintenance and generation scripts
+│   ├── styles/               # Styling support files
+│   └── types/                # Shared TypeScript types
+├── crime_mock_db/            # CSVs used for mock or offline data work
+├── docs/                     # Product and implementation references
+└── README.md
+```
+
+### Notable code areas
+- `app/api/*` contains the server routes for upload, OCR, graph, search, audit, events, embeddings, and seed workflows.
+- `lib/catalyst/*` centralizes Catalyst initialization, live-vs-mock fallback logic, and service wrappers.
+- `components/dashboard`, `components/network`, `components/chat`, and `components/analytics` hold the main domain UI surfaces.
+- `data/seed` and `crime_mock_db/` support local development without a live backend.
+
+---
+
+## API Surface
+
+The backend is organized as Next.js route handlers so the client never talks directly to Catalyst SDK objects.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `/api/catalyst-status` | Confirms Catalyst initialization and runtime availability |
+| `/api/auth/me` | Returns the active authenticated user |
+| `/api/upload` | FIR and evidence document upload pipeline |
+| `/api/ocr` | OCR extraction endpoint |
+| `/api/embeddings` | Semantic embedding generation |
+| `/api/search` | Cross-record search |
+| `/api/graph` | Entity graph retrieval and assembly |
+| `/api/chat` | Investigator assistant chat |
+| `/api/reasoning` | Structured reasoning and explanation output |
+| `/api/audit` | Audit log access |
+| `/api/events` | Operational event feed |
+| `/api/data` | Structured data access |
+| `/api/extract` | Text extraction and enrichment |
+| `/api/seed` | Seed and bootstrap operations |
+| `/api/admin/load-data` | Administrative data loader |
+| `/api/nosql/chat` | NoSQL-backed chat experiment route |
+| `/api/test-bucket` | Storage connectivity test |
+
+---
+
+## Data and Intelligence Pipeline
+
+CrimeIntel is designed so raw documents can be turned into actionable intelligence quickly:
+
+1. A document is uploaded through the data ingestion UI.
+2. The file is stored in Catalyst Stratus or the mock file layer.
+3. OCR and extraction services turn the document into structured text.
+4. Entity extraction and embedding generation produce searchable intelligence artifacts.
+5. Data is indexed into the Data Store or local seed store for search, graphing, and dashboard rendering.
+6. Analysts consume the enriched output from the dashboard, search, network, and case modules.
+
+---
+
+## Development Notes
+
+- The client-side UI should call route handlers instead of importing Catalyst SDK code directly.
+- Server-side helpers should use `getCatalystApp()` so live and mock modes stay aligned.
+- If Catalyst credentials are missing, the app falls back to mock data rather than crashing.
+- Use the docs in `crimeintel/docs/` for schema details when adjusting FIR, embeddings, or entity storage logic.
+- The repository already contains multiple utility scripts for table creation, seed generation, and bulk data fixes.
+
+---
+
+## Troubleshooting
+
+If something looks broken locally, check these first:
+
+| Symptom | Likely cause | Suggested check |
+| --- | --- | --- |
+| Upload fails | Missing bucket, Catalyst auth issue, or network problem | Open `/api/catalyst-status` and verify `fir_documents` exists |
+| Empty dashboards | Mock data not loaded or wrong seed source | Confirm `USE_MOCK_CATALYST` and `data/seed/` contents |
+| SDK initialization error | Missing CLI login or invalid env values | Run `catalyst login` or set `CATALYST_TOKEN` |
+| Search returns no results | Seed data not loaded yet | Run the seed flow or check the Data Store contents |
+| Graph view is sparse | Relationship data missing | Inspect the entity relationship tables and graph route output |
+
+For deeper upload and Catalyst-specific issues, see `crimeintel/UPLOAD_TROUBLESHOOTING.md` and `crimeintel/CATALYST_AUTH_GUIDE.md`.
 
 ---
 
