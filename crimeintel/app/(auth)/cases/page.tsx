@@ -1,4 +1,4 @@
-import { DataClient } from "@/lib/api/dataClient";
+import { ServerDataLoader as DataClient } from "@/lib/api/serverDataLoader";
 import { ClientCasesList, CaseOverview } from "./ClientCasesList";
 
 export const metadata = {

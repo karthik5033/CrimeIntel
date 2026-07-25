@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { DataClient } from '@/lib/api/dataClient';
+import { ServerDataLoader as DataClient } from "@/lib/api/serverDataLoader";
 import { getDemoResponse } from '@/lib/demo-mode';
 import { performSemanticSearch } from '@/lib/nlp/semantic-search';
 import { CatalystQuickML } from '@/lib/catalyst/quickml';

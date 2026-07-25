@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FileDown, Loader2 } from "lucide-react";
-import { CatalystSmartBrowz } from "@/lib/catalyst/smartbrowz";
 
 interface PrintButtonProps {
   label?: string;
@@ -17,23 +16,12 @@ export function PrintButton({ label = "Export PDF", variant = "default", classNa
   const handleExport = async () => {
     setIsExporting(true);
     try {
-      const htmlContent = document.documentElement.outerHTML;
-      const pdfBuffer = await CatalystSmartBrowz.generatePdf(htmlContent, "CrimeIntel Investigation Report");
-      
-      if (pdfBuffer) {
-        const uint8Array = new Uint8Array(pdfBuffer);
-        const blob = new Blob([uint8Array], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `CrimeIntel_Report_${Date.now()}.pdf`;
-        a.click();
-      } else {
+      // For local development without Catalyst SmartBrowz backend, fallback to native browser print
+      setTimeout(() => {
         window.print();
-      }
+        setIsExporting(false);
+      }, 500);
     } catch (e) {
-      window.print();
-    } finally {
       setIsExporting(false);
     }
   };
