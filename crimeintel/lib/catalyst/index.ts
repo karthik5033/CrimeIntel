@@ -87,7 +87,26 @@ export function getCatalystApp(req?: any): any {
       }
     }
     
-    // Strategy 3: Token-based
+    // Strategy 3: Client ID/Secret authentication
+    const clientId = process.env.CATALYST_CLIENT_ID;
+    const clientSecret = process.env.CATALYST_CLIENT_SECRET;
+    if (clientId && clientSecret) {
+      try {
+        console.log('🔑 Using Client ID/Secret authentication');
+        catalystInstance = catalyst.initialize({
+          client_id: clientId,
+          client_secret: clientSecret,
+          project_id: catalystConfig.projectId,
+          environment: catalystConfig.environment
+        });
+        console.log('✅ Client ID/Secret authentication successful');
+        return catalystInstance;
+      } catch (clientError) {
+        console.warn('⚠️ Client ID/Secret authentication failed:', (clientError as Error).message);
+      }
+    }
+    
+    // Strategy 4: Token-based (legacy)
     const token = process.env.CATALYST_TOKEN;
     if (token) {
       try {

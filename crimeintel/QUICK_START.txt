@@ -1,0 +1,82 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                  🚀 CRIMEINTEL - QUICK START                     ║
+║               Make It Use REAL Catalyst Services                 ║
+╚══════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────┐
+│ 📋 CURRENT STATUS: MOCK MODE (Files DON'T upload to Stratus)   │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ ✅ STEP 1: Get Catalyst Token                                   │
+├─────────────────────────────────────────────────────────────────┤
+│ 1. Open: https://console.catalyst.zoho.in                       │
+│ 2. Login: kishanshetty.udupika20@gmail.com                      │
+│ 3. Go to: Settings → API Tokens                                 │
+│ 4. Click: Generate New Token                                    │
+│ 5. Copy the token (1000.xxxxx.yyyyy format)                     │
+│                                                                  │
+│ 📖 Detailed Guide: Open GET_CATALYST_TOKEN.md                   │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ ✅ STEP 2: Add Token to .env.local                              │
+├─────────────────────────────────────────────────────────────────┤
+│ Open .env.local file and add:                                   │
+│                                                                  │
+│ CATALYST_TOKEN=your_token_here                                  │
+│                                                                  │
+│ ⚠️  NO spaces, NO quotes!                                        │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ ✅ STEP 3: Test & Restart                                       │
+├─────────────────────────────────────────────────────────────────┤
+│ # Verify connection:                                            │
+│ node verify-catalyst-connection.js                              │
+│                                                                  │
+│ # Restart server:                                               │
+│ Ctrl+C (stop current server)                                    │
+│ npm run dev                                                     │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ 🎯 HOW TO KNOW IT WORKS                                         │
+├─────────────────────────────────────────────────────────────────┤
+│ ❌ BEFORE (Mock):                                               │
+│    ⚠️  Using MOCK Catalyst instance                             │
+│    📤 MOCK: File uploaded                                       │
+│                                                                  │
+│ ✅ AFTER (Real):                                                │
+│    ✅ Token authentication successful                           │
+│    📤 File uploaded to Stratus: firdocuments                    │
+│                                                                  │
+│ Test: Upload PDF → Check Catalyst Console → Stratus bucket     │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ 📚 COMPLETE DOCUMENTATION                                       │
+├─────────────────────────────────────────────────────────────────┤
+│ • MAKE_IT_REAL.md ............... Full overview & guide         │
+│ • GET_CATALYST_TOKEN.md ......... Detailed token instructions   │
+│ • verify-catalyst-connection.js . Connection test script        │
+│ • CrimeIntel_Implementation_Plan_v4.md .. Status & roadmap     │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│ 🆘 TROUBLESHOOTING                                              │
+├─────────────────────────────────────────────────────────────────┤
+│ Token doesn't work?                                             │
+│   → node verify-catalyst-connection.js (see detailed error)     │
+│   → Regenerate token from console                              │
+│   → Check no spaces in .env.local                              │
+│                                                                  │
+│ Still MOCK mode?                                                │
+│   → Verify USE_MOCK_CATALYST=false                             │
+│   → Restart server completely                                   │
+│   → Check token added correctly                                │
+└─────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════
+              Token is the KEY to real Catalyst services!
+═══════════════════════════════════════════════════════════════════
