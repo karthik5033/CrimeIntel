@@ -152,15 +152,15 @@ async function handleFIRProcessing(req: NextRequest) {
         console.error('❌ Failed to update FIR with OCR text:', updateError);
         console.warn('⚠️ OCR extraction succeeded but database update failed');
       }
-    } else if (!firExists && fileId) {
+    } else if (!firExists) {
       // FIR doesn't exist yet - create it with OCR text as description
       console.log('💾 Creating new FIR with OCR-extracted description...');
       
       const newFirRecord = {
         fir_no: firId,
-        description: ocrResult.rawText.substring(0, 500) + '...', // Use first 500 chars as description
+        description: ocrResult.rawText.substring(0, 500), // Use first 500 chars as description
         pdf_url: fileUrl || 'mock-url',
-        pdf_file_id: fileId,
+        pdf_file_id: fileId || 'mock-file',
         ocr_text: ocrResult.rawText.substring(0, 5000),
         ocr_status: 'completed',
         ocr_confidence: ocrResult.confidenceScore,
@@ -174,19 +174,16 @@ async function handleFIRProcessing(req: NextRequest) {
       };
       
       try {
-        // Try to insert via Catalyst DataStore
-        if (zcql) {
-          // We can't use DataStore insert here easily, so skip real insert
-          console.log('⏭️ Skipping real DataStore insert (would need DataStore client)');
-        }
+        // Insert via DataStore (which will add to mock store if in mock mode)
+        const { CatalystDataStore } = await import('@/lib/catalyst/datastore');
+        await CatalystDataStore.insertFIRs([newFirRecord]);
+        console.log('✅ FIR inserted via DataStore');
       } catch (insertError) {
         console.warn('⚠️ Could not insert FIR to DataStore:', insertError);
       }
       
-      // Save to local seed file
+      // Also save to local seed file
       try {
-        const fs = await import('fs');
-        const path = await import('path');
         const seedDir = path.join(process.cwd(), 'data', 'seed');
         const firsSeedPath = path.join(seedDir, 'FIRs.json');
         
