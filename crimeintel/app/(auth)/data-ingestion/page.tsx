@@ -533,13 +533,13 @@ export default function DataIngestionPage() {
               {uploadStatus.firNumber && (
                 <div className="flex gap-3">
                   <Button variant="outline" size="sm" className="flex-1" asChild>
-                    <a href={`/cases/${uploadStatus.firNumber}`}>
+                    <a href={`/firs/${uploadStatus.firNumber}`}>
                       <Eye className="mr-2 h-4 w-4" />
                       View FIR Details
                     </a>
                   </Button>
                   <Button variant="outline" size="sm" className="flex-1" asChild>
-                    <a href={`/network?firId=${uploadStatus.firNumber}`}>
+                    <a href={`/network?focus=${uploadStatus.firNumber}`}>
                       <Database className="mr-2 h-4 w-4" />
                       View Knowledge Graph
                     </a>
