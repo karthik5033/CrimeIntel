@@ -202,14 +202,33 @@ function createMockCatalystInstance() {
           const whereMatch = query.match(/WHERE\s+fir_no\s*=\s*'([^']+)'/i);
           if (whereMatch) {
             const firNo = whereMatch[1];
-            const key = `firno_${firNo}`;
-            const row = table.get(key);
+            
+            // Try both the indexed key and scanning all rows
+            let row = table.get(`firno_${firNo}`);
+            
+            if (!row) {
+              // Fallback: scan all rows for matching fir_no
+              for (const [key, value] of table.entries()) {
+                if (value.fir_no === firNo && !key.startsWith('firno_')) {
+                  row = value;
+                  console.log(`🔍 MOCK: Found FIR ${firNo} by scanning (key: ${key})`);
+                  break;
+                }
+              }
+            } else {
+              console.log(`✅ MOCK: Found FIR ${firNo} by index`);
+            }
             
             if (row) {
-              console.log(`✅ MOCK: Found FIR ${firNo}:`, Object.keys(row));
+              console.log(`📋 MOCK: FIR ${firNo} fields:`, Object.keys(row));
+              console.log(`📄 MOCK: OCR text length:`, row.ocr_text?.length || 0);
+              console.log(`📊 MOCK: OCR status:`, row.ocr_status);
               return [{ [tableName]: row }];
             } else {
-              console.log(`⚠️ MOCK: FIR ${firNo} not found. Available keys:`, Array.from(table.keys()).slice(0, 5));
+              console.log(`❌ MOCK: FIR ${firNo} not found anywhere`);
+              console.log(`🔑 MOCK: Table ${tableName} has ${table.size} entries`);
+              console.log(`🔑 MOCK: Sample keys:`, Array.from(table.keys()).slice(0, 10));
+              console.log(`🔑 MOCK: Sample fir_nos:`, Array.from(table.values()).map(v => v.fir_no).filter(Boolean).slice(0, 5));
               return [];
             }
           }
@@ -226,7 +245,7 @@ function createMockCatalystInstance() {
           const tableMatch = query.match(/UPDATE\s+(\w+)/i);
           const tableName = tableMatch ? tableMatch[1] : 'FIRs';
           
-          // Parse WHERE fir_no = 'X'
+          // Parse WHERE fir_no = 'X' or ROWID = X
           const whereMatch = query.match(/WHERE\s+(?:fir_no\s*=\s*'([^']+)'|ROWID\s*=\s*([^\s]+))/i);
           
           if (whereMatch) {
@@ -236,11 +255,33 @@ function createMockCatalystInstance() {
             const table = mockDataStore.tables.get(tableName);
             if (table) {
               let targetRow: any = null;
+              let allKeys: string[] = [];
               
+              // Try to find the row
               if (firNo) {
+                // Try indexed lookup first
                 targetRow = table.get(`firno_${firNo}`);
+                
+                // If not found, scan for it
+                if (!targetRow) {
+                  for (const [key, value] of table.entries()) {
+                    if (value.fir_no === firNo && !key.startsWith('firno_')) {
+                      targetRow = value;
+                      allKeys.push(key);
+                      console.log(`🔍 MOCK: Found row by scanning (key: ${key})`);
+                    }
+                  }
+                }
+                
+                // Also get the ROWID-based entry for dual update
+                for (const [key, value] of table.entries()) {
+                  if (value.fir_no === firNo) {
+                    allKeys.push(key);
+                  }
+                }
               } else if (rowId) {
                 targetRow = table.get(rowId);
+                allKeys = [rowId];
               }
               
               if (targetRow) {
@@ -248,29 +289,49 @@ function createMockCatalystInstance() {
                 const setMatch = query.match(/SET\s+(.+?)\s+WHERE/i);
                 if (setMatch) {
                   const setClauses = setMatch[1];
-                  // Simple parsing - extract field = 'value' pairs
+                  
+                  // Extract field = 'value' pairs (strings)
                   const fieldMatches = setClauses.matchAll(/(\w+)\s*=\s*'([^']*)'/g);
                   for (const match of fieldMatches) {
                     const [, field, value] = match;
                     targetRow[field] = value;
-                    console.log(`💾 MOCK: Updated ${tableName}.${field} = ${value.substring(0, 50)}...`);
+                    
+                    // Update all references (indexed + ROWID)
+                    for (const key of allKeys) {
+                      const row = table.get(key);
+                      if (row) row[field] = value;
+                    }
+                    
+                    console.log(`💾 MOCK: Updated ${tableName}.${field} = ${value.substring(0, 50)}... (${allKeys.length} refs)`);
                   }
-                  // Also update numeric fields
+                  
+                  // Extract numeric fields
                   const numMatches = setClauses.matchAll(/(\w+)\s*=\s*([0-9.]+)/g);
                   for (const match of numMatches) {
                     const [, field, value] = match;
-                    targetRow[field] = parseFloat(value);
-                    console.log(`💾 MOCK: Updated ${tableName}.${field} = ${value}`);
+                    const numValue = parseFloat(value);
+                    targetRow[field] = numValue;
+                    
+                    // Update all references
+                    for (const key of allKeys) {
+                      const row = table.get(key);
+                      if (row) row[field] = numValue;
+                    }
+                    
+                    console.log(`💾 MOCK: Updated ${tableName}.${field} = ${value} (${allKeys.length} refs)`);
                   }
                 }
-                return { affected_rows: 1 };
+                
+                console.log(`✅ MOCK: Updated ${allKeys.length} references for ${firNo || rowId}`);
+                return { affected_rows: allKeys.length };
               } else {
-                console.log(`⚠️ MOCK: Row not found for update in ${tableName}`);
+                console.log(`❌ MOCK: Row not found for update in ${tableName}`);
+                console.log(`🔑 MOCK: Searched for:`, firNo ? `fir_no=${firNo}` : `ROWID=${rowId}`);
               }
             }
           }
           
-          console.log('💾 MOCK: Update query executed (generic)');
+          console.log('💾 MOCK: Update query executed (generic fallback)');
           return { affected_rows: 1 };
         }
         
