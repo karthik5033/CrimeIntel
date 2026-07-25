@@ -1,0 +1,8 @@
+{
+  "name": "seed-function",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "zcatalyst-sdk-node": "^1.0.0"
+  }
+}

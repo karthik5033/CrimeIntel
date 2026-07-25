@@ -1,0 +1,151 @@
+id,license_plate,make,model,color
+VEHICLE_1,ZC63IHO,Peugeot,PT Cruiser,lime
+VEHICLE_2,JC83NDZ,Ferrari,Corvette,salmon
+VEHICLE_3,VU62CHZ,Dodge,Jetta,teal
+VEHICLE_4,RY90EXF,Tesla,CTS,azure
+VEHICLE_5,XG51KRP,Honda,Durango,green
+VEHICLE_6,OA65YRA,Toyota,Beetle,olive
+VEHICLE_7,BN66DVD,Ferrari,Camry,lime
+VEHICLE_8,NU43XWJ,Fiat,Golf,azure
+VEHICLE_9,SI41EBS,Chrysler,Prius,ivory
+VEHICLE_10,MT46ZNH,Aston Martin,CX-9,yellow
+VEHICLE_11,ZU20WHI,Chrysler,Model S,lavender
+VEHICLE_12,SC10PRI,Ford,A4,red
+VEHICLE_13,AV46DPT,Honda,2,mint green
+VEHICLE_14,JR54CKP,Audi,Wrangler,pink
+VEHICLE_15,LR45XRS,Bentley,Countach,azure
+VEHICLE_16,GI79VZT,Chevrolet,1,salmon
+VEHICLE_17,JU41BKE,Chrysler,Cruze,tan
+VEHICLE_18,UQ86TAM,Bugatti,Roadster,lavender
+VEHICLE_19,YR23UTV,Tata,Focus,salmon
+VEHICLE_20,TE73PZD,Vauxhall,A4,indigo
+VEHICLE_21,IC10IOL,Audi,Model X,azure
+VEHICLE_22,NW79QEK,Tesla,Civic,white
+VEHICLE_23,RJ69SMR,Suzuki,Expedition,gold
+VEHICLE_24,BY09YVX,Porsche,Ranchero,maroon
+VEHICLE_25,RL50IGT,BMW,Spyder,violet
+VEHICLE_26,BX31ECO,Bugatti,Explorer,lavender
+VEHICLE_27,YK22CVT,Dodge,911,lavender
+VEHICLE_28,EV21ZOH,Jeep,Sentra,tan
+VEHICLE_29,KI09WBO,MG,Land Cruiser,teal
+VEHICLE_30,GP07UNV,Mitsubishi,Corvette,indigo
+VEHICLE_31,ML18KPN,Suzuki,Prius,orange
+VEHICLE_32,BD95TFW,Smart,Wrangler,violet
+VEHICLE_33,DP54ZMM,Ford,Silverado,blue
+VEHICLE_34,KY74BPP,Mazda,911,orchid
+VEHICLE_35,VO07MTP,Toyota,2,silver
+VEHICLE_36,CW04GMH,Vauxhall,Charger,turquoise
+VEHICLE_37,VI62DEL,Audi,Countach,purple
+VEHICLE_38,TZ19NDO,Audi,PT Cruiser,violet
+VEHICLE_39,SB88PAN,Polestar,V90,violet
+VEHICLE_40,SL78UPD,Ford,Camry,maroon
+VEHICLE_41,JL71EYZ,Maserati,Model T,blue
+VEHICLE_42,WY51SQG,Volkswagen,Aventador,turquoise
+VEHICLE_43,QA51ULM,Honda,Alpine,azure
+VEHICLE_44,VO03FUG,Land Rover,Taurus,maroon
+VEHICLE_45,UP50ABY,Tesla,Challenger,azure
+VEHICLE_46,DV32CKS,Dodge,Element,lavender
+VEHICLE_47,MV69GVR,Smart,Aventador,mint green
+VEHICLE_48,TY35XSY,Maruti,Sentra,ivory
+VEHICLE_49,DH91SHV,Ford,Challenger,white
+VEHICLE_50,ZJ82ZWZ,Smart,Element,white
+VEHICLE_51,YT61HHP,Toyota,ATS,orange
+VEHICLE_52,WA42BUU,Mercedes Benz,CTS,lime
+VEHICLE_53,ZR86RJP,Ford,Cruze,fuchsia
+VEHICLE_54,RI39NIU,BYD,Alpine,grey
+VEHICLE_55,YT25KKP,Rivian,Accord,plum
+VEHICLE_56,UR58QZF,Subaru,Fortwo,blue
+VEHICLE_57,ZB90JMM,Land Rover,Expedition,lavender
+VEHICLE_58,NZ71TVF,Renault,Model S,mint green
+VEHICLE_59,DB64YPP,Chrysler,Land Cruiser,white
+VEHICLE_60,LQ68HDK,Volvo,Prius,green
+VEHICLE_61,TB04YJB,Jeep,Prius,purple
+VEHICLE_62,WT84DAQ,Tata,Focus,red
+VEHICLE_63,QQ99WSU,Porsche,Beetle,orchid
+VEHICLE_64,TQ84ZVZ,Mercedes Benz,Fiesta,sky blue
+VEHICLE_65,DB26YUY,Renault,Malibu,orange
+VEHICLE_66,HG76QSG,Mercedes Benz,XTS,lime
+VEHICLE_67,MA17MKS,Cadillac,Camaro,grey
+VEHICLE_68,VR03OSE,Volkswagen,Malibu,mint green
+VEHICLE_69,GC03KQW,Rolls Royce,Taurus,fuchsia
+VEHICLE_70,IO56KNY,Maruti,Fiesta,blue
+VEHICLE_71,IL26APP,Jaguar,Explorer,magenta
+VEHICLE_72,OH27ZUI,Ferrari,Accord,black
+VEHICLE_73,TS25NOJ,Mahindra & Mahindra,Charger,tan
+VEHICLE_74,XO98CAI,Dodge,Explorer,teal
+VEHICLE_75,KN09FXD,Fiat,Taurus,lime
+VEHICLE_76,UQ66YCA,Volvo,XC90,fuchsia
+VEHICLE_77,RT66THU,Fiat,Accord,black
+VEHICLE_78,LY19ARK,Porsche,Golf,grey
+VEHICLE_79,IK90KEK,Chrysler,Challenger,olive
+VEHICLE_80,YH61TFM,Chrysler,Roadster,red
+VEHICLE_81,QJ96PXR,Jeep,Challenger,green
+VEHICLE_82,SX56RIY,MG,Impala,white
+VEHICLE_83,XQ89RMU,Mazda,Camry,gold
+VEHICLE_84,SQ30AVW,Rolls Royce,Grand Caravan,teal
+VEHICLE_85,MG84OGB,Polestar,Sentra,violet
+VEHICLE_86,II82AUZ,Ford,Model T,maroon
+VEHICLE_87,EJ37FAL,BMW,Durango,violet
+VEHICLE_88,UX79FXE,Vauxhall,V90,mint green
+VEHICLE_89,LT93NXY,BMW,Cruze,lavender
+VEHICLE_90,QT56HZQ,Fiat,Land Cruiser,black
+VEHICLE_91,WO95ATW,Rivian,Land Cruiser,orchid
+VEHICLE_92,ZG41CZY,Mercedes Benz,Charger,plum
+VEHICLE_93,WI91GPI,Audi,Grand Cherokee,green
+VEHICLE_94,PG29BGQ,Citroën,Escalade,azure
+VEHICLE_95,NR13MFD,Honda,Durango,lavender
+VEHICLE_96,VN81HNV,MG,Expedition,mint green
+VEHICLE_97,IC86PBP,Volkswagen,Sentra,purple
+VEHICLE_98,LJ86MGX,Honda,Civic,mint green
+VEHICLE_99,HE61ATB,Rolls Royce,Prius,black
+VEHICLE_100,CY09JCS,Mercedes Benz,Murcielago,gold
+VEHICLE_101,EM13SHB,Toyota,Jetta,gold
+VEHICLE_102,LU98UOQ,Chrysler,Silverado,indigo
+VEHICLE_103,YE77KPT,Cadillac,Impala,lavender
+VEHICLE_104,YS26NYH,Cadillac,Model X,violet
+VEHICLE_105,XU58KDJ,Nissan,Beetle,yellow
+VEHICLE_106,GI23LTQ,Polestar,Spyder,lime
+VEHICLE_107,TB98TUK,Mazda,Durango,pink
+VEHICLE_108,HK62FVA,Maserati,Civic,silver
+VEHICLE_109,DZ34CCI,Lamborghini,V90,silver
+VEHICLE_110,SK84HCL,Rolls Royce,Beetle,violet
+VEHICLE_111,PE82CUX,Mitsubishi,XC90,sky blue
+VEHICLE_112,BL82NLQ,Jaguar,Altima,blue
+VEHICLE_113,CG63NOB,Nissan,Camry,teal
+VEHICLE_114,AF94ZID,Ferrari,Model Y,turquoise
+VEHICLE_115,QH30URV,Hyundai,Ranchero,blue
+VEHICLE_116,QI42HXI,Rivian,CTS,pink
+VEHICLE_117,MB89GUH,Skoda,Accord,cyan
+VEHICLE_118,PO00EYR,Bugatti,Murcielago,orchid
+VEHICLE_119,EG29GRX,Toyota,PT Cruiser,indigo
+VEHICLE_120,YY46KBR,Aston Martin,V90,sky blue
+VEHICLE_121,US57FMU,Jaguar,F-150,indigo
+VEHICLE_122,EC66ZNA,Rivian,Fortwo,orchid
+VEHICLE_123,DV35DWT,Chevrolet,Charger,salmon
+VEHICLE_124,ZH47KFM,Tesla,Fortwo,orange
+VEHICLE_125,GX36HPR,Honda,Challenger,cyan
+VEHICLE_126,TS76CPF,Ford,Element,indigo
+VEHICLE_127,DM15BHV,Subaru,Jetta,turquoise
+VEHICLE_128,JM84HLU,BMW,Wrangler,magenta
+VEHICLE_129,WD06EYP,Rolls Royce,911,teal
+VEHICLE_130,GL39PIK,Porsche,Golf,violet
+VEHICLE_131,JW20UXW,Rivian,Model T,red
+VEHICLE_132,GG27MWR,Chevrolet,Element,lavender
+VEHICLE_133,PE34LZM,Maruti,Focus,mint green
+VEHICLE_134,IZ17YSI,Chevrolet,LeBaron,black
+VEHICLE_135,NE83VTS,Maruti,Taurus,ivory
+VEHICLE_136,NV02UWP,Toyota,Murcielago,purple
+VEHICLE_137,OI04BBC,Rivian,Mustang,blue
+VEHICLE_138,UR77PGH,Honda,Escalade,magenta
+VEHICLE_139,WK32KFW,Smart,Wrangler,sky blue
+VEHICLE_140,AQ06JHI,Porsche,Fiesta,olive
+VEHICLE_141,ZI79TFD,Land Rover,Countach,teal
+VEHICLE_142,GQ48OSV,Mercedes Benz,CTS,sky blue
+VEHICLE_143,PF00LOI,Land Rover,Focus,magenta
+VEHICLE_144,AT18QVK,Volvo,2,blue
+VEHICLE_145,MV51JPU,Chevrolet,Silverado,fuchsia
+VEHICLE_146,EC94LZV,Rolls Royce,Altima,cyan
+VEHICLE_147,WW82BDR,Kia,Land Cruiser,tan
+VEHICLE_148,CJ88APP,Ford,Impala,white
+VEHICLE_149,PQ39SPO,Skoda,El Camino,sky blue
+VEHICLE_150,PE82VNQ,Renault,CTS,cyan

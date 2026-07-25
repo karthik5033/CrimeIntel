@@ -1,6 +1,3 @@
-import { CatalystNoSQL } from "../catalyst/nosql";
-import { getCatalystApp } from "../catalyst";
-
 export type AuditEventType = 
   | "QUERY" 
   | "DATA_ACCESS" 
@@ -30,7 +27,7 @@ export class AuditLogger {
   }
 
   /**
-   * Retrieves audit logs from Catalyst Data Store / NoSQL with browser fallback.
+   * Retrieves audit logs from localStorage.
    */
   static getLogs(): AuditLogEntry[] {
     if (!this.isBrowser) return [];
@@ -44,17 +41,15 @@ export class AuditLogger {
   }
 
   /**
-   * Logs audit events directly to Catalyst server-side storage and local browser state.
+   * Logs audit events via API route (server saves to Catalyst Data Store).
+   * Also persists locally in browser localStorage for fast reads.
    */
   static async logEvent(event: Omit<AuditLogEntry, "id" | "timestamp" | "ip_address" | "session_id">) {
     const logId = `AL-${crypto.randomUUID()}`;
     const timestamp = new Date().toISOString();
-    
-    // Dynamic IP detection or Catalyst environment IP
     const ip_address = typeof window !== "undefined" && window.location.hostname === "localhost" 
       ? "127.0.0.1" 
       : "10.14.2.45";
-      
     const session_id = `SESS-${crypto.randomUUID()}`;
 
     const newLog: AuditLogEntry = {
@@ -65,31 +60,21 @@ export class AuditLogger {
       session_id
     };
 
-    // Save to Catalyst NoSQL / Data Store
-    try {
-      const app = getCatalystApp();
-      const datastore = app.datastore ? app.datastore() : null;
-      if (datastore && typeof datastore.table === 'function') {
-        await datastore.table('AuditLog').insertRow({
-          event_type: newLog.event_type,
-          user_id: newLog.user_id,
-          user_role: newLog.user_role,
-          timestamp: newLog.timestamp,
-          ip_address: newLog.ip_address,
-          details: JSON.stringify(newLog.details)
-        });
-      }
-    } catch (e) {
-      // Fallback logging
-    }
-
+    // Save to Catalyst Data Store via API route (server-side only)
     if (this.isBrowser) {
+      fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newLog)
+      }).catch(err => console.error("Failed to persist audit log:", err));
+
+      // Also save to localStorage for fast UI reads
       try {
         const currentLogs = this.getLogs();
         const updatedLogs = [newLog, ...currentLogs].slice(0, 5000);
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updatedLogs));
       } catch (e) {
-        // Fallback
+        // Storage full or unavailable
       }
     }
   }

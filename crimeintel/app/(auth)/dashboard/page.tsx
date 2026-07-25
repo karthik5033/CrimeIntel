@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
+import { DataClient } from "@/lib/api/dataClient";
 import { 
   Card, 
   CardContent, 
@@ -40,6 +41,102 @@ import { PrintFooter } from "@/components/reports/PrintFooter";
 
 export default function DashboardPage() {
   const { t } = useLanguage();
+  const [recentFIRs, setRecentFIRs] = useState<any[]>([]);
+  const [stats, setStats] = useState({
+    activeInvestigations: 0,
+    personsOfInterest: 0,
+    highRiskAlerts: 0,
+    resolutionRate: 0
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadDashboardData() {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        // Fetch real data from Catalyst Data Store
+        const [allFIRs, allPersons, allCases] = await Promise.all([
+          DataClient.getFIRs(),
+          DataClient.getPersons(),
+          DataClient.getCases()
+        ]);
+        
+        // Calculate real stats
+        const activeCount = allFIRs.filter((f: any) => 
+          f.status_en === 'Under Investigation' || f.status_en === 'Pending Trial'
+        ).length;
+        
+        const personsCount = allPersons.filter((p: any) => 
+          p.role === 'Accused' || p.role === 'Suspect'
+        ).length;
+        
+        const highRiskCount = allFIRs.filter((f: any) => 
+          f.crime_type_en === 'Murder' || 
+          f.crime_type_en === 'Culpable Homicide' ||
+          f.crime_type_en === 'Kidnapping'
+        ).length;
+        
+        const closedCases = allCases.filter((c: any) => c.status === 'Closed').length;
+        const resolution = allCases.length > 0 ? (closedCases / allCases.length * 100) : 0;
+        
+        setStats({
+          activeInvestigations: activeCount,
+          personsOfInterest: personsCount,
+          highRiskAlerts: highRiskCount,
+          resolutionRate: resolution
+        });
+        
+        // Get latest 5 FIRs (already sorted by date DESC in query)
+        setRecentFIRs(allFIRs.slice(0, 5));
+        
+      } catch (err) {
+        console.error('Failed to load dashboard data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load data');
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    loadDashboardData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex-1 flex items-center justify-center min-h-screen">
+        <div className="text-center space-y-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="text-muted-foreground">Loading dashboard data from Catalyst...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex-1 flex items-center justify-center min-h-screen">
+        <div className="text-center space-y-4 max-w-md">
+          <div className="text-destructive text-5xl">⚠️</div>
+          <h2 className="text-2xl font-bold">Catalyst Data Store Error</h2>
+          <p className="text-muted-foreground">{error}</p>
+          <p className="text-sm text-muted-foreground">
+            This likely means:
+            <br />• Catalyst tables are empty (need to load seed data)
+            <br />• Catalyst SDK not configured properly
+            <br />• Network connection issues
+          </p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-4 py-2 bg-primary text-white rounded-md"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 space-y-8 p-8 pt-6 max-w-7xl mx-auto w-full print:max-w-full print:p-0">
@@ -66,10 +163,12 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-slate-900 dark:text-white">1,248</div>
+            <div className="text-2xl font-bold text-slate-900 dark:text-white">
+              {stats.activeInvestigations.toLocaleString()}
+            </div>
             <p className="text-xs text-muted-foreground flex items-center mt-1">
               <TrendingUp className="h-3 w-3 text-success mr-1" />
-              <span className="text-success font-medium mr-1">+12%</span> {t('dashboard.fromLastMonth')}
+              <span className="text-muted-foreground font-medium mr-1">Real-time from Catalyst</span>
             </p>
           </CardContent>
         </Card>
@@ -82,10 +181,12 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-slate-900 dark:text-white">3,192</div>
+            <div className="text-2xl font-bold text-slate-900 dark:text-white">
+              {stats.personsOfInterest.toLocaleString()}
+            </div>
             <p className="text-xs text-muted-foreground flex items-center mt-1">
               <TrendingUp className="h-3 w-3 text-success mr-1" />
-              <span className="text-success font-medium mr-1">+4%</span> {t('dashboard.fromLastMonth')}
+              <span className="text-muted-foreground font-medium mr-1">From Catalyst Data Store</span>
             </p>
           </CardContent>
         </Card>
@@ -98,7 +199,9 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-slate-900 dark:text-white">14</div>
+            <div className="text-2xl font-bold text-slate-900 dark:text-white">
+              {stats.highRiskAlerts}
+            </div>
             <p className="text-xs text-muted-foreground mt-1">
               <span className="text-destructive font-medium">{t('dashboard.criticalAttention')}</span>
             </p>
@@ -113,9 +216,11 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-slate-900 dark:text-white">68.5%</div>
+            <div className="text-2xl font-bold text-slate-900 dark:text-white">
+              {stats.resolutionRate.toFixed(1)}%
+            </div>
             <p className="text-xs text-muted-foreground mt-1">
-              <span className="text-success font-medium">+2.1%</span> {t('dashboard.sinceLastQuarter')}
+              <span className="text-muted-foreground font-medium">Calculated from live data</span>
             </p>
           </CardContent>
         </Card>
@@ -174,33 +279,37 @@ export default function DashboardPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {[
-                { id: "FIR-4521", type: t('table.vehicleTheft'), loc: t('table.loc1'), date: t('table.date1'), status: t('table.statusInvestigation') },
-                { id: "FIR-4520", type: t('table.armedRobbery'), loc: t('table.loc2'), date: t('table.date2'), status: t('table.statusInvestigation') },
-                { id: "FIR-4519", type: t('table.cyberFraud'), loc: t('table.loc3'), date: t('table.date3'), status: t('table.statusSuspect') },
-                { id: "FIR-4518", type: t('table.burglary'), loc: t('table.loc4'), date: t('table.date4'), status: t('table.statusEvidence') },
-                { id: "FIR-4517", type: t('table.assault'), loc: t('table.loc5'), date: t('table.date5'), status: t('table.statusCharge') },
-              ].map((row) => (
-                <TableRow key={row.id} className="hover:bg-muted/30">
-                  <TableCell className="font-medium">{row.id}</TableCell>
-                  <TableCell>{row.type}</TableCell>
-                  <TableCell>
-                    <div className="flex items-center text-muted-foreground">
-                      <MapPin className="mr-1.5 h-3 w-3" />
-                      {row.loc}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{row.date}</TableCell>
-                  <TableCell>
-                    <Badge variant="secondary" className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 font-normal">
-                      {row.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button variant="ghost" size="sm">{t('table.investigate')}</Button>
+              {recentFIRs.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
+                    No FIRs found in Catalyst Data Store. Load seed data to see results.
                   </TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                recentFIRs.map((fir) => (
+                  <TableRow key={fir.id} className="hover:bg-muted/30">
+                    <TableCell className="font-medium">{fir.fir_no}</TableCell>
+                    <TableCell>{fir.crime_type_en}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center text-muted-foreground">
+                        <MapPin className="mr-1.5 h-3 w-3" />
+                        {fir.police_station_id}
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-muted-foreground text-sm">
+                      {new Date(fir.date).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="secondary" className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 font-normal">
+                        {fir.status_en}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button variant="ghost" size="sm">{t('table.investigate')}</Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>

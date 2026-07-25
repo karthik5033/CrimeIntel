@@ -30,17 +30,11 @@ export const CatalystAuth = {
         }
       }
     } catch (error) {
-      console.warn('Catalyst Auth fallback mode active:', (error as Error).message);
+      console.error('Catalyst Auth error:', (error as Error).message);
+      throw new Error(`Catalyst Authentication failed: ${(error as Error).message}`);
     }
     
-    // Authenticated state fallback for local development
-    return {
-      id: 'U10943',
-      email: 'officer@ksp.gov.in',
-      role: 'INSPECTOR',
-      firstName: 'Karnataka',
-      lastName: 'Investigator',
-    };
+    throw new Error('Catalyst Auth: getCurrentUser returned no user. Ensure user is logged in via Catalyst.');
   },
 
   login: async (email: string, role: 'CONSTABLE' | 'INSPECTOR' | 'SUPERINTENDENT' | 'ADMIN' = 'INSPECTOR') => {

@@ -19,7 +19,8 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   ShieldCheck,
-  BookOpen
+  BookOpen,
+  Database
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -28,6 +29,7 @@ import { useLanguage } from "@/lib/LanguageContext";
 
 const navItems = [
   { key: "sidebar.commandCenter", href: "/dashboard", icon: LayoutDashboard },
+  { key: "sidebar.dataIngestion", href: "/data-ingestion", icon: Database, label: "Data Ingestion" },
   { key: "sidebar.intelligenceChat", href: "/chat", icon: MessageSquare },
   { key: "sidebar.criminalNetwork", href: "/network", icon: Network },
   { key: "sidebar.analytics", href: "/analytics", icon: LineChart },
@@ -88,7 +90,7 @@ export function AppSidebar() {
         </div>
         {navItems.map((item) => {
           const isActive = pathname?.startsWith(item.href);
-          const name = t(item.key as any);
+          const name = item.label || t(item.key as any);
           return (
             <Link
               key={item.key}

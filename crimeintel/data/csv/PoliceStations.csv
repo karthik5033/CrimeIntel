@@ -1,0 +1,182 @@
+id,name_en,district_id,lat,lng
+PS_1,Bagalkote District Police Office,DIST_1,12.9716,77.5946
+PS_2,Ballari (Bellary) District Police Office,DIST_2,12.9716,77.5946
+PS_3,Belagavi (Belgaum) District Police Office,DIST_3,12.9716,77.5946
+PS_4,Bengaluru Rural District Police Office,DIST_4,12.9716,77.5946
+PS_5,Bengaluru Urban District Police Office,DIST_5,12.9716,77.5946
+PS_6,Bidar District Police Office,DIST_6,12.9716,77.5946
+PS_7,Chamarajanagara District Police Office,DIST_7,12.9716,77.5946
+PS_8,Chikkaballapura District Police Office,DIST_8,12.9716,77.5946
+PS_9,Chikkamagaluru District Police Office,DIST_9,12.9716,77.5946
+PS_10,Chitradurga District Police Office,DIST_10,12.9716,77.5946
+PS_11,Dakshina Kannada District Police Office,DIST_11,12.9716,77.5946
+PS_12,Davanagere District Police Office,DIST_12,12.9716,77.5946
+PS_13,Dharwad District Police Office,DIST_13,12.9716,77.5946
+PS_14,Gadag District Police Office,DIST_14,12.9716,77.5946
+PS_15,Hassan District Police Office,DIST_15,12.9716,77.5946
+PS_16,Haveri District Police Office,DIST_16,12.9716,77.5946
+PS_17,Kalaburagi (Gulbarga) District Police Office,DIST_17,12.9716,77.5946
+PS_18,Kodagu District Police Office,DIST_18,12.9716,77.5946
+PS_19,Kolar District Police Office,DIST_19,12.9716,77.5946
+PS_20,Koppal District Police Office,DIST_20,12.9716,77.5946
+PS_21,Mandya District Police Office,DIST_21,12.9716,77.5946
+PS_22,Mysuru District Police Office,DIST_22,12.9716,77.5946
+PS_23,Raichur District Police Office,DIST_23,12.9716,77.5946
+PS_24,Ramanagara District Police Office,DIST_24,12.9716,77.5946
+PS_25,Shivamogga District Police Office,DIST_25,12.9716,77.5946
+PS_26,Tumakuru District Police Office,DIST_26,12.9716,77.5946
+PS_27,Udupi District Police Office,DIST_27,12.9716,77.5946
+PS_28,Uttara Kannada District Police Office,DIST_28,12.9716,77.5946
+PS_29,Vijayanagara District Police Office,DIST_29,12.9716,77.5946
+PS_30,Vijayapura District Police Office,DIST_30,12.9716,77.5946
+PS_31,Yadgir District Police Office,DIST_31,12.9716,77.5946
+PS_32,Bagalkote Sub-Division,DIST_1,12.9716,77.5946
+PS_33,Ballari (Bellary) Sub-Division,DIST_2,12.9716,77.5946
+PS_34,Belagavi (Belgaum) Sub-Division,DIST_3,12.9716,77.5946
+PS_35,Bengaluru Rural Sub-Division,DIST_4,12.9716,77.5946
+PS_36,Bengaluru Urban Sub-Division,DIST_5,12.9716,77.5946
+PS_37,Bidar Sub-Division,DIST_6,12.9716,77.5946
+PS_38,Chamarajanagara Sub-Division,DIST_7,12.9716,77.5946
+PS_39,Chikkaballapura Sub-Division,DIST_8,12.9716,77.5946
+PS_40,Chikkamagaluru Sub-Division,DIST_9,12.9716,77.5946
+PS_41,Chitradurga Sub-Division,DIST_10,12.9716,77.5946
+PS_42,Dakshina Kannada Sub-Division,DIST_11,12.9716,77.5946
+PS_43,Davanagere Sub-Division,DIST_12,12.9716,77.5946
+PS_44,Dharwad Sub-Division,DIST_13,12.9716,77.5946
+PS_45,Gadag Sub-Division,DIST_14,12.9716,77.5946
+PS_46,Hassan Sub-Division,DIST_15,12.9716,77.5946
+PS_47,Haveri Sub-Division,DIST_16,12.9716,77.5946
+PS_48,Kalaburagi (Gulbarga) Sub-Division,DIST_17,12.9716,77.5946
+PS_49,Kodagu Sub-Division,DIST_18,12.9716,77.5946
+PS_50,Kolar Sub-Division,DIST_19,12.9716,77.5946
+PS_51,Koppal Sub-Division,DIST_20,12.9716,77.5946
+PS_52,Mandya Sub-Division,DIST_21,12.9716,77.5946
+PS_53,Mysuru Sub-Division,DIST_22,12.9716,77.5946
+PS_54,Raichur Sub-Division,DIST_23,12.9716,77.5946
+PS_55,Ramanagara Sub-Division,DIST_24,12.9716,77.5946
+PS_56,Shivamogga Sub-Division,DIST_25,12.9716,77.5946
+PS_57,Tumakuru Sub-Division,DIST_26,12.9716,77.5946
+PS_58,Udupi Sub-Division,DIST_27,12.9716,77.5946
+PS_59,Uttara Kannada Sub-Division,DIST_28,12.9716,77.5946
+PS_60,Vijayanagara Sub-Division,DIST_29,12.9716,77.5946
+PS_61,Vijayapura Sub-Division,DIST_30,12.9716,77.5946
+PS_62,Yadgir Sub-Division,DIST_31,12.9716,77.5946
+PS_63,Bagalkote Circle 1,DIST_1,12.9716,77.5946
+PS_64,Ballari (Bellary) Circle 1,DIST_2,12.9716,77.5946
+PS_65,Belagavi (Belgaum) Circle 1,DIST_3,12.9716,77.5946
+PS_66,Belagavi (Belgaum) Circle 2,DIST_3,12.9716,77.5946
+PS_67,Bengaluru Rural Circle 1,DIST_4,12.9716,77.5946
+PS_68,Bengaluru Urban Circle 1,DIST_5,12.9716,77.5946
+PS_69,Bengaluru Urban Circle 2,DIST_5,12.9716,77.5946
+PS_70,Bengaluru Urban Circle 3,DIST_5,12.9716,77.5946
+PS_71,Bengaluru Urban Circle 4,DIST_5,12.9716,77.5946
+PS_72,Bengaluru Urban Circle 5,DIST_5,12.9716,77.5946
+PS_73,Bidar Circle 1,DIST_6,12.9716,77.5946
+PS_74,Chamarajanagara Circle 1,DIST_7,12.9716,77.5946
+PS_75,Chikkaballapura Circle 1,DIST_8,12.9716,77.5946
+PS_76,Chikkamagaluru Circle 1,DIST_9,12.9716,77.5946
+PS_77,Chitradurga Circle 1,DIST_10,12.9716,77.5946
+PS_78,Dakshina Kannada Circle 1,DIST_11,12.9716,77.5946
+PS_79,Dakshina Kannada Circle 2,DIST_11,12.9716,77.5946
+PS_80,Davanagere Circle 1,DIST_12,12.9716,77.5946
+PS_81,Dharwad Circle 1,DIST_13,12.9716,77.5946
+PS_82,Gadag Circle 1,DIST_14,12.9716,77.5946
+PS_83,Hassan Circle 1,DIST_15,12.9716,77.5946
+PS_84,Haveri Circle 1,DIST_16,12.9716,77.5946
+PS_85,Kalaburagi (Gulbarga) Circle 1,DIST_17,12.9716,77.5946
+PS_86,Kodagu Circle 1,DIST_18,12.9716,77.5946
+PS_87,Kolar Circle 1,DIST_19,12.9716,77.5946
+PS_88,Koppal Circle 1,DIST_20,12.9716,77.5946
+PS_89,Mandya Circle 1,DIST_21,12.9716,77.5946
+PS_90,Mysuru Circle 1,DIST_22,12.9716,77.5946
+PS_91,Mysuru Circle 2,DIST_22,12.9716,77.5946
+PS_92,Mysuru Circle 3,DIST_22,12.9716,77.5946
+PS_93,Raichur Circle 1,DIST_23,12.9716,77.5946
+PS_94,Ramanagara Circle 1,DIST_24,12.9716,77.5946
+PS_95,Shivamogga Circle 1,DIST_25,12.9716,77.5946
+PS_96,Tumakuru Circle 1,DIST_26,12.9716,77.5946
+PS_97,Udupi Circle 1,DIST_27,12.9716,77.5946
+PS_98,Uttara Kannada Circle 1,DIST_28,12.9716,77.5946
+PS_99,Vijayanagara Circle 1,DIST_29,12.9716,77.5946
+PS_100,Vijayapura Circle 1,DIST_30,12.9716,77.5946
+PS_101,Yadgir Circle 1,DIST_31,12.9716,77.5946
+PS_102,Bagalkote Town PS,DIST_1,12.9716,77.5946
+PS_103,Bagalkote Rural PS,DIST_1,12.9716,77.5946
+PS_104,Ballari (Bellary) Town PS,DIST_2,12.9716,77.5946
+PS_105,Ballari (Bellary) Rural PS,DIST_2,12.9716,77.5946
+PS_106,Camp PS,DIST_3,12.9716,77.5946
+PS_107,Market PS,DIST_3,12.9716,77.5946
+PS_108,Tilakwadi PS,DIST_3,12.9716,77.5946
+PS_109,Shahapur PS,DIST_3,12.9716,77.5946
+PS_110,Gandhinagar PS,DIST_3,12.9716,77.5946
+PS_111,Khadebazar PS,DIST_3,12.9716,77.5946
+PS_112,Bengaluru Rural Town PS,DIST_4,12.9716,77.5946
+PS_113,Bengaluru Rural Rural PS,DIST_4,12.9716,77.5946
+PS_114,Cubbon Park PS,DIST_5,12.9716,77.5946
+PS_115,Whitefield PS,DIST_5,12.9716,77.5946
+PS_116,Electronic City PS,DIST_5,12.9716,77.5946
+PS_117,Koramangala PS,DIST_5,12.9716,77.5946
+PS_118,Jayanagar PS,DIST_5,12.9716,77.5946
+PS_119,HSR Layout PS,DIST_5,12.9716,77.5946
+PS_120,Indiranagar PS,DIST_5,12.9716,77.5946
+PS_121,Marathahalli PS,DIST_5,12.9716,77.5946
+PS_122,Yelahanka PS,DIST_5,12.9716,77.5946
+PS_123,KR Puram PS,DIST_5,12.9716,77.5946
+PS_124,Banashankari PS,DIST_5,12.9716,77.5946
+PS_125,Rajajinagar PS,DIST_5,12.9716,77.5946
+PS_126,Hebbal PS,DIST_5,12.9716,77.5946
+PS_127,Peenya PS,DIST_5,12.9716,77.5946
+PS_128,Basavanagudi PS,DIST_5,12.9716,77.5946
+PS_129,Bidar Town PS,DIST_6,12.9716,77.5946
+PS_130,Bidar Rural PS,DIST_6,12.9716,77.5946
+PS_131,Chamarajanagara Town PS,DIST_7,12.9716,77.5946
+PS_132,Chamarajanagara Rural PS,DIST_7,12.9716,77.5946
+PS_133,Chikkaballapura Town PS,DIST_8,12.9716,77.5946
+PS_134,Chikkaballapura Rural PS,DIST_8,12.9716,77.5946
+PS_135,Chikkamagaluru Town PS,DIST_9,12.9716,77.5946
+PS_136,Chikkamagaluru Rural PS,DIST_9,12.9716,77.5946
+PS_137,Chitradurga Town PS,DIST_10,12.9716,77.5946
+PS_138,Chitradurga Rural PS,DIST_10,12.9716,77.5946
+PS_139,Mangalore City (Bunder) PS,DIST_11,12.9716,77.5946
+PS_140,Mangalore North PS,DIST_11,12.9716,77.5946
+PS_141,Mangalore South PS,DIST_11,12.9716,77.5946
+PS_142,Mangalore East PS,DIST_11,12.9716,77.5946
+PS_143,Mangalore West PS,DIST_11,12.9716,77.5946
+PS_144,Ullal PS,DIST_11,12.9716,77.5946
+PS_145,Davanagere Town PS,DIST_12,12.9716,77.5946
+PS_146,Davanagere Rural PS,DIST_12,12.9716,77.5946
+PS_147,Dharwad Town PS,DIST_13,12.9716,77.5946
+PS_148,Dharwad Rural PS,DIST_13,12.9716,77.5946
+PS_149,Gadag Town PS,DIST_14,12.9716,77.5946
+PS_150,Gadag Rural PS,DIST_14,12.9716,77.5946
+PS_151,Hassan Town PS,DIST_15,12.9716,77.5946
+PS_152,Hassan Rural PS,DIST_15,12.9716,77.5946
+PS_153,Haveri Town PS,DIST_16,12.9716,77.5946
+PS_154,Haveri Rural PS,DIST_16,12.9716,77.5946
+PS_155,Kalaburagi (Gulbarga) Town PS,DIST_17,12.9716,77.5946
+PS_156,Kalaburagi (Gulbarga) Rural PS,DIST_17,12.9716,77.5946
+PS_157,Kodagu Town PS,DIST_18,12.9716,77.5946
+PS_158,Kodagu Rural PS,DIST_18,12.9716,77.5946
+PS_159,Kolar Town PS,DIST_19,12.9716,77.5946
+PS_160,Kolar Rural PS,DIST_19,12.9716,77.5946
+PS_161,Koppal Town PS,DIST_20,12.9716,77.5946
+PS_162,Koppal Rural PS,DIST_20,12.9716,77.5946
+PS_163,Mandya Town PS,DIST_21,12.9716,77.5946
+PS_164,Mandya Rural PS,DIST_21,12.9716,77.5946
+PS_165,Devaraja PS,DIST_22,12.9716,77.5946
+PS_166,Jayalakshmipuram PS,DIST_22,12.9716,77.5946
+PS_167,Nazarbad PS,DIST_22,12.9716,77.5946
+PS_168,Vijayanagar PS,DIST_22,12.9716,77.5946
+PS_169,Krishnaraja PS,DIST_22,12.9716,77.5946
+PS_170,Vidyaranyapuram PS,DIST_22,12.9716,77.5946
+PS_171,Kuvempunagar PS,DIST_22,12.9716,77.5946
+PS_172,Bannimantap PS,DIST_22,12.9716,77.5946
+PS_173,Raichur Town PS,DIST_23,12.9716,77.5946
+PS_174,Ramanagara Town PS,DIST_24,12.9716,77.5946
+PS_175,Shivamogga Town PS,DIST_25,12.9716,77.5946
+PS_176,Tumakuru Town PS,DIST_26,12.9716,77.5946
+PS_177,Udupi Town PS,DIST_27,12.9716,77.5946
+PS_178,Uttara Kannada Town PS,DIST_28,12.9716,77.5946
+PS_179,Vijayanagara Town PS,DIST_29,12.9716,77.5946
+PS_180,Vijayapura Town PS,DIST_30,12.9716,77.5946
+PS_181,Yadgir Town PS,DIST_31,12.9716,77.5946

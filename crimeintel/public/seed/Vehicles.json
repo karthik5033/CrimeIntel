@@ -1,0 +1,1052 @@
+[
+  {
+    "id": "VEHICLE_1",
+    "license_plate": "ZC63IHO",
+    "make": "Peugeot",
+    "model": "PT Cruiser",
+    "color": "lime"
+  },
+  {
+    "id": "VEHICLE_2",
+    "license_plate": "JC83NDZ",
+    "make": "Ferrari",
+    "model": "Corvette",
+    "color": "salmon"
+  },
+  {
+    "id": "VEHICLE_3",
+    "license_plate": "VU62CHZ",
+    "make": "Dodge",
+    "model": "Jetta",
+    "color": "teal"
+  },
+  {
+    "id": "VEHICLE_4",
+    "license_plate": "RY90EXF",
+    "make": "Tesla",
+    "model": "CTS",
+    "color": "azure"
+  },
+  {
+    "id": "VEHICLE_5",
+    "license_plate": "XG51KRP",
+    "make": "Honda",
+    "model": "Durango",
+    "color": "green"
+  },
+  {
+    "id": "VEHICLE_6",
+    "license_plate": "OA65YRA",
+    "make": "Toyota",
+    "model": "Beetle",
+    "color": "olive"
+  },
+  {
+    "id": "VEHICLE_7",
+    "license_plate": "BN66DVD",
+    "make": "Ferrari",
+    "model": "Camry",
+    "color": "lime"
+  },
+  {
+    "id": "VEHICLE_8",
+    "license_plate": "NU43XWJ",
+    "make": "Fiat",
+    "model": "Golf",
+    "color": "azure"
+  },
+  {
+    "id": "VEHICLE_9",
+    "license_plate": "SI41EBS",
+    "make": "Chrysler",
+    "model": "Prius",
+    "color": "ivory"
+  },
+  {
+    "id": "VEHICLE_10",
+    "license_plate": "MT46ZNH",
+    "make": "Aston Martin",
+    "model": "CX-9",
+    "color": "yellow"
+  },
+  {
+    "id": "VEHICLE_11",
+    "license_plate": "ZU20WHI",
+    "make": "Chrysler",
+    "model": "Model S",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_12",
+    "license_plate": "SC10PRI",
+    "make": "Ford",
+    "model": "A4",
+    "color": "red"
+  },
+  {
+    "id": "VEHICLE_13",
+    "license_plate": "AV46DPT",
+    "make": "Honda",
+    "model": "2",
+    "color": "mint green"
+  },
+  {
+    "id": "VEHICLE_14",
+    "license_plate": "JR54CKP",
+    "make": "Audi",
+    "model": "Wrangler",
+    "color": "pink"
+  },
+  {
+    "id": "VEHICLE_15",
+    "license_plate": "LR45XRS",
+    "make": "Bentley",
+    "model": "Countach",
+    "color": "azure"
+  },
+  {
+    "id": "VEHICLE_16",
+    "license_plate": "GI79VZT",
+    "make": "Chevrolet",
+    "model": "1",
+    "color": "salmon"
+  },
+  {
+    "id": "VEHICLE_17",
+    "license_plate": "JU41BKE",
+    "make": "Chrysler",
+    "model": "Cruze",
+    "color": "tan"
+  },
+  {
+    "id": "VEHICLE_18",
+    "license_plate": "UQ86TAM",
+    "make": "Bugatti",
+    "model": "Roadster",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_19",
+    "license_plate": "YR23UTV",
+    "make": "Tata",
+    "model": "Focus",
+    "color": "salmon"
+  },
+  {
+    "id": "VEHICLE_20",
+    "license_plate": "TE73PZD",
+    "make": "Vauxhall",
+    "model": "A4",
+    "color": "indigo"
+  },
+  {
+    "id": "VEHICLE_21",
+    "license_plate": "IC10IOL",
+    "make": "Audi",
+    "model": "Model X",
+    "color": "azure"
+  },
+  {
+    "id": "VEHICLE_22",
+    "license_plate": "NW79QEK",
+    "make": "Tesla",
+    "model": "Civic",
+    "color": "white"
+  },
+  {
+    "id": "VEHICLE_23",
+    "license_plate": "RJ69SMR",
+    "make": "Suzuki",
+    "model": "Expedition",
+    "color": "gold"
+  },
+  {
+    "id": "VEHICLE_24",
+    "license_plate": "BY09YVX",
+    "make": "Porsche",
+    "model": "Ranchero",
+    "color": "maroon"
+  },
+  {
+    "id": "VEHICLE_25",
+    "license_plate": "RL50IGT",
+    "make": "BMW",
+    "model": "Spyder",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_26",
+    "license_plate": "BX31ECO",
+    "make": "Bugatti",
+    "model": "Explorer",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_27",
+    "license_plate": "YK22CVT",
+    "make": "Dodge",
+    "model": "911",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_28",
+    "license_plate": "EV21ZOH",
+    "make": "Jeep",
+    "model": "Sentra",
+    "color": "tan"
+  },
+  {
+    "id": "VEHICLE_29",
+    "license_plate": "KI09WBO",
+    "make": "MG",
+    "model": "Land Cruiser",
+    "color": "teal"
+  },
+  {
+    "id": "VEHICLE_30",
+    "license_plate": "GP07UNV",
+    "make": "Mitsubishi",
+    "model": "Corvette",
+    "color": "indigo"
+  },
+  {
+    "id": "VEHICLE_31",
+    "license_plate": "ML18KPN",
+    "make": "Suzuki",
+    "model": "Prius",
+    "color": "orange"
+  },
+  {
+    "id": "VEHICLE_32",
+    "license_plate": "BD95TFW",
+    "make": "Smart",
+    "model": "Wrangler",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_33",
+    "license_plate": "DP54ZMM",
+    "make": "Ford",
+    "model": "Silverado",
+    "color": "blue"
+  },
+  {
+    "id": "VEHICLE_34",
+    "license_plate": "KY74BPP",
+    "make": "Mazda",
+    "model": "911",
+    "color": "orchid"
+  },
+  {
+    "id": "VEHICLE_35",
+    "license_plate": "VO07MTP",
+    "make": "Toyota",
+    "model": "2",
+    "color": "silver"
+  },
+  {
+    "id": "VEHICLE_36",
+    "license_plate": "CW04GMH",
+    "make": "Vauxhall",
+    "model": "Charger",
+    "color": "turquoise"
+  },
+  {
+    "id": "VEHICLE_37",
+    "license_plate": "VI62DEL",
+    "make": "Audi",
+    "model": "Countach",
+    "color": "purple"
+  },
+  {
+    "id": "VEHICLE_38",
+    "license_plate": "TZ19NDO",
+    "make": "Audi",
+    "model": "PT Cruiser",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_39",
+    "license_plate": "SB88PAN",
+    "make": "Polestar",
+    "model": "V90",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_40",
+    "license_plate": "SL78UPD",
+    "make": "Ford",
+    "model": "Camry",
+    "color": "maroon"
+  },
+  {
+    "id": "VEHICLE_41",
+    "license_plate": "JL71EYZ",
+    "make": "Maserati",
+    "model": "Model T",
+    "color": "blue"
+  },
+  {
+    "id": "VEHICLE_42",
+    "license_plate": "WY51SQG",
+    "make": "Volkswagen",
+    "model": "Aventador",
+    "color": "turquoise"
+  },
+  {
+    "id": "VEHICLE_43",
+    "license_plate": "QA51ULM",
+    "make": "Honda",
+    "model": "Alpine",
+    "color": "azure"
+  },
+  {
+    "id": "VEHICLE_44",
+    "license_plate": "VO03FUG",
+    "make": "Land Rover",
+    "model": "Taurus",
+    "color": "maroon"
+  },
+  {
+    "id": "VEHICLE_45",
+    "license_plate": "UP50ABY",
+    "make": "Tesla",
+    "model": "Challenger",
+    "color": "azure"
+  },
+  {
+    "id": "VEHICLE_46",
+    "license_plate": "DV32CKS",
+    "make": "Dodge",
+    "model": "Element",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_47",
+    "license_plate": "MV69GVR",
+    "make": "Smart",
+    "model": "Aventador",
+    "color": "mint green"
+  },
+  {
+    "id": "VEHICLE_48",
+    "license_plate": "TY35XSY",
+    "make": "Maruti",
+    "model": "Sentra",
+    "color": "ivory"
+  },
+  {
+    "id": "VEHICLE_49",
+    "license_plate": "DH91SHV",
+    "make": "Ford",
+    "model": "Challenger",
+    "color": "white"
+  },
+  {
+    "id": "VEHICLE_50",
+    "license_plate": "ZJ82ZWZ",
+    "make": "Smart",
+    "model": "Element",
+    "color": "white"
+  },
+  {
+    "id": "VEHICLE_51",
+    "license_plate": "YT61HHP",
+    "make": "Toyota",
+    "model": "ATS",
+    "color": "orange"
+  },
+  {
+    "id": "VEHICLE_52",
+    "license_plate": "WA42BUU",
+    "make": "Mercedes Benz",
+    "model": "CTS",
+    "color": "lime"
+  },
+  {
+    "id": "VEHICLE_53",
+    "license_plate": "ZR86RJP",
+    "make": "Ford",
+    "model": "Cruze",
+    "color": "fuchsia"
+  },
+  {
+    "id": "VEHICLE_54",
+    "license_plate": "RI39NIU",
+    "make": "BYD",
+    "model": "Alpine",
+    "color": "grey"
+  },
+  {
+    "id": "VEHICLE_55",
+    "license_plate": "YT25KKP",
+    "make": "Rivian",
+    "model": "Accord",
+    "color": "plum"
+  },
+  {
+    "id": "VEHICLE_56",
+    "license_plate": "UR58QZF",
+    "make": "Subaru",
+    "model": "Fortwo",
+    "color": "blue"
+  },
+  {
+    "id": "VEHICLE_57",
+    "license_plate": "ZB90JMM",
+    "make": "Land Rover",
+    "model": "Expedition",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_58",
+    "license_plate": "NZ71TVF",
+    "make": "Renault",
+    "model": "Model S",
+    "color": "mint green"
+  },
+  {
+    "id": "VEHICLE_59",
+    "license_plate": "DB64YPP",
+    "make": "Chrysler",
+    "model": "Land Cruiser",
+    "color": "white"
+  },
+  {
+    "id": "VEHICLE_60",
+    "license_plate": "LQ68HDK",
+    "make": "Volvo",
+    "model": "Prius",
+    "color": "green"
+  },
+  {
+    "id": "VEHICLE_61",
+    "license_plate": "TB04YJB",
+    "make": "Jeep",
+    "model": "Prius",
+    "color": "purple"
+  },
+  {
+    "id": "VEHICLE_62",
+    "license_plate": "WT84DAQ",
+    "make": "Tata",
+    "model": "Focus",
+    "color": "red"
+  },
+  {
+    "id": "VEHICLE_63",
+    "license_plate": "QQ99WSU",
+    "make": "Porsche",
+    "model": "Beetle",
+    "color": "orchid"
+  },
+  {
+    "id": "VEHICLE_64",
+    "license_plate": "TQ84ZVZ",
+    "make": "Mercedes Benz",
+    "model": "Fiesta",
+    "color": "sky blue"
+  },
+  {
+    "id": "VEHICLE_65",
+    "license_plate": "DB26YUY",
+    "make": "Renault",
+    "model": "Malibu",
+    "color": "orange"
+  },
+  {
+    "id": "VEHICLE_66",
+    "license_plate": "HG76QSG",
+    "make": "Mercedes Benz",
+    "model": "XTS",
+    "color": "lime"
+  },
+  {
+    "id": "VEHICLE_67",
+    "license_plate": "MA17MKS",
+    "make": "Cadillac",
+    "model": "Camaro",
+    "color": "grey"
+  },
+  {
+    "id": "VEHICLE_68",
+    "license_plate": "VR03OSE",
+    "make": "Volkswagen",
+    "model": "Malibu",
+    "color": "mint green"
+  },
+  {
+    "id": "VEHICLE_69",
+    "license_plate": "GC03KQW",
+    "make": "Rolls Royce",
+    "model": "Taurus",
+    "color": "fuchsia"
+  },
+  {
+    "id": "VEHICLE_70",
+    "license_plate": "IO56KNY",
+    "make": "Maruti",
+    "model": "Fiesta",
+    "color": "blue"
+  },
+  {
+    "id": "VEHICLE_71",
+    "license_plate": "IL26APP",
+    "make": "Jaguar",
+    "model": "Explorer",
+    "color": "magenta"
+  },
+  {
+    "id": "VEHICLE_72",
+    "license_plate": "OH27ZUI",
+    "make": "Ferrari",
+    "model": "Accord",
+    "color": "black"
+  },
+  {
+    "id": "VEHICLE_73",
+    "license_plate": "TS25NOJ",
+    "make": "Mahindra & Mahindra",
+    "model": "Charger",
+    "color": "tan"
+  },
+  {
+    "id": "VEHICLE_74",
+    "license_plate": "XO98CAI",
+    "make": "Dodge",
+    "model": "Explorer",
+    "color": "teal"
+  },
+  {
+    "id": "VEHICLE_75",
+    "license_plate": "KN09FXD",
+    "make": "Fiat",
+    "model": "Taurus",
+    "color": "lime"
+  },
+  {
+    "id": "VEHICLE_76",
+    "license_plate": "UQ66YCA",
+    "make": "Volvo",
+    "model": "XC90",
+    "color": "fuchsia"
+  },
+  {
+    "id": "VEHICLE_77",
+    "license_plate": "RT66THU",
+    "make": "Fiat",
+    "model": "Accord",
+    "color": "black"
+  },
+  {
+    "id": "VEHICLE_78",
+    "license_plate": "LY19ARK",
+    "make": "Porsche",
+    "model": "Golf",
+    "color": "grey"
+  },
+  {
+    "id": "VEHICLE_79",
+    "license_plate": "IK90KEK",
+    "make": "Chrysler",
+    "model": "Challenger",
+    "color": "olive"
+  },
+  {
+    "id": "VEHICLE_80",
+    "license_plate": "YH61TFM",
+    "make": "Chrysler",
+    "model": "Roadster",
+    "color": "red"
+  },
+  {
+    "id": "VEHICLE_81",
+    "license_plate": "QJ96PXR",
+    "make": "Jeep",
+    "model": "Challenger",
+    "color": "green"
+  },
+  {
+    "id": "VEHICLE_82",
+    "license_plate": "SX56RIY",
+    "make": "MG",
+    "model": "Impala",
+    "color": "white"
+  },
+  {
+    "id": "VEHICLE_83",
+    "license_plate": "XQ89RMU",
+    "make": "Mazda",
+    "model": "Camry",
+    "color": "gold"
+  },
+  {
+    "id": "VEHICLE_84",
+    "license_plate": "SQ30AVW",
+    "make": "Rolls Royce",
+    "model": "Grand Caravan",
+    "color": "teal"
+  },
+  {
+    "id": "VEHICLE_85",
+    "license_plate": "MG84OGB",
+    "make": "Polestar",
+    "model": "Sentra",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_86",
+    "license_plate": "II82AUZ",
+    "make": "Ford",
+    "model": "Model T",
+    "color": "maroon"
+  },
+  {
+    "id": "VEHICLE_87",
+    "license_plate": "EJ37FAL",
+    "make": "BMW",
+    "model": "Durango",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_88",
+    "license_plate": "UX79FXE",
+    "make": "Vauxhall",
+    "model": "V90",
+    "color": "mint green"
+  },
+  {
+    "id": "VEHICLE_89",
+    "license_plate": "LT93NXY",
+    "make": "BMW",
+    "model": "Cruze",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_90",
+    "license_plate": "QT56HZQ",
+    "make": "Fiat",
+    "model": "Land Cruiser",
+    "color": "black"
+  },
+  {
+    "id": "VEHICLE_91",
+    "license_plate": "WO95ATW",
+    "make": "Rivian",
+    "model": "Land Cruiser",
+    "color": "orchid"
+  },
+  {
+    "id": "VEHICLE_92",
+    "license_plate": "ZG41CZY",
+    "make": "Mercedes Benz",
+    "model": "Charger",
+    "color": "plum"
+  },
+  {
+    "id": "VEHICLE_93",
+    "license_plate": "WI91GPI",
+    "make": "Audi",
+    "model": "Grand Cherokee",
+    "color": "green"
+  },
+  {
+    "id": "VEHICLE_94",
+    "license_plate": "PG29BGQ",
+    "make": "Citroën",
+    "model": "Escalade",
+    "color": "azure"
+  },
+  {
+    "id": "VEHICLE_95",
+    "license_plate": "NR13MFD",
+    "make": "Honda",
+    "model": "Durango",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_96",
+    "license_plate": "VN81HNV",
+    "make": "MG",
+    "model": "Expedition",
+    "color": "mint green"
+  },
+  {
+    "id": "VEHICLE_97",
+    "license_plate": "IC86PBP",
+    "make": "Volkswagen",
+    "model": "Sentra",
+    "color": "purple"
+  },
+  {
+    "id": "VEHICLE_98",
+    "license_plate": "LJ86MGX",
+    "make": "Honda",
+    "model": "Civic",
+    "color": "mint green"
+  },
+  {
+    "id": "VEHICLE_99",
+    "license_plate": "HE61ATB",
+    "make": "Rolls Royce",
+    "model": "Prius",
+    "color": "black"
+  },
+  {
+    "id": "VEHICLE_100",
+    "license_plate": "CY09JCS",
+    "make": "Mercedes Benz",
+    "model": "Murcielago",
+    "color": "gold"
+  },
+  {
+    "id": "VEHICLE_101",
+    "license_plate": "EM13SHB",
+    "make": "Toyota",
+    "model": "Jetta",
+    "color": "gold"
+  },
+  {
+    "id": "VEHICLE_102",
+    "license_plate": "LU98UOQ",
+    "make": "Chrysler",
+    "model": "Silverado",
+    "color": "indigo"
+  },
+  {
+    "id": "VEHICLE_103",
+    "license_plate": "YE77KPT",
+    "make": "Cadillac",
+    "model": "Impala",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_104",
+    "license_plate": "YS26NYH",
+    "make": "Cadillac",
+    "model": "Model X",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_105",
+    "license_plate": "XU58KDJ",
+    "make": "Nissan",
+    "model": "Beetle",
+    "color": "yellow"
+  },
+  {
+    "id": "VEHICLE_106",
+    "license_plate": "GI23LTQ",
+    "make": "Polestar",
+    "model": "Spyder",
+    "color": "lime"
+  },
+  {
+    "id": "VEHICLE_107",
+    "license_plate": "TB98TUK",
+    "make": "Mazda",
+    "model": "Durango",
+    "color": "pink"
+  },
+  {
+    "id": "VEHICLE_108",
+    "license_plate": "HK62FVA",
+    "make": "Maserati",
+    "model": "Civic",
+    "color": "silver"
+  },
+  {
+    "id": "VEHICLE_109",
+    "license_plate": "DZ34CCI",
+    "make": "Lamborghini",
+    "model": "V90",
+    "color": "silver"
+  },
+  {
+    "id": "VEHICLE_110",
+    "license_plate": "SK84HCL",
+    "make": "Rolls Royce",
+    "model": "Beetle",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_111",
+    "license_plate": "PE82CUX",
+    "make": "Mitsubishi",
+    "model": "XC90",
+    "color": "sky blue"
+  },
+  {
+    "id": "VEHICLE_112",
+    "license_plate": "BL82NLQ",
+    "make": "Jaguar",
+    "model": "Altima",
+    "color": "blue"
+  },
+  {
+    "id": "VEHICLE_113",
+    "license_plate": "CG63NOB",
+    "make": "Nissan",
+    "model": "Camry",
+    "color": "teal"
+  },
+  {
+    "id": "VEHICLE_114",
+    "license_plate": "AF94ZID",
+    "make": "Ferrari",
+    "model": "Model Y",
+    "color": "turquoise"
+  },
+  {
+    "id": "VEHICLE_115",
+    "license_plate": "QH30URV",
+    "make": "Hyundai",
+    "model": "Ranchero",
+    "color": "blue"
+  },
+  {
+    "id": "VEHICLE_116",
+    "license_plate": "QI42HXI",
+    "make": "Rivian",
+    "model": "CTS",
+    "color": "pink"
+  },
+  {
+    "id": "VEHICLE_117",
+    "license_plate": "MB89GUH",
+    "make": "Skoda",
+    "model": "Accord",
+    "color": "cyan"
+  },
+  {
+    "id": "VEHICLE_118",
+    "license_plate": "PO00EYR",
+    "make": "Bugatti",
+    "model": "Murcielago",
+    "color": "orchid"
+  },
+  {
+    "id": "VEHICLE_119",
+    "license_plate": "EG29GRX",
+    "make": "Toyota",
+    "model": "PT Cruiser",
+    "color": "indigo"
+  },
+  {
+    "id": "VEHICLE_120",
+    "license_plate": "YY46KBR",
+    "make": "Aston Martin",
+    "model": "V90",
+    "color": "sky blue"
+  },
+  {
+    "id": "VEHICLE_121",
+    "license_plate": "US57FMU",
+    "make": "Jaguar",
+    "model": "F-150",
+    "color": "indigo"
+  },
+  {
+    "id": "VEHICLE_122",
+    "license_plate": "EC66ZNA",
+    "make": "Rivian",
+    "model": "Fortwo",
+    "color": "orchid"
+  },
+  {
+    "id": "VEHICLE_123",
+    "license_plate": "DV35DWT",
+    "make": "Chevrolet",
+    "model": "Charger",
+    "color": "salmon"
+  },
+  {
+    "id": "VEHICLE_124",
+    "license_plate": "ZH47KFM",
+    "make": "Tesla",
+    "model": "Fortwo",
+    "color": "orange"
+  },
+  {
+    "id": "VEHICLE_125",
+    "license_plate": "GX36HPR",
+    "make": "Honda",
+    "model": "Challenger",
+    "color": "cyan"
+  },
+  {
+    "id": "VEHICLE_126",
+    "license_plate": "TS76CPF",
+    "make": "Ford",
+    "model": "Element",
+    "color": "indigo"
+  },
+  {
+    "id": "VEHICLE_127",
+    "license_plate": "DM15BHV",
+    "make": "Subaru",
+    "model": "Jetta",
+    "color": "turquoise"
+  },
+  {
+    "id": "VEHICLE_128",
+    "license_plate": "JM84HLU",
+    "make": "BMW",
+    "model": "Wrangler",
+    "color": "magenta"
+  },
+  {
+    "id": "VEHICLE_129",
+    "license_plate": "WD06EYP",
+    "make": "Rolls Royce",
+    "model": "911",
+    "color": "teal"
+  },
+  {
+    "id": "VEHICLE_130",
+    "license_plate": "GL39PIK",
+    "make": "Porsche",
+    "model": "Golf",
+    "color": "violet"
+  },
+  {
+    "id": "VEHICLE_131",
+    "license_plate": "JW20UXW",
+    "make": "Rivian",
+    "model": "Model T",
+    "color": "red"
+  },
+  {
+    "id": "VEHICLE_132",
+    "license_plate": "GG27MWR",
+    "make": "Chevrolet",
+    "model": "Element",
+    "color": "lavender"
+  },
+  {
+    "id": "VEHICLE_133",
+    "license_plate": "PE34LZM",
+    "make": "Maruti",
+    "model": "Focus",
+    "color": "mint green"
+  },
+  {
+    "id": "VEHICLE_134",
+    "license_plate": "IZ17YSI",
+    "make": "Chevrolet",
+    "model": "LeBaron",
+    "color": "black"
+  },
+  {
+    "id": "VEHICLE_135",
+    "license_plate": "NE83VTS",
+    "make": "Maruti",
+    "model": "Taurus",
+    "color": "ivory"
+  },
+  {
+    "id": "VEHICLE_136",
+    "license_plate": "NV02UWP",
+    "make": "Toyota",
+    "model": "Murcielago",
+    "color": "purple"
+  },
+  {
+    "id": "VEHICLE_137",
+    "license_plate": "OI04BBC",
+    "make": "Rivian",
+    "model": "Mustang",
+    "color": "blue"
+  },
+  {
+    "id": "VEHICLE_138",
+    "license_plate": "UR77PGH",
+    "make": "Honda",
+    "model": "Escalade",
+    "color": "magenta"
+  },
+  {
+    "id": "VEHICLE_139",
+    "license_plate": "WK32KFW",
+    "make": "Smart",
+    "model": "Wrangler",
+    "color": "sky blue"
+  },
+  {
+    "id": "VEHICLE_140",
+    "license_plate": "AQ06JHI",
+    "make": "Porsche",
+    "model": "Fiesta",
+    "color": "olive"
+  },
+  {
+    "id": "VEHICLE_141",
+    "license_plate": "ZI79TFD",
+    "make": "Land Rover",
+    "model": "Countach",
+    "color": "teal"
+  },
+  {
+    "id": "VEHICLE_142",
+    "license_plate": "GQ48OSV",
+    "make": "Mercedes Benz",
+    "model": "CTS",
+    "color": "sky blue"
+  },
+  {
+    "id": "VEHICLE_143",
+    "license_plate": "PF00LOI",
+    "make": "Land Rover",
+    "model": "Focus",
+    "color": "magenta"
+  },
+  {
+    "id": "VEHICLE_144",
+    "license_plate": "AT18QVK",
+    "make": "Volvo",
+    "model": "2",
+    "color": "blue"
+  },
+  {
+    "id": "VEHICLE_145",
+    "license_plate": "MV51JPU",
+    "make": "Chevrolet",
+    "model": "Silverado",
+    "color": "fuchsia"
+  },
+  {
+    "id": "VEHICLE_146",
+    "license_plate": "EC94LZV",
+    "make": "Rolls Royce",
+    "model": "Altima",
+    "color": "cyan"
+  },
+  {
+    "id": "VEHICLE_147",
+    "license_plate": "WW82BDR",
+    "make": "Kia",
+    "model": "Land Cruiser",
+    "color": "tan"
+  },
+  {
+    "id": "VEHICLE_148",
+    "license_plate": "CJ88APP",
+    "make": "Ford",
+    "model": "Impala",
+    "color": "white"
+  },
+  {
+    "id": "VEHICLE_149",
+    "license_plate": "PQ39SPO",
+    "make": "Skoda",
+    "model": "El Camino",
+    "color": "sky blue"
+  },
+  {
+    "id": "VEHICLE_150",
+    "license_plate": "PE82VNQ",
+    "make": "Renault",
+    "model": "CTS",
+    "color": "cyan"
+  }
+]

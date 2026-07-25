@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { ReasoningOutput } from '@/lib/reasoning/types';
-import { CatalystNoSQL } from '@/lib/catalyst/nosql';
+
 
 export interface ChatMessage {
   id: string;
@@ -56,8 +56,12 @@ export const useChatStore = create<ChatState>()(
           activeSessionId: newSession.id,
           contextEntities: [],
         }));
-        // Sync to Catalyst NoSQL
-        CatalystNoSQL.saveChatSession(newSession.id, newSession);
+        // Sync to Catalyst NoSQL via API
+        fetch('/api/nosql/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: newSession.id, sessionData: newSession })
+        }).catch(err => console.error("Failed to save chat session:", err));
       },
 
       setActiveSession: (id) => set({ activeSessionId: id }),
@@ -81,8 +85,12 @@ export const useChatStore = create<ChatState>()(
                 messages: [...session.messages, newMessage],
                 updatedAt: new Date().toISOString(),
               };
-              // Async sync to Catalyst NoSQL
-              CatalystNoSQL.saveChatSession(updated.id, updated);
+              // Async sync to Catalyst NoSQL via API
+              fetch('/api/nosql/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionId: updated.id, sessionData: updated })
+              }).catch(err => console.error("Failed to save chat session:", err));
               return updated;
             }
             return session;
@@ -104,8 +112,12 @@ export const useChatStore = create<ChatState>()(
                 messages[lastIndex] = { ...messages[lastIndex], ...updates };
               }
               const updated = { ...session, messages, updatedAt: new Date().toISOString() };
-              // Async sync to Catalyst NoSQL
-              CatalystNoSQL.saveChatSession(updated.id, updated);
+              // Async sync to Catalyst NoSQL via API
+              fetch('/api/nosql/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionId: updated.id, sessionData: updated })
+              }).catch(err => console.error("Failed to save chat session:", err));
               return updated;
             }
             return session;

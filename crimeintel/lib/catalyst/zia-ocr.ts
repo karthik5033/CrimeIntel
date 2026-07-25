@@ -37,17 +37,10 @@ export const CatalystZiaOCR = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst Zia OCR extraction note:', (e as Error).message);
+      console.error('Catalyst Zia OCR extraction failed:', (e as Error).message);
+      throw new Error(`Catalyst Zia OCR failed: ${(e as Error).message}`);
     }
 
-    return {
-      firNo: `FIR/${crypto.randomUUID().split('-')[0].toUpperCase()}/2026`,
-      crimeType: 'Vehicle Theft',
-      district: 'Bengaluru Urban',
-      accusedName: 'Extracted Suspect',
-      date: new Date().toISOString().split('T')[0],
-      narrative: 'Scanned document narrative extracted via OCR pipeline.',
-      confidenceScore: 0.88
-    };
+    throw new Error('Catalyst Zia OCR returned no text. Ensure Zia Services is enabled in your Catalyst console.');
   }
 };

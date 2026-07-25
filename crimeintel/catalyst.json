@@ -1,6 +1,16 @@
 {
+  "client": {
+    "source": ".",
+    "buildCommand": "npm run build"
+  },
   "project": {
     "name": "Project-Rainfall",
     "id": "55949000000013025"
+  },
+  "functions": {
+    "source": "functions",
+    "targets": [
+      "SeedFunction"
+    ]
   }
 }

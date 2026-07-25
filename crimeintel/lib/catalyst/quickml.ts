@@ -22,13 +22,8 @@ export const CatalystQuickML = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst QuickML LLM call note:', (e as Error).message);
-    }
-
-    // Local Simulated LLM Fallback (Since QuickML is empty in console)
-    if (contextData && contextData.ragContext && contextData.ragContext.length > 0) {
-      const records = contextData.ragContext.map((r: any) => `- ${r.title}: ${r.snippet}`).join("\n");
-      return `Based on the intelligence records, here is what I found:\n\n${records}\n\n(Note: This is an AI-generated summary running locally because QuickML is not yet configured in your Catalyst console.)`;
+      console.error('Catalyst QuickML LLM call failed:', (e as Error).message);
+      throw e;
     }
 
     return null;
@@ -45,7 +40,8 @@ export const CatalystQuickML = {
         }
       }
     } catch (e) {
-      console.warn('Catalyst QuickML Embedding note:', (e as Error).message);
+      console.error('Catalyst QuickML Embedding failed:', (e as Error).message);
+      throw e;
     }
     return null;
   }

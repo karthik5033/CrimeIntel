@@ -1,242 +1,236 @@
 import { getCatalystApp } from './index';
-import personsSeed from '../../data/seed/Persons.json';
-import policeStationsSeed from '../../data/seed/PoliceStations.json';
-import firsSeed from '../../data/seed/FIRs.json';
-import casesSeed from '../../data/seed/Cases.json';
-import vehiclesSeed from '../../data/seed/Vehicles.json';
-import phoneRecordsSeed from '../../data/seed/PhoneRecords.json';
-import bankAccountsSeed from '../../data/seed/BankAccounts.json';
-import weaponsSeed from '../../data/seed/Weapons.json';
-import entityRelationshipsSeed from '../../data/seed/EntityRelationships.json';
-import socioEconomicSeed from '../../data/seed/SocioEconomicData.json';
-import transactionsSeed from '../../data/seed/Transactions.json';
 
 /**
  * DataStore API layer - Connects Next.js to Catalyst Data Store via ZCQL/SDK
- * Automatically falls back to seed dataset if ZCQL returns empty/unconfigured.
+ * NO FALLBACKS - If Catalyst is not configured or empty, operations will fail.
+ * This forces proper data loading and proves real Catalyst integration.
  */
 export const CatalystDataStore = {
   // Persons Table
   getPersons: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Persons');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.Persons || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch Persons note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return personsSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Persons');
+    return queryResult.map((row: any) => row.Persons || row);
   },
 
   getPersonById: async (id: string): Promise<any | null> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery(`SELECT * FROM Persons WHERE id = '${id}'`);
-        if (queryResult && queryResult.length > 0) {
-          return queryResult[0].Persons || queryResult[0];
-        }
-      }
-    } catch (e) {
-      console.warn(`Catalyst Data Store fetch Person ${id} note:`, (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return personsSeed.find((p: any) => p.id === id) || null;
+    
+    const queryResult = await zcql.executeZCQLQuery(`SELECT * FROM Persons WHERE ROWID = '${id}'`);
+    return queryResult.length > 0 ? (queryResult[0].Persons || queryResult[0]) : null;
   },
 
   // PoliceStations Table
   getPoliceStations: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM PoliceStations');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.PoliceStations || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch PoliceStations note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return policeStationsSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM PoliceStations');
+    return queryResult.map((row: any) => row.PoliceStations || row);
   },
 
   // FIRs Table
   getFIRs: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM FIRs');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.FIRs || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch FIRs note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return firsSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM FIRs ORDER BY date DESC');
+    return queryResult.map((row: any) => row.FIRs || row);
   },
 
   getFIRById: async (id: string): Promise<any | null> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery(`SELECT * FROM FIRs WHERE id = '${id}'`);
-        if (queryResult && queryResult.length > 0) {
-          return queryResult[0].FIRs || queryResult[0];
-        }
-      }
-    } catch (e) {
-      console.warn(`Catalyst Data Store fetch FIR ${id} note:`, (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return firsSeed.find((f: any) => f.id === id) || null;
+    
+    const queryResult = await zcql.executeZCQLQuery(`SELECT * FROM FIRs WHERE ROWID = '${id}'`);
+    return queryResult.length > 0 ? (queryResult[0].FIRs || queryResult[0]) : null;
   },
 
   // Cases Table
   getCases: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Cases');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.Cases || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch Cases note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return casesSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Cases');
+    return queryResult.map((row: any) => row.Cases || row);
   },
 
   // Vehicles Table
   getVehicles: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Vehicles');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.Vehicles || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch Vehicles note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return vehiclesSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Vehicles');
+    return queryResult.map((row: any) => row.Vehicles || row);
   },
 
   // Phone Records Table
   getPhoneRecords: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM PhoneRecords');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.PhoneRecords || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch PhoneRecords note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return phoneRecordsSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM PhoneRecords');
+    return queryResult.map((row: any) => row.PhoneRecords || row);
   },
 
   // Bank Accounts Table
   getBankAccounts: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM BankAccounts');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.BankAccounts || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch BankAccounts note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return bankAccountsSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM BankAccounts');
+    return queryResult.map((row: any) => row.BankAccounts || row);
   },
 
   // Weapons Table
   getWeapons: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Weapons');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.Weapons || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch Weapons note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return weaponsSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Weapons');
+    return queryResult.map((row: any) => row.Weapons || row);
   },
 
   // Entity Relationships (Graph Edges) Table
   getEntityRelationships: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM EntityRelationships');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.EntityRelationships || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch EntityRelationships note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return entityRelationshipsSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM EntityRelationships');
+    return queryResult.map((row: any) => row.EntityRelationships || row);
   },
 
   getGraphForEntity: async (entityId: string): Promise<any[]> => {
-    const allEdges = await CatalystDataStore.getEntityRelationships();
-    return allEdges.filter((edge: any) => edge.source === entityId || edge.target === entityId);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
+    }
+    
+    const queryResult = await zcql.executeZCQLQuery(
+      `SELECT * FROM EntityRelationships WHERE source = '${entityId}' OR target = '${entityId}'`
+    );
+    return queryResult.map((row: any) => row.EntityRelationships || row);
   },
 
   // Socio Economic Data Table
   getSocioEconomicData: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM SocioEconomicData');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.SocioEconomicData || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch SocioEconomicData note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return socioEconomicSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM SocioEconomicData');
+    return queryResult.map((row: any) => row.SocioEconomicData || row);
   },
 
   // Financial Transactions Table
   getTransactions: async (): Promise<any[]> => {
-    try {
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Transactions');
-        if (queryResult && queryResult.length > 0) {
-          return queryResult.map((row: any) => row.Transactions || row);
-        }
-      }
-    } catch (e) {
-      console.warn('Catalyst Data Store fetch Transactions note:', (e as Error).message);
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    
+    if (!zcql) {
+      throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
-    return transactionsSeed;
+    
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Transactions');
+    return queryResult.map((row: any) => row.Transactions || row);
+  },
+
+  // Insert Methods for Data Loading
+  insertFIRs: async (firs: any[]): Promise<void> => {
+    const app = getCatalystApp();
+    const table = app.datastore().table('FIRs');
+    
+    const batchSize = 100;
+    for (let i = 0; i < firs.length; i += batchSize) {
+      const batch = firs.slice(i, i + batchSize);
+      await table.insertRows(batch);
+      console.log(`Loaded ${Math.min(i + batchSize, firs.length)} / ${firs.length} FIRs`);
+    }
+  },
+
+  insertPersons: async (persons: any[]): Promise<void> => {
+    const app = getCatalystApp();
+    const table = app.datastore().table('Persons');
+    
+    const batchSize = 100;
+    for (let i = 0; i < persons.length; i += batchSize) {
+      const batch = persons.slice(i, i + batchSize);
+      await table.insertRows(batch);
+      console.log(`Loaded ${Math.min(i + batchSize, persons.length)} / ${persons.length} Persons`);
+    }
+  },
+
+  insertVehicles: async (vehicles: any[]): Promise<void> => {
+    const app = getCatalystApp();
+    const table = app.datastore().table('Vehicles');
+    
+    const batchSize = 100;
+    for (let i = 0; i < vehicles.length; i += batchSize) {
+      const batch = vehicles.slice(i, i + batchSize);
+      await table.insertRows(batch);
+    }
+  },
+
+  insertRelationships: async (relationships: any[]): Promise<void> => {
+    const app = getCatalystApp();
+    const table = app.datastore().table('EntityRelationships');
+    
+    const batchSize = 100;
+    for (let i = 0; i < relationships.length; i += batchSize) {
+      const batch = relationships.slice(i, i + batchSize);
+      await table.insertRows(batch);
+    }
   }
 };

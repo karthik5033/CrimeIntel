@@ -6,35 +6,9 @@ export const catalystConfig = {
 let catalystInstance: any = null;
 
 export function getCatalystApp(req?: any): any {
-  // If running in browser client, return safe client interface
+  // If running in browser client, we should throw an error to enforce API route usage
   if (typeof window !== 'undefined') {
-    return {
-      auth: () => ({
-        getCurrentUser: async () => ({ id: 'U10943', email: 'officer@ksp.gov.in', role: 'Inspector' }),
-      }),
-      datastore: () => ({
-        table: (tableName: string) => ({
-          getAllRows: async () => [],
-          insertRow: async (data: any) => ({ ...data, id: Date.now().toString() }),
-        }),
-      }),
-      zcql: () => ({
-        executeZCQLQuery: async () => []
-      }),
-      cache: () => ({
-        segment: () => ({
-          get: async () => null,
-          put: async () => {},
-          delete: async () => {}
-        })
-      }),
-      zia: () => ({
-        extractText: async () => ({ text: '' })
-      }),
-      quickml: () => ({
-        embeddings: async () => ({ embedding: [] })
-      })
-    };
+    throw new Error('Catalyst SDK cannot be used on the client. Use API routes instead.');
   }
 
   // Server-side execution only: dynamically load zcatalyst-sdk-node
@@ -51,36 +25,7 @@ export function getCatalystApp(req?: any): any {
     }
     return catalystInstance;
   } catch (error) {
-    console.warn('Catalyst SDK Server Initialization note:', (error as Error).message);
-    return {
-      datastore: () => ({
-        table: (tableName: string) => ({
-          getAllRows: async () => [],
-          insertRow: async (data: any) => ({ ...data, id: Date.now().toString() }),
-        }),
-      }),
-      auth: () => ({
-        getCurrentUser: async () => ({ id: 'U10943', email: 'officer@ksp.gov.in', role: 'Inspector' }),
-      }),
-      functions: () => ({
-        execute: async (fn: string, payload: any) => ({ success: true, data: {} }),
-      }),
-      zcql: () => ({
-        executeZCQLQuery: async () => []
-      }),
-      cache: () => ({
-        segment: () => ({
-          get: async () => null,
-          put: async () => {},
-          delete: async () => {}
-        })
-      }),
-      zia: () => ({
-        extractText: async () => ({ text: '' })
-      }),
-      quickml: () => ({
-        embeddings: async () => ({ embedding: [] })
-      })
-    };
+    console.error('Catalyst SDK Server Initialization failed:', (error as Error).message);
+    throw new Error(`Failed to initialize real Catalyst SDK: ${(error as Error).message}`);
   }
 }

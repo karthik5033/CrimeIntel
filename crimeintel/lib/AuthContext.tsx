@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { AuditLogger } from "./api/auditLogger";
-import { CatalystAuth, CatalystUser } from "./catalyst/auth";
+import { CatalystUser } from "./catalyst/auth";
 
 export type Role = "CONSTABLE" | "INSPECTOR" | "SUPERINTENDENT" | "ADMIN";
 
@@ -21,18 +21,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<CatalystUser | null>(null);
 
   useEffect(() => {
-    // Hydrate from Catalyst Authentication
-    CatalystAuth.getCurrentUser().then(catalystUser => {
-      setUser(catalystUser);
-      setUserId(catalystUser.id);
-      
-      const savedRole = localStorage.getItem("crimeintel_role") as Role;
-      if (savedRole && ["CONSTABLE", "INSPECTOR", "SUPERINTENDENT", "ADMIN"].includes(savedRole)) {
-        setRoleState(savedRole);
-      } else if (catalystUser.role) {
-        setRoleState(catalystUser.role);
-      }
-    });
+    // Hydrate from Catalyst Authentication API Route
+    fetch('/api/auth/me')
+      .then(res => res.json())
+      .then(catalystUser => {
+        if (catalystUser && !catalystUser.error) {
+          setUser(catalystUser);
+          setUserId(catalystUser.id);
+          
+          const savedRole = localStorage.getItem("crimeintel_role") as Role;
+          if (savedRole && ["CONSTABLE", "INSPECTOR", "SUPERINTENDENT", "ADMIN"].includes(savedRole)) {
+            setRoleState(savedRole);
+          } else if (catalystUser.role) {
+            setRoleState(catalystUser.role);
+          }
+        }
+      })
+      .catch(err => console.error("Failed to fetch auth state:", err));
   }, []);
 
   const setRole = (newRole: Role) => {

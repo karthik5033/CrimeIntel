@@ -1,6 +1,7 @@
 {
   "defaults": {
-    "project": 1
+    "project": 1,
+    "env": 1
   },
   "actives": {
     "project": 1,
