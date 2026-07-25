@@ -520,7 +520,7 @@ export default function DataIngestionPage() {
                             .replace('{phones}', (processingResult.extraction.stats?.extraction?.phonesCount || 0).toString())}</li>
                     )}
                     {processingResult.graph && (
-                      <li>{t('dataIngestion.builtGraph').replace('{count}', processingResult.graph.data.relationshipsCreated)}</li>
+                      <li>{t('dataIngestion.builtGraph').replace('{count}', (processingResult.graph.stats?.relationships?.created || processingResult.graph.stats?.graph?.edges || 0).toString())}</li>
                     )}
                   </ul>
                 </AlertDescription>

@@ -437,6 +437,20 @@ export const translations = {
     'earlyWarning.recentCases': 'Recent Cases',
     'earlyWarning.increase': 'Increase',
 
+    // FIR Detail
+    'firDetail.registered': 'Registered',
+    'firDetail.askAI': 'Ask AI About FIR',
+    'firDetail.viewLinkedCase': 'View Linked Case',
+    'firDetail.viewOnGraph': 'View on Graph',
+    'firDetail.firNarrative': 'FIR Narrative',
+    'firDetail.uploadedNarrative': 'Uploaded FIR document under processing.',
+    'firDetail.involvedPersons': 'Involved Persons',
+    'firDetail.noPersonsLinked': 'No persons linked.',
+    'firDetail.physicalEvidence': 'Physical Evidence',
+    'firDetail.vehicles': 'Vehicles',
+    'firDetail.noPhysicalEvidence': 'No physical evidence cataloged.',
+    'firDetail.linked': 'LINKED',
+
     // Data Ingestion
     'dataIngestion.title': 'Data Ingestion & Intelligence Pipeline',
     'dataIngestion.subtitle': 'Upload FIR PDFs for complete AI-powered processing: OCR → Entity Extraction → Knowledge Graph → Search',
@@ -926,6 +940,20 @@ export const translations = {
     'network.editNodeLabel': 'ನೋಡ್ ಲೇಬಲ್ ಎಡಿಟ್ ಮಾಡಿ:',
     'network.addNotePlaceholder': 'ಈ ಘಟಕದ ಬಗ್ಗೆ ನಿಮ್ಮ ಟಿಪ್ಪಣಿಗಳನ್ನು ಇಲ್ಲಿ ಸೇರಿಸಿ...',
     'network.noLeadsDetected': 'ಪ್ರಸ್ತುತ ಗ್ರಾಫ್ ವೀಕ್ಷಣೆಯಲ್ಲಿ ಯಾವುದೇ ಲೀಡ್‌ಗಳು ಪತ್ತೆಯಾಗಿಲ್ಲ.',
+
+    // FIR Detail
+    'firDetail.registered': 'ನೋಂದಾಯಿಸಲಾಗಿದೆ',
+    'firDetail.askAI': 'FIR ಬಗ್ಗೆ AI ಅನ್ನು ಕೇಳಿ',
+    'firDetail.viewLinkedCase': 'ಲಿಂಕ್ ಮಾಡಲಾದ ಪ್ರಕರಣವನ್ನು ವೀಕ್ಷಿಸಿ',
+    'firDetail.viewOnGraph': 'ಗ್ರಾಫ್‌ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ',
+    'firDetail.firNarrative': 'FIR ವಿವರಣೆ',
+    'firDetail.uploadedNarrative': 'ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾದ FIR ಡಾಕ್ಯುಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ.',
+    'firDetail.involvedPersons': 'ಭಾಗಿಯಾಗಿರುವ ವ್ಯಕ್ತಿಗಳು',
+    'firDetail.noPersonsLinked': 'ಯಾವುದೇ ವ್ಯಕ್ತಿಗಳು ಲಿಂಕ್ ಆಗಿಲ್ಲ.',
+    'firDetail.physicalEvidence': 'ಭೌತಿಕ ಸಾಕ್ಷ್ಯ',
+    'firDetail.vehicles': 'ವಾಹನಗಳು',
+    'firDetail.noPhysicalEvidence': 'ಯಾವುದೇ ಭೌತಿಕ ಸಾಕ್ಷ್ಯವನ್ನು ಪಟ್ಟಿ ಮಾಡಲಾಗಿಲ್ಲ.',
+    'firDetail.linked': 'ಲಿಂಕ್ ಆಗಿದೆ',
 
     // Data Ingestion
     'dataIngestion.title': 'ಡೇಟಾ ಇಂಜೆಶನ್ ಮತ್ತು ಗುಪ್ತಚರ ಪೈಪ್‌ಲೈನ್',

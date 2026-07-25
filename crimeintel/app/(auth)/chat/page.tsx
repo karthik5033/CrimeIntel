@@ -123,7 +123,7 @@ export default function ChatPage() {
             >
               <div className="flex items-center gap-2 truncate">
                 <MessageSquare className="h-4 w-4 flex-shrink-0" />
-                <span className="text-sm truncate">{session.title}</span>
+                <span className="text-sm truncate">{session.title === 'New Investigation' ? t('chat.newInvestigation') : session.title}</span>
               </div>
               <button 
                 onClick={(e) => { e.stopPropagation(); deleteSession(session.id); }}
@@ -148,7 +148,7 @@ export default function ChatPage() {
               <SidebarIcon className="h-5 w-5" />
             </button>
             <h1 className="font-semibold text-foreground truncate">
-              {activeSession?.title || t('chat.newInvestigation')}
+              {activeSession?.title === 'New Investigation' ? t('chat.newInvestigation') : (activeSession?.title || t('chat.newInvestigation'))}
             </h1>
           </div>
           <div className="flex items-center gap-2">

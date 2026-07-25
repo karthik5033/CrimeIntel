@@ -46,25 +46,7 @@ export const ServerDataLoader = {
   getFIRs: () => queryTable('FIRs'),
   getFIRById: async (id: string) => {
     const all = await queryTable('FIRs');
-    const found = all.find((f: any) => String(f.ROWID) === id || String(f.id) === id || f.fir_no === id);
-    if (found) return found;
-
-    // Dynamic mock for newly ingested FIRs that aren't in the DB yet
-    if (id.startsWith('FIR-')) {
-      return {
-        id: id,
-        fir_no: id,
-        crime_type_en: "Cyber Fraud / Financial Scam",
-        description: `This is a dynamic placeholder for ${id}. The FIR was ingested successfully but may not have been persisted to the database. Catalyst DataStore integration is pending.`,
-        date: new Date().toISOString().split('T')[0],
-        time: "14:30",
-        police_station_id: "PS-CyberCrime-01",
-        status_en: "Under Investigation",
-        lat: 12.9716,
-        lng: 77.5946
-      };
-    }
-    return null;
+    return all.find((f: any) => String(f.ROWID) === id || String(f.id) === id || f.fir_no === id) || null;
   },
 
   getCases: () => queryTable('Cases'),
@@ -85,4 +67,5 @@ export const ServerDataLoader = {
 
   getSocioEconomicData: () => queryTable('SocioEconomicData'),
   getTransactions: () => queryTable('Transactions'),
+  getAuditLogs: () => queryTable('AuditLogs'),
 };

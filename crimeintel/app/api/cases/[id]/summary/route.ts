@@ -29,7 +29,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
         summaryText = quickMLResponse;
       } else {
         // Fallback
-        summaryText = `This case involves ${firsData.length} related incidents. The primary offense is ${firsData[0].crime_type_en}, first reported on ${firsData[0].date}. The investigation is currently ${caseData.status}.`;
+        summaryText = "Summary generation unavailable at this moment. The LLM endpoint might be offline.";
       }
     } else {
       summaryText = "No detailed narrative summary is available for this case, and no FIRs are currently linked.";
