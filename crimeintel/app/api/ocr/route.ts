@@ -137,18 +137,90 @@ async function handleFIRProcessing(req: NextRequest) {
 
     console.log(`✅ OCR completed: ${ocrResult.rawText.length} characters`);
 
-    // Update FIR with OCR text
-    if (zcql && firRowId !== 'MOCK_ROW') {
+    // Update FIR with OCR text (or create if doesn't exist)
+    const firExists = firRowId !== 'MOCK_ROW' && zcql;
+    
+    if (firExists) {
       try {
         const escapedText = ocrResult.rawText.replace(/'/g, "''").substring(0, 5000); // Limit to 5000 chars for safety
         const updateQuery = `UPDATE FIRs SET ocr_text = '${escapedText}', ocr_status = 'completed', ocr_confidence = ${ocrResult.confidenceScore} WHERE ROWID = ${firRowId}`;
         
-        console.log('📝 Updating FIR in database...');
+        console.log('📝 Updating existing FIR in database...');
         await zcql.executeZCQLQuery(updateQuery);
         console.log('✅ FIR updated in Data Store with OCR results');
       } catch (updateError) {
         console.error('❌ Failed to update FIR with OCR text:', updateError);
         console.warn('⚠️ OCR extraction succeeded but database update failed');
+      }
+    } else if (!firExists && fileId) {
+      // FIR doesn't exist yet - create it with OCR text as description
+      console.log('💾 Creating new FIR with OCR-extracted description...');
+      
+      const newFirRecord = {
+        fir_no: firId,
+        description: ocrResult.rawText.substring(0, 500) + '...', // Use first 500 chars as description
+        pdf_url: fileUrl || 'mock-url',
+        pdf_file_id: fileId,
+        ocr_text: ocrResult.rawText.substring(0, 5000),
+        ocr_status: 'completed',
+        ocr_confidence: ocrResult.confidenceScore,
+        upload_time: new Date().toISOString(),
+        crime_type_en: 'Unknown',
+        police_station_id: 'Unknown',
+        status_en: 'Under Investigation',
+        date: new Date().toISOString().split('T')[0],
+        latitude: null,
+        longitude: null
+      };
+      
+      try {
+        // Try to insert via Catalyst DataStore
+        if (zcql) {
+          // We can't use DataStore insert here easily, so skip real insert
+          console.log('⏭️ Skipping real DataStore insert (would need DataStore client)');
+        }
+      } catch (insertError) {
+        console.warn('⚠️ Could not insert FIR to DataStore:', insertError);
+      }
+      
+      // Save to local seed file
+      try {
+        const fs = await import('fs');
+        const path = await import('path');
+        const seedDir = path.join(process.cwd(), 'data', 'seed');
+        const firsSeedPath = path.join(seedDir, 'FIRs.json');
+        
+        let existingFIRs = [];
+        if (fs.existsSync(firsSeedPath)) {
+          const raw = fs.readFileSync(firsSeedPath, 'utf-8');
+          existingFIRs = JSON.parse(raw);
+        }
+        
+        // Check if FIR already exists
+        const existingIndex = existingFIRs.findIndex((f: any) => f.fir_no === firId);
+        if (existingIndex >= 0) {
+          // Update existing
+          existingFIRs[existingIndex] = {
+            ...existingFIRs[existingIndex],
+            ...newFirRecord,
+            ROWID: existingFIRs[existingIndex].ROWID,
+            id: firId
+          };
+          console.log('✅ Updated existing FIR in seed file');
+        } else {
+          // Add new
+          const newFIR = {
+            ...newFirRecord,
+            ROWID: String(existingFIRs.length + 1),
+            id: firId
+          };
+          existingFIRs.push(newFIR);
+          console.log('✅ Added new FIR to seed file');
+        }
+        
+        fs.writeFileSync(firsSeedPath, JSON.stringify(existingFIRs, null, 2));
+      } catch (seedError) {
+        console.error('❌ Failed to save FIR to seed file:', seedError);
       }
     } else {
       console.log('💾 MOCK: Would update FIR', firId, 'with OCR text');

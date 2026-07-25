@@ -139,75 +139,82 @@ export async function POST(request: NextRequest) {
       console.warn('⚠️ Continuing despite metadata save error');
     }
 
-    // Step 3: Create FIR record in Data Store (FIRs table)
-    const firRecord = {
-      fir_no: documentMetadata.firNumber,
-      description: documentMetadata.description,
-      pdf_url: uploadResult.fileUrl,
-      pdf_file_id: uploadResult.fileId,
-      ocr_text: null,
-      ocr_status: 'pending', // pending, processing, completed, failed
-      upload_time: uploadResult.uploadTime,
-      crime_type_en: crimeType || 'Unknown',
-      police_station_id: policeStation || 'Unknown',
-      status_en: 'Under Investigation',
-      date: new Date().toISOString().split('T')[0],
-      latitude: null,
-      longitude: null
-    };
-
-    console.log('💾 Creating FIR record in Data Store:', firRecord.fir_no);
-
-    // Insert FIR record and wait for it to complete
-    let firInsertSuccess = false;
-    try {
-      await CatalystDataStore.insertFIRs([firRecord]);
-      console.log('✅ FIR record created in Data Store');
-      firInsertSuccess = true;
-    } catch (datastoreError) {
-      console.error('❌ DataStore insert failed:', datastoreError);
-      console.error('Error details:', {
-        message: (datastoreError as Error).message,
-        stack: (datastoreError as Error).stack
-      });
-      // Don't throw - continue with partial success
-      console.warn('⚠️ Continuing with upload despite DataStore error');
-    }
-
-    // Small delay to ensure database write is committed (if it succeeded)
-    if (firInsertSuccess) {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      console.log('⏱️ Waited for database commit');
-    }
-
-    // ALSO save to local seed file for development (so ServerDataLoader can find it)
-    try {
-      const fs = await import('fs');
-      const path = await import('path');
-      const seedDir = path.join(process.cwd(), 'data', 'seed');
-      const firsSeedPath = path.join(seedDir, 'FIRs.json');
-      
-      // Read existing FIRs
-      let existingFIRs = [];
-      if (fs.existsSync(firsSeedPath)) {
-        const raw = fs.readFileSync(firsSeedPath, 'utf-8');
-        existingFIRs = JSON.parse(raw);
-      }
-      
-      // Add new FIR with a ROWID
-      const newFIR = {
-        ...firRecord,
-        ROWID: String(existingFIRs.length + 1),
-        id: firRecord.fir_no
+    // Step 3: Create FIR record in Data Store (FIRs table) - ONLY if user provided description
+    // Otherwise, OCR will create it with extracted text
+    const shouldCreateFIRNow = !!description; // Only create if user provided description
+    
+    if (shouldCreateFIRNow) {
+      const firRecord = {
+        fir_no: documentMetadata.firNumber,
+        description: description,
+        pdf_url: uploadResult.fileUrl,
+        pdf_file_id: uploadResult.fileId,
+        ocr_text: null,
+        ocr_status: 'pending', // pending, processing, completed, failed
+        upload_time: uploadResult.uploadTime,
+        crime_type_en: crimeType || 'Unknown',
+        police_station_id: policeStation || 'Unknown',
+        status_en: 'Under Investigation',
+        date: new Date().toISOString().split('T')[0],
+        latitude: null,
+        longitude: null
       };
-      existingFIRs.push(newFIR);
-      
-      // Write back to file
-      fs.writeFileSync(firsSeedPath, JSON.stringify(existingFIRs, null, 2));
-      console.log('✅ FIR also saved to local seed file:', firsSeedPath);
-    } catch (seedError) {
-      console.error('❌ Failed to save to seed file:', seedError);
-      // Continue anyway - not critical
+
+      console.log('💾 Creating FIR record in Data Store:', firRecord.fir_no);
+
+      // Insert FIR record and wait for it to complete
+      let firInsertSuccess = false;
+      try {
+        await CatalystDataStore.insertFIRs([firRecord]);
+        console.log('✅ FIR record created in Data Store');
+        firInsertSuccess = true;
+      } catch (datastoreError) {
+        console.error('❌ DataStore insert failed:', datastoreError);
+        console.error('Error details:', {
+          message: (datastoreError as Error).message,
+          stack: (datastoreError as Error).stack
+        });
+        // Don't throw - continue with partial success
+        console.warn('⚠️ Continuing with upload despite DataStore error');
+      }
+
+      // Small delay to ensure database write is committed (if it succeeded)
+      if (firInsertSuccess) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        console.log('⏱️ Waited for database commit');
+      }
+
+      // ALSO save to local seed file for development (so ServerDataLoader can find it)
+      try {
+        const fs = await import('fs');
+        const path = await import('path');
+        const seedDir = path.join(process.cwd(), 'data', 'seed');
+        const firsSeedPath = path.join(seedDir, 'FIRs.json');
+        
+        // Read existing FIRs
+        let existingFIRs = [];
+        if (fs.existsSync(firsSeedPath)) {
+          const raw = fs.readFileSync(firsSeedPath, 'utf-8');
+          existingFIRs = JSON.parse(raw);
+        }
+        
+        // Add new FIR with a ROWID
+        const newFIR = {
+          ...firRecord,
+          ROWID: String(existingFIRs.length + 1),
+          id: firRecord.fir_no
+        };
+        existingFIRs.push(newFIR);
+        
+        // Write back to file
+        fs.writeFileSync(firsSeedPath, JSON.stringify(existingFIRs, null, 2));
+        console.log('✅ FIR also saved to local seed file:', firsSeedPath);
+      } catch (seedError) {
+        console.error('❌ Failed to save to seed file:', seedError);
+        // Continue anyway - not critical
+      }
+    } else {
+      console.log('⏭️ Skipping FIR record creation - will be created by OCR endpoint with extracted text');
     }
 
     // Return success response
