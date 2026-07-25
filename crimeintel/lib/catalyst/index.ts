@@ -429,16 +429,6 @@ function createMockCatalystInstance() {
                 if (setMatch) {
                   const setClauses = setMatch[1];
                   
-<<<<<<< HEAD
-                  // Extract field = 'value' pairs (strings, including multi-line values)
-                  const stringFieldRegex = /(\w+)\s*=\s*'((?:[^'\\]|\\.)*)'/g;
-                  let match;
-                  while ((match = stringFieldRegex.exec(setClauses)) !== null) {
-                    const field = match[1];
-                    const value = match[2];
-                    console.log(`🔧 MOCK: Setting ${field} (length: ${value.length} chars)`);
-                    targetRow[field] = value;
-=======
                   // Extract field = 'value' pairs (strings, including multi-line values and escaped quotes)
                   const fieldMatches = setClauses.matchAll(/(\w+)\s*=\s*'((?:''|[^'])*)'/g);
                   for (const match of fieldMatches) {
@@ -446,7 +436,6 @@ function createMockCatalystInstance() {
                     const unescaped = value.replace(/''/g, "'");
                     console.log(`🔧 MOCK: Setting ${field} (length: ${unescaped.length} chars)`);
                     targetRow[field] = unescaped;
->>>>>>> 8d2043f5e78d2a5f1f607b86679277cdfb6de81c
                   }
                   
                   // Extract numeric fields

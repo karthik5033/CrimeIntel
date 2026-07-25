@@ -35,15 +35,7 @@ export const CatalystStratus = {
   uploadFIR: async (file: File | Buffer, firNumber?: string): Promise<UploadResult> => {
     console.log('🔧 Starting uploadFIR...');
     console.log('File type:', file instanceof Buffer ? 'Buffer' : 'File');
-<<<<<<< HEAD
-    if (file instanceof Buffer) {
-      console.log('File size:', file.length);
-    } else {
-      console.log('File size:', (file as File).size);
-    }
-=======
     console.log('File size:', file instanceof Buffer ? file.length : (file as File).size);
->>>>>>> 8d2043f5e78d2a5f1f607b86679277cdfb6de81c
     
     // Try direct API first if OAuth credentials are configured
     if (isDirectAPIConfigured() && file instanceof File) {
