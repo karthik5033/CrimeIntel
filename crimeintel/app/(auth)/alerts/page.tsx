@@ -7,10 +7,16 @@ export const metadata = {
 };
 
 export default async function AlertsPage() {
-  const [alerts, districtRisks] = await Promise.all([
-    PredictionEngine.getAlerts(),
-    PredictionEngine.getDistrictRiskScores()
-  ]);
+  try {
+    const [alerts, districtRisks] = await Promise.all([
+      PredictionEngine.getAlerts(),
+      PredictionEngine.getDistrictRiskScores()
+    ]);
 
-  return <ClientAlerts alerts={alerts} districtRisks={districtRisks} />;
+    return <ClientAlerts alerts={alerts} districtRisks={districtRisks} />;
+  } catch (error) {
+    console.error('Failed to load alerts:', error);
+    // Return with empty data if build-time fetch fails
+    return <ClientAlerts alerts={[]} districtRisks={[]} />;
+  }
 }

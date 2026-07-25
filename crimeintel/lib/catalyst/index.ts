@@ -352,9 +352,11 @@ function createMockCatalystInstance() {
                   const setClauses = setMatch[1];
                   
                   // Extract field = 'value' pairs (strings, including multi-line values)
-                  const fieldMatches = setClauses.matchAll(/(\w+)\s*=\s*'((?:[^'\\]|\\.)*)'/gs);
-                  for (const match of fieldMatches) {
-                    const [, field, value] = match;
+                  const stringFieldRegex = /(\w+)\s*=\s*'((?:[^'\\]|\\.)*)'/g;
+                  let match;
+                  while ((match = stringFieldRegex.exec(setClauses)) !== null) {
+                    const field = match[1];
+                    const value = match[2];
                     console.log(`🔧 MOCK: Setting ${field} (length: ${value.length} chars)`);
                     targetRow[field] = value;
                   }

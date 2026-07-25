@@ -381,7 +381,7 @@ export default function DataIngestionPage() {
                 <Label htmlFor="crimeType" className="text-sm font-medium">Crime Type</Label>
                 <Select
                   value={formData.crimeType}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, crimeType: value }))}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, crimeType: value || '' }))}
                   disabled={uploadStatus.stage !== 'idle'}
                 >
                   <SelectTrigger>

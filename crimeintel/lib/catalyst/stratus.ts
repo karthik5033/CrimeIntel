@@ -1,4 +1,5 @@
 import { getCatalystApp } from './index';
+import { uploadToStratus as directUploadToStratus, isDirectAPIConfigured } from './direct-api';
 
 /**
  * Catalyst Stratus Object Storage Client
@@ -34,8 +35,33 @@ export const CatalystStratus = {
   uploadFIR: async (file: File | Buffer, firNumber?: string): Promise<UploadResult> => {
     console.log('🔧 Starting uploadFIR...');
     console.log('File type:', file instanceof Buffer ? 'Buffer' : 'File');
-    console.log('File size:', file instanceof Buffer ? file.length : file.size);
+    if (file instanceof Buffer) {
+      console.log('File size:', file.length);
+    } else {
+      console.log('File size:', (file as File).size);
+    }
     
+    // Try direct API first if OAuth credentials are configured
+    if (isDirectAPIConfigured() && file instanceof File) {
+      try {
+        console.log('🚀 Using DIRECT API for upload (OAuth credentials detected)');
+        const result = await directUploadToStratus(file, FIR_BUCKET_NAME);
+        console.log('✅ DIRECT API upload successful to REAL Stratus!');
+        return {
+          fileId: result.fileId,
+          fileName: result.fileName,
+          fileUrl: result.fileUrl,
+          bucketName: FIR_BUCKET_NAME,
+          uploadTime: new Date().toISOString(),
+          fileSize: file.size
+        };
+      } catch (directError) {
+        console.error('❌ Direct API upload failed, falling back to SDK:', directError);
+        // Fall through to SDK method below
+      }
+    }
+    
+    // Fallback to SDK method (will use mock if SDK not authenticated)
     const app = getCatalystApp();
     const filestream = app.filestore();
     
