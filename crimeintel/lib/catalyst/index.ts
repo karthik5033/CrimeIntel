@@ -107,6 +107,53 @@ export function getCatalystApp(req?: any): any {
 
 // Mock Catalyst instance for development/testing
 function createMockCatalystInstance() {
+  // Load seed data on first initialization
+  if (!mockDataStore.tables.get('FIRs')?.size) {
+    console.log('📦 Loading seed data into mock store...');
+    try {
+      const firsSeed = require('../../data/seed/FIRs.json');
+      const personsSeed = require('../../data/seed/Persons.json');
+      const vehiclesSeed = require('../../data/seed/Vehicles.json');
+      const relationshipsSeed = require('../../data/seed/EntityRelationships.json');
+      
+      // Load FIRs
+      const firsTable = mockDataStore.tables.get('FIRs')!;
+      firsSeed.forEach((fir: any, i: number) => {
+        const rowId = `SEED_ROW_FIR_${i}`;
+        firsTable.set(rowId, { ROWID: rowId, ...fir });
+      });
+      console.log(`✅ Loaded ${firsSeed.length} FIRs into mock store`);
+      
+      // Load Persons
+      const personsTable = mockDataStore.tables.get('Persons')!;
+      personsSeed.forEach((person: any, i: number) => {
+        const rowId = `SEED_ROW_PERSON_${i}`;
+        personsTable.set(rowId, { ROWID: rowId, ...person });
+      });
+      console.log(`✅ Loaded ${personsSeed.length} Persons into mock store`);
+      
+      // Load Vehicles
+      const vehiclesTable = mockDataStore.tables.get('Vehicles')!;
+      vehiclesSeed.forEach((vehicle: any, i: number) => {
+        const rowId = `SEED_ROW_VEHICLE_${i}`;
+        vehiclesTable.set(rowId, { ROWID: rowId, ...vehicle });
+      });
+      console.log(`✅ Loaded ${vehiclesSeed.length} Vehicles into mock store`);
+      
+      // Load Entity Relationships
+      const relationshipsTable = mockDataStore.tables.get('EntityRelationships')!;
+      relationshipsSeed.forEach((rel: any, i: number) => {
+        const rowId = `SEED_ROW_REL_${i}`;
+        relationshipsTable.set(rowId, { ROWID: rowId, ...rel });
+      });
+      console.log(`✅ Loaded ${relationshipsSeed.length} Relationships into mock store`);
+      
+      console.log('🎉 Seed data loaded successfully!');
+    } catch (error) {
+      console.warn('⚠️ Could not load seed data:', (error as Error).message);
+    }
+  }
+  
   return {
     filestore: () => ({
       getAllBuckets: async () => {
