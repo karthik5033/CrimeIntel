@@ -83,9 +83,36 @@ export async function GET() {
       });
     });
 
+    const computeCorrelation = (data: any[]) => {
+      if (data.length < 2) return 0;
+      const n = data.length;
+      const sumX = data.reduce((acc, val) => acc + val.value, 0);
+      const sumY = data.reduce((acc, val) => acc + val.crimeRate, 0);
+      const sumXY = data.reduce((acc, val) => acc + (val.value * val.crimeRate), 0);
+      const sumX2 = data.reduce((acc, val) => acc + (val.value * val.value), 0);
+      const sumY2 = data.reduce((acc, val) => acc + (val.crimeRate * val.crimeRate), 0);
+      
+      const num = (n * sumXY) - (sumX * sumY);
+      const den = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
+      return den === 0 ? 0 : (num / den);
+    };
+
+    const unempR = computeCorrelation(unemploymentData);
+    const litR = computeCorrelation(literacyData);
+
+    const generateInsight = (r: number, factor: string) => {
+      const strength = Math.abs(r) > 0.7 ? "Strong" : Math.abs(r) > 0.4 ? "Moderate" : "Weak";
+      const direction = r > 0 ? "positive" : "negative";
+      return `${strength} ${direction} correlation (r = ${r.toFixed(2)}) observed between ${factor} rates and crime across districts.`;
+    };
+
     return NextResponse.json({
       unemployment: unemploymentData,
       literacy: literacyData,
+      insights: {
+        unemployment: generateInsight(unempR, "unemployment"),
+        literacy: generateInsight(litR, "literacy")
+      },
       meta: {
         totalFIRs: firs.length,
         districtsWithSocioData: Object.keys(socioByDistrict).length,

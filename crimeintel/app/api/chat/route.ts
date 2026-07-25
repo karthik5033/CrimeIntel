@@ -1,39 +1,88 @@
 import { NextResponse } from 'next/server';
-import { performSemanticSearch } from '@/lib/nlp/semantic-search';
+import { translateText } from '@/lib/nlp/translate';
+import { ContextManager } from '@/lib/ai/chat/contextManager';
+import { IntentClassifier } from '@/lib/ai/chat/intentClassifier';
+import { Coordinator } from '@/lib/ai/agents/coordinator';
 import { CatalystQuickML } from '@/lib/catalyst/quickml';
 
 export async function POST(request: Request) {
   try {
-    const { message } = await request.json();
-    const query = message.toLowerCase();
+    const { message, language, sessionId } = await request.json();
+    let query = message.trim();
 
-    // Perform Semantic RAG Search over records
-    const searchResults = await performSemanticSearch(query, 3);
+    if (!query) {
+      return NextResponse.json({ error: "Empty query" }, { status: 400 });
+    }
+
+    if (!sessionId) {
+      return NextResponse.json({ error: "Missing sessionId" }, { status: 400 });
+    }
+
+    // 1. Translate from Kannada to English if necessary
+    if (language === 'kn') {
+      query = await translateText(query, 'kn', 'en');
+    }
+
+    // 2. Fetch or initialize Semantic Memory for this session
+    const session = await ContextManager.getSession(sessionId);
+
+    // 3. Classify intent and extract entities using QuickML
+    const parsedQuery = await IntentClassifier.classify(query, session.context);
     
-    // Attempt QuickML Generative Response if endpoint is active
-    const quickMLResponse = await CatalystQuickML.generateResponse(message, { ragContext: searchResults });
-    if (quickMLResponse) {
-      return NextResponse.json({
-        text_summary: quickMLResponse,
-        rag_context: searchResults,
-      });
+    // Update Context with newly extracted entities
+    const mappedEntities: any = {};
+    if (parsedQuery.entities?.district) mappedEntities.active_district = parsedQuery.entities.district;
+    if (parsedQuery.entities?.crime_types) mappedEntities.active_crime_types = parsedQuery.entities.crime_types;
+    if (parsedQuery.entities?.time_window) mappedEntities.active_time_window = parsedQuery.entities.time_window;
+    if (parsedQuery.entities?.person_names) mappedEntities.active_entities = parsedQuery.entities.person_names;
+    
+    const updatedContext = ContextManager.updateContext(session.context, mappedEntities);
+    updatedContext.last_query = parsedQuery.resolvedQuery;
+    session.context = updatedContext;
+
+    // 4. Dispatch to Coordinator for Multi-Agent Retrieval
+    const evidence = await Coordinator.gatherEvidence(parsedQuery);
+    
+    // If no evidence found, return early
+    if (evidence.length === 0) {
+      let failSummary = "I've searched the database but couldn't find specific intelligence matching your query. Try adjusting your search criteria.";
+      if (language === 'kn') {
+        failSummary = await translateText(failSummary, 'en', 'kn');
+      }
+      return NextResponse.json({ text_summary: failSummary });
     }
 
-    // Default Fallback with RAG Semantic Search if QuickML returns nothing
-    if (searchResults.length > 0) {
-      return NextResponse.json({
-        text_summary: "I found contextually relevant crime intelligence using semantic search, but the LLM is currently unavailable to generate a full response.",
-        data_table: searchResults.map(r => ({
-          'Type': r.type,
-          'Title': r.title,
-          'Snippet': r.snippet
-        })),
-        rag_context: searchResults
-      });
+    // 5. Final LLM Response Composition
+    let quickMLResponse = await CatalystQuickML.generateResponse(parsedQuery.resolvedQuery, { 
+      ragContext: evidence, 
+      intent: parsedQuery.intent 
+    });
+
+    // Fallback if QuickML is unavailable
+    if (!quickMLResponse) {
+      quickMLResponse = "I retrieved the relevant data but the generative model is currently unavailable to summarize it.";
     }
+
+    // 6. Translate response back to Kannada if necessary
+    if (language === 'kn') {
+      quickMLResponse = await translateText(quickMLResponse, 'en', 'kn');
+    }
+
+    // 7. Save updated context to NoSQL
+    await ContextManager.saveSession(session);
+
+    // Flatten evidence for data tables if needed
+    let dataTable: any[] = [];
+    evidence.forEach(e => {
+      if (Array.isArray(e.data)) {
+        dataTable = dataTable.concat(e.data);
+      }
+    });
 
     return NextResponse.json({
-      text_summary: "I've searched the database but couldn't find specific intelligence matching your query. Try asking about vehicle theft rings, cyber fraud money trails, or repeat offenders.",
+      text_summary: quickMLResponse,
+      data_table: dataTable.length > 0 ? dataTable : undefined,
+      rag_context: evidence,
     });
 
   } catch (error) {

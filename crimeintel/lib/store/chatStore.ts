@@ -13,6 +13,7 @@ export interface ChatMessage {
   reasoningBlock?: ReasoningOutput | any;
   ragContext?: any[];
   citations?: { id: string; label: string; type: string }[];
+  explainability?: any;
 }
 
 export interface ChatSession {

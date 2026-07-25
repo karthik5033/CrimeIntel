@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { ServerDataLoader as DataClient } from "@/lib/api/serverDataLoader";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
   try {
     const allFIRs = await DataClient.getFIRs();
@@ -31,36 +33,50 @@ export async function GET(request: Request) {
     for (const [type, total] of crimeCounts.entries()) {
       const recent = recentCrimeCounts.get(type) || 0;
       // If a significant portion of all-time crimes of this type happened recently
-      if (total >= 3 && recent >= total * 0.4) {
+      if (total >= 3 && recent >= total * 0.2) {
         anomalies.push({
           id: `ANOMALY-${type.replace(/\s+/g, '-').toUpperCase()}`,
           title: `Spike in ${type}`,
-          severity: recent >= total * 0.6 ? "critical" : "warning",
-          description: `Unusual concentration of ${type} cases detected in the last 30 days.`,
+          severity: recent >= total * 0.5 ? "critical" : "warning",
+          description: `Unusual concentration of ${type} cases detected recently in the database.`,
           metrics: {
             total_cases: total,
             recent_cases: recent,
-            increase_percentage: Math.round((recent / Math.max(total - recent, 1)) * 100)
+            percentage_increase: Math.round((recent / Math.max(total - recent, 1)) * 100) + "%"
           },
           timestamp: new Date().toISOString()
         });
       }
     }
-    
-    // Static anomalies based on known seed data patterns if none detected dynamically
-    if (anomalies.length === 0) {
-      anomalies.push({
-        id: "ANOMALY-VEHICLE-THEFT-RING",
-        title: "Coordinated Vehicle Theft Ring",
-        severity: "critical",
-        description: "Multiple vehicles reported stolen in Bengaluru South share identical MO (late night, unguarded parking). Network analysis suggests a single coordinated ring.",
-        metrics: {
-          total_cases: 12,
-          recent_cases: 5,
-          increase_percentage: 140
-        },
-        timestamp: new Date().toISOString()
-      });
+
+    // Connect to Catalyst Transactions to detect financial anomalies dynamically
+    try {
+      const allTransactions = await DataClient.getTransactions();
+      const flaggedTx = allTransactions.filter((tx: any) => tx.flagged);
+      if (flaggedTx.length > 10) {
+        const recentFlagged = flaggedTx.filter((tx: any) => {
+          if (!tx.timestamp) return false;
+          const daysAgo = (now.getTime() - new Date(tx.timestamp).getTime()) / (1000 * 60 * 60 * 24);
+          return daysAgo <= 30;
+        });
+
+        if (recentFlagged.length > 0) {
+          anomalies.push({
+            id: "ANOMALY-FINANCIAL-FRAUD",
+            title: "Suspicious Financial Network Activity",
+            severity: recentFlagged.length > 20 ? "critical" : "warning",
+            description: "High volume of flagged transactions detected, suggesting potential money laundering or structured transfers.",
+            metrics: {
+              total_cases: flaggedTx.length,
+              recent_cases: recentFlagged.length,
+              percentage_increase: Math.round((recentFlagged.length / Math.max(flaggedTx.length - recentFlagged.length, 1)) * 100) + "%"
+            },
+            timestamp: new Date().toISOString()
+          });
+        }
+      }
+    } catch (e) {
+      console.warn("Could not fetch transactions for anomaly detection", e);
     }
 
     return NextResponse.json({ anomalies });

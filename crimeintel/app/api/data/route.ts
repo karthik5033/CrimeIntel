@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs';
+import { CatalystDataStore } from '@/lib/catalyst/datastore';
 
 /**
  * GET /api/data?table=FIRs
  * 
- * Returns data from seed JSON files for local development.
- * In production (deployed on Catalyst), this would query the Catalyst Data Store.
- * 
- * Supported tables: Persons, FIRs, Cases, PoliceStations, Vehicles,
- *   PhoneRecords, BankAccounts, Weapons, EntityRelationships, Transactions, SocioEconomicData
+ * Strictly connects to Catalyst Database.
+ * No local seed file fallbacks are permitted.
  */
 
 const VALID_TABLES = [
@@ -37,40 +33,29 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Try Catalyst SDK first (works when deployed or running via `catalyst serve`)
-    try {
-      const { getCatalystApp } = await import('@/lib/catalyst');
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      
-      if (zcql) {
-        const queryResult = await zcql.executeZCQLQuery(`SELECT * FROM ${table}`);
-        const rows = queryResult.map((row: any) => row[table] || row);
-        return NextResponse.json({ success: true, source: 'catalyst', table, count: rows.length, data: rows });
-      }
-    } catch {
-      // Catalyst SDK not available — fall through to local seed data
-    }
-
-    // Fallback: Load from local seed JSON files
-    const seedPath = path.join(process.cwd(), 'data', 'seed', `${table}.json`);
+    // Strictly enforce Catalyst Database Connection
+    let rows: any[] = [];
     
-    if (!fs.existsSync(seedPath)) {
-      return NextResponse.json(
-        { error: `Seed file not found for table: ${table}` },
-        { status: 404 }
-      );
+    switch (table) {
+      case 'Persons': rows = await CatalystDataStore.getPersons(); break;
+      case 'FIRs': rows = await CatalystDataStore.getFIRs(); break;
+      case 'Cases': rows = await CatalystDataStore.getCases(); break;
+      case 'PoliceStations': rows = await CatalystDataStore.getPoliceStations(); break;
+      case 'Vehicles': rows = await CatalystDataStore.getVehicles(); break;
+      case 'PhoneRecords': rows = await CatalystDataStore.getPhoneRecords(); break;
+      case 'BankAccounts': rows = await CatalystDataStore.getBankAccounts(); break;
+      case 'Weapons': rows = await CatalystDataStore.getWeapons(); break;
+      case 'EntityRelationships': rows = await CatalystDataStore.getEntityRelationships(); break;
+      case 'Transactions': rows = await CatalystDataStore.getTransactions(); break;
+      case 'SocioEconomicData': rows = await CatalystDataStore.getSocioEconomicData(); break;
     }
 
-    const rawData = fs.readFileSync(seedPath, 'utf-8');
-    const data = JSON.parse(rawData);
-
-    return NextResponse.json({
-      success: true,
-      source: 'local-seed',
-      table,
-      count: Array.isArray(data) ? data.length : 0,
-      data
+    return NextResponse.json({ 
+      success: true, 
+      source: 'catalyst', 
+      table, 
+      count: rows.length, 
+      data: rows 
     });
 
   } catch (error: any) {

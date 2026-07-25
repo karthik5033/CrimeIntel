@@ -23,10 +23,11 @@ export default function ChatPage() {
     deleteSession
   } = useChatStore();
 
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  const [leftOpen, setLeftOpen] = useState(true);
-  const [rightOpen, setRightOpen] = useState(true);
+  const [leftOpen, setLeftOpen] = useState(false);
+  const [rightOpen, setRightOpen] = useState(false);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -41,10 +42,15 @@ export default function ChatPage() {
     }
   }, [sessions.length, activeSessionId, createNewSession, setActiveSession]);
 
-  // Auto scroll
+  // Auto scroll scoped strictly to the messages container to avoid window/layout scrolling
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [activeSession?.messages]);
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+    }
+  }, [activeSession?.messages, activeSession?.messages?.[activeSession?.messages.length - 1]?.content, activeSession?.messages?.[activeSession?.messages.length - 1]?.isThinking]);
 
   const handleSendMessage = async (content: string) => {
     if (!content.trim() || isProcessing) return;
@@ -69,7 +75,7 @@ export default function ChatPage() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: content })
+        body: JSON.stringify({ message: content, language, sessionId: activeSessionId })
       });
 
       const data = await response.json();
@@ -95,55 +101,68 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="flex h-full w-full overflow-hidden bg-background">
+    <div className="relative h-full w-full overflow-hidden bg-background">
       
-      {/* LEFT SIDEBAR (History) */}
-      <div className={cn(
-        "flex-shrink-0 flex flex-col border-r border-border bg-card transition-all duration-300",
-        leftOpen ? "w-64" : "w-0 overflow-hidden border-r-0"
-      )}>
-        <div className="p-4 border-b border-border flex items-center justify-between">
-          <h2 className="font-semibold text-foreground">{t('chat.investigations')}</h2>
-          <button 
-            onClick={createNewSession}
-            className="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
-          >
-            <MessageSquarePlus className="h-4 w-4" />
-          </button>
-        </div>
-        <div className="flex-1 overflow-y-auto p-2 space-y-1">
-          {sessions.map(session => (
-            <div 
-              key={session.id}
-              className={cn(
-                "group flex items-center justify-between p-2 rounded-md cursor-pointer transition-colors",
-                activeSessionId === session.id ? "bg-secondary text-foreground" : "hover:bg-secondary/50 text-muted-foreground"
-              )}
-              onClick={() => setActiveSession(session.id)}
-            >
-              <div className="flex items-center gap-2 truncate">
-                <MessageSquare className="h-4 w-4 flex-shrink-0" />
-                <span className="text-sm truncate">{session.title === 'New Investigation' ? t('chat.newInvestigation') : session.title}</span>
-              </div>
+      {/* LEFT SIDEBAR (History Drawer Overlay) */}
+      {leftOpen && (
+        <>
+          <div 
+            className="absolute inset-0 bg-black/20 backdrop-blur-xs z-20 transition-opacity"
+            onClick={() => setLeftOpen(false)}
+          />
+          <div className="absolute top-0 bottom-0 left-0 z-30 w-64 flex flex-col border-r border-border bg-card shadow-2xl animate-in slide-in-from-left duration-200">
+            <div className="p-4 border-b border-border flex items-center justify-between">
+              <h2 className="font-semibold text-foreground">{t('chat.investigations')}</h2>
               <button 
-                onClick={(e) => { e.stopPropagation(); deleteSession(session.id); }}
-                className="opacity-0 group-hover:opacity-100 p-1 hover:text-destructive transition-opacity"
+                onClick={createNewSession}
+                className="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
+                title="New Investigation"
               >
-                <Trash2 className="h-3 w-3" />
+                <MessageSquarePlus className="h-4 w-4" />
               </button>
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="flex-1 overflow-y-auto p-2 space-y-1">
+              {sessions.map(session => (
+                <div 
+                  key={session.id}
+                  className={cn(
+                    "group flex items-center justify-between p-2 rounded-md cursor-pointer transition-colors",
+                    activeSessionId === session.id ? "bg-secondary text-foreground" : "hover:bg-secondary/50 text-muted-foreground"
+                  )}
+                  onClick={() => {
+                    setActiveSession(session.id);
+                    setLeftOpen(false);
+                  }}
+                >
+                  <div className="flex items-center gap-2 truncate">
+                    <MessageSquare className="h-4 w-4 flex-shrink-0" />
+                    <span className="text-sm truncate">{session.title === 'New Investigation' ? t('chat.newInvestigation') : session.title}</span>
+                  </div>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); deleteSession(session.id); }}
+                    className="opacity-0 group-hover:opacity-100 p-1 hover:text-destructive transition-opacity"
+                  >
+                    <Trash2 className="h-3 w-3" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
 
-      {/* CENTER (Chat Area) */}
-      <div className="flex-1 flex flex-col h-full min-w-0 bg-background relative">
+      {/* CENTER (Main Chat Area - Full Width, Zero Gap) */}
+      <div className="w-full h-full flex flex-col bg-background overflow-hidden">
         {/* Chat Header */}
         <div className="h-14 border-b border-border flex items-center justify-between px-4 bg-card shrink-0 shadow-sm z-10 no-print">
           <div className="flex items-center gap-3">
             <button 
               onClick={() => setLeftOpen(!leftOpen)}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className={cn(
+                "p-1.5 rounded-md transition-colors",
+                leftOpen ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              )}
+              title="Toggle Investigation History"
             >
               <SidebarIcon className="h-5 w-5" />
             </button>
@@ -161,7 +180,11 @@ export default function ChatPage() {
             </button>
             <button 
               onClick={() => setRightOpen(!rightOpen)}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className={cn(
+                "p-1.5 rounded-md transition-colors",
+                rightOpen ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              )}
+              title="Toggle Context Panel"
             >
               <PanelRight className="h-5 w-5" />
             </button>
@@ -169,9 +192,12 @@ export default function ChatPage() {
         </div>
 
         {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-20 scroll-smooth bg-background print:overflow-visible print:h-auto">
+        <div 
+          ref={messagesContainerRef}
+          className="flex-1 min-h-0 overflow-y-auto p-4 md:p-6 scroll-smooth bg-background print:overflow-visible print:h-auto"
+        >
           <PrintHeader title={`${t('chat.transcript')} ${activeSession?.title || 'Investigation'}`} />
-          <div className="max-w-4xl mx-auto print:max-w-full">
+          <div className="max-w-5xl print:max-w-full pb-4">
             {!activeSession?.messages.length ? (
               <div className="flex flex-col items-center justify-center h-[50vh] text-center space-y-4">
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
@@ -198,44 +224,55 @@ export default function ChatPage() {
           </div>
         </div>
 
-        {/* Input Area */}
-        <div className="p-4 bg-gradient-to-t from-background via-background to-transparent pt-10 no-print">
+        {/* Input Area (Strictly pinned at bottom) */}
+        <div className="shrink-0 border-t border-border/40 bg-background p-4 no-print z-10">
           <ChatInput onSend={handleSendMessage} disabled={isProcessing} />
         </div>
       </div>
 
-      {/* RIGHT SIDEBAR (Context) */}
-      <div className={cn(
-        "flex-shrink-0 flex flex-col border-l border-border bg-card transition-all duration-300",
-        rightOpen ? "w-72" : "w-0 overflow-hidden border-l-0"
-      )}>
-        <div className="p-4 border-b border-border">
-          <h2 className="font-semibold text-foreground">{t('chat.activeContext')}</h2>
-        </div>
-        <div className="flex-1 overflow-y-auto p-4">
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xs font-semibold uppercase text-muted-foreground mb-3 tracking-wider">{t('chat.entitiesInContext')}</h3>
-              {contextEntities.length === 0 ? (
-                <p className="text-sm text-muted-foreground italic">{t('chat.noEntities')}</p>
-              ) : (
-                <div className="flex flex-wrap gap-2">
-                  {contextEntities.map((ent, i) => (
-                    <span key={i} className="inline-flex items-center text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-md border border-border">
-                      {ent.label}
-                    </span>
-                  ))}
-                </div>
-              )}
+      {/* RIGHT SIDEBAR (Context Drawer Overlay) */}
+      {rightOpen && (
+        <>
+          <div 
+            className="absolute inset-0 bg-black/20 backdrop-blur-xs z-20 transition-opacity"
+            onClick={() => setRightOpen(false)}
+          />
+          <div className="absolute top-0 bottom-0 right-0 z-30 w-72 flex flex-col border-l border-border bg-card shadow-2xl animate-in slide-in-from-right duration-200">
+            <div className="p-4 border-b border-border flex items-center justify-between">
+              <h2 className="font-semibold text-foreground">{t('chat.activeContext')}</h2>
+              <button 
+                onClick={() => setRightOpen(false)}
+                className="p-1 text-muted-foreground hover:text-foreground rounded-md text-sm"
+              >
+                ✕
+              </button>
             </div>
-            
-            <div>
-              <h3 className="text-xs font-semibold uppercase text-muted-foreground mb-3 tracking-wider">{t('chat.appliedFilters')}</h3>
-              <p className="text-sm text-muted-foreground italic">{t('chat.noFilters')}</p>
+            <div className="flex-1 overflow-y-auto p-4">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xs font-semibold uppercase text-muted-foreground mb-3 tracking-wider">{t('chat.entitiesInContext')}</h3>
+                  {contextEntities.length === 0 ? (
+                    <p className="text-sm text-muted-foreground italic">{t('chat.noEntities')}</p>
+                  ) : (
+                    <div className="flex flex-wrap gap-2">
+                      {contextEntities.map((ent, i) => (
+                        <span key={i} className="inline-flex items-center text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-md border border-border">
+                          {ent.label}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                
+                <div>
+                  <h3 className="text-xs font-semibold uppercase text-muted-foreground mb-3 tracking-wider">{t('chat.appliedFilters')}</h3>
+                  <p className="text-sm text-muted-foreground italic">{t('chat.noFilters')}</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
 
     </div>
   );

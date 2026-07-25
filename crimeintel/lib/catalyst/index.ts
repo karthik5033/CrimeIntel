@@ -22,7 +22,7 @@ if (!globalAny.__mockDataStore) {
   };
 
   // Initialize tables
-  ['FIRs', 'Persons', 'Vehicles', 'PhoneRecords', 'Weapons', 'BankAccounts', 'EntityRelationships', 'Embeddings'].forEach(table => {
+  ['FIRs', 'Persons', 'Vehicles', 'PhoneRecords', 'Weapons', 'BankAccounts', 'EntityRelationships', 'Embeddings', 'DocumentMetadata', 'ChatSessions', 'ReasoningOutputs'].forEach(table => {
     globalAny.__mockDataStore.tables.set(table, new Map());
   });
 }
@@ -189,6 +189,37 @@ function createMockCatalystInstance() {
       });
       console.log(`✅ Loaded ${relationshipsSeed.length} Relationships into mock store`);
       
+      // Load Transactions
+      try {
+        const transactionsSeed = require('../../data/seed/Transactions.json');
+        const transactionsTable = mockDataStore.tables.get('Transactions')!;
+        if (!transactionsTable) {
+          mockDataStore.tables.set('Transactions', new Map());
+        }
+        const table = mockDataStore.tables.get('Transactions')!;
+        transactionsSeed.forEach((tx: any, i: number) => {
+          const rowId = `SEED_ROW_TX_${i}`;
+          table.set(rowId, { ROWID: rowId, ...tx });
+        });
+        console.log(`✅ Loaded ${transactionsSeed.length} Transactions into mock store`);
+      } catch (err) {
+        console.warn('⚠️ Could not load Transactions seed data:', (err as Error).message);
+      }
+      
+      // Load SocioEconomicData
+      try {
+        const socioSeed = require('../../data/seed/SocioEconomicData.json');
+        mockDataStore.tables.set('SocioEconomicData', new Map());
+        const table = mockDataStore.tables.get('SocioEconomicData')!;
+        socioSeed.forEach((item: any, i: number) => {
+          const rowId = `SEED_ROW_SOCIO_${i}`;
+          table.set(rowId, { ROWID: rowId, ...item });
+        });
+        console.log(`✅ Loaded ${socioSeed.length} SocioEconomicData into mock store`);
+      } catch (err) {
+        console.warn('⚠️ Could not load SocioEconomicData seed data:', (err as Error).message);
+      }
+      
       console.log('🎉 Seed data loaded successfully!');
     } catch (error) {
       console.warn('⚠️ Could not load seed data:', (error as Error).message);
@@ -238,6 +269,17 @@ function createMockCatalystInstance() {
         return Array.from(mockDataStore.tables.keys()).map(name => ({ table_name: name }));
       },
       table: (tableName: string) => ({
+        insertRow: async (row: any) => {
+          console.log(`💾 MOCK: Inserting row into ${tableName}`);
+          if (!mockDataStore.tables.has(tableName)) {
+            mockDataStore.tables.set(tableName, new Map());
+          }
+          const table = mockDataStore.tables.get(tableName)!;
+          const rowId = `MOCK_ROW_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+          const rowData = { ROWID: rowId, ...row };
+          table.set(rowId, rowData);
+          return rowData;
+        },
         insertRows: async (rows: any[]) => {
           console.log(`💾 MOCK: Inserting ${rows.length} rows into ${tableName}`);
           if (!mockDataStore.tables.has(tableName)) {
@@ -434,6 +476,49 @@ function createMockCatalystInstance() {
         }
         
         return [];
+      }
+    }),
+    zia: () => ({
+      speechToText: async ({ audio, language_code }: any) => {
+        console.log(`🎙️ MOCK ZIA: Transcribing audio (${language_code})`);
+        return { text: language_code === 'kn-IN' ? 'ವಾಹನ ಕಳ್ಳತನ' : 'Show me vehicle theft cases in Bengaluru.' };
+      },
+      textToSpeech: async ({ text, language_code }: any) => {
+        console.log(`🔊 MOCK ZIA: Synthesizing speech (${language_code}): ${text}`);
+        return new ArrayBuffer(0);
+      }
+    }),
+    quickml: () => ({
+      predict: async ({ prompt, context }: any) => {
+        console.log(`🧠 MOCK QuickML: Generating response for prompt: "${prompt}"`);
+        
+        const evidence = context.ragContext || [];
+        let dataCount = 0;
+        let dataSummary = "";
+        
+        evidence.forEach((e: any) => {
+          if (Array.isArray(e.data)) {
+            dataCount += e.data.length;
+            if (dataCount > 0 && !dataSummary) {
+              const first = e.data[0];
+              if (first.crime_type_en) {
+                dataSummary = `Most of these are related to ${first.crime_type_en}. For example, Case ${first.case_no} (Status: ${first.status_en}).`;
+              }
+            }
+          }
+        });
+
+        if (dataCount === 0) {
+          return { text: "Based on the intelligence database, I couldn't find any relevant records matching your request." };
+        }
+
+        const responseText = `I analyzed ${dataCount} relevant records from the database regarding your query about "${prompt}". ${dataSummary} Please review the data table below for full details on the retrieved FIRs and cases.`;
+        
+        return { text: responseText };
+      },
+      embeddings: async ({ text }: any) => {
+        console.log(`🧠 MOCK QuickML: Generating embeddings for "${text}"`);
+        return { embedding: [0.1, 0.2, 0.3] };
       }
     })
   };

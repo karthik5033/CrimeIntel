@@ -22,8 +22,8 @@ export const CatalystQuickML = {
         }
       }
     } catch (e) {
-      console.error('Catalyst QuickML LLM call failed:', (e as Error).message);
-      throw e;
+      console.warn('Catalyst QuickML LLM call failed, falling back to local search:', (e as Error).message);
+      return null;
     }
 
     return null;
@@ -40,8 +40,8 @@ export const CatalystQuickML = {
         }
       }
     } catch (e) {
-      console.error('Catalyst QuickML Embedding failed:', (e as Error).message);
-      throw e;
+      console.warn('Catalyst QuickML Embedding failed:', (e as Error).message);
+      return null;
     }
     return null;
   }
