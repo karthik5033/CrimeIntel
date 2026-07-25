@@ -180,6 +180,36 @@ export async function POST(request: NextRequest) {
       console.log('⏱️ Waited for database commit');
     }
 
+    // ALSO save to local seed file for development (so ServerDataLoader can find it)
+    try {
+      const fs = await import('fs');
+      const path = await import('path');
+      const seedDir = path.join(process.cwd(), 'data', 'seed');
+      const firsSeedPath = path.join(seedDir, 'FIRs.json');
+      
+      // Read existing FIRs
+      let existingFIRs = [];
+      if (fs.existsSync(firsSeedPath)) {
+        const raw = fs.readFileSync(firsSeedPath, 'utf-8');
+        existingFIRs = JSON.parse(raw);
+      }
+      
+      // Add new FIR with a ROWID
+      const newFIR = {
+        ...firRecord,
+        ROWID: String(existingFIRs.length + 1),
+        id: firRecord.fir_no
+      };
+      existingFIRs.push(newFIR);
+      
+      // Write back to file
+      fs.writeFileSync(firsSeedPath, JSON.stringify(existingFIRs, null, 2));
+      console.log('✅ FIR also saved to local seed file:', firsSeedPath);
+    } catch (seedError) {
+      console.error('❌ Failed to save to seed file:', seedError);
+      // Continue anyway - not critical
+    }
+
     // Return success response
     return NextResponse.json({
       success: true,

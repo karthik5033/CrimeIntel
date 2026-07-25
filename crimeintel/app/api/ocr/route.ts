@@ -154,6 +154,33 @@ async function handleFIRProcessing(req: NextRequest) {
       console.log('💾 MOCK: Would update FIR', firId, 'with OCR text');
     }
 
+    // ALSO update the seed file (for development mode)
+    try {
+      const seedDir = path.join(process.cwd(), 'data', 'seed');
+      const firsSeedPath = path.join(seedDir, 'FIRs.json');
+      
+      if (fs.existsSync(firsSeedPath)) {
+        const raw = fs.readFileSync(firsSeedPath, 'utf-8');
+        const existingFIRs = JSON.parse(raw);
+        
+        // Find and update the FIR by fir_no
+        const firIndex = existingFIRs.findIndex((f: any) => f.fir_no === firId);
+        if (firIndex >= 0) {
+          existingFIRs[firIndex].ocr_text = ocrResult.rawText.substring(0, 5000);
+          existingFIRs[firIndex].ocr_status = 'completed';
+          existingFIRs[firIndex].ocr_confidence = ocrResult.confidenceScore;
+          
+          fs.writeFileSync(firsSeedPath, JSON.stringify(existingFIRs, null, 2));
+          console.log('✅ FIR also updated in local seed file');
+        } else {
+          console.warn('⚠️ FIR not found in seed file:', firId);
+        }
+      }
+    } catch (seedError) {
+      console.error('❌ Failed to update seed file:', seedError);
+      // Continue anyway - not critical
+    }
+
     return NextResponse.json({
       success: true,
       message: 'OCR completed successfully',
