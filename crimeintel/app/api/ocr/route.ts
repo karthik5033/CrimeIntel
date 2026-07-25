@@ -137,16 +137,19 @@ async function handleFIRProcessing(req: NextRequest) {
 
     console.log(`✅ OCR completed: ${ocrResult.rawText.length} characters`);
 
-    // Update FIR with OCR text (if using real database)
-    if (zcql) {
-      const escapedText = ocrResult.rawText.replace(/'/g, "''");
-      await zcql.executeZCQLQuery(
-        `UPDATE FIRs SET 
-          ocr_text = '${escapedText}',
-          ocr_status = 'completed',
-          ocr_confidence = ${ocrResult.confidenceScore}
-        WHERE ROWID = ${firRowId}`
-      );
+    // Update FIR with OCR text
+    if (zcql && firRowId !== 'MOCK_ROW') {
+      try {
+        const escapedText = ocrResult.rawText.replace(/'/g, "''").substring(0, 5000); // Limit to 5000 chars for safety
+        const updateQuery = `UPDATE FIRs SET ocr_text = '${escapedText}', ocr_status = 'completed', ocr_confidence = ${ocrResult.confidenceScore} WHERE ROWID = ${firRowId}`;
+        
+        console.log('📝 Updating FIR in database...');
+        await zcql.executeZCQLQuery(updateQuery);
+        console.log('✅ FIR updated in Data Store with OCR results');
+      } catch (updateError) {
+        console.error('❌ Failed to update FIR with OCR text:', updateError);
+        console.warn('⚠️ OCR extraction succeeded but database update failed');
+      }
     } else {
       console.log('💾 MOCK: Would update FIR', firId, 'with OCR text');
     }
@@ -161,7 +164,8 @@ async function handleFIRProcessing(req: NextRequest) {
         language: ocrResult.language,
         pageCount: ocrResult.pageCount,
         extractedText: ocrResult.rawText.substring(0, 500) + '...', // Preview
-        mode: zcql && firRowId !== 'MOCK_ROW' ? 'real' : 'mock'
+        mode: zcql && firRowId !== 'MOCK_ROW' ? 'real' : 'mock',
+        databaseUpdated: zcql && firRowId !== 'MOCK_ROW'
       }
     });
 

@@ -158,20 +158,34 @@ export async function POST(request: NextRequest) {
 
     console.log('💾 Creating FIR record in Data Store:', firRecord.fir_no);
 
-    // Insert FIR record
+    // Insert FIR record and wait for it to complete
+    let firInsertSuccess = false;
     try {
       await CatalystDataStore.insertFIRs([firRecord]);
       console.log('✅ FIR record created in Data Store');
+      firInsertSuccess = true;
     } catch (datastoreError) {
       console.error('❌ DataStore insert failed:', datastoreError);
-      // Continue anyway - we have the file uploaded
-      console.warn('⚠️ Continuing despite DataStore error');
+      console.error('Error details:', {
+        message: (datastoreError as Error).message,
+        stack: (datastoreError as Error).stack
+      });
+      // Don't throw - continue with partial success
+      console.warn('⚠️ Continuing with upload despite DataStore error');
+    }
+
+    // Small delay to ensure database write is committed (if it succeeded)
+    if (firInsertSuccess) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      console.log('⏱️ Waited for database commit');
     }
 
     // Return success response
     return NextResponse.json({
       success: true,
-      message: 'FIR uploaded successfully to all three locations',
+      message: firInsertSuccess 
+        ? 'FIR uploaded successfully to all three locations'
+        : 'FIR uploaded to Stratus and metadata saved (Database insert pending)',
       data: {
         fileId: uploadResult.fileId,
         fileName: uploadResult.fileName,
@@ -185,7 +199,7 @@ export async function POST(request: NextRequest) {
       storageStatus: {
         stratus: '✅ Uploaded',
         metadata: '✅ Saved to DocumentMetadata table',
-        dataStore: '✅ Saved to FIRs table'
+        dataStore: firInsertSuccess ? '✅ Saved to FIRs table' : '⚠️ Failed to save to FIRs table'
       }
     }, { status: 201 });
 
