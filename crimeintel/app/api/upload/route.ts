@@ -142,6 +142,7 @@ export async function POST(request: NextRequest) {
     // Step 3: Create FIR record in Data Store (FIRs table) - ONLY if user provided description
     // Otherwise, OCR will create it with extracted text
     const shouldCreateFIRNow = !!description; // Only create if user provided description
+    let firInsertSuccess = false; // Track if FIR was created
     
     if (shouldCreateFIRNow) {
       const firRecord = {
@@ -163,7 +164,6 @@ export async function POST(request: NextRequest) {
       console.log('💾 Creating FIR record in Data Store:', firRecord.fir_no);
 
       // Insert FIR record and wait for it to complete
-      let firInsertSuccess = false;
       try {
         await CatalystDataStore.insertFIRs([firRecord]);
         console.log('✅ FIR record created in Data Store');
