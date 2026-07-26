@@ -1,5 +1,6 @@
 {
   "project_name": "Project-Rainfall",
+  "framework": "nextjs",
   "node_version": "20",
   "runtime": "nodejs20.x",
   "client": {
