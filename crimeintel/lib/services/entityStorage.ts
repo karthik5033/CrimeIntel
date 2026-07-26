@@ -123,8 +123,8 @@ export class EntityStorage {
     const app = getCatalystApp();
     const table = app.datastore().table('Persons');
 
-    const records = persons.map((person, index) => ({
-      id: `PERSON_${firId}_${index + 1}`,
+    const records = persons.map((person) => ({
+      id: person.id,
       name: person.name,
       age: person.age || null,
       gender: person.gender || null,
@@ -170,8 +170,8 @@ export class EntityStorage {
     const app = getCatalystApp();
     const table = app.datastore().table('Vehicles');
 
-    const records = vehicles.map((vehicle, index) => ({
-      id: `VEHICLE_${firId}_${index + 1}`,
+    const records = vehicles.map((vehicle) => ({
+      id: vehicle.id,
       registration: vehicle.registration,
       type: vehicle.type || 'Unknown',
       color: vehicle.color || null,
@@ -215,8 +215,8 @@ export class EntityStorage {
     const app = getCatalystApp();
     const table = app.datastore().table('PhoneRecords');
 
-    const records = phones.map((phone, index) => ({
-      id: `PHONE_${firId}_${index + 1}`,
+    const records = phones.map((phone) => ({
+      id: phone.id,
       number: phone.number,
       imei: phone.imei || null,
       owner: phone.owner || null,
@@ -258,8 +258,8 @@ export class EntityStorage {
     const app = getCatalystApp();
     const table = app.datastore().table('Weapons');
 
-    const records = weapons.map((weapon, index) => ({
-      id: `WEAPON_${firId}_${index + 1}`,
+    const records = weapons.map((weapon) => ({
+      id: weapon.id,
       type: weapon.type,
       description: weapon.description || null,
       serial_number: weapon.serialNumber || null,
@@ -300,8 +300,8 @@ export class EntityStorage {
     const app = getCatalystApp();
     const table = app.datastore().table('BankAccounts');
 
-    const records = accounts.map((account, index) => ({
-      id: `BANK_${firId}_${index + 1}`,
+    const records = accounts.map((account) => ({
+      id: account.id,
       account_number: account.accountNumber,
       bank_name: account.bankName || null,
       ifsc: account.ifsc || null,

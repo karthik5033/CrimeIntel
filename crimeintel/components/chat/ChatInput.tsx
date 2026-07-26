@@ -72,7 +72,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (SpeechRecognition) {
         recognitionRef.current = new SpeechRecognition();
-        recognitionRef.current.continuous = false;
+        recognitionRef.current.continuous = true;
         recognitionRef.current.interimResults = true;
 
         recognitionRef.current.onresult = (event: any) => {
@@ -127,7 +127,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto">
+    <div className="relative w-full max-w-5xl">
       {/* Examples Popover */}
       {showExamples && (
         <div className="absolute bottom-full mb-2 w-full bg-card border border-border rounded-lg shadow-lg overflow-hidden z-10 animate-in slide-in-from-bottom-2 fade-in">

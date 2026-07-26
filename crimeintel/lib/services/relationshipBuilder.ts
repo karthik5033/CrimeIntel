@@ -135,7 +135,7 @@ export class RelationshipBuilder {
       }
 
       relationships.push({
-        source: `PERSON_${firId}_${person.name}`,
+        source: person.id!,
         sourceType: 'Person',
         target: firId,
         targetType: 'FIR',
@@ -169,9 +169,9 @@ export class RelationshipBuilder {
 
         if (matchingPerson) {
           relationships.push({
-            source: `PERSON_${firId}_${matchingPerson.name}`,
+            source: matchingPerson.id!,
             sourceType: 'Person',
-            target: `VEHICLE_${firId}_${vehicle.registration}`,
+            target: vehicle.id!,
             targetType: 'Vehicle',
             relationshipType: 'OWNS',
             strength: 0.9,
@@ -189,9 +189,9 @@ export class RelationshipBuilder {
 
       accused.forEach(person => {
         relationships.push({
-          source: `PERSON_${firId}_${person.name}`,
+          source: person.id!,
           sourceType: 'Person',
-          target: `VEHICLE_${firId}_${vehicle.registration}`,
+          target: vehicle.id!,
           targetType: 'Vehicle',
           relationshipType: 'USED',
           strength: 0.7,
@@ -224,9 +224,9 @@ export class RelationshipBuilder {
 
         if (matchingPhone) {
           relationships.push({
-            source: `PERSON_${firId}_${person.name}`,
+            source: person.id!,
             sourceType: 'Person',
-            target: `PHONE_${firId}_${person.phone}`,
+            target: matchingPhone.id!,
             targetType: 'Phone',
             relationshipType: 'OWNS',
             strength: 1.0,
@@ -241,9 +241,9 @@ export class RelationshipBuilder {
       extraction.phones.forEach(phone => {
         if (phone.owner && phone.owner.toLowerCase() === person.name.toLowerCase()) {
           relationships.push({
-            source: `PERSON_${firId}_${person.name}`,
+            source: person.id!,
             sourceType: 'Person',
-            target: `PHONE_${firId}_${phone.number}`,
+            target: phone.id!,
             targetType: 'Phone',
             relationshipType: 'OWNS',
             strength: 0.9,
@@ -297,9 +297,9 @@ export class RelationshipBuilder {
           }
 
           relationships.push({
-            source: `PERSON_${firId}_${person1.name}`,
+            source: person1.id!,
             sourceType: 'Person',
-            target: `PERSON_${firId}_${person2.name}`,
+            target: person2.id!,
             targetType: 'Person',
             relationshipType: relType,
             strength: strength,
@@ -326,7 +326,7 @@ export class RelationshipBuilder {
 
     extraction.vehicles.forEach(vehicle => {
       relationships.push({
-        source: `VEHICLE_${firId}_${vehicle.registration}`,
+        source: vehicle.id!,
         sourceType: 'Vehicle',
         target: firId,
         targetType: 'FIR',
@@ -359,9 +359,9 @@ export class RelationshipBuilder {
           const phone2 = extraction.phones[j];
 
           relationships.push({
-            source: `PHONE_${firId}_${phone1.number}`,
+            source: phone1.id!,
             sourceType: 'Phone',
-            target: `PHONE_${firId}_${phone2.number}`,
+            target: phone2.id!,
             targetType: 'Phone',
             relationshipType: 'CONTACTED',
             strength: 0.6,

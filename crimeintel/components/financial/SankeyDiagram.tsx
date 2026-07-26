@@ -25,11 +25,8 @@ import { useLanguage } from "@/lib/LanguageContext";
 
 export function SankeyDiagram({ nodes, links }: SankeyDiagramProps) {
   const { t } = useLanguage();
-  // A simplified SVG flow visualization (simulating a Sankey for demo)
-  // Real D3/Sankey requires complex layout calculations. 
-  // We'll arrange nodes in 3 columns: sources, intermediaries, sinks.
 
-  const { layoutNodes, layoutLinks } = useMemo(() => {
+  const { layoutNodes, layoutLinks, svgHeight } = useMemo(() => {
     const lNodes = new Map<string, any>();
     nodes.forEach(n => lNodes.set(n.id, { ...n, inDegree: 0, outDegree: 0, column: 1, y: 0 }));
 
@@ -54,15 +51,20 @@ export function SankeyDiagram({ nodes, links }: SankeyDiagramProps) {
     });
 
     // Compute Y positions
-    const height = 400;
+    const baseHeight = 400;
+    let maxTotalHeight = baseHeight;
+
     cols.forEach((colNodes) => {
       const totalValue = colNodes.reduce((sum, n) => sum + Math.max(n.value, 1), 0);
       let currentY = 20;
       colNodes.forEach(n => {
-        n.height = Math.max((n.value / totalValue) * (height - 100), 20);
+        n.height = Math.max((n.value / totalValue) * (baseHeight - 100), 20);
         n.y = currentY;
         currentY += n.height + 20;
       });
+      if (currentY > maxTotalHeight) {
+        maxTotalHeight = currentY;
+      }
     });
 
     const finalLinks = links.map(l => {
@@ -71,7 +73,7 @@ export function SankeyDiagram({ nodes, links }: SankeyDiagramProps) {
       return { ...l, sourceNode: s, targetNode: t };
     }).filter(l => l.sourceNode && l.targetNode);
 
-    return { layoutNodes: Array.from(lNodes.values()), layoutLinks: finalLinks };
+    return { layoutNodes: Array.from(lNodes.values()), layoutLinks: finalLinks, svgHeight: maxTotalHeight };
   }, [nodes, links]);
 
   const width = 800;
@@ -87,7 +89,7 @@ export function SankeyDiagram({ nodes, links }: SankeyDiagramProps) {
         <CardDescription>{t('financial.visualizingFlows')}</CardDescription>
       </CardHeader>
       <CardContent className="flex justify-center overflow-x-auto">
-        <svg width={width} height="400" className="min-w-[600px]">
+        <svg width={width} height={svgHeight} className="min-w-[600px]">
           {/* Draw Links */}
           {layoutLinks.map((link, idx) => {
             const sx = link.sourceNode.column * colWidth + 100;

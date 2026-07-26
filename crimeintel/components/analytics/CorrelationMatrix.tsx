@@ -125,7 +125,7 @@ export function CorrelationMatrix() {
           {factor === 'unemployment' ? (
             <>
               <p>
-                <strong className="text-foreground">{t('analytics.statCorr')}</strong> {t('analytics.unemploymentCorr')}
+                <strong className="text-foreground">{t('analytics.statCorr')}</strong> {correlationData.insights?.unemployment || 'Calculating...'}
               </p>
               <div className="p-3 bg-card border border-border rounded-md mt-4 shadow-sm">
                 <p className="font-semibold text-primary mb-2 text-xs uppercase tracking-wider">{t('analytics.theory1Title')}</p>
@@ -138,7 +138,7 @@ export function CorrelationMatrix() {
           ) : (
             <>
               <p>
-                <strong className="text-foreground">{t('analytics.statCorr')}</strong> {t('analytics.literacyCorr')}
+                <strong className="text-foreground">{t('analytics.statCorr')}</strong> {correlationData.insights?.literacy || 'Calculating...'}
               </p>
               <div className="p-3 bg-card border border-border rounded-md mt-4 shadow-sm">
                 <p className="font-semibold text-primary mb-2 text-xs uppercase tracking-wider">{t('analytics.theory2Title')}</p>

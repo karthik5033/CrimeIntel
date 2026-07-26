@@ -79,7 +79,7 @@ async function loadAllData() {
     
     // 11. Load Transactions
     console.log('💰 Loading Transactions...');
-    // await CatalystDataStore.insertTransactions?.(transactionsSeed);
+    await CatalystDataStore.insertTransactions?.(transactionsSeed);
     console.log(`✅ Loaded ${transactionsSeed.length} transactions\n`);
     
     console.log('🎉 SUCCESS! All seed data loaded into Catalyst Data Store');

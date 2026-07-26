@@ -18,6 +18,7 @@
  */
 
 export interface ExtractedPerson {
+  id?: string;
   name: string;
   age?: number;
   gender?: string;
@@ -28,6 +29,7 @@ export interface ExtractedPerson {
 }
 
 export interface ExtractedVehicle {
+  id?: string;
   registration: string;
   type?: string;
   color?: string;
@@ -37,6 +39,7 @@ export interface ExtractedVehicle {
 }
 
 export interface ExtractedPhone {
+  id?: string;
   number: string;
   imei?: string;
   owner?: string;
@@ -44,6 +47,7 @@ export interface ExtractedPhone {
 }
 
 export interface ExtractedLocation {
+  id?: string;
   name: string;
   type: 'Crime Scene' | 'Residence' | 'Landmark' | 'Other';
   address?: string;
@@ -52,12 +56,14 @@ export interface ExtractedLocation {
 }
 
 export interface ExtractedWeapon {
+  id?: string;
   type: string;
   description?: string;
   serialNumber?: string;
 }
 
 export interface ExtractedBankAccount {
+  id?: string;
   accountNumber: string;
   bankName?: string;
   ifsc?: string;
@@ -91,22 +97,34 @@ export class EntityExtractor {
   static async extract(ocrText: string, firId?: string): Promise<ExtractionResult> {
     console.log(`🔍 Extracting entities from ${ocrText.length} characters...`);
 
+    let result: ExtractionResult;
     try {
       // Try Catalyst Zia first (if available)
-      return await this.extractWithZia(ocrText, firId);
+      result = await this.extractWithZia(ocrText, firId);
     } catch (ziaError) {
       console.warn('Zia extraction failed, trying GPT:', ziaError);
       
       try {
         // Fallback to GPT
-        return await this.extractWithGPT(ocrText, firId);
+        result = await this.extractWithGPT(ocrText, firId);
       } catch (gptError) {
         console.warn('GPT extraction failed, using regex:', gptError);
         
         // Final fallback to regex patterns
-        return this.extractWithRegex(ocrText);
+        result = this.extractWithRegex(ocrText);
       }
     }
+
+    // Assign deterministic IDs
+    const safeFirId = firId || 'UNKNOWN';
+    result.persons.forEach((p, i) => p.id = `PERSON_${safeFirId}_${i + 1}`);
+    result.vehicles.forEach((v, i) => v.id = `VEHICLE_${safeFirId}_${i + 1}`);
+    result.phones.forEach((p, i) => p.id = `PHONE_${safeFirId}_${i + 1}`);
+    result.weapons.forEach((w, i) => w.id = `WEAPON_${safeFirId}_${i + 1}`);
+    result.bankAccounts.forEach((b, i) => b.id = `BANK_${safeFirId}_${i + 1}`);
+    result.locations.forEach((l, i) => l.id = `LOC_${safeFirId}_${i + 1}`);
+
+    return result;
   }
 
   /**

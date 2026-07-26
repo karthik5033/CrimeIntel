@@ -185,73 +185,12 @@ async function handleFIRProcessing(req: NextRequest) {
       } catch (insertError) {
         console.warn('⚠️ Could not insert FIR to DataStore:', insertError);
       }
-      
-      // Also save to local seed file
-      try {
-        const seedDir = path.join(process.cwd(), 'data', 'seed');
-        const firsSeedPath = path.join(seedDir, 'FIRs.json');
-        
-        let existingFIRs = [];
-        if (fs.existsSync(firsSeedPath)) {
-          const raw = fs.readFileSync(firsSeedPath, 'utf-8');
-          existingFIRs = JSON.parse(raw);
-        }
-        
-        // Check if FIR already exists
-        const existingIndex = existingFIRs.findIndex((f: any) => f.fir_no === firId);
-        if (existingIndex >= 0) {
-          // Update existing
-          existingFIRs[existingIndex] = {
-            ...existingFIRs[existingIndex],
-            ...newFirRecord,
-            ROWID: existingFIRs[existingIndex].ROWID,
-            id: firId
-          };
-          console.log('✅ Updated existing FIR in seed file');
-        } else {
-          // Add new
-          const newFIR = {
-            ...newFirRecord,
-            ROWID: String(existingFIRs.length + 1),
-            id: firId
-          };
-          existingFIRs.push(newFIR);
-          console.log('✅ Added new FIR to seed file');
-        }
-        
-        fs.writeFileSync(firsSeedPath, JSON.stringify(existingFIRs, null, 2));
-      } catch (seedError) {
-        console.error('❌ Failed to save FIR to seed file:', seedError);
-      }
     }
 
-    // ALSO update the seed file (for development mode)
-    try {
-      const seedDir = path.join(process.cwd(), 'data', 'seed');
-      const firsSeedPath = path.join(seedDir, 'FIRs.json');
-      
-      if (fs.existsSync(firsSeedPath)) {
-        const raw = fs.readFileSync(firsSeedPath, 'utf-8');
-        const existingFIRs = JSON.parse(raw);
-        
-        // Find and update the FIR by fir_no
-        const firIndex = existingFIRs.findIndex((f: any) => f.fir_no === firId);
-        if (firIndex >= 0) {
-          existingFIRs[firIndex].ocr_text = ocrResult.rawText.substring(0, 5000);
-          existingFIRs[firIndex].ocr_status = 'completed';
-          existingFIRs[firIndex].ocr_confidence = ocrResult.confidenceScore;
-          
-          fs.writeFileSync(firsSeedPath, JSON.stringify(existingFIRs, null, 2));
-          console.log('✅ FIR also updated in local seed file');
-        } else {
-          console.warn('⚠️ FIR not found in seed file:', firId);
-        }
-      }
-    } catch (seedError) {
-      console.error('❌ Failed to update seed file:', seedError);
-      // Continue anyway - not critical
-    }
+    // Database operation handled above by Catalyst DataStore.
+    // Removed local seed file hack for strict architecture compliance.
 
+    // Return the result
     return NextResponse.json({
       success: true,
       message: 'OCR completed successfully',

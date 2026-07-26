@@ -153,13 +153,13 @@ export function FinancialDashboard() {
         <Card>
           <CardContent className="p-6">
             <h3 className="text-lg font-semibold mb-4">Suspected Circular / Mule Networks</h3>
-            <div className="space-y-4">
+            <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
               {circularCycles.map((cycle, idx) => (
                 <div key={idx} className="p-3 bg-muted/30 rounded-lg border">
                   <div className="text-sm font-semibold text-warning mb-2">{cycle.pattern}</div>
                   <div className="flex items-center gap-2 flex-wrap">
                     {cycle.accounts.map((acc: string, i: number) => (
-                      <React.Fragment key={acc}>
+                      <React.Fragment key={`${acc}-${i}`}>
                         <Badge variant="outline" className="font-mono">{acc}</Badge>
                         {i < cycle.accounts.length - 1 && <ArrowUpRight className="w-3 h-3 text-muted-foreground" />}
                       </React.Fragment>

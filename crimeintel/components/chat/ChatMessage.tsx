@@ -64,8 +64,8 @@ export function ChatMessage({ message }: ChatMessageProps) {
       isAI ? "justify-start" : "justify-end"
     )}>
       <div className={cn(
-        "flex max-w-[85%] md:max-w-[75%]",
-        isAI ? "flex-row" : "flex-row-reverse"
+        "flex min-w-0",
+        isAI ? "w-full flex-row" : "max-w-[85%] md:max-w-[75%] flex-row-reverse"
       )}>
         
         {/* Avatar */}
@@ -77,11 +77,11 @@ export function ChatMessage({ message }: ChatMessageProps) {
         </div>
 
         {/* Message Bubble */}
-        <div className="flex flex-col">
+        <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
           {/* Main content bubble */}
           {message.content && (
             <div className={cn(
-              "px-4 py-3 rounded-2xl",
+              "px-4 py-3 rounded-2xl w-fit max-w-full break-words",
               isAI 
                 ? "bg-secondary/40 text-foreground border border-border rounded-tl-sm" 
                 : "bg-primary text-primary-foreground rounded-tr-sm"
@@ -96,7 +96,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
           {/* Reasoning Block */}
           {(message.isThinking || message.reasoningBlock) && (
-            <div className="mt-2">
+            <div className="mt-2 w-full max-w-full min-w-0">
               <ReasoningBlock 
                 isThinking={message.isThinking} 
                 data={message.reasoningBlock} 
@@ -106,19 +106,19 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
           {/* RAG Context */}
           {message.ragContext && message.ragContext.length > 0 && (
-            <div className="mt-2">
+            <div className="mt-2 w-full max-w-full min-w-0">
               <SemanticSearchWidget context={message.ragContext} />
             </div>
           )}
 
-          {/* Inline Data Table (Basic rendering) */}
+          {/* Inline Data Table */}
           {message.tableData && message.tableData.length > 0 && (
-            <div className="mt-2 overflow-x-auto border border-border rounded-lg bg-card">
+            <div className="mt-2 w-full max-w-full min-w-0 overflow-x-auto border border-border rounded-lg bg-card shadow-sm">
               <table className="w-full text-sm text-left">
                 <thead className="bg-secondary/50 text-xs uppercase text-muted-foreground">
                   <tr>
                     {Object.keys(message.tableData[0]).map(key => (
-                      <th key={key} className="px-4 py-2">{key.replace(/_/g, ' ')}</th>
+                      <th key={key} className="px-4 py-2 whitespace-nowrap">{key.replace(/_/g, ' ')}</th>
                     ))}
                   </tr>
                 </thead>
@@ -162,15 +162,12 @@ export function ChatMessage({ message }: ChatMessageProps) {
                 <span className="sr-only">{isPlaying ? t('chat.stopListening') : t('chat.listenAI')}</span>
               </button>
               
-              <ExplainabilityBadge 
-                data={{
-                  mechanism: "Retrieval-Augmented Generation (RAG) using semantic search across FIR, Case, and Offender Profile databases.",
-                  confidence: 92,
-                  dataSources: ["FIR Database", "Intelligence Graph", "Crime Patterns"],
-                  alternatives: ["Generated response from general knowledge (discarded)"]
-                }}
-                contextId={`chat-${message.id}`}
-              />
+              {message.explainability && (
+                <ExplainabilityBadge 
+                  data={message.explainability}
+                  contextId={`chat-${message.id}`}
+                />
+              )}
             </div>
           )}
         </div>

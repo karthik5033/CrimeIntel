@@ -30,7 +30,7 @@ export function TransactionTimeline({ transactions }: TransactionTimelineProps) 
         <CardDescription>Chronological list of flagged activities</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
           {transactions.map((tx, idx) => (
             <div key={idx} className={`p-4 rounded-lg border ${tx.flagged ? 'bg-destructive/5 border-destructive/20' : 'bg-card'}`}>
               <div className="flex items-center justify-between mb-2">

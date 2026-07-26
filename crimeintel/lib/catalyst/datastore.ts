@@ -232,5 +232,17 @@ export const CatalystDataStore = {
       const batch = relationships.slice(i, i + batchSize);
       await table.insertRows(batch);
     }
+  },
+
+  insertTransactions: async (transactions: any[]): Promise<void> => {
+    const app = getCatalystApp();
+    const table = app.datastore().table('Transactions');
+    
+    const batchSize = 100;
+    for (let i = 0; i < transactions.length; i += batchSize) {
+      const batch = transactions.slice(i, i + batchSize);
+      await table.insertRows(batch);
+      console.log(`Loaded ${Math.min(i + batchSize, transactions.length)} / ${transactions.length} Transactions`);
+    }
   }
 };
