@@ -7,37 +7,18 @@
  * Catalyst AppSail environment variable support.
  */
 
-const { createServer } = require('http');
-const { parse } = require('url');
-const next = require('next');
+const path = require('path');
 
 // Use Catalyst's port environment variable or fallback to 3000
 const port = process.env.X_ZOHO_CATALYST_LISTEN_PORT || process.env.PORT || 3000;
 const hostname = process.env.HOSTNAME || '0.0.0.0';
 
-// Initialize Next.js in production mode
-const app = next({
-  dev: false,
-  hostname,
-  port,
-  dir: __dirname,
-});
+// Set port for Next.js standalone server
+process.env.PORT = port;
+process.env.HOSTNAME = hostname;
 
-const handle = app.getRequestHandler();
+console.log(`Starting server on ${hostname}:${port}`);
+console.log(`NODE_ENV: ${process.env.NODE_ENV || 'production'}`);
 
-app.prepare().then(() => {
-  createServer(async (req, res) => {
-    try {
-      const parsedUrl = parse(req.url, true);
-      await handle(req, res, parsedUrl);
-    } catch (err) {
-      console.error('Error occurred handling request:', err);
-      res.statusCode = 500;
-      res.end('Internal Server Error');
-    }
-  }).listen(port, hostname, (err) => {
-    if (err) throw err;
-    console.log(`> Ready on http://${hostname}:${port}`);
-    console.log(`> Environment: ${process.env.NODE_ENV || 'production'}`);
-  });
-});
+// Start the Next.js standalone server
+require('./.next/standalone/server.js');
