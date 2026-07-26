@@ -9,10 +9,14 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['zcatalyst-sdk-node'],
-  output: 'standalone',  // Back to standalone for server-side features
+  output: 'standalone',
   turbopack: {
     root: projectRoot,
   },
+  // Optimize bundle size for Catalyst deployment
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: false,
   async headers() {
     return [
       {
@@ -23,6 +27,10 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+  },
+  // Reduce build artifact size
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'recharts', '@xyflow/react'],
   },
 };
 
