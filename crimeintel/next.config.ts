@@ -1,22 +1,17 @@
 import type { NextConfig } from "next";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['zcatalyst-sdk-node'],
-  output: 'standalone',
-  turbopack: {
-    root: projectRoot,
-  },
-  // Optimize bundle size for Catalyst deployment
+  // CRITICAL: Remove standalone to reduce artifact size for Catalyst
+  turbopack: {},
+  // Optimize bundle size
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
+  productionBrowserSourceMaps: false,
   async headers() {
     return [
       {
@@ -28,7 +23,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Reduce build artifact size
   experimental: {
     optimizePackageImports: ['lucide-react', 'recharts', '@xyflow/react'],
   },

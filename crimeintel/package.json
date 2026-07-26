@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:open-next": "next build && open-next build",
-    "start": "node scripts/start.js",
+    "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
