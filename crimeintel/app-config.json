@@ -1,14 +1,10 @@
 {
-  "command": "node server.js",
+  "command": "node catalyst-server.js",
   "buildPath": ".",
   "stack": "node22",
   "memory": 2048,
   "port": 3000,
   "env_variables": {
-    "NODE_ENV": "production",
-    "PORT": "3000"
-  },
-  "scripts": {
-    "predeploy": "npm run build && npm prune --production"
+    "NODE_ENV": "production"
   }
 }
