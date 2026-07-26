@@ -19,11 +19,19 @@ export default async function FIRDetailPage({ params }: { params: Promise<{ id: 
   const weapons = edges.filter((e: any) => e.target.startsWith('WEAPON_') || e.source.startsWith('WEAPON_'));
   
   // Pre-fetch person data for display
-  const personsDetails = await Promise.all(persons.map(async (person: any) => {
-    const personId = person.source.startsWith('PERSON_') ? person.source : person.target;
+  const personsDetailsRaw = await Promise.all(persons.map(async (person: any) => {
+    const personId = person.source === id ? person.target : (person.target === id ? person.source : (person.source.startsWith('PERSON_') ? person.source : person.target));
     const personData = await DataClient.getPersonById(personId);
     return { ...person, personId, personData };
   }));
+
+  // Deduplicate persons by personId
+  const uniquePersonIds = new Set();
+  const personsDetails = personsDetailsRaw.filter((p: any) => {
+    if (uniquePersonIds.has(p.personId)) return false;
+    uniquePersonIds.add(p.personId);
+    return true;
+  });
   
   // Find case
   const linkedCase = allCases.find((c: any) => c.firs.includes(id));

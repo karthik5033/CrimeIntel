@@ -322,66 +322,71 @@ function createMockCatalystInstance() {
             return [];
           }
           
-          // Parse WHERE fir_no = 'X'
-          const whereMatch = query.match(/WHERE\s+fir_no\s*=\s*'([^']+)'/i);
-          if (whereMatch) {
-            const firNo = whereMatch[1];
-            
-            // Scan all rows for matching fir_no
-            let row: any = null;
-            for (const [key, value] of table.entries()) {
-              if (value.fir_no === firNo) {
-                row = value;
-                console.log(`✅ MOCK: Found FIR ${firNo} by scanning (key: ${key})`);
-                break;
-              }
-            }
+          // Parse WHERE clause
+          const whereClauseMatch = query.match(/WHERE\s+(.+?)(?:ORDER|LIMIT|$)/i);
+          if (whereClauseMatch) {
+            const rawWhere = whereClauseMatch[1].trim();
+            const equalsMatches = Array.from(rawWhere.matchAll(/(\w+)\s*=\s*'([^']+)'/g));
 
-            if (!row) {
-              // Fallback to checking local seed file
-              try {
-                const seedPath = path.join(process.cwd(), 'data', 'seed', `${tableName}.json`);
-                if (fs.existsSync(seedPath)) {
-                  const seedData = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
-                  const found = seedData.find((item: any) => item.fir_no === firNo || item.id === firNo);
-                  if (found) {
-                    row = { ROWID: `MOCK_ROW_${Date.now()}`, ...found };
-                    table.set(row.ROWID, row);
-                    console.log(`✅ MOCK: Found FIR ${firNo} in seed data`);
-                  }
+            if (equalsMatches.length > 0) {
+              let matches = Array.from(table.values()).filter((row: any) => {
+                if (rawWhere.toUpperCase().includes(' OR ')) {
+                  return equalsMatches.some(([, col, val]) => {
+                    return row[col] === val || row.ROWID === val || row.id === val;
+                  });
+                } else {
+                  return equalsMatches.every(([, col, val]) => {
+                    if (col === 'ROWID') {
+                      return row.ROWID === val || row.id === val || row.fir_no === val;
+                    }
+                    return row[col] === val || row.id === val;
+                  });
                 }
-              } catch (e) {}
-            }
+              });
 
-            if (!row && firNo.startsWith('FIR-')) {
-              // Dynamically create entry for newly ingested FIR
-              row = {
-                ROWID: `MOCK_ROW_${Date.now()}`,
-                fir_no: firNo,
-                case_no: `CASE-${Date.now().toString().slice(-6)}`,
-                crime_type_en: 'Cyber Fraud / Financial Scam',
-                description: 'Uploaded FIR document under processing.',
-                date: new Date().toISOString().split('T')[0],
-                police_station_id: 'PS-CyberCrime-01',
-                status_en: 'Under Investigation',
-                ocr_status: 'pending'
-              };
-              table.set(row.ROWID, row);
-              console.log(`✨ MOCK: Dynamically generated record for ${firNo}`);
-            }
-            
-            if (row) {
-              console.log(`📋 MOCK: FIR ${firNo} fields:`, Object.keys(row));
-              console.log(`📄 MOCK: OCR text length:`, row.ocr_text?.length || 0);
-              console.log(`📊 MOCK: OCR status:`, row.ocr_status);
-              return [{ [tableName]: row }];
-            } else {
-              console.log(`❌ MOCK: FIR ${firNo} not found anywhere`);
-              return [];
+              // Special fallback for fir_no if not found
+              const firMatch = rawWhere.match(/fir_no\s*=\s*'([^']+)'/i);
+              if (matches.length === 0 && firMatch) {
+                const firNo = firMatch[1];
+                let row: any = null;
+                try {
+                  const seedPath = path.join(process.cwd(), 'data', 'seed', `${tableName}.json`);
+                  if (fs.existsSync(seedPath)) {
+                    const seedData = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+                    const found = seedData.find((item: any) => item.fir_no === firNo || item.id === firNo);
+                    if (found) {
+                      row = { ROWID: `MOCK_ROW_${Date.now()}`, ...found };
+                      table.set(row.ROWID, row);
+                    }
+                  }
+                } catch (e) {}
+
+                if (!row && firNo.startsWith('FIR-')) {
+                  row = {
+                    ROWID: `MOCK_ROW_${Date.now()}`,
+                    fir_no: firNo,
+                    case_no: `CASE-${Date.now().toString().slice(-6)}`,
+                    crime_type_en: 'Cyber Fraud / Financial Scam',
+                    description: 'Uploaded FIR document under processing.',
+                    date: new Date().toISOString().split('T')[0],
+                    police_station_id: 'PS-CyberCrime-01',
+                    status_en: 'Under Investigation',
+                    ocr_status: 'pending'
+                  };
+                  table.set(row.ROWID, row);
+                }
+
+                if (row) {
+                  matches = [row];
+                }
+              }
+
+              console.log(`📊 MOCK ZCQL: Found ${matches.length} matching rows in ${tableName}`);
+              return matches.map(row => ({ [tableName]: row }));
             }
           }
           
-          // Return all rows
+          // Return all rows if no WHERE clause
           const allRows = Array.from(table.values())
             .filter((row: any) => !String(row.ROWID || '').includes('firno_'));
           console.log(`📊 MOCK: Returning ${allRows.length} rows from ${tableName}`);
