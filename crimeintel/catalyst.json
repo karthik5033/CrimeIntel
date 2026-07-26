@@ -1,7 +1,8 @@
 {
-  "client": {
+  "app_sail": {
     "source": ".",
-    "buildCommand": "npm run build"
+    "buildCommand": "npm run build",
+    "startCommand": "npm run start"
   },
   "project": {
     "name": "Project-Rainfall",
