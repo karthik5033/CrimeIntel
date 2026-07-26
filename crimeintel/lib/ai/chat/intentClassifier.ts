@@ -6,7 +6,8 @@ export type QueryIntent =
   | 'AGGREGATE_ANALYTICAL'
   | 'RELATIONSHIP_QUERY'
   | 'REASONING_QUERY'
-  | 'FOLLOW_UP';
+  | 'FOLLOW_UP'
+  | 'CONVERSATIONAL';
 
 export interface ParsedQuery {
   intent: QueryIntent;
@@ -44,6 +45,7 @@ export class IntentClassifier {
       - RELATIONSHIP_QUERY: Asking about connections (e.g. "How is John linked to Smith?")
       - REASONING_QUERY: Asking for analysis or explanations (e.g. "Why is this area flagged?")
       - FOLLOW_UP: A query that relies on previous context (e.g. "What about last year?", "Who is he?")
+      - CONVERSATIONAL: General chat, greetings, or non-investigative queries (e.g. "hello", "testing", "who are you?")
       
       Return ONLY a JSON object with this exact structure:
       {
@@ -89,14 +91,16 @@ export class IntentClassifier {
     const lowerQuery = query.toLowerCase();
     
     let intent: QueryIntent = 'DIRECT_RETRIEVAL';
-    if (lowerQuery.includes('how many') || lowerQuery.includes('trend') || lowerQuery.includes('compare')) {
+    if (/\b(how many|trend|compare)\b/.test(lowerQuery)) {
       intent = 'AGGREGATE_ANALYTICAL';
-    } else if (lowerQuery.includes('connect') || lowerQuery.includes('link') || lowerQuery.includes('relation')) {
+    } else if (/\b(connect|link|relation)\b/.test(lowerQuery)) {
       intent = 'RELATIONSHIP_QUERY';
-    } else if (lowerQuery.includes('why') || lowerQuery.includes('explain')) {
+    } else if (/\b(why|explain)\b/.test(lowerQuery)) {
       intent = 'REASONING_QUERY';
-    } else if (lowerQuery.includes('what about') || lowerQuery.includes('he') || lowerQuery.includes('she') || lowerQuery.includes('they')) {
+    } else if (/\b(what about|he|she|they)\b/.test(lowerQuery)) {
       intent = 'FOLLOW_UP';
+    } else if (/\b(hello|hi|hey|test|mike|who are you)\b/.test(lowerQuery)) {
+      intent = 'CONVERSATIONAL';
     }
 
     // Basic entity extraction (very naive fallback)
@@ -104,8 +108,31 @@ export class IntentClassifier {
     if (lowerQuery.includes('bengaluru')) entities.district = 'Bengaluru';
     if (lowerQuery.includes('mysuru')) entities.district = 'Mysuru';
     
-    if (lowerQuery.includes('theft') || lowerQuery.includes('steal')) entities.crime_types = ['Theft'];
-    if (lowerQuery.includes('murder')) entities.crime_types = ['Murder'];
+    const CRIME_TYPE_MAPPINGS: Record<string, string[]> = {
+      'Theft': ['theft', 'steal', 'stolen'],
+      'Murder': ['murder', 'kill', 'homicide'],
+      'Robbery': ['robbery', 'robery', 'robbed'], // Covers the 'robery' typo
+      'Burglary': ['burglary', 'burglar', 'break in', 'broke in'],
+      'Assault': ['assault', 'attack', 'beat'],
+      'Online Fraud': ['fraud', 'scam', 'cheat', 'fake', 'online'],
+      'Sexual Harassment': ['harass', 'molest'],
+      'Rape': ['rape', 'sexual'],
+      'Hit and Run': ['hit and run', 'accident'],
+      'Cheating': ['cheat', 'deceive'],
+      'Cyber Stalking': ['cyber', 'stalk']
+    };
+
+    for (const [type, keywords] of Object.entries(CRIME_TYPE_MAPPINGS)) {
+      if (keywords.some(k => lowerQuery.includes(k))) {
+        entities.crime_types = [type];
+        break;
+      }
+    }
+    // Extract FIR numbers (e.g., "fir 13", "fir no 2001", "fir-13")
+    const firMatch = lowerQuery.match(/fir\s*(?:no)?\s*[-#:]?\s*(\d+)/i);
+    if (firMatch) {
+      entities.fir_numbers = [firMatch[1]];
+    }
 
     return {
       intent,

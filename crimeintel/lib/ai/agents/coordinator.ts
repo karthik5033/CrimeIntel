@@ -25,6 +25,10 @@ export class Coordinator {
     }
 
     switch (parsedQuery.intent) {
+      case 'CONVERSATIONAL':
+        // No evidence gathering needed for general chat
+        break;
+
       case 'DIRECT_RETRIEVAL':
         // Fetch structured data from SQL
         const sqlData = await SQLAgent.retrieve(parsedQuery);

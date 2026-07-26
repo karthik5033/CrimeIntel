@@ -29,17 +29,22 @@ export const CatalystNoSQL = {
   saveDocumentMetadata: async (metadata: DocumentMetadata): Promise<boolean> => {
     try {
       const app = getCatalystApp();
-      const datastore = app.datastore();
+      // Ensure we use the proper NoSQL API instead of datastore
+      const nosql = app.nosql();
       
-      if (!datastore) {
+      if (!nosql) {
         console.warn('⚠️ NoSQL not available, using fallback');
         return false;
       }
 
-      const table = datastore.table('DocumentMetadata');
+      const table = nosql.table('DocumentMetadata');
       
-      const row = {
-        file_id: metadata.fileId,
+      // Use dynamic environment or context rather than hardcoding if needed
+      // We import dynamically to avoid initialization issues during module load
+      const { NoSQLItem } = require('zcatalyst-sdk-node/lib/no-sql');
+      
+      const item = NoSQLItem.from({
+        file_id: metadata.fileId, // typically the partition key
         file_name: metadata.fileName,
         file_url: metadata.fileUrl,
         bucket_name: metadata.bucketName,
@@ -54,17 +59,13 @@ export const CatalystNoSQL = {
         description: metadata.description || null,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
-      };
+      });
 
-      await table.insertRow(row);
-      console.log('✅ Document metadata saved to NoSQL/DataStore');
+      await table.insertItems({ item });
+      console.log('✅ Document metadata saved to NoSQL');
       return true;
     } catch (error) {
       console.error('❌ Failed to save document metadata:', error);
-      console.error('Error details:', {
-        message: (error as Error).message,
-        stack: (error as Error).stack
-      });
       return false;
     }
   },
@@ -80,30 +81,47 @@ export const CatalystNoSQL = {
   ): Promise<boolean> => {
     try {
       const app = getCatalystApp();
-      const datastore = app.datastore();
+      const nosql = app.nosql();
       
-      if (!datastore) {
+      if (!nosql) {
         return false;
       }
 
-      const table = datastore.table('DocumentMetadata');
+      const table = nosql.table('DocumentMetadata');
+      const { NoSQLItem, NoSQLEnum, NoSQLMarshall } = require('zcatalyst-sdk-node/lib/no-sql');
       
-      const updateData: any = {
-        ocr_status: status,
-        updated_at: new Date().toISOString()
-      };
+      const updateAttributes = [
+        {
+          operation_type: NoSQLEnum.NoSQLUpdateOperationType.PUT,
+          update_value: NoSQLMarshall.make(status),
+          attribute_path: ['ocr_status']
+        },
+        {
+          operation_type: NoSQLEnum.NoSQLUpdateOperationType.PUT,
+          update_value: NoSQLMarshall.make(new Date().toISOString()),
+          attribute_path: ['updated_at']
+        }
+      ];
 
       if (ocrText) {
-        updateData.ocr_text = ocrText;
+        updateAttributes.push({
+          operation_type: NoSQLEnum.NoSQLUpdateOperationType.PUT,
+          update_value: NoSQLMarshall.make(ocrText),
+          attribute_path: ['ocr_text']
+        });
       }
 
       if (extractedEntities) {
-        updateData.extracted_entities = JSON.stringify(extractedEntities);
+        updateAttributes.push({
+          operation_type: NoSQLEnum.NoSQLUpdateOperationType.PUT,
+          update_value: NoSQLMarshall.make(JSON.stringify(extractedEntities)),
+          attribute_path: ['extracted_entities']
+        });
       }
 
-      await table.updateRow({
-        ROWID: fileId,
-        ...updateData
+      await table.updateItems({
+        keys: NoSQLItem.from({ file_id: fileId }),
+        update_attributes: updateAttributes
       });
 
       console.log('✅ Document OCR status updated');
@@ -120,75 +138,42 @@ export const CatalystNoSQL = {
   getDocumentMetadata: async (fileId: string): Promise<DocumentMetadata | null> => {
     try {
       const app = getCatalystApp();
-      const datastore = app.datastore();
+      const nosql = app.nosql();
       
-      if (!datastore) {
+      if (!nosql) {
         return null;
       }
 
-      const table = datastore.table('DocumentMetadata');
-      const rows = await table.getRows();
+      const table = nosql.table('DocumentMetadata');
+      const { NoSQLItem, NoSQLUnMarshall } = require('zcatalyst-sdk-node/lib/no-sql');
       
-      const row = rows.find((r: any) => r.file_id === fileId);
+      const response = await table.fetchItem({
+        keys: NoSQLItem.from({ file_id: fileId }),
+        consistent_read: true
+      });
       
-      if (!row) {
-        return null;
+      if (response && response.length > 0) {
+        const row = NoSQLUnMarshall.makeNative(response[0]);
+        return {
+          fileId: row.file_id as string,
+          fileName: row.file_name as string,
+          fileUrl: row.file_url as string,
+          bucketName: row.bucket_name as string,
+          firNumber: row.fir_number as string,
+          uploadTime: row.upload_time as string,
+          fileSize: row.file_size as number,
+          ocrStatus: row.ocr_status as any,
+          ocrText: row.ocr_text as string,
+          extractedEntities: row.extracted_entities ? JSON.parse(row.extracted_entities as string) : undefined,
+          crimeType: row.crime_type as string,
+          policeStation: row.police_station as string,
+          description: row.description as string
+        };
       }
-
-      return {
-        fileId: row.file_id,
-        fileName: row.file_name,
-        fileUrl: row.file_url,
-        bucketName: row.bucket_name,
-        firNumber: row.fir_number,
-        uploadTime: row.upload_time,
-        fileSize: row.file_size,
-        ocrStatus: row.ocr_status,
-        ocrText: row.ocr_text,
-        extractedEntities: row.extracted_entities ? JSON.parse(row.extracted_entities) : undefined,
-        crimeType: row.crime_type,
-        policeStation: row.police_station,
-        description: row.description
-      };
+      return null;
     } catch (error) {
       console.error('❌ Failed to get document metadata:', error);
       return null;
-    }
-  },
-
-  /**
-   * List All Documents
-   */
-  listDocuments: async (): Promise<DocumentMetadata[]> => {
-    try {
-      const app = getCatalystApp();
-      const datastore = app.datastore();
-      
-      if (!datastore) {
-        return [];
-      }
-
-      const table = datastore.table('DocumentMetadata');
-      const rows = await table.getRows();
-      
-      return rows.map((row: any) => ({
-        fileId: row.file_id,
-        fileName: row.file_name,
-        fileUrl: row.file_url,
-        bucketName: row.bucket_name,
-        firNumber: row.fir_number,
-        uploadTime: row.upload_time,
-        fileSize: row.file_size,
-        ocrStatus: row.ocr_status,
-        ocrText: row.ocr_text,
-        extractedEntities: row.extracted_entities ? JSON.parse(row.extracted_entities) : undefined,
-        crimeType: row.crime_type,
-        policeStation: row.police_station,
-        description: row.description
-      }));
-    } catch (error) {
-      console.error('❌ Failed to list documents:', error);
-      return [];
     }
   },
 
@@ -196,13 +181,17 @@ export const CatalystNoSQL = {
   saveChatSession: async (sessionId: string, sessionData: any) => {
     try {
       const app = getCatalystApp();
-      const datastore = app.datastore();
-      if (datastore) {
-        const table = datastore.table('ChatSessions');
-        await table.insertRow({
-          session_id: sessionId,
-          data: JSON.stringify(sessionData),
-          updated_at: new Date().toISOString()
+      const nosql = app.nosql();
+      if (nosql) {
+        const table = nosql.table('ChatSessions');
+        const { NoSQLItem } = require('zcatalyst-sdk-node/lib/no-sql');
+        
+        await table.insertItems({
+          item: NoSQLItem.from({
+            session_id: sessionId,
+            data: JSON.stringify(sessionData),
+            updated_at: new Date().toISOString()
+          })
         });
         return true;
       }
@@ -216,13 +205,20 @@ export const CatalystNoSQL = {
   getChatSession: async (sessionId: string) => {
     try {
       const app = getCatalystApp();
-      const datastore = app.datastore();
-      if (datastore) {
-        const table = datastore.table('ChatSessions');
-        const rows = await table.getRows();
-        const row = rows.find((r: any) => r.session_id === sessionId);
-        if (row && row.data) {
-          return JSON.parse(row.data);
+      const nosql = app.nosql();
+      if (nosql) {
+        const table = nosql.table('ChatSessions');
+        const { NoSQLItem, NoSQLUnMarshall } = require('zcatalyst-sdk-node/lib/no-sql');
+        
+        const response = await table.fetchItem({
+          keys: NoSQLItem.from({ session_id: sessionId })
+        });
+        
+        if (response && response.length > 0) {
+          const row = NoSQLUnMarshall.makeNative(response[0]);
+          if (row.data) {
+            return JSON.parse(row.data as string);
+          }
         }
       }
     } catch (e) {
@@ -231,18 +227,44 @@ export const CatalystNoSQL = {
     return null;
   },
 
+  // Delete Chat Session
+  deleteChatSession: async (sessionId: string) => {
+    try {
+      const app = getCatalystApp();
+      const nosql = app.nosql();
+      if (nosql) {
+        const table = nosql.table('ChatSessions');
+        const { NoSQLItem } = require('zcatalyst-sdk-node/lib/no-sql');
+        
+        await table.deleteItems({
+          keys: NoSQLItem.from({ session_id: sessionId })
+        });
+        
+        console.log(`✅ Deleted chat session ${sessionId} from NoSQL`);
+        return true;
+      }
+    } catch (e) {
+      console.warn('Catalyst NoSQL deleteChatSession fallback:', (e as Error).message);
+    }
+    return false;
+  },
+
   // Save Reasoning Output
   saveReasoningOutput: async (queryId: string, reasoning: any) => {
     try {
       const app = getCatalystApp();
-      const datastore = app.datastore();
-      if (datastore) {
-        const table = datastore.table('ReasoningOutputs');
-        await table.insertRow({
-          query_id: queryId,
-          claim: reasoning.claim,
-          data: JSON.stringify(reasoning),
-          created_at: new Date().toISOString()
+      const nosql = app.nosql();
+      if (nosql) {
+        const table = nosql.table('ReasoningOutputs');
+        const { NoSQLItem } = require('zcatalyst-sdk-node/lib/no-sql');
+        
+        await table.insertItems({
+          item: NoSQLItem.from({
+            query_id: queryId,
+            claim: reasoning.claim,
+            data: JSON.stringify(reasoning),
+            created_at: new Date().toISOString()
+          })
         });
       }
     } catch (e) {

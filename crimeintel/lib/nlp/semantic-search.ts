@@ -67,7 +67,7 @@ export async function performSemanticSearch(query: string, limit: number = 3): P
         id: fir.id,
         type: 'FIR',
         title: `${fir.fir_no} - ${fir.crime_type_en}`,
-        snippet: `Occurred on ${fir.date} in ${fir.district_name_en}. Status: ${fir.status_en}.`,
+        snippet: `Occurred on ${fir.date}${fir.district_name_en || fir.district_id ? ` in ${fir.district_name_en || fir.district_id}` : ''}. Status: ${fir.status_en}.`,
         similarity: Math.min(score * 0.8 + 0.2, 0.98)
       });
     }

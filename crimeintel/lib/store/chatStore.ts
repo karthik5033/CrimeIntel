@@ -138,6 +138,12 @@ export const useChatStore = create<ChatState>()(
               : state.activeSessionId
           };
         });
+        // Async delete from Catalyst NoSQL via API
+        fetch('/api/nosql/chat', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: id })
+        }).catch(err => console.error("Failed to delete chat session from database:", err));
       },
 
       addContextEntity: (entity) => {

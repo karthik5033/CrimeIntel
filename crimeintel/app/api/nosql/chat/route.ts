@@ -21,3 +21,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const body = await request.json();
+    const { sessionId } = body;
+    
+    if (!sessionId) {
+      return NextResponse.json({ error: "Missing sessionId" }, { status: 400 });
+    }
+
+    const success = await CatalystNoSQL.deleteChatSession(sessionId);
+    if (success) {
+      return NextResponse.json({ success: true });
+    } else {
+      return NextResponse.json({ error: "Failed to delete from Catalyst NoSQL" }, { status: 500 });
+    }
+  } catch (error) {
+    console.error("NoSQL Chat API Error (DELETE):", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
+}

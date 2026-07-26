@@ -238,6 +238,17 @@ function createMockCatalystInstance() {
         return Array.from(mockDataStore.tables.keys()).map(name => ({ table_name: name }));
       },
       table: (tableName: string) => ({
+        insertRow: async (row: any) => {
+          console.log(`💾 MOCK: Inserting 1 row into ${tableName}`);
+          if (!mockDataStore.tables.has(tableName)) {
+            mockDataStore.tables.set(tableName, new Map());
+          }
+          const table = mockDataStore.tables.get(tableName)!;
+          const rowId = `MOCK_ROW_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
+          const rowData = { ROWID: rowId, ...row };
+          table.set(rowId, rowData);
+          return rowData;
+        },
         insertRows: async (rows: any[]) => {
           console.log(`💾 MOCK: Inserting ${rows.length} rows into ${tableName}`);
           if (!mockDataStore.tables.has(tableName)) {
@@ -280,7 +291,25 @@ function createMockCatalystInstance() {
             return [];
           }
           
-          // Parse WHERE clause (simplified and safe)
+          // Get all base rows first
+          let allRows = Array.from(table.values())
+            .filter((row: any) => !String(row.ROWID || '').includes('firno_'));
+
+          // Check if it's a LIKE query (full-text search)
+          const likeMatch = query.match(/LIKE\s+'%([^%]+)%'/i);
+          if (likeMatch) {
+            const searchTerm = likeMatch[1].toLowerCase();
+            allRows = allRows.filter((row: any) => {
+              // Search across all string fields in the row
+              return Object.values(row).some(v => 
+                typeof v === 'string' && v.toLowerCase().includes(searchTerm)
+              );
+            });
+            console.log(`📊 MOCK: LIKE query matched ${allRows.length} rows from ${tableName}`);
+            return allRows.map(row => ({ [tableName]: row }));
+          }
+
+          // Parse strict WHERE clause (simplified and safe)
           const whereMatch = query.match(/WHERE\s+(\w+)\s*=\s*'([^']+)'/i);
           if (whereMatch) {
             const [, fieldName, fieldValue] = whereMatch;
@@ -339,9 +368,7 @@ function createMockCatalystInstance() {
             }
           }
           
-          // Return all rows
-          const allRows = Array.from(table.values())
-            .filter((row: any) => !String(row.ROWID || '').includes('firno_'));
+          // Return all rows if no condition matched
           console.log(`📊 MOCK: Returning ${allRows.length} rows from ${tableName}`);
           return allRows.map(row => ({ [tableName]: row }));
         }
@@ -425,6 +452,115 @@ function createMockCatalystInstance() {
         
         return [];
       }
+    }),
+    quickML: () => ({
+      predict: async (endpointKey: string, inputData: any) => {
+        console.log(`🤖 MOCK QuickML predict called for endpoint: ${endpointKey}`);
+        
+        const openAiKey = process.env.OPENAI_API_KEY;
+        const prompt = inputData.prompt || '';
+        
+        if (openAiKey) {
+          try {
+            console.log('🤖 MOCK QuickML: Forwarding to OpenAI API for realistic mock');
+            let systemMessage = "You are a helpful assistant.";
+            let userMessage = prompt;
+            
+            if (inputData.context) {
+               userMessage = `Context:\n${inputData.context}\n\nQuery:\n${prompt}`;
+            }
+
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${openAiKey}`
+              },
+              body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                messages: [
+                  { role: 'system', content: systemMessage },
+                  { role: 'user', content: userMessage }
+                ],
+                temperature: 0.3
+              })
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              return { text: data.choices[0].message.content };
+            } else {
+              console.warn('❌ MOCK QuickML OpenAI fallback failed:', await response.text());
+            }
+          } catch (e) {
+            console.error('❌ MOCK QuickML OpenAI fallback error:', e);
+          }
+        }
+
+        // Fallbacks if no OpenAI key or if it failed
+        if (prompt.includes('intent classifier')) {
+          console.log('🤖 MOCK QuickML: Intent classifier fallback triggered, throwing error to force heuristic classification.');
+          throw new Error("No OpenAI key available for intent classification");
+        }
+
+        let contextArray = [];
+        let queryIntent = "";
+        try {
+          if (inputData.context) {
+            const parsedCtx = JSON.parse(inputData.context);
+            contextArray = parsedCtx.ragContext || [];
+            queryIntent = parsedCtx.intent || "";
+          }
+        } catch (e) {}
+
+        let summary = "";
+        if (queryIntent === 'CONVERSATIONAL') {
+          summary += "Hello! I am the CrimeIntel Assistant. I can help you search for FIRs, analyze crime trends, and investigate connections. How can I assist you today?";
+        } else if (contextArray.length > 0) {
+          summary += `Based on the retrieved intelligence context, there are ${contextArray.length} relevant records found. `;
+          const firstItem = contextArray[0]?.data?.[0];
+          if (firstItem && firstItem.crime_type_en) {
+            summary += `These incidents primarily involve ${firstItem.crime_type_en} cases. `;
+          }
+          summary += "The data points towards a concentrated pattern in the identified areas. Please review the semantic matches below for specific case files and further intelligence extraction.";
+        } else {
+          summary += "No specific context was found for this query within the intelligence database. Please broaden your search parameters or check the latest incident reports.";
+        }
+
+        return { text: summary };
+      },
+      embeddings: async (endpointKey: string, inputData: any) => {
+        console.log(`🧠 MOCK QuickML embeddings called for endpoint: ${endpointKey}`);
+        return { embedding: new Array(768).fill(0.1) };
+      }
+    }),
+    nosql: () => ({
+      table: (tableName: string) => ({
+        insertItems: async ({ item }: any) => {
+          console.log(`💾 MOCK NoSQL: Inserting 1 item into ${tableName}`);
+          if (!mockDataStore.tables.has(tableName)) {
+            mockDataStore.tables.set(tableName, new Map());
+          }
+          const table = mockDataStore.tables.get(tableName);
+          // Just store it directly for mock purposes
+          const id = Date.now().toString();
+          table.set(id, item);
+          return { status: 'success' };
+        },
+        updateItems: async ({ keys, update_attributes }: any) => {
+          console.log(`💾 MOCK NoSQL: Updating items in ${tableName}`);
+          return { status: 'success' };
+        },
+        fetchItem: async ({ keys }: any) => {
+          console.log(`🔍 MOCK NoSQL: Fetching item from ${tableName}`);
+          // Return an empty array in mock mode to simulate not found, or a generic mock object if needed
+          return [];
+        },
+        deleteItems: async ({ keys }: any) => {
+          console.log(`🗑️ MOCK NoSQL: Deleting item from ${tableName}`);
+          return { status: 'success' };
+        }
+      })
     })
   };
 }

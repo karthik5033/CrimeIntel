@@ -43,8 +43,8 @@ export async function POST(request: Request) {
     // 4. Dispatch to Coordinator for Multi-Agent Retrieval
     const evidence = await Coordinator.gatherEvidence(parsedQuery);
     
-    // If no evidence found, return early
-    if (evidence.length === 0) {
+    // If no evidence found, return early (unless it's a conversational intent)
+    if (evidence.length === 0 && parsedQuery.intent !== 'CONVERSATIONAL') {
       let failSummary = "I've searched the database but couldn't find specific intelligence matching your query. Try adjusting your search criteria.";
       if (language === 'kn') {
         failSummary = await translateText(failSummary, 'en', 'kn');
@@ -71,10 +71,10 @@ export async function POST(request: Request) {
     // 7. Save updated context to NoSQL
     await ContextManager.saveSession(session);
 
-    // Flatten evidence for data tables if needed
+    // Flatten evidence for data tables if needed (exclude VectorAgent as it's rendered by SemanticSearchWidget)
     let dataTable: any[] = [];
     evidence.forEach(e => {
-      if (Array.isArray(e.data)) {
+      if (e.source !== 'VectorAgent' && Array.isArray(e.data)) {
         dataTable = dataTable.concat(e.data);
       }
     });

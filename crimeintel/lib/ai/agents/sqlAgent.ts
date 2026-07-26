@@ -24,9 +24,19 @@ export class SQLAgent {
         conditions.push(`crime_type_en = '${parsedQuery.entities.crime_types[0]}'`);
       }
 
-      if (conditions.length > 0) {
-        query += ` WHERE ` + conditions.join(' AND ');
+      if (parsedQuery.entities.fir_numbers && parsedQuery.entities.fir_numbers.length > 0) {
+        // If FIR numbers are provided, query for them (mock handles this loosely)
+        const firs = parsedQuery.entities.fir_numbers.map(f => `'${f}'`).join(',');
+        // In Catalyst ZCQL we would use IN, but let's stick to simple equal or LIKE for mock support
+        conditions.push(`fir_no LIKE '%${parsedQuery.entities.fir_numbers[0]}%'`);
       }
+
+      if (conditions.length === 0) {
+        console.log("SQLAgent: No search entities found in parsed query. Returning empty to prevent indiscriminate data dump.");
+        return [];
+      }
+
+      query += ` WHERE ` + conditions.join(' AND ');
 
       // Limit results to top 5 to prevent context overflow
       query += ` LIMIT 5`;
@@ -39,6 +49,10 @@ export class SQLAgent {
       // Since mock ZCQL doesn't fully support WHERE/LIMIT, apply basic filtering locally for the mock
       if (parsedQuery.entities.district) {
         finalResults = finalResults.filter((f: any) => f.district === parsedQuery.entities.district || f.district_id === parsedQuery.entities.district);
+      }
+      if (parsedQuery.entities.fir_numbers && parsedQuery.entities.fir_numbers.length > 0) {
+        const targetFir = parsedQuery.entities.fir_numbers[0];
+        finalResults = finalResults.filter((f: any) => String(f.fir_no).includes(targetFir) || String(f.id).includes(targetFir));
       }
 
       return finalResults.slice(0, 5);
