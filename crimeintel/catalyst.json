@@ -1,0 +1,15 @@
+{
+  "project_name": "Project-Rainfall",
+  "node_version": "20",
+  "runtime": "nodejs20.x",
+  "client": {
+    "source": ".",
+    "build_command": "npm install && npm run build",
+    "install_command": "npm install --production=false",
+    "output_directory": ".next",
+    "framework": "nextjs"
+  },
+  "functions": [],
+  "cache_segments": [],
+  "event_listeners": []
+}

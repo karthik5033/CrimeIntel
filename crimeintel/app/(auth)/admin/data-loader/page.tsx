@@ -12,10 +12,6 @@ export default function DataLoaderPage() {
   const [status, setStatus] = useState<any>(null);
   const [checking, setChecking] = useState(false);
 
-  useEffect(() => {
-    checkStatus();
-  }, []);
-
   const checkStatus = async () => {
     setChecking(true);
     try {
@@ -29,6 +25,10 @@ export default function DataLoaderPage() {
       setChecking(false);
     }
   };
+
+  useEffect(() => {
+    checkStatus();
+  }, []);
 
   const loadAllData = async () => {
     setLoading(true);

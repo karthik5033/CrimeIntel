@@ -27,7 +27,7 @@ function SearchResults() {
             <Card className="bg-muted/30 border-dashed">
               <CardContent className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground space-y-3">
                 <AlertCircle className="w-10 h-10 text-muted-foreground/50" />
-                <p>Advanced indexing for <strong>"{query}"</strong> is being processed.</p>
+                <p>Advanced indexing for <strong>&quot;{query}&quot;</strong> is being processed.</p>
                 <p className="text-xs">Once the synthetic dataset is fully populated and indexed in the Zoho DataStore, global search results across all modules will appear here.</p>
               </CardContent>
             </Card>
