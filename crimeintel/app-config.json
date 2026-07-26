@@ -1,0 +1,14 @@
+{
+  "command": "node server.js",
+  "buildPath": ".",
+  "stack": "node22",
+  "memory": 2048,
+  "port": 3000,
+  "env_variables": {
+    "NODE_ENV": "production",
+    "PORT": "3000"
+  },
+  "scripts": {
+    "predeploy": "npm run build"
+  }
+}
