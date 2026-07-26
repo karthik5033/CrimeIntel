@@ -227,6 +227,11 @@ function createMockCatalystInstance() {
   }
   
   return {
+    auth: () => ({
+      getCurrentUser: async () => null,
+      login: async () => ({}),
+      logout: async () => ({}),
+    }),
     filestore: () => ({
       getAllBuckets: async () => {
         return [
