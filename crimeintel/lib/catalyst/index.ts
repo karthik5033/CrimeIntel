@@ -280,17 +280,17 @@ function createMockCatalystInstance() {
             return [];
           }
           
-          // Parse WHERE fir_no = 'X'
-          const whereMatch = query.match(/WHERE\s+fir_no\s*=\s*'([^']+)'/i);
+          // Parse WHERE clause (simplified and safe)
+          const whereMatch = query.match(/WHERE\s+(\w+)\s*=\s*'([^']+)'/i);
           if (whereMatch) {
-            const firNo = whereMatch[1];
+            const [, fieldName, fieldValue] = whereMatch;
             
-            // Scan all rows for matching fir_no
+            // Scan all rows for matching field
             let row: any = null;
             for (const [key, value] of table.entries()) {
-              if (value.fir_no === firNo) {
+              if (value[fieldName] === fieldValue) {
                 row = value;
-                console.log(`✅ MOCK: Found FIR ${firNo} by scanning (key: ${key})`);
+                console.log(`✅ MOCK: Found ${fieldName}=${fieldValue} (key: ${key})`);
                 break;
               }
             }
@@ -301,21 +301,21 @@ function createMockCatalystInstance() {
                 const seedPath = path.join(process.cwd(), 'data', 'seed', `${tableName}.json`);
                 if (fs.existsSync(seedPath)) {
                   const seedData = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
-                  const found = seedData.find((item: any) => item.fir_no === firNo || item.id === firNo);
+                  const found = seedData.find((item: any) => item[fieldName] === fieldValue || item.id === fieldValue);
                   if (found) {
                     row = { ROWID: `MOCK_ROW_${Date.now()}`, ...found };
                     table.set(row.ROWID, row);
-                    console.log(`✅ MOCK: Found FIR ${firNo} in seed data`);
+                    console.log(`✅ MOCK: Found ${fieldName}=${fieldValue} in seed data`);
                   }
                 }
               } catch (e) {}
             }
 
-            if (!row && firNo.startsWith('FIR-')) {
+            if (!row && fieldValue.startsWith('FIR-')) {
               // Dynamically create entry for newly ingested FIR
               row = {
                 ROWID: `MOCK_ROW_${Date.now()}`,
-                fir_no: firNo,
+                fir_no: fieldValue,
                 case_no: `CASE-${Date.now().toString().slice(-6)}`,
                 crime_type_en: 'Cyber Fraud / Financial Scam',
                 description: 'Uploaded FIR document under processing.',
@@ -325,16 +325,16 @@ function createMockCatalystInstance() {
                 ocr_status: 'pending'
               };
               table.set(row.ROWID, row);
-              console.log(`✨ MOCK: Dynamically generated record for ${firNo}`);
+              console.log(`✨ MOCK: Dynamically generated record for ${fieldValue}`);
             }
             
             if (row) {
-              console.log(`📋 MOCK: FIR ${firNo} fields:`, Object.keys(row));
+              console.log(`📋 MOCK: ${fieldName}=${fieldValue} fields:`, Object.keys(row));
               console.log(`📄 MOCK: OCR text length:`, row.ocr_text?.length || 0);
               console.log(`📊 MOCK: OCR status:`, row.ocr_status);
               return [{ [tableName]: row }];
             } else {
-              console.log(`❌ MOCK: FIR ${firNo} not found anywhere`);
+              console.log(`❌ MOCK: ${fieldName}=${fieldValue} not found anywhere`);
               return [];
             }
           }
@@ -351,12 +351,13 @@ function createMockCatalystInstance() {
           const tableMatch = query.match(/UPDATE\s+(\w+)/i);
           const tableName = tableMatch ? tableMatch[1] : 'FIRs';
           
-          // Parse WHERE fir_no = 'X' or ROWID = X
-          const whereMatch = query.match(/WHERE\s+(?:fir_no\s*=\s*'([^']+)'|ROWID\s*=\s*([^\s]+))/i);
+          // Parse WHERE clause for UPDATE (simplified)
+          const whereMatch = query.match(/WHERE\s+(?:(\w+)\s*=\s*'([^']+)'|ROWID\s*=\s*([^\s]+))/i);
           
           if (whereMatch) {
-            const firNo = whereMatch[1];
-            const rowId = whereMatch[2];
+            const fieldName = whereMatch[1];
+            const fieldValue = whereMatch[2];
+            const rowId = whereMatch[3];
             
             const table = mockDataStore.tables.get(tableName);
             if (table) {
@@ -364,13 +365,13 @@ function createMockCatalystInstance() {
               let targetKey: string = '';
               
               // Find the row to update
-              if (firNo) {
-                // Scan for FIR by fir_no
+              if (fieldName && fieldValue) {
+                // Scan for row by field name/value
                 for (const [key, value] of table.entries()) {
-                  if (value.fir_no === firNo) {
+                  if (value[fieldName] === fieldValue) {
                     targetRow = value;
                     targetKey = key;
-                    console.log(`🔍 MOCK: Found row by fir_no (key: ${key})`);
+                    console.log(`🔍 MOCK: Found row by ${fieldName}=${fieldValue} (key: ${key})`);
                     break;
                   }
                 }
@@ -387,16 +388,6 @@ function createMockCatalystInstance() {
                 if (setMatch) {
                   const setClauses = setMatch[1];
                   
-<<<<<<< HEAD
-                  // Extract field = 'value' pairs (strings, including multi-line values)
-                  const stringFieldRegex = /(\w+)\s*=\s*'((?:[^'\\]|\\.)*)'/g;
-                  let match;
-                  while ((match = stringFieldRegex.exec(setClauses)) !== null) {
-                    const field = match[1];
-                    const value = match[2];
-                    console.log(`🔧 MOCK: Setting ${field} (length: ${value.length} chars)`);
-                    targetRow[field] = value;
-=======
                   // Extract field = 'value' pairs (strings, including multi-line values and escaped quotes)
                   const fieldMatches = setClauses.matchAll(/(\w+)\s*=\s*'((?:''|[^'])*)'/g);
                   for (const match of fieldMatches) {
@@ -404,7 +395,6 @@ function createMockCatalystInstance() {
                     const unescaped = value.replace(/''/g, "'");
                     console.log(`🔧 MOCK: Setting ${field} (length: ${unescaped.length} chars)`);
                     targetRow[field] = unescaped;
->>>>>>> 8d2043f5e78d2a5f1f607b86679277cdfb6de81c
                   }
                   
                   // Extract numeric fields
@@ -424,7 +414,7 @@ function createMockCatalystInstance() {
                 return { affected_rows: 1 };
               } else {
                 console.log(`❌ MOCK: Row not found for update in ${tableName}`);
-                console.log(`🔑 MOCK: Searched for:`, firNo ? `fir_no=${firNo}` : `ROWID=${rowId}`);
+                console.log(`🔑 MOCK: Searched for:`, fieldName ? `${fieldName}=${fieldValue}` : `ROWID=${rowId}`);
               }
             }
           }
