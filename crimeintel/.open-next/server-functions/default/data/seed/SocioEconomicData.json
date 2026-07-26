@@ -1,0 +1,32 @@
+[
+  {
+    "district_id": "DIST_1",
+    "unemployment_rate": 7.9,
+    "literacy_rate": 91.5,
+    "population_density": 4125
+  },
+  {
+    "district_id": "DIST_2",
+    "unemployment_rate": 10.8,
+    "literacy_rate": 64.7,
+    "population_density": 1400
+  },
+  {
+    "district_id": "DIST_3",
+    "unemployment_rate": 9.3,
+    "literacy_rate": 88.6,
+    "population_density": 1148
+  },
+  {
+    "district_id": "DIST_4",
+    "unemployment_rate": 9.7,
+    "literacy_rate": 62.5,
+    "population_density": 3258
+  },
+  {
+    "district_id": "DIST_5",
+    "unemployment_rate": 5.6,
+    "literacy_rate": 70,
+    "population_density": 968
+  }
+]

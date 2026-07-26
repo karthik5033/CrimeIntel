@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "node server.js",
+    "lint": "eslint",
+    "appsail:serve": "npm run build && npm run start",
+    "appsail:deploy": "catalyst deploy"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

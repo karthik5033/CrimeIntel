@@ -87,12 +87,62 @@ export interface BankAccount {
   id: string;
   accountNumber: string; // Masked
   holderPersonId?: string;
+  accountType?: 'savings' | 'current' | 'business';
+  bank?: string;
+  balance?: number;
+  flagged?: boolean;
+  flagReason?: string;
 }
 
 export interface UPIHandle {
   id: string;
   handle: string;
   holderPersonId?: string;
+  linkedAccountId?: string;
+}
+
+export interface Transaction {
+  id: string;
+  fromAccountId: string;
+  toAccountId: string;
+  amount: number;
+  timestamp: string;
+  type: 'UPI' | 'NEFT' | 'RTGS' | 'CASH' | 'IMPS';
+  description?: string;
+  flagged: boolean;
+  flagReason?: string;
+  relatedCaseId?: string;
+  relatedFIRId?: string;
+}
+
+export interface FinancialFlow {
+  sourceAccount: BankAccount;
+  destinationAccount: BankAccount;
+  transactions: Transaction[];
+  totalAmount: number;
+  suspicionLevel: 'low' | 'medium' | 'high' | 'critical';
+  patterns: string[]; // ['structuring', 'circular', 'mule', 'velocity_spike']
+}
+
+export interface MoneyTrailNode {
+  accountId: string;
+  accountNumber: string;
+  holderName: string;
+  totalIn: number;
+  totalOut: number;
+  balance: number;
+  transactionCount: number;
+  flagged: boolean;
+  isMule: boolean; // High throughput, low balance
+}
+
+export interface MoneyTrailEdge {
+  from: string;
+  to: string;
+  transactions: Transaction[];
+  totalAmount: number;
+  avgAmount: number;
+  flagged: boolean;
 }
 
 export interface Weapon {
