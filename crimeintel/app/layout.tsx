@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Noto_Sans_Kannada } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
@@ -11,10 +12,15 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const notoSansKannada = Noto_Sans_Kannada({
-  subsets: ["kannada"],
+const notoSansKannada = localFont({
+  src: [
+    { path: "../public/fonts/noto-sans-kannada-kannada-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/noto-sans-kannada-kannada-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/noto-sans-kannada-kannada-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../public/fonts/noto-sans-kannada-kannada-700-normal.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-kannada",
-  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
