@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node -e \"require('fs').mkdirSync('.next/standalone/.next/static/css', {recursive:true})\" && node -e \"require('fs').cpSync('.next/static', '.next/standalone/.next/static', {recursive:true})\" && node -e \"require('fs').cpSync('public', '.next/standalone/public', {recursive:true})\"",
-    "start": "next start",
+    "build": "next build && node -e \"require('fs').mkdirSync('.next/standalone/.next/static/css', {recursive:true})\" && node -e \"require('fs').cpSync('.next/static', '.next/standalone/.next/static', {recursive:true})\" && node -e \"require('fs').cpSync('public', '.next/standalone/public', {recursive:true})\" && node -e \"require('fs').cpSync('app-config.json', '.next/standalone/app-config.json')\"",
+    "start": "node server.js",
     "lint": "eslint"
   },
   "dependencies": {
