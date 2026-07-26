@@ -1,3 +1,11 @@
 node_modules/
 .env*
 *.env
+
+# Project documentation (keep local only)
+PRD and TRD/
+Resources given/
+Test pdfs/
+
+# Database files
+db/
