@@ -6,8 +6,7 @@
     "source": ".",
     "build_command": "npm install && npm run build",
     "install_command": "npm install --production=false",
-    "output_directory": ".next",
-    "framework": "nextjs"
+    "output_directory": ".next"
   },
   "functions": [],
   "cache_segments": [],

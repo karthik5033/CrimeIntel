@@ -1,12 +1,16 @@
 # Catalyst AppSail Ignore File
 # Files and directories to exclude from deployment
 
-# Development
+# Development dependencies and caches
 node_modules/
 .next/cache/
+.next/dev/
 .next/server/
+
+# Environment files
 .env.local
 .env.development
+.env.test
 
 # Testing
 coverage/
@@ -24,37 +28,53 @@ jest.config.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.next-dev.log
-.next-dev.err.log
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Documentation (optional - remove if you want to include)
+# Documentation
 *.md
-!README.md
 
-# Build artifacts not needed
+# Build artifacts not needed for runtime
 tsconfig.tsbuildinfo
 .eslintcache
+eslint.config.mjs
 
 # Git
 .git/
 .gitignore
 
-# Scripts for local development
-add-columns*.js
-seed-data*.js
+# Local scripts not needed in production
+scripts/
+test-*.js
+verify-*.js
+generate-*.js
+load-seed-data.js
+setup-catalyst.bat
+create-appsail-package.bat
+create-deploy-zip.ps1
+deploy-fix.ps1
 
-# Large seed files (already in database)
-*.json
-!package.json
-!package-lock.json
-!app-config.json
-!tsconfig.json
+# CSV data (already loaded in database)
+data/csv/
 
-# PRD/TRD (local only)
+# Seed data in public (not needed at runtime - served from DB)
+public/seed/
+
+# Source TypeScript (not needed after build)
+*.tsx
+*.ts
+!next.config.ts
+!next-env.d.ts
+
+# PRD/TRD
 PRD*/
 TRD*/
 Resources\ Given/
+
+# Functions directory (if not used)
+functions/
+
+# Docs
+docs/

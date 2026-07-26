@@ -9,6 +9,6 @@
     "PORT": "3000"
   },
   "scripts": {
-    "predeploy": "npm run build"
+    "predeploy": "npm run build && npm prune --production"
   }
 }
