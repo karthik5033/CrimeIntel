@@ -17,6 +17,23 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', 'recharts', '@xyflow/react', 'framer-motion', 'leaflet'],
     optimizeCss: true,
   },
+  // Exclude large/unnecessary files from standalone trace
+  outputFileTracingExcludes: {
+    '*': [
+      'catalyst-debug.log',
+      '*.log',
+      '.git/**',
+      'docs/**',
+      '*.md',
+      '*.bat',
+      '*.ps1',
+      'test-*.js',
+      'verify-*.js',
+      'generate-*.js',
+      'load-seed-data.js',
+      'scripts/**',
+    ],
+  },
   async headers() {
     return [
       {
