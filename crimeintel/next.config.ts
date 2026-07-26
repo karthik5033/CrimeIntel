@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['zcatalyst-sdk-node'],
+  output: 'standalone',  // Back to standalone for server-side features
   turbopack: {
     root: projectRoot,
   },
