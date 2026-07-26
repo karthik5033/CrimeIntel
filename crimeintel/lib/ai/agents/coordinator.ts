@@ -3,6 +3,7 @@ import { SQLAgent } from './sqlAgent';
 import { GraphAgent } from './graphAgent';
 import { VectorAgent } from './vectorAgent';
 import { AnalyticsAgent } from './analyticsAgent';
+import { FinancialAgent } from './financialAgent';
 
 export interface RetrievedEvidence {
   source: string;
@@ -16,6 +17,12 @@ export class Coordinator {
   static async gatherEvidence(parsedQuery: ParsedQuery): Promise<RetrievedEvidence[]> {
     const evidence: RetrievedEvidence[] = [];
     console.log(`[Coordinator] Dispatching intent: ${parsedQuery.intent}`);
+
+    // Check for financial queries first (cross-cutting concern)
+    if (FinancialAgent.isFinancialQuery(parsedQuery.resolvedQuery)) {
+      const financialData = await FinancialAgent.retrieve(parsedQuery);
+      if (financialData.length > 0) evidence.push({ source: 'FinancialAgent', data: financialData });
+    }
 
     switch (parsedQuery.intent) {
       case 'DIRECT_RETRIEVAL':

@@ -1,39 +1,31 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['zcatalyst-sdk-node'],
-  turbopack: {},
+  
   // AppSail requires standalone output
   output: 'standalone',
+  
+  // Fix standalone output directory structure - set to project root
+  outputFileTracingRoot: path.join(__dirname),
+  
+  // Fix standalone output directory structure
+  distDir: '.next',
+  
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
   productionBrowserSourceMaps: false,
+  
   // Split output to reduce individual function size
   experimental: {
     optimizePackageImports: ['lucide-react', 'recharts', '@xyflow/react', 'framer-motion', 'leaflet'],
-    optimizeCss: true,
   },
-  // Exclude large/unnecessary files from standalone trace
-  outputFileTracingExcludes: {
-    '*': [
-      'catalyst-debug.log',
-      '*.log',
-      '.git/**',
-      'docs/**',
-      '*.md',
-      '*.bat',
-      '*.ps1',
-      'test-*.js',
-      'verify-*.js',
-      'generate-*.js',
-      'load-seed-data.js',
-      'scripts/**',
-    ],
-  },
+  
   async headers() {
     return [
       {

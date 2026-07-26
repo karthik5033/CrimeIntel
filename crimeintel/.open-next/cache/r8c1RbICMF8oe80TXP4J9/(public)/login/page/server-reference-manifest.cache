@@ -1,0 +1,1 @@
+{"type":"page","json":{"node":{"4035ca712bff0eed0a383c140e95d0dbdebe020a78":{"workers":{"app/(public)/login/page":{"moduleId":43564,"async":false,"exportedName":"login","filename":"app/actions/auth.ts"}},"exportedName":"login","filename":"app/actions/auth.ts"}},"edge":{}}}
