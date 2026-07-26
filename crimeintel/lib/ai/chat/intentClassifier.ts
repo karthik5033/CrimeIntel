@@ -91,7 +91,7 @@ export class IntentClassifier {
     const lowerQuery = query.toLowerCase();
     
     let intent: QueryIntent = 'DIRECT_RETRIEVAL';
-    if (/\b(how many|trend|compare)\b/.test(lowerQuery)) {
+    if (/\b(how many|trend|compare|hotspot|most|highest|top|area|which area)\b/.test(lowerQuery)) {
       intent = 'AGGREGATE_ANALYTICAL';
     } else if (/\b(connect|link|relation)\b/.test(lowerQuery)) {
       intent = 'RELATIONSHIP_QUERY';

@@ -257,6 +257,9 @@ export async function GET(request: NextRequest) {
     processNodes(allCases, 'Case', (c) => c.case_number || c.id);
     processNodes(allPoliceStations, 'PoliceStation', (s) => s.name_en);
 
+    // Deduplicate nodes to prevent React duplicate key errors
+    const uniqueNodes = Array.from(new Map(nodes.map(n => [n.id, n])).values());
+
     const edges = activeEdges.map((rel: any, index: number) => ({
       id: `edge-${index}`,
       source: rel.source,
@@ -294,11 +297,11 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ 
       success: true,
-      nodes, 
+      nodes: uniqueNodes, 
       edges, 
       leads,
       stats: {
-        totalNodes: nodes.length,
+        totalNodes: uniqueNodes.length,
         totalEdges: edges.length,
         totalRelationships: relationships.length,
       }

@@ -41,11 +41,13 @@ export async function performSemanticSearchVector(query: string, limit: number =
 }
 
 export async function performSemanticSearch(query: string, limit: number = 3): Promise<SemanticSearchResult[]> {
-  const queryTokens = new Set(query.toLowerCase().split(/\s+/).filter(t => t.length > 3));
+  const STOP_WORDS = new Set(['find', 'show', 'tell', 'about', 'with', 'that', 'this', 'have', 'from', 'related', 'cases', 'firs', 'involving', 'where']);
+  const queryTokens = new Set(query.toLowerCase().split(/\s+/).filter(t => t.length > 3 && !STOP_WORDS.has(t)));
   
-  const [allFIRs, allCases] = await Promise.all([
+  const [allFIRs, allCases, allPersons] = await Promise.all([
     DataClient.getFIRs(),
-    DataClient.getCases()
+    DataClient.getCases(),
+    DataClient.getPersons()
   ]);
   
   const results: SemanticSearchResult[] = [];
@@ -61,7 +63,7 @@ export async function performSemanticSearch(query: string, limit: number = 3): P
 
   // Score FIRs
   allFIRs.forEach((fir: any) => {
-    const score = calculateSimilarity(`${fir.crime_type_en} ${fir.status_en} ${fir.district_name_en}`);
+    const score = calculateSimilarity(`${fir.crime_type_en} ${fir.status_en} ${fir.district_name_en} ${fir.description || ''} ${fir.ocr_text || ''}`);
     if (score > 0.1) {
       results.push({
         id: fir.id,
@@ -83,6 +85,20 @@ export async function performSemanticSearch(query: string, limit: number = 3): P
         title: `Case ${c.case_no}`,
         snippet: c.summary,
         similarity: Math.min(score * 0.85 + 0.15, 0.95)
+      });
+    }
+  });
+
+  // Score Persons
+  allPersons.forEach((p: any) => {
+    const score = calculateSimilarity(`${p.name_en} ${p.age || ''} ${p.gender || ''} ${p.is_repeat_offender ? 'repeat offender' : ''}`);
+    if (score > 0.1) {
+      results.push({
+        id: p.id,
+        type: 'Suspect',
+        title: p.name_en,
+        snippet: `Age: ${p.age || 'N/A'}, Gender: ${p.gender || 'N/A'}. ${p.is_repeat_offender ? 'Flagged as Repeat Offender.' : ''} Risk Score: ${p.risk_score || 0}/100.`,
+        similarity: Math.min(score * 0.9 + 0.1, 0.99)
       });
     }
   });

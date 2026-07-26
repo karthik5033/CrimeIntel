@@ -513,18 +513,60 @@ function createMockCatalystInstance() {
           }
         } catch (e) {}
 
+        let totalRecords = 0;
+        let allItems: any[] = [];
+        contextArray.forEach((ctx: any) => {
+          if (ctx.data && Array.isArray(ctx.data)) {
+            totalRecords += ctx.data.length;
+            allItems.push(...ctx.data);
+          }
+        });
+
         let summary = "";
         if (queryIntent === 'CONVERSATIONAL') {
           summary += "Hello! I am the CrimeIntel Assistant. I can help you search for FIRs, analyze crime trends, and investigate connections. How can I assist you today?";
-        } else if (contextArray.length > 0) {
-          summary += `Based on the retrieved intelligence context, there are ${contextArray.length} relevant records found. `;
-          const firstItem = contextArray[0]?.data?.[0];
-          if (firstItem && firstItem.crime_type_en) {
-            summary += `These incidents primarily involve ${firstItem.crime_type_en} cases. `;
+        } else if (totalRecords > 0) {
+          const suspects = allItems.filter(i => i.type === 'Suspect' || i.name_en);
+          const firs = allItems.filter(i => i.crime_type_en || i.type === 'FIR');
+          const analytics = allItems.filter(i => i.type === 'AnalyticsResult');
+          
+          if (analytics.length > 0) {
+            summary += `I have analyzed the intelligence data to answer your analytical query. `;
+            const hotspots = analytics.filter(a => a.metric === 'Hotspot');
+            if (hotspots.length > 0) {
+              summary += `The top crime hotspots are: `;
+              const hotspotStrings = hotspots.map(h => `${h.location} (${h.incident_count} incidents)`);
+              summary += `${hotspotStrings.join(', ')}. `;
+            } else {
+              analytics.forEach(a => {
+                if (a.analysis) summary += `${a.analysis} `;
+              });
+            }
           }
-          summary += "The data points towards a concentrated pattern in the identified areas. Please review the semantic matches below for specific case files and further intelligence extraction.";
+          
+          if (suspects.length > 0) {
+            const names = Array.from(new Set(suspects.map(s => s.title || s.name_en))).join(', ');
+            summary += `I have located ${suspects.length} suspect profile${suspects.length > 1 ? 's' : ''}, specifically for ${names}. `;
+          }
+          
+          if (firs.length > 0) {
+            const crimeTypes = Array.from(new Set(firs.map(f => f.crime_type_en || f.primary_crime_type).filter(Boolean)));
+            const statuses = Array.from(new Set(firs.map(f => f.status_en).filter(Boolean)));
+            
+            summary += `I found ${firs.length} incident record${firs.length > 1 ? 's' : ''}`;
+            if (crimeTypes.length > 0) {
+              summary += ` primarily involving ${crimeTypes.join(' and ')}`;
+            }
+            summary += `. `;
+            
+            if (statuses.length > 0) {
+              summary += `The current statuses of these cases include: ${statuses.join(', ')}. `;
+            }
+          }
+          
+          summary += "\n\nPlease review the data table and semantic matches below for full details.";
         } else {
-          summary += "No specific context was found for this query within the intelligence database. Please broaden your search parameters or check the latest incident reports.";
+          summary += "I've scanned the databases but couldn't find any specific intelligence matching your query. Try broadening your search or providing a different name/keyword.";
         }
 
         return { text: summary };
