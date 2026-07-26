@@ -1,9 +1,5 @@
 import { NextResponse } from 'next/server';
 import { CatalystDataStore } from '@/lib/catalyst/datastore';
-import firsSeed from '@/data/seed/FIRs.json';
-import personsSeed from '@/data/seed/Persons.json';
-import vehiclesSeed from '@/data/seed/Vehicles.json';
-import entityRelationshipsSeed from '@/data/seed/EntityRelationships.json';
 
 /**
  * Admin API endpoint to load seed data into Catalyst Data Store
@@ -17,6 +13,14 @@ export async function POST(request: Request) {
   try {
     const { tables } = await request.json();
     const results: Record<string, any> = {};
+    
+    // Dynamic imports to reduce serverless bundle size
+    const [firsSeed, personsSeed, vehiclesSeed, entityRelationshipsSeed] = await Promise.all([
+      import('@/data/seed/FIRs.json').then(m => m.default),
+      import('@/data/seed/Persons.json').then(m => m.default),
+      import('@/data/seed/Vehicles.json').then(m => m.default),
+      import('@/data/seed/EntityRelationships.json').then(m => m.default),
+    ]);
     
     // Load FIRs
     if (!tables || tables.includes('firs')) {

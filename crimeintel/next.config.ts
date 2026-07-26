@@ -5,13 +5,30 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['zcatalyst-sdk-node'],
-  // CRITICAL: Remove standalone to reduce artifact size for Catalyst
   turbopack: {},
-  // Optimize bundle size
+  // CRITICAL: Reduce serverless function size for Catalyst Slate
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
   productionBrowserSourceMaps: false,
+  // Split output to reduce individual function size
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'recharts', '@xyflow/react', 'framer-motion', 'leaflet'],
+    // Aggressive code splitting for serverless functions
+    optimizeCss: true,
+  },
+  // Reduce bundle size with modularizeImports
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+      skipDefaultConversion: true,
+    },
+    'recharts': {
+      transform: 'recharts/es6/{{member}}',
+    },
+  },
+  // Output config to optimize for OpenNext (used by Catalyst)
+  outputFileTracing: true,
   async headers() {
     return [
       {
@@ -22,9 +39,6 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
-  },
-  experimental: {
-    optimizePackageImports: ['lucide-react', 'recharts', '@xyflow/react'],
   },
 };
 

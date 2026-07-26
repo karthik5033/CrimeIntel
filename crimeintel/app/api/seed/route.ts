@@ -1,12 +1,20 @@
 import { NextResponse } from 'next/server';
 import { getCatalystApp } from '@/lib/catalyst';
-import personsData from '@/data/seed/Persons.json';
-import policeStationsData from '@/data/seed/PoliceStations.json';
-import firsData from '@/data/seed/FIRs.json';
-import casesData from '@/data/seed/Cases.json';
-import vehiclesData from '@/data/seed/Vehicles.json';
-import phoneRecordsData from '@/data/seed/PhoneRecords.json';
-import bankAccountsData from '@/data/seed/BankAccounts.json';
+
+// Use async/await instead of top-level imports to reduce bundle size
+async function getSeedData() {
+  const [personsData, policeStationsData, firsData, casesData, vehiclesData, phoneRecordsData, bankAccountsData] = await Promise.all([
+    import('@/data/seed/Persons.json').then(m => m.default),
+    import('@/data/seed/PoliceStations.json').then(m => m.default),
+    import('@/data/seed/FIRs.json').then(m => m.default),
+    import('@/data/seed/Cases.json').then(m => m.default),
+    import('@/data/seed/Vehicles.json').then(m => m.default),
+    import('@/data/seed/PhoneRecords.json').then(m => m.default),
+    import('@/data/seed/BankAccounts.json').then(m => m.default),
+  ]);
+  
+  return { personsData, policeStationsData, firsData, casesData, vehiclesData, phoneRecordsData, bankAccountsData };
+}
 import weaponsData from '@/data/seed/Weapons.json';
 import entityRelationshipsData from '@/data/seed/EntityRelationships.json';
 import transactionsData from '@/data/seed/Transactions.json';
@@ -87,6 +95,23 @@ export async function POST(request: Request) {
   try {
     const app = getCatalystApp();
     const datastore = app.datastore();
+
+    // Load seed data dynamically (reduces serverless bundle size)
+    console.log('📥 Loading seed data...');
+    const {
+      personsData,
+      policeStationsData,
+      firsData,
+      casesData,
+      vehiclesData,
+      phoneRecordsData,
+      bankAccountsData
+    } = await getSeedData();
+    
+    // Load additional datasets
+    const weaponsData = (await import('@/data/seed/Weapons.json')).default;
+    const transactionsData = (await import('@/data/seed/Transactions.json')).default;
+    const entityRelationshipsData = (await import('@/data/seed/EntityRelationships.json')).default;
 
     // ─── Catalyst Data Store Tables ─────────────────────────────────────────
     console.log('📦 Seeding Catalyst Data Store...');
