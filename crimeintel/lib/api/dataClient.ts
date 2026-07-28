@@ -5,14 +5,22 @@
  * This is safe to use in "use client" components.
  */
 
-async function fetchTable(tableName: string): Promise<any[]> {
-  const res = await fetch(`/api/data?table=${tableName}`);
-  if (!res.ok) {
-    const errorBody = await res.json().catch(() => ({ error: res.statusText }));
-    throw new Error(errorBody.error || `Failed to fetch ${tableName}`);
+async function fetchTable(tableName: string, retries = 2): Promise<any[]> {
+  try {
+    const res = await fetch(`/api/data?table=${tableName}`);
+    if (!res.ok) {
+      const errorBody = await res.json().catch(() => ({ error: res.statusText }));
+      throw new Error(errorBody.error || `Failed to fetch ${tableName} (Status: ${res.status})`);
+    }
+    const json = await res.json();
+    return json.data || [];
+  } catch (error: any) {
+    if (retries > 0 && error.message === 'Failed to fetch') {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return fetchTable(tableName, retries - 1);
+    }
+    throw error;
   }
-  const json = await res.json();
-  return json.data || [];
 }
 
 export const DataClient = {

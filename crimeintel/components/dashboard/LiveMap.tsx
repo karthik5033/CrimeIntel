@@ -18,67 +18,11 @@ const LiveMapClient = dynamic(() => import("./LiveMapClient"), {
   )
 });
 
-const INITIAL_HOTSPOTS = [
-  { 
-    id: "blr", 
-    name: "Bengaluru Urban", 
-    lat: 12.9716, lng: 77.5946, 
-    threat: "Critical", 
-    activeCases: 245, 
-    officers: 1250, 
-    trend: "up",
-    trendValue: "+14%",
-    recentAlert: "Organized syndicate activity detected in East Zone."
-  },
-  { 
-    id: "mys", 
-    name: "Mysuru", 
-    lat: 12.2958, lng: 76.6394, 
-    threat: "Elevated", 
-    activeCases: 84, 
-    officers: 320, 
-    trend: "up",
-    trendValue: "+5%",
-    recentAlert: "Festival crowd management ongoing. Minor incidents."
-  },
-  { 
-    id: "mlr", 
-    name: "Mangaluru", 
-    lat: 12.9141, lng: 74.8560, 
-    threat: "Medium", 
-    activeCases: 62, 
-    officers: 280, 
-    trend: "down",
-    trendValue: "-2%",
-    recentAlert: "Coastal patrol intercepted contraband."
-  },
-  { 
-    id: "hub", 
-    name: "Hubballi-Dharwad", 
-    lat: 15.3647, lng: 75.1240, 
-    threat: "Medium", 
-    activeCases: 78, 
-    officers: 410, 
-    trend: "down",
-    trendValue: "-8%",
-    recentAlert: "Routine highway checkpoints active."
-  },
-  { 
-    id: "bel", 
-    name: "Belagavi", 
-    lat: 15.8497, lng: 74.4977, 
-    threat: "Low", 
-    activeCases: 34, 
-    officers: 210, 
-    trend: "down",
-    trendValue: "-12%",
-    recentAlert: "Border monitoring normal."
-  },
-];
+
 
 export function LiveMap() {
-  const [hotspots, setHotspots] = useState(INITIAL_HOTSPOTS);
-  const [selectedSpotId, setSelectedSpotId] = useState(INITIAL_HOTSPOTS[0].id);
+  const [hotspots, setHotspots] = useState<any[]>([]);
+  const [selectedSpotId, setSelectedSpotId] = useState<string | null>(null);
 
   // Layer Controls State
   const [showHeatmap, setShowHeatmap] = useState(false);
@@ -89,34 +33,33 @@ export function LiveMap() {
 
   const { t } = useLanguage();
 
-  // Live Backend Simulation
+  // Fetch real data
   useEffect(() => {
-    const interval = setInterval(() => {
-      setHotspots(current => current.map(spot => {
-        const caseDiff = Math.floor(Math.random() * 5) - 2;
-        const officerDiff = Math.floor(Math.random() * 11) - 5;
-        
-        const newCases = Math.max(0, spot.activeCases + caseDiff);
-        
-        let newThreat = spot.threat;
-        if (newCases > 200) newThreat = "Critical";
-        else if (newCases > 80) newThreat = "Elevated";
-        else if (newCases > 50) newThreat = "Medium";
-        else newThreat = "Low";
-
-        return {
-          ...spot,
-          activeCases: newCases,
-          officers: Math.max(0, spot.officers + officerDiff),
-          threat: newThreat
-        };
-      }));
-    }, 4000); 
-
-    return () => clearInterval(interval);
+    async function fetchMapData() {
+      try {
+        const res = await fetch("/api/analytics/map");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.hotspots && data.hotspots.length > 0) {
+            setHotspots(data.hotspots);
+            setSelectedSpotId(data.hotspots[0].id);
+          }
+        }
+      } catch (err) {
+      }
+    }
+    fetchMapData();
   }, []);
 
   const selectedSpot = hotspots.find(s => s.id === selectedSpotId) || hotspots[0];
+
+  if (hotspots.length === 0 || !selectedSpot) {
+    return (
+      <Card className="col-span-full xl:col-span-3 overflow-hidden h-[500px] flex items-center justify-center bg-slate-50">
+        <Loader2 className="h-8 w-8 text-primary animate-spin" />
+      </Card>
+    );
+  }
 
   return (
     <Card className="col-span-full xl:col-span-3 overflow-hidden">

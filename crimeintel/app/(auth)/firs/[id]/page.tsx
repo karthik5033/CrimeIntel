@@ -14,13 +14,15 @@ export default async function FIRDetailPage({ params }: { params: Promise<{ id: 
     notFound();
   }
   
-  const persons = edges.filter((e: any) => e.target.startsWith('PERSON_') || e.source.startsWith('PERSON_'));
-  const vehicles = edges.filter((e: any) => e.target.startsWith('VEHICLE_') || e.source.startsWith('VEHICLE_'));
-  const weapons = edges.filter((e: any) => e.target.startsWith('WEAPON_') || e.source.startsWith('WEAPON_'));
+  const persons = edges.filter((e: any) => (e.target?.startsWith('PERSON_') || e.source?.startsWith('PERSON_') || e.target_entity_id?.startsWith('PERSON_') || e.source_entity_id?.startsWith('PERSON_')));
+  const vehicles = edges.filter((e: any) => (e.target?.startsWith('VEHICLE_') || e.source?.startsWith('VEHICLE_') || e.target_entity_id?.startsWith('VEHICLE_') || e.source_entity_id?.startsWith('VEHICLE_')));
+  const weapons = edges.filter((e: any) => (e.target?.startsWith('WEAPON_') || e.source?.startsWith('WEAPON_') || e.target_entity_id?.startsWith('WEAPON_') || e.source_entity_id?.startsWith('WEAPON_')));
   
   // Pre-fetch person data for display
   const personsDetailsRaw = await Promise.all(persons.map(async (person: any) => {
-    const personId = person.source === id ? person.target : (person.target === id ? person.source : (person.source.startsWith('PERSON_') ? person.source : person.target));
+    const sourceStr = person.source || person.source_entity_id || '';
+    const targetStr = person.target || person.target_entity_id || '';
+    const personId = sourceStr === id ? targetStr : (targetStr === id ? sourceStr : (sourceStr.startsWith('PERSON_') ? sourceStr : targetStr));
     const personData = await DataClient.getPersonById(personId);
     return { ...person, personId, personData };
   }));

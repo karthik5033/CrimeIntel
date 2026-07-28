@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ComposedChart,
   Line,
@@ -15,15 +15,9 @@ import {
 import { Activity, Target, AlertCircle, Radio } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 
-// Sci-Fi Complex Data Telemetry
-const complexData = [
-  { time: "00:00", baseline: 800, telemetry: 820, forecast: 810, anomaly: null },
-  { time: "04:00", baseline: 850, telemetry: 840, forecast: 860, anomaly: null },
-  { time: "08:00", baseline: 900, telemetry: 910, forecast: 920, anomaly: null },
-  { time: "12:00", baseline: 880, telemetry: 1450, forecast: 890, anomaly: 1450 }, // Major Spike
-  { time: "16:00", baseline: 920, telemetry: 1050, forecast: 950, anomaly: null },
-  { time: "20:00", baseline: 950, telemetry: 980, forecast: 960, anomaly: null },
-  { time: "24:00", baseline: 1000, telemetry: 1020, forecast: 1010, anomaly: null },
+// Sci-Fi Complex Data Telemetry (Fallback)
+const fallbackData = [
+  { time: "00:00", baseline: 800, telemetry: 820, forecast: 810, anomaly: null }
 ];
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -63,6 +57,23 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export function CrimeTrendChart() {
   const { t } = useLanguage();
+  const [trendData, setTrendData] = useState<any[]>(fallbackData);
+  
+  useEffect(() => {
+    async function loadTrend() {
+      try {
+        const res = await fetch("/api/analytics/trend");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.trend && data.trend.length > 0) {
+            setTrendData(data.trend);
+          }
+        }
+      } catch (e) {
+      }
+    }
+    loadTrend();
+  }, []);
 
   return (
     <div className="flex flex-col xl:flex-row gap-6 w-full h-full mt-2">
@@ -82,7 +93,7 @@ export function CrimeTrendChart() {
 
         <ResponsiveContainer width="100%" height="90%">
           <ComposedChart
-            data={complexData}
+            data={trendData}
             margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
           >
             <defs>

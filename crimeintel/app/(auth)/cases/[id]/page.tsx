@@ -37,12 +37,14 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ id:
   );
 
   // Group entities by type based on edges
-  const persons = caseEdges.filter((e: any) => e.target.startsWith('PERSON_') || e.source.startsWith('PERSON_'));
-  const vehicles = caseEdges.filter((e: any) => e.target.startsWith('VEHICLE_') || e.source.startsWith('VEHICLE_'));
-  const weapons = caseEdges.filter((e: any) => e.target.startsWith('WEAPON_') || e.source.startsWith('WEAPON_'));
+  const persons = caseEdges.filter((e: any) => e.target?.startsWith('PERSON_') || e.source?.startsWith('PERSON_') || e.target_entity_id?.startsWith('PERSON_') || e.source_entity_id?.startsWith('PERSON_'));
+  const vehicles = caseEdges.filter((e: any) => e.target?.startsWith('VEHICLE_') || e.source?.startsWith('VEHICLE_') || e.target_entity_id?.startsWith('VEHICLE_') || e.source_entity_id?.startsWith('VEHICLE_'));
+  const weapons = caseEdges.filter((e: any) => e.target?.startsWith('WEAPON_') || e.source?.startsWith('WEAPON_') || e.target_entity_id?.startsWith('WEAPON_') || e.source_entity_id?.startsWith('WEAPON_'));
 
   const personsDetails = await Promise.all(persons.map(async (person: any) => {
-    const personId = person.source.startsWith('PERSON_') ? person.source : person.target;
+    const sourceStr = person.source || person.source_entity_id || '';
+    const targetStr = person.target || person.target_entity_id || '';
+    const personId = sourceStr.startsWith('PERSON_') ? sourceStr : targetStr;
     const personData = await DataClient.getPersonById(personId);
     return { ...person, personId, personData };
   }));
@@ -156,7 +158,9 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ id:
                     <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Vehicles</h4>
                     <div className="space-y-2">
                       {vehicles.map((veh: any, idx: number) => {
-                        const vehId = veh.source.startsWith('VEHICLE_') ? veh.source : veh.target;
+                        const sourceStr = veh.source || veh.source_entity_id || '';
+                        const targetStr = veh.target || veh.target_entity_id || '';
+                        const vehId = sourceStr.startsWith('VEHICLE_') ? sourceStr : targetStr;
                         return (
                           <div key={idx} className="flex items-center justify-between text-sm bg-muted/50 p-2 rounded border">
                             <span className="font-mono text-foreground">{vehId}</span>
@@ -173,7 +177,9 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ id:
                     <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 mt-4">Weapons</h4>
                     <div className="space-y-2">
                       {weapons.map((w: any, idx: number) => {
-                        const wId = w.source.startsWith('WEAPON_') ? w.source : w.target;
+                        const sourceStr = w.source || w.source_entity_id || '';
+                        const targetStr = w.target || w.target_entity_id || '';
+                        const wId = sourceStr.startsWith('WEAPON_') ? sourceStr : targetStr;
                         return (
                           <div key={idx} className="flex items-center justify-between text-sm bg-muted/50 p-2 rounded border">
                             <span className="font-mono text-foreground">{wId}</span>

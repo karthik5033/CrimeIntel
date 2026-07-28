@@ -18,14 +18,16 @@ export async function GET(request: Request) {
 
     const edges = await DataClient.getGraphForEntity(id);
     
-    const firEdges = edges.filter((e: any) => e.target.startsWith('FIR_') || e.source.startsWith('FIR_'));
+    const firEdges = edges.filter((e: any) => e.target?.startsWith('FIR_') || e.source?.startsWith('FIR_') || e.target_entity_id?.startsWith('FIR_') || e.source_entity_id?.startsWith('FIR_'));
     const firs = (await Promise.all(firEdges.map(async (e: any) => {
-      const firId = e.source === id ? e.target : e.source;
+      const sourceStr = e.source || e.source_entity_id || '';
+      const targetStr = e.target || e.target_entity_id || '';
+      const firId = sourceStr === id ? targetStr : sourceStr;
       return await DataClient.getFIRById(firId);
     }))).filter((f: any) => f && f.id);
 
-    const vehicles = edges.filter((e: any) => e.target.startsWith('VEHICLE_') || e.source.startsWith('VEHICLE_'));
-    const associates = edges.filter((e: any) => e.target.startsWith('PERSON_') || e.source.startsWith('PERSON_'))
+    const vehicles = edges.filter((e: any) => e.target?.startsWith('VEHICLE_') || e.source?.startsWith('VEHICLE_') || e.target_entity_id?.startsWith('VEHICLE_') || e.source_entity_id?.startsWith('VEHICLE_'));
+    const associates = edges.filter((e: any) => e.target?.startsWith('PERSON_') || e.source?.startsWith('PERSON_') || e.target_entity_id?.startsWith('PERSON_') || e.source_entity_id?.startsWith('PERSON_'))
                             .filter((e: any) => (e.source === id && e.target !== id) || (e.target === id && e.source !== id));
 
     const riskScore = computeOffenderRiskScore(id, firs, associates.length, vehicles.length);
@@ -47,7 +49,6 @@ export async function GET(request: Request) {
       reasoning
     });
   } catch (error) {
-    console.error("Error computing offender risk:", error);
     return NextResponse.json({ error: "Failed to compute risk score" }, { status: 500 });
   }
 }

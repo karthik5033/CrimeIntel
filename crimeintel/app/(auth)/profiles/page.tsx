@@ -30,7 +30,7 @@ export default async function ProfilesPage() {
     
     // Count FIRs (any edge connecting to an FIR)
     const firEdges = personEdges.filter((edge: any) => 
-      edge.target.startsWith('FIR_') || edge.source.startsWith('FIR_')
+      edge.target?.startsWith('FIR_') || edge.source?.startsWith('FIR_') || edge.target_entity_id?.startsWith('FIR_') || edge.source_entity_id?.startsWith('FIR_')
     );
     
     // Determine primary role based on relationships to FIRs

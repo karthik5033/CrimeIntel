@@ -80,7 +80,6 @@ export class IntentClassifier {
 
       return parsed;
     } catch (error) {
-      console.warn("Intent classification failed, falling back to basic matching:", error);
       
       // Fallback basic heuristic parsing
       return this.basicHeuristicClassification(query, context);
@@ -91,7 +90,7 @@ export class IntentClassifier {
     const lowerQuery = query.toLowerCase();
     
     let intent: QueryIntent = 'DIRECT_RETRIEVAL';
-    if (/\b(how many|trend|compare|hotspot|most|highest|top|area|which area)\b/.test(lowerQuery)) {
+    if (/\b(how many|trend|compare|hotspots?|most|highest|top|areas?|which areas?)\b/.test(lowerQuery)) {
       intent = 'AGGREGATE_ANALYTICAL';
     } else if (/\b(connect|link|relation)\b/.test(lowerQuery)) {
       intent = 'RELATIONSHIP_QUERY';
@@ -105,8 +104,8 @@ export class IntentClassifier {
 
     // Basic entity extraction (very naive fallback)
     const entities: any = {};
-    if (lowerQuery.includes('bengaluru')) entities.district = 'Bengaluru';
-    if (lowerQuery.includes('mysuru')) entities.district = 'Mysuru';
+    if (lowerQuery.includes('bengaluru') || lowerQuery.includes('bangalore') || lowerQuery.includes('banglore')) entities.district = 'Bengaluru';
+    if (lowerQuery.includes('mysuru') || lowerQuery.includes('mysore')) entities.district = 'Mysuru';
     
     const CRIME_TYPE_MAPPINGS: Record<string, string[]> = {
       'Theft': ['theft', 'steal', 'stolen'],

@@ -44,16 +44,14 @@ const generateCluster = (centerLat: number, centerLng: number, count: number, ra
   return points;
 };
 
-function HeatmapLayer({ isVisible, mapStyle }: { isVisible: boolean, mapStyle: string }) {
+function HeatmapLayer({ isVisible, mapStyle, hotspots }: { isVisible: boolean, mapStyle: string, hotspots: any[] }) {
   const map = useMap();
   
-  const heatmapData = useMemo(() => [
-    ...generateCluster(12.9716, 77.5946, 150, 0.05), // Bangalore Central
-    ...generateCluster(12.9698, 77.7499, 250, 0.04), // Whitefield (high density)
-    ...generateCluster(12.9252, 77.6345, 120, 0.03), // Koramangala
-    ...generateCluster(13.0279, 77.5409, 80, 0.05), // Yeshwanthpur
-    ...generateCluster(12.8399, 77.6770, 100, 0.04), // Electronic City
-  ], []);
+  const heatmapData = useMemo(() => {
+    return hotspots.flatMap(spot => 
+      generateCluster(spot.lat, spot.lng, spot.activeCases, 0.05)
+    );
+  }, [hotspots]);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -90,15 +88,15 @@ function HeatmapLayer({ isVisible, mapStyle }: { isVisible: boolean, mapStyle: s
 }
 
 // Predictive Forecast Heatmap Layer
-function PredictiveHeatmapLayer({ isVisible, mapStyle }: { isVisible: boolean, mapStyle: string }) {
+function PredictiveHeatmapLayer({ isVisible, mapStyle, hotspots }: { isVisible: boolean, mapStyle: string, hotspots: any[] }) {
   const map = useMap();
   
-  const predictiveData = useMemo(() => [
-    ...generateCluster(12.9716, 77.5946, 180, 0.08), // Expanded Central Zone
-    ...generateCluster(12.9252, 77.6345, 200, 0.06), // Koramangala spread
-    ...generateCluster(13.0604, 77.5812, 150, 0.04), // Yelahanka emerging
-    ...generateCluster(12.9081, 77.5315, 100, 0.05), // Uttarahalli emerging
-  ], []);
+  const predictiveData = useMemo(() => {
+    return hotspots.flatMap(spot => {
+      const forecast = Math.round(spot.activeCases * 1.2);
+      return generateCluster(spot.lat + 0.02, spot.lng + 0.02, forecast, 0.08);
+    });
+  }, [hotspots]);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -180,7 +178,7 @@ export default function LiveMapClient({ hotspots, selectedSpot, onSelect, showHe
     fetch('/bangalore.json?t=' + (Date.now() + 3000))
       .then(res => res.json())
       .then(data => setGeoJsonData(data))
-      .catch(err => console.error("Could not load Bangalore boundaries:", err));
+      .catch(err => {});
   }, []);
 
   const karnatakaBounds = L.latLngBounds([10.0, 72.0], [20.0, 80.0]);
@@ -222,8 +220,10 @@ export default function LiveMapClient({ hotspots, selectedSpot, onSelect, showHe
 
         <WardsGridLayer isVisible={showWards} />
         
-        <HeatmapLayer isVisible={showHeatmap} mapStyle={mapStyle} />
-        <PredictiveHeatmapLayer isVisible={showPredictive} mapStyle={mapStyle} />
+        <HeatmapLayer isVisible={showHeatmap} mapStyle={mapStyle} hotspots={hotspots} />
+      
+        {/* Predictive layer - more spread out, different color tuning */}
+        <PredictiveHeatmapLayer isVisible={showPredictive} mapStyle={mapStyle} hotspots={hotspots} />
 
         {selectedSpot && <MapCameraUpdater lat={selectedSpot.lat} lng={selectedSpot.lng} />}
       </MapContainer>

@@ -21,7 +21,10 @@ export class AnalyticsAgent {
       if (parsedQuery.entities.district) {
         const distMap: Record<string, string> = {
           'Bengaluru': 'DIST_1',
+          'Bangalore': 'DIST_1',
+          'Banglore': 'DIST_1',
           'Mysuru': 'DIST_2',
+          'Mysore': 'DIST_2',
           'Mangaluru': 'DIST_3',
           'Hubballi': 'DIST_4',
           'Belagavi': 'DIST_5'
@@ -66,7 +69,6 @@ export class AnalyticsAgent {
       }];
 
     } catch (error) {
-      console.error("AnalyticsAgent Error:", error);
       return { trend: "error" };
     }
   }

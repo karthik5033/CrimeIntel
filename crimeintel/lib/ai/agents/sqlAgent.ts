@@ -7,7 +7,6 @@ export class SQLAgent {
     const zcql = app.zcql();
 
     if (!zcql) {
-      console.warn("SQLAgent: ZCQL is unavailable.");
       return [];
     }
 
@@ -16,7 +15,18 @@ export class SQLAgent {
       let conditions = [];
 
       if (parsedQuery.entities.district) {
-        conditions.push(`district = '${parsedQuery.entities.district}'`);
+        const distMap: Record<string, string> = {
+          'Bengaluru': 'DIST_1',
+          'Bangalore': 'DIST_1',
+          'Banglore': 'DIST_1',
+          'Mysuru': 'DIST_2',
+          'Mysore': 'DIST_2',
+          'Mangaluru': 'DIST_3',
+          'Hubballi': 'DIST_4',
+          'Belagavi': 'DIST_5'
+        };
+        const mappedDistrict = distMap[parsedQuery.entities.district] || parsedQuery.entities.district;
+        conditions.push(`district_id = '${mappedDistrict}'`);
       }
       
       if (parsedQuery.entities.crime_types && parsedQuery.entities.crime_types.length > 0) {
@@ -32,7 +42,6 @@ export class SQLAgent {
       }
 
       if (conditions.length === 0) {
-        console.log("SQLAgent: No search entities found in parsed query. Returning empty to prevent indiscriminate data dump.");
         return [];
       }
 
@@ -41,14 +50,24 @@ export class SQLAgent {
       // Limit results to top 5 to prevent context overflow
       query += ` LIMIT 5`;
 
-      console.log("SQLAgent Executing ZCQL:", query);
       const results = await zcql.executeZCQLQuery(query);
       
       let finalResults = results.map((row: any) => row.FIRs || row);
       
       // Since mock ZCQL doesn't fully support WHERE/LIMIT, apply basic filtering locally for the mock
       if (parsedQuery.entities.district) {
-        finalResults = finalResults.filter((f: any) => f.district === parsedQuery.entities.district || f.district_id === parsedQuery.entities.district);
+        const distMap: Record<string, string> = {
+          'Bengaluru': 'DIST_1',
+          'Bangalore': 'DIST_1',
+          'Banglore': 'DIST_1',
+          'Mysuru': 'DIST_2',
+          'Mysore': 'DIST_2',
+          'Mangaluru': 'DIST_3',
+          'Hubballi': 'DIST_4',
+          'Belagavi': 'DIST_5'
+        };
+        const mappedDistrict = distMap[parsedQuery.entities.district] || parsedQuery.entities.district;
+        finalResults = finalResults.filter((f: any) => f.district === mappedDistrict || f.district_id === mappedDistrict);
       }
       if (parsedQuery.entities.fir_numbers && parsedQuery.entities.fir_numbers.length > 0) {
         const targetFir = parsedQuery.entities.fir_numbers[0];
@@ -57,7 +76,6 @@ export class SQLAgent {
 
       return finalResults.slice(0, 5);
     } catch (error) {
-      console.error("SQLAgent Error:", error);
       return [];
     }
   }

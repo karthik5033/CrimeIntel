@@ -59,12 +59,10 @@ export default function DashboardPage() {
         setLoading(true);
         setError(null);
         
-        // Fetch real data from Catalyst Data Store
-        const [allFIRs, allPersons, allCases] = await Promise.all([
-          DataClient.getFIRs(),
-          DataClient.getPersons(),
-          DataClient.getCases()
-        ]);
+        // Fetch real data from Catalyst Data Store sequentially to avoid connection drops
+        const allFIRs = await DataClient.getFIRs();
+        const allPersons = await DataClient.getPersons();
+        const allCases = await DataClient.getCases();
         
         // Calculate real stats
         const activeCount = allFIRs.filter((f: any) => 
@@ -72,7 +70,7 @@ export default function DashboardPage() {
         ).length;
         
         const personsCount = allPersons.filter((p: any) => 
-          p.role === 'Accused' || p.role === 'Suspect'
+          p.risk_score >= 80 || p.is_repeat_offender === true
         ).length;
         
         const highRiskCount = allFIRs.filter((f: any) => 
@@ -95,7 +93,6 @@ export default function DashboardPage() {
         setRecentFIRs(allFIRs.slice(0, 5));
         
       } catch (err) {
-        console.error('Failed to load dashboard data:', err);
         setError(err instanceof Error ? err.message : 'Failed to load data');
       } finally {
         setLoading(false);

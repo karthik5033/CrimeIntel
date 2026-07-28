@@ -1,46 +1,69 @@
 import { CatalystSignals } from '@/lib/catalyst/signals';
 
+import { ServerDataLoader } from '@/lib/api/serverDataLoader';
+
 export const runtime = 'nodejs';
 
-const eventTypes = ['FIR_CREATED', 'ALERT_TRIGGERED', 'SUSPECT_SPOTTED', 'CASE_CLOSED'];
-const locations = ['Bengaluru Urban', 'Mysuru', 'Hubballi-Dharwad', 'Mangaluru', 'Belagavi'];
+let cachedFIRs: any[] = [];
+let cachedCases: any[] = [];
 
-function generateRandomEvent() {
-  const type = eventTypes[Math.floor(Math.random() * eventTypes.length)] as any;
-  const location = locations[Math.floor(Math.random() * locations.length)];
-  const id = crypto.randomUUID();
-
-  let message = '';
-  switch (type) {
-    case 'FIR_CREATED':
-      message = `New Vehicle Theft FIR registered in ${location}`;
-      break;
-    case 'ALERT_TRIGGERED':
-      message = `High anomaly score detected for Property Crime in ${location}`;
-      break;
-    case 'SUSPECT_SPOTTED':
-      message = `ANPR match for flagged vehicle near ${location} checkpoint`;
-      break;
-    case 'CASE_CLOSED':
-      message = `Case ${id.toUpperCase()} successfully closed in ${location}`;
-      break;
+async function generateRealEvent() {
+  if (cachedFIRs.length === 0 || cachedCases.length === 0) {
+    try {
+      cachedFIRs = await ServerDataLoader.getFIRs();
+      cachedCases = await ServerDataLoader.getCases();
+    } catch (e) {
+    }
   }
 
-  const eventPayload = {
-    id: `evt_${id}`,
-    type,
-    location,
-    message,
+  const isCase = Math.random() > 0.7 && cachedCases.length > 0;
+  
+  if (isCase) {
+    const randomCase = cachedCases[Math.floor(Math.random() * cachedCases.length)];
+    const type = randomCase.status === 'Closed' ? 'CASE_CLOSED' : 'ALERT_TRIGGERED';
+    const message = type === 'CASE_CLOSED' 
+      ? `Case ${randomCase.case_no} successfully closed in ${randomCase.district_id}`
+      : `Update in case ${randomCase.case_no}: status changed to ${randomCase.status}`;
+      
+    const eventPayload = {
+      id: `evt_${randomCase.id || crypto.randomUUID()}`,
+      type,
+      location: randomCase.district_id || 'Unknown',
+      message,
+      timestamp: new Date().toISOString()
+    };
+    
+    CatalystSignals.publishEvent({ eventName: type, data: eventPayload });
+    return eventPayload;
+  } else if (cachedFIRs.length > 0) {
+    const randomFIR = cachedFIRs[Math.floor(Math.random() * cachedFIRs.length)];
+    const isSuspect = Math.random() > 0.8;
+    
+    const type = isSuspect ? 'SUSPECT_SPOTTED' : 'FIR_CREATED';
+    const message = isSuspect
+      ? `ANPR match for flagged vehicle related to FIR ${randomFIR.fir_no} near ${randomFIR.district_id}`
+      : `New ${randomFIR.crime_type_en} FIR registered in ${randomFIR.district_id}`;
+      
+    const eventPayload = {
+      id: `evt_${randomFIR.id || crypto.randomUUID()}`,
+      type,
+      location: randomFIR.district_id || 'Unknown',
+      message,
+      timestamp: new Date().toISOString()
+    };
+
+    CatalystSignals.publishEvent({ eventName: type, data: eventPayload });
+    return eventPayload;
+  }
+
+  // Fallback if db is completely empty
+  return {
+    id: `evt_${crypto.randomUUID()}`,
+    type: 'ALERT_TRIGGERED',
+    location: 'System',
+    message: 'System heart beat normal',
     timestamp: new Date().toISOString()
   };
-
-  // Publish to Catalyst Signals
-  CatalystSignals.publishEvent({
-    eventName: type,
-    data: eventPayload
-  });
-
-  return eventPayload;
 }
 
 export async function GET(request: Request) {
@@ -56,8 +79,9 @@ export async function GET(request: Request) {
 
       const interval = setInterval(() => {
         try {
-          const event = generateRandomEvent();
-          controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify(event)}\n\n`));
+          generateRealEvent().then((event) => {
+            controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify(event)}\n\n`));
+          });
         } catch (e) {
           clearInterval(interval);
         }

@@ -20,20 +20,22 @@ export default async function ProfileDetailPage({ params }: { params: Promise<{ 
   const edges = await DataClient.getGraphForEntity(id);
   
   // Extract specific connected entities
-  const firEdges = edges.filter((e: any) => e.target.startsWith('FIR_') || e.source.startsWith('FIR_'));
+  const firEdges = edges.filter((e: any) => e.target?.startsWith('FIR_') || e.source?.startsWith('FIR_') || e.target_entity_id?.startsWith('FIR_') || e.source_entity_id?.startsWith('FIR_'));
   const firs = (await Promise.all(firEdges.map(async (e: any) => {
-    const firId = e.source === id ? e.target : e.source;
+    const sourceStr = e.source || e.source_entity_id || '';
+    const targetStr = e.target || e.target_entity_id || '';
+    const firId = sourceStr === id ? targetStr : sourceStr;
     const firData = await DataClient.getFIRById(firId);
     return { ...firData, relationship: e.type };
   }))).filter((f: any) => f && f.id);
 
   // Group other entities by type
-  const vehicles = edges.filter((e: any) => e.target.startsWith('VEHICLE_') || e.source.startsWith('VEHICLE_'));
-  const phones = edges.filter((e: any) => e.target.startsWith('PHONE_') || e.source.startsWith('PHONE_'));
-  const bankAccounts = edges.filter((e: any) => e.target.startsWith('BANK_') || e.source.startsWith('BANK_'));
-  const associates = edges.filter((e: any) => e.target.startsWith('PERSON_') || e.source.startsWith('PERSON_'))
-  const correctAssociates = edges.filter((e: any) => e.target.startsWith('PERSON_') || e.source.startsWith('PERSON_'))
-    .filter((e: any) => (e.source === id && e.target !== id) || (e.target === id && e.source !== id));
+  const vehicles = edges.filter((e: any) => e.target?.startsWith('VEHICLE_') || e.source?.startsWith('VEHICLE_') || e.target_entity_id?.startsWith('VEHICLE_') || e.source_entity_id?.startsWith('VEHICLE_'));
+  const phones = edges.filter((e: any) => e.target?.startsWith('PHONE_') || e.source?.startsWith('PHONE_') || e.target_entity_id?.startsWith('PHONE_') || e.source_entity_id?.startsWith('PHONE_'));
+  const bankAccounts = edges.filter((e: any) => e.target?.startsWith('BANK_') || e.source?.startsWith('BANK_') || e.target_entity_id?.startsWith('BANK_') || e.source_entity_id?.startsWith('BANK_'));
+  const associates = edges.filter((e: any) => e.target?.startsWith('PERSON_') || e.source?.startsWith('PERSON_') || e.target_entity_id?.startsWith('PERSON_') || e.source_entity_id?.startsWith('PERSON_'))
+  const correctAssociates = edges.filter((e: any) => e.target?.startsWith('PERSON_') || e.source?.startsWith('PERSON_') || e.target_entity_id?.startsWith('PERSON_') || e.source_entity_id?.startsWith('PERSON_'))
+    .filter((e: any) => ((e.source || e.source_entity_id) === id && (e.target || e.target_entity_id) !== id) || ((e.target || e.target_entity_id) === id && (e.source || e.source_entity_id) !== id));
 
   const role = firEdges.some((e: any) => e.type === "ACCUSED_IN") ? "ACCUSED" : 
                firEdges.some((e: any) => e.type === "VICTIM_OF") ? "VICTIM" : "WITNESS";
