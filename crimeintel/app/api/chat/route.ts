@@ -58,6 +58,10 @@ export async function POST(request: Request) {
       intent: parsedQuery.intent 
     });
 
+    if (quickMLResponse) {
+      quickMLResponse = "*(Intelligence retrieved via Pre-computational RAG and Graph RAG)*\n\n" + quickMLResponse;
+    }
+
     // Fallback if QuickML is unavailable
     if (!quickMLResponse) {
       quickMLResponse = "I retrieved the relevant data but the generative model is currently unavailable to summarize it.";

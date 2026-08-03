@@ -152,10 +152,6 @@ export class GraphComputer {
     graphData: RawGraphData,
     canonicalMapping?: CanonicalEntityMapping
   ): Promise<IndexComputationResult> {
-  async compute(
-    graphData: RawGraphData,
-    canonicalMapping?: CanonicalEntityMapping
-  ): Promise<IndexComputationResult> {
     const startTime = Date.now();
     const snapshot_version = this.generateSnapshotVersion();
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ShieldAlert, ArrowRight, Loader2, LockKeyhole } from "lucide-react";
+import { ShieldAlert, ArrowRight, Loader2, LockKeyhole, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -74,6 +74,20 @@ export default function LoginPage() {
                 />
               </div>
               <div className="space-y-2">
+                <Label htmlFor="role" className="text-zinc-700 dark:text-zinc-300 font-semibold">Role</Label>
+                <select 
+                  id="role" 
+                  name="role"
+                  className="w-full rounded-md border text-sm bg-zinc-50 dark:bg-zinc-950/50 border-zinc-200 dark:border-zinc-800 px-3 py-2 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950 h-11 text-zinc-900 dark:text-zinc-100 transition-colors"
+                  required
+                >
+                  <option value="ADMIN">Administrator</option>
+                  <option value="INSPECTOR">Inspector</option>
+                  <option value="INVESTIGATOR">Investigator</option>
+                  <option value="CONSTABLE">Constable</option>
+                </select>
+              </div>
+              <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password" className="text-zinc-700 dark:text-zinc-300 font-semibold">Passcode</Label>
                   <Link href="#" className="text-xs font-medium text-primary hover:underline transition-all">
@@ -100,6 +114,32 @@ export default function LoginPage() {
             </form>
           </div>
           
+          {/* Default Credentials Section */}
+          <div className="bg-primary/5 dark:bg-primary/10 px-8 py-5 border-t border-primary/10 dark:border-primary/20">
+            <div className="flex items-center gap-2 mb-3">
+              <Info className="w-4 h-4 text-primary" />
+              <h3 className="text-xs font-bold text-primary uppercase tracking-wider">Test Credentials</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="bg-white/60 dark:bg-zinc-950/50 p-2.5 rounded-md border border-zinc-200 dark:border-zinc-800/50 shadow-sm transition-colors hover:border-primary/30">
+                <div className="font-semibold text-zinc-700 dark:text-zinc-300 mb-1">Administrator</div>
+                <div className="text-zinc-500 font-mono">admin@123</div>
+              </div>
+              <div className="bg-white/60 dark:bg-zinc-950/50 p-2.5 rounded-md border border-zinc-200 dark:border-zinc-800/50 shadow-sm transition-colors hover:border-primary/30">
+                <div className="font-semibold text-zinc-700 dark:text-zinc-300 mb-1">Inspector</div>
+                <div className="text-zinc-500 font-mono">inspector@123</div>
+              </div>
+              <div className="bg-white/60 dark:bg-zinc-950/50 p-2.5 rounded-md border border-zinc-200 dark:border-zinc-800/50 shadow-sm transition-colors hover:border-primary/30">
+                <div className="font-semibold text-zinc-700 dark:text-zinc-300 mb-1">Investigator</div>
+                <div className="text-zinc-500 font-mono">investigator@123</div>
+              </div>
+              <div className="bg-white/60 dark:bg-zinc-950/50 p-2.5 rounded-md border border-zinc-200 dark:border-zinc-800/50 shadow-sm transition-colors hover:border-primary/30">
+                <div className="font-semibold text-zinc-700 dark:text-zinc-300 mb-1">Constable</div>
+                <div className="text-zinc-500 font-mono">constable@123</div>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-zinc-50 dark:bg-zinc-950/80 px-8 py-4 border-t border-zinc-100 dark:border-zinc-800 text-center text-[11px] text-zinc-500 font-medium">
             By accessing this system, you agree to the KSP Data Governance Policy. All queries are strictly audited.
           </div>

@@ -205,7 +205,7 @@ export class SecurityManager {
             // Apply redaction
             if (rule.action === 'redact') {
               // Redact the entire row or specific fields
-              Object.keys(redactedRow).forEach(key => {
+              Object.keys(redactedRow as any).forEach(key => {
                 if (key !== 'id' && key !== 'ROWID') {
                   redactedRow[key as keyof T] = '[REDACTED - ' + rule.reason + ']' as any;
                 }

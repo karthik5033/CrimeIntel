@@ -52,12 +52,15 @@ export class EmbeddingsService {
     try {
       return await this.generateWithZia(text);
     } catch (error) {
-      console.warn('Zia embeddings failed, trying OpenAI:', error);
+      console.warn('Zia embeddings failed, trying Gemini:', error);
       
       try {
-        return await this.generateWithOpenAI(text);
+        if (process.env.GEMINI_API_KEY) {
+          return await this.generateWithGemini(text);
+        }
+        throw new Error('Gemini API key not configured');
       } catch (error2) {
-        console.warn('OpenAI embeddings failed, using fallback:', error2);
+        console.warn('Gemini embeddings failed, using fallback:', error2);
         
         // Fallback: simple hash-based embedding (for demo purposes)
         return this.generateFallbackEmbedding(text);
@@ -93,37 +96,42 @@ export class EmbeddingsService {
   }
 
   /**
-   * Method 2: Generate embedding using OpenAI API
+   * Method 2: Generate embedding using Gemini API
    */
-  private static async generateWithOpenAI(text: string): Promise<EmbeddingResult> {
-    const apiKey = process.env.OPENAI_API_KEY;
+  private static async generateWithGemini(text: string): Promise<EmbeddingResult> {
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
-      throw new Error('OpenAI API key not configured');
+      throw new Error('Gemini API key not configured');
     }
 
-    // Truncate text if too long (OpenAI limit: ~8191 tokens)
+    // Truncate text if too long
     const truncatedText = text.length > 8000 ? text.substring(0, 8000) : text;
 
-    const response = await fetch('https://api.openai.com/v1/embeddings', {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-2:embedContent?key=${apiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        input: truncatedText,
-        model: this.EMBEDDING_MODEL,
+        model: "models/gemini-embedding-2",
+        content: {
+          parts: [{ text: truncatedText }]
+        }
       }),
     });
 
     if (!response.ok) {
-      const error = await response.text();
-      throw new Error(`OpenAI API failed: ${error}`);
+      const errorText = await response.text();
+      throw new Error(`Embedding API failed: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     const data = await response.json();
-    const embedding = data.data[0].embedding;
+    const embedding = data.embedding?.values;
+
+    if (!embedding) {
+      throw new Error('Gemini returned no embedding');
+    }
 
     return {
       text: truncatedText,

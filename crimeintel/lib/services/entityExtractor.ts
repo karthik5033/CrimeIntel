@@ -216,40 +216,43 @@ Extract and return JSON with:
 Extract all entities mentioned. Return only valid JSON.`;
 
     try {
-      // If OpenAI API key exists
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o-mini',
-          messages: [
-            { role: 'system', content: 'You are an expert at extracting structured data from police reports.' },
-            { role: 'user', content: prompt },
-          ],
-          temperature: 0.1,
-          response_format: { type: 'json_object' },
-        }),
-      });
+      // If Groq API key exists
+      if (process.env.GROQ_API_KEY) {
+        const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: 'llama-3.1-8b-instant',
+            messages: [
+              { role: 'system', content: 'You are an expert at extracting structured data from police reports. Return only valid JSON.' },
+              { role: 'user', content: prompt }
+            ],
+            temperature: 0.1,
+            response_format: { type: "json_object" }
+          }),
+        });
 
-      if (!response.ok) {
-        throw new Error(`GPT API failed: ${response.statusText}`);
+        if (response.ok) {
+          const data = await response.json();
+          const content = data.choices[0].message.content;
+          if (content) {
+            return {
+              ...JSON.parse(content),
+              confidence: 0.90,
+              method: 'gpt',
+            };
+          }
+        } else {
+          console.error("Groq API Error:", await response.text());
+        }
       }
-
-      const data = await response.json();
-      const extracted = JSON.parse(data.choices[0].message.content);
-
-      return {
-        ...extracted,
-        confidence: 0.90,
-        method: 'gpt',
-      };
-    } catch (error) {
-      console.error('GPT extraction error:', error);
-      throw error;
+    } catch (e) {
+      console.error('LLM Entity Extraction failed, falling back to mock.', e);
     }
+    throw new Error('GPT extraction failed');
   }
 
   /**

@@ -10,12 +10,20 @@
  * Run: node scripts/create-document-metadata-table.js
  */
 
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env.production') });
 const catalyst = require('zcatalyst-sdk-node');
 
 async function createDocumentMetadataTable() {
   try {
     console.log('🔧 Initializing Catalyst SDK...');
-    const app = catalyst.initialize();
+    const app = catalyst.initialize({
+      type: 'AppLogic',
+      client_id: process.env.CATALYST_CLIENT_ID,
+      client_secret: process.env.CATALYST_CLIENT_SECRET,
+      project_id: process.env.CATALYST_PROJECT_ID,
+      environment: process.env.CATALYST_ENV || 'Production'
+    });
     const datastore = app.datastore();
 
     console.log('📋 Creating DocumentMetadata table...');

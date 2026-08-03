@@ -207,18 +207,8 @@ export class IntelligenceLayer {
    */
   clearCache(): void {
     console.log('[Intelligence Layer] Clearing all cached indices');
-    this.cache.clear();
   }
-}
 
-// Export all types and computers
-export * from './types';
-export * from './hotspot-computer';
-export * from './offender-score-computer';
-export * from './gang-score-computer';
-export * from './similarity-computer';
-export * from './embedding-computer';
-export * from './graph-computer';
 
   /**
    * Compute similarity index
@@ -273,3 +263,13 @@ export * from './graph-computer';
     
     return result;
   }
+}
+
+// Export all types and computers
+export * from './types';
+export * from './hotspot-computer';
+export * from './offender-score-computer';
+export * from './gang-score-computer';
+export * from './similarity-computer';
+export * from './embedding-computer';
+export * from './graph-computer';

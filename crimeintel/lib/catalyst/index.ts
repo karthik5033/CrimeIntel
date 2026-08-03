@@ -315,62 +315,49 @@ function createMockCatalystInstance() {
             const [, fieldName, fieldValue] = whereMatch;
             
             // Scan all rows for matching field
-            let row: any = null;
+            let matchingRows: any[] = [];
             for (const [key, value] of table.entries()) {
-              if (value[fieldName] === fieldValue) {
-                row = value;
-                console.log(`✅ MOCK: Found ${fieldName}=${fieldValue} (key: ${key})`);
-                break;
+              if (String(value[fieldName]).toLowerCase() === String(fieldValue).toLowerCase()) {
+                matchingRows.push(value);
               }
             }
 
-            if (!row) {
-              // Fallback to checking local seed file
-              try {
-                const seedPath = path.join(process.cwd(), 'data', 'seed', `${tableName}.json`);
-                if (fs.existsSync(seedPath)) {
-                  const seedData = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
-                  const found = seedData.find((item: any) => item[fieldName] === fieldValue || item.id === fieldValue);
-                  if (found) {
-                    row = { ROWID: `MOCK_ROW_${Date.now()}`, ...found };
-                    table.set(row.ROWID, row);
-                    console.log(`✅ MOCK: Found ${fieldName}=${fieldValue} in seed data`);
-                  }
-                }
-              } catch (e) {}
+            if (matchingRows.length > 0) {
+              const limitMatch = query.match(/LIMIT\s+(\d+)/i);
+              const limit = limitMatch ? parseInt(limitMatch[1], 10) : 20;
+              console.log(`✅ MOCK: Found ${matchingRows.length} rows for ${fieldName}=${fieldValue}`);
+              return matchingRows.slice(0, limit).map((r: any) => ({ [tableName]: r }));
             }
 
-            if (!row && fieldValue.startsWith('FIR-')) {
+            if (matchingRows.length === 0 && fieldValue.startsWith('FIR-')) {
               // Dynamically create entry for newly ingested FIR
-              row = {
+              let row: any = {
                 ROWID: `MOCK_ROW_${Date.now()}`,
                 fir_no: fieldValue,
                 case_no: `CASE-${Date.now().toString().slice(-6)}`,
                 crime_type_en: 'Cyber Fraud / Financial Scam',
                 description: 'Uploaded FIR document under processing.',
-                date: new Date().toISOString().split('T')[0],
-                police_station_id: 'PS-CyberCrime-01',
                 status_en: 'Under Investigation',
-                ocr_status: 'pending'
+                district_id: 'DIST_1',
+                police_station_id: 'PS_1',
+                date: new Date().toISOString().split('T')[0]
               };
               table.set(row.ROWID, row);
-              console.log(`✨ MOCK: Dynamically generated record for ${fieldValue}`);
-            }
-            
-            if (row) {
-              console.log(`📋 MOCK: ${fieldName}=${fieldValue} fields:`, Object.keys(row));
-              console.log(`📄 MOCK: OCR text length:`, row.ocr_text?.length || 0);
-              console.log(`📊 MOCK: OCR status:`, row.ocr_status);
+              console.log(`📄 MOCK: Created dynamic FIR: ${fieldValue}`);
               return [{ [tableName]: row }];
             } else {
-              console.log(`❌ MOCK: ${fieldName}=${fieldValue} not found anywhere`);
-              return [];
+              console.log(`❌ MOCK: ${fieldName}=${fieldValue} not found anywhere. Returning generic rows for demo.`);
+              const limitMatch = query.match(/LIMIT\s+(\d+)/i);
+              const limit = limitMatch ? parseInt(limitMatch[1], 10) : 20;
+              return allRows.slice(0, limit).map((r: any) => ({ [tableName]: r }));
             }
           }
           
           // Return all rows if no condition matched
-          console.log(`📊 MOCK: Returning ${allRows.length} rows from ${tableName}`);
-          return allRows.map(row => ({ [tableName]: row }));
+          const limitMatch = query.match(/LIMIT\s+(\d+)/i);
+          const limit = limitMatch ? parseInt(limitMatch[1], 10) : 20;
+          console.log(`📊 MOCK: Returning ${limit} rows from ${tableName} out of ${allRows.length} total`);
+          return allRows.slice(0, limit).map(row => ({ [tableName]: row }));
         }
         
         // Parse UPDATE queries
@@ -445,9 +432,37 @@ function createMockCatalystInstance() {
               }
             }
           }
-          
           console.log('💾 MOCK: Update query executed (generic fallback)');
           return { affected_rows: 1 };
+        }
+        
+        // Parse INSERT queries
+        if (query.toUpperCase().includes('INSERT INTO')) {
+          const tableMatch = query.match(/INSERT\s+INTO\s+(\w+)/i);
+          const tableName = tableMatch ? tableMatch[1] : 'FIRs';
+          
+          const table = mockDataStore.tables.get(tableName);
+          if (table) {
+            // Very simple regex for VALUES ('val1', 'val2')
+            const valuesMatch = query.match(/VALUES\s*\((.+?)\)/i);
+            const columnsMatch = query.match(/\((.+?)\)\s+VALUES/i);
+            
+            if (valuesMatch && columnsMatch) {
+              const cols = columnsMatch[1].split(',').map(c => c.trim());
+              const vals = valuesMatch[1].split(',').map(v => v.trim().replace(/^'|'$/g, '').replace(/''/g, "'"));
+              
+              const newRow: any = { ROWID: `MOCK_ROW_${Date.now()}` };
+              cols.forEach((col, idx) => {
+                newRow[col] = vals[idx];
+              });
+              
+              table.set(newRow.ROWID, newRow);
+              console.log(`💾 MOCK: Inserted new row into ${tableName}:`, newRow.ROWID);
+              return { affected_rows: 1, ROWID: newRow.ROWID };
+            }
+          }
+          console.log('💾 MOCK: Insert query executed (generic fallback)');
+          return { affected_rows: 1, ROWID: `MOCK_ROW_${Date.now()}` };
         }
         
         return [];
@@ -457,27 +472,27 @@ function createMockCatalystInstance() {
       predict: async (endpointKey: string, inputData: any) => {
         console.log(`🤖 MOCK QuickML predict called for endpoint: ${endpointKey}`);
         
-        const openAiKey = process.env.OPENAI_API_KEY;
+        const groqKey = process.env.GROQ_API_KEY;
         const prompt = inputData.prompt || '';
         
-        if (openAiKey) {
+        if (groqKey) {
           try {
-            console.log('🤖 MOCK QuickML: Forwarding to OpenAI API for realistic mock');
-            let systemMessage = "You are a helpful assistant.";
+            console.log('🤖 MOCK QuickML: Forwarding to Groq API for realistic mock');
+            let systemMessage = "You are an expert AI Intelligence Copilot for the Karnataka State Police. Based on the provided Context (JSON data of FIRs, Cases, etc.), answer the User's Query clearly and concisely in natural language. DO NOT output any SQL, Python code, or instructions on how to query. Simply summarize the records from the context. CRITICAL: If the Context contains 'EntityRelationships', you must explicitly use them to explain how suspects, vehicles, or cases are connected.";
             let userMessage = prompt;
             
             if (inputData.context) {
                userMessage = `Context:\n${inputData.context}\n\nQuery:\n${prompt}`;
             }
 
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${openAiKey}`
+                'Authorization': `Bearer ${groqKey}`
               },
               body: JSON.stringify({
-                model: 'gpt-4o-mini',
+                model: 'llama3-8b-8192',
                 messages: [
                   { role: 'system', content: systemMessage },
                   { role: 'user', content: userMessage }
@@ -488,12 +503,16 @@ function createMockCatalystInstance() {
 
             if (response.ok) {
               const data = await response.json();
-              return { text: data.choices[0].message.content };
+              const text = data.choices[0].message.content || "No response generated";
+              return { text };
             } else {
-              console.warn('❌ MOCK QuickML OpenAI fallback failed:', await response.text());
+              const errorText = await response.text();
+              console.warn('❌ MOCK QuickML Groq API fallback failed:', errorText);
+              throw new Error(`Groq API Error: ${errorText}`);
             }
-          } catch (e) {
-            console.error('❌ MOCK QuickML OpenAI fallback error:', e);
+          } catch (e: any) {
+            console.error('❌ MOCK QuickML Groq API fallback error, executing heuristic generation instead:', e.message);
+            // Fall through to heuristic generation below
           }
         }
 

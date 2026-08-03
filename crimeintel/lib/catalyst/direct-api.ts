@@ -73,14 +73,10 @@ export async function uploadToStratus(file: File, bucketName: string = 'firdocum
   const token = await getAccessToken();
   const projectId = process.env.CATALYST_PROJECT_ID || '55949000000013025';
 
-  // Convert File to Buffer
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-
   // Create form data
   const formData = new FormData();
   formData.append('code', file.name);
-  formData.append('file', new Blob([buffer]), file.name);
+  formData.append('file', file);
 
   const uploadUrl = `${CATALYST_API_BASE}/baas/v1/project/${projectId}/folder/${bucketName}/file`;
 

@@ -72,13 +72,14 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Validate file type (PDF only)
-    if (file.type !== 'application/pdf' && !file.name.endsWith('.pdf')) {
+    // Validate file type (PDF and images)
+    const validTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
+    if (!validTypes.includes(file.type) && !file.name.match(/\.(pdf|jpe?g|png|webp)$/i)) {
       console.error('❌ Invalid file type:', file.type);
       return NextResponse.json(
         { 
           success: false,
-          error: 'Only PDF files are allowed' 
+          error: 'Only PDF and Image files (JPEG, PNG, WEBP) are allowed' 
         },
         { status: 400 }
       );

@@ -170,7 +170,7 @@ Your role is critical for maintaining trust and accuracy in the system.`,
       }
 
       // Include statements that make factual claims
-      if (this.isFact ualClaim(sentence)) {
+      if (this.isFactualClaim(sentence)) {
         claims.push(sentence);
       }
     }

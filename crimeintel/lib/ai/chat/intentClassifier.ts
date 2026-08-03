@@ -133,6 +133,16 @@ export class IntentClassifier {
       entities.fir_numbers = [firMatch[1]];
     }
 
+    // Extract potential names (capitalized words not at start of string)
+    const nameMatches = query.match(/(?<!^)\b[A-Z][a-z]+\b/g);
+    if (nameMatches && nameMatches.length > 0) {
+      entities.person_names = nameMatches;
+      // If we found a name but intent is DIRECT_RETRIEVAL, it might be a reasoning/relationship query
+      if (intent === 'DIRECT_RETRIEVAL' && /\b(who|suspect|victim|person)\b/.test(lowerQuery)) {
+        intent = 'REASONING_QUERY';
+      }
+    }
+
     return {
       intent,
       entities,

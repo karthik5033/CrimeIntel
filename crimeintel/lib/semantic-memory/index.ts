@@ -3,7 +3,8 @@
  */
 
 export * from './types';
-export { SemanticMemoryManager } from './semantic-memory-manager';
+import { SemanticMemoryManager } from './semantic-memory-manager';
+export { SemanticMemoryManager };
 export { ContextExtractor } from './context-extractor';
 
 // Singleton instance for convenience
