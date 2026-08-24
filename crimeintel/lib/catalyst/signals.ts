@@ -6,11 +6,25 @@ export interface CatalystEventPayload {
   timestamp?: string;
 }
 
+import { EventEmitter } from 'events';
+
+const eventBus = new EventEmitter();
+
 /**
  * Catalyst Signals Client Wrapper
  * Handles pub/sub event broadcasting across the CrimeIntel platform.
  */
 export const CatalystSignals = {
+  /**
+   * Subscribes to Catalyst Signals events
+   */
+  subscribe: (callback: (payload: CatalystEventPayload) => void) => {
+    eventBus.on('crimeintel_events', callback);
+    return () => {
+      eventBus.off('crimeintel_events', callback);
+    };
+  },
+
   /**
    * Publishes an event to Catalyst Signals event bus
    */
@@ -26,6 +40,7 @@ export const CatalystSignals = {
             timestamp: payload.timestamp || new Date().toISOString()
           }
         });
+        eventBus.emit('crimeintel_events', payload);
         return true;
       }
     } catch (e) {

@@ -187,6 +187,33 @@ export const CatalystDataStore = {
     return queryResult.map((row: any) => row.Transactions || row);
   },
 
+  // Districts Table
+  getDistricts: async (): Promise<any[]> => {
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    if (!zcql) throw new Error('Catalyst ZCQL not initialized.');
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Districts');
+    return queryResult.map((row: any) => row.Districts || row);
+  },
+
+  // Notifications Table
+  getNotifications: async (): Promise<any[]> => {
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    if (!zcql) throw new Error('Catalyst ZCQL not initialized.');
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Notifications ORDER BY timestamp DESC');
+    return queryResult.map((row: any) => row.Notifications || row);
+  },
+
+  // System Health Table
+  getSystemHealth: async (): Promise<any[]> => {
+    const app = getCatalystApp();
+    const zcql = app.zcql();
+    if (!zcql) throw new Error('Catalyst ZCQL not initialized.');
+    const queryResult = await zcql.executeZCQLQuery('SELECT * FROM SystemHealth');
+    return queryResult.map((row: any) => row.SystemHealth || row);
+  },
+
   // Insert Methods for Data Loading
   insertFIRs: async (firs: any[]): Promise<void> => {
     const app = getCatalystApp();

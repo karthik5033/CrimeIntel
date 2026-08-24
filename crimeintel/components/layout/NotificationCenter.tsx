@@ -15,62 +15,80 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
 
-type NotificationType = "CRITICAL" | "WARNING" | "INFO";
+type NotificationType = "CRITICAL" | "ALERT" | "WARNING" | "INFO" | string;
 
 interface Notification {
   id: string;
   type: NotificationType;
   title: string;
   message: string;
-  time: string;
+  time?: string;
+  timestamp?: string;
   read: boolean;
   link?: string;
 }
 
-const initialNotifications: Notification[] = [
-  {
-    id: "n1",
-    type: "CRITICAL",
-    title: "notifications.n1.title",
-    message: "notifications.n1.message",
-    time: "notifications.n1.time",
-    read: false,
-    link: "/cases/CASE_2025_089"
-  },
-  {
-    id: "n2",
-    type: "WARNING",
-    title: "notifications.n2.title",
-    message: "notifications.n2.message",
-    time: "notifications.n2.time",
-    read: false,
-    link: "/network"
-  },
-  {
-    id: "n3",
-    type: "INFO",
-    title: "notifications.n3.title",
-    message: "notifications.n3.message",
-    time: "notifications.n3.time",
-    read: true,
-    link: "/audit"
-  }
-];
-
 export function NotificationCenter() {
   const { t } = useLanguage();
-  const [notifications, setNotifications] = useState<Notification[]>(initialNotifications);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
+  React.useEffect(() => {
+    async function loadNotifications() {
+      try {
+        const res = await fetch("/api/notifications");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.notifications) {
+            setNotifications(data.notifications);
+          }
+        }
+      } catch (e) {
+        console.error("Failed to load notifications");
+      }
+    }
+    loadNotifications();
+  }, []);
+
   const unreadCount = notifications.filter(n => !n.read).length;
 
-  const getIcon = (type: NotificationType) => {
+  const getIcon = (type: string) => {
     switch (type) {
-      case "CRITICAL": return <AlertCircle className="w-5 h-5 text-destructive" />;
-      case "WARNING": return <AlertTriangle className="w-5 h-5 text-warning" />;
-      case "INFO": return <Info className="w-5 h-5 text-blue-500" />;
+      case "CRITICAL":
+      case "ALERT":
+        return <AlertCircle className="w-5 h-5 text-destructive" />;
+      case "WARNING":
+        return <AlertTriangle className="w-5 h-5 text-warning" />;
+      case "INFO":
+      default:
+        return <Info className="w-5 h-5 text-blue-500" />;
     }
+  };
+
+  const formatNotificationText = (text?: string) => {
+    if (!text) return "";
+    if (typeof text === "string" && text.startsWith("notifications.")) {
+      return t(text as any);
+    }
+    return text;
+  };
+
+  const formatNotificationTime = (notification: Notification) => {
+    const rawTime = notification.time || notification.timestamp;
+    if (!rawTime) return "";
+    if (typeof rawTime === "string" && rawTime.startsWith("notifications.")) {
+      return t(rawTime as any);
+    }
+    try {
+      const date = new Date(rawTime);
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+    } catch {
+      // ignore
+    }
+    return rawTime;
   };
 
   const markAllAsRead = () => {
@@ -153,13 +171,13 @@ export function NotificationCenter() {
                   </div>
                   <div className="flex-1 space-y-1">
                     <p className={cn("text-sm font-semibold", !notification.read && "text-foreground")}>
-                      {t(notification.title as any)}
+                      {formatNotificationText(notification.title)}
                     </p>
                     <p className="text-sm text-muted-foreground line-clamp-2">
-                      {t(notification.message as any)}
+                      {formatNotificationText(notification.message)}
                     </p>
                     <p className="text-[10px] text-muted-foreground font-medium pt-1">
-                      {t(notification.time as any)}
+                      {formatNotificationTime(notification)}
                     </p>
                   </div>
                 </div>

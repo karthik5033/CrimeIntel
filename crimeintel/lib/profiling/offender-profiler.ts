@@ -281,7 +281,7 @@ export class OffenderProfiler {
       geographicRange: geoPattern,
       escalationTrend: escalation,
       moConsistency,
-      confidence: 85, // Mock confidence - in production from RCT
+      confidence: Math.min(98, 40 + (history.length * 5) + (moConsistency > 70 ? 15 : 0) + (timePattern ? 10 : 0)), // Dynamic confidence based on data completeness
     };
   }
 

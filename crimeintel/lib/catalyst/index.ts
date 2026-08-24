@@ -22,10 +22,17 @@ if (!globalAny.__mockDataStore) {
   };
 
   // Initialize tables
-  ['FIRs', 'Persons', 'Vehicles', 'PhoneRecords', 'Weapons', 'BankAccounts', 'EntityRelationships', 'Embeddings'].forEach(table => {
+  ['FIRs', 'Persons', 'Vehicles', 'PhoneRecords', 'Weapons', 'BankAccounts', 'EntityRelationships', 'Embeddings', 'Districts', 'Notifications', 'SystemHealth'].forEach(table => {
     globalAny.__mockDataStore.tables.set(table, new Map());
   });
 }
+
+// Ensure all new tables exist in case of hot-reload from an older global state
+['Districts', 'Notifications', 'SystemHealth'].forEach(table => {
+  if (!globalAny.__mockDataStore.tables.has(table)) {
+    globalAny.__mockDataStore.tables.set(table, new Map());
+  }
+});
 
 const mockDataStore = globalAny.__mockDataStore;
 
@@ -148,14 +155,17 @@ export function getCatalystApp(req?: any): any {
 
 // Mock Catalyst instance for development/testing
 function createMockCatalystInstance() {
-  // Load seed data on first initialization
-  if (!mockDataStore.tables.get('FIRs')?.size) {
+  // Load seed data on first initialization or if Districts is missing
+  if (!mockDataStore.tables.get('FIRs')?.size || !mockDataStore.tables.get('Districts')?.size) {
     console.log('📦 Loading seed data into mock store...');
     try {
       const firsSeed = require('../../data/seed/FIRs.json');
       const personsSeed = require('../../data/seed/Persons.json');
       const vehiclesSeed = require('../../data/seed/Vehicles.json');
       const relationshipsSeed = require('../../data/seed/EntityRelationships.json');
+      const districtsSeed = require('../../data/seed/Districts.json');
+      const notificationsSeed = require('../../data/seed/Notifications.json');
+      const systemHealthSeed = require('../../data/seed/SystemHealth.json');
       
       // Load FIRs
       const firsTable = mockDataStore.tables.get('FIRs')!;
@@ -188,6 +198,27 @@ function createMockCatalystInstance() {
         relationshipsTable.set(rowId, { ROWID: rowId, ...rel });
       });
       console.log(`✅ Loaded ${relationshipsSeed.length} Relationships into mock store`);
+      
+      // Load Districts
+      const districtsTable = mockDataStore.tables.get('Districts')!;
+      districtsSeed.forEach((dist: any) => {
+        districtsTable.set(dist.id, { ROWID: dist.id, ...dist });
+      });
+      console.log(`✅ Loaded ${districtsSeed.length} Districts into mock store`);
+
+      // Load Notifications
+      const notificationsTable = mockDataStore.tables.get('Notifications')!;
+      notificationsSeed.forEach((notif: any) => {
+        notificationsTable.set(notif.id, { ROWID: notif.id, ...notif });
+      });
+      console.log(`✅ Loaded ${notificationsSeed.length} Notifications into mock store`);
+
+      // Load System Health
+      const systemHealthTable = mockDataStore.tables.get('SystemHealth')!;
+      systemHealthSeed.forEach((health: any) => {
+        systemHealthTable.set(health.id, { ROWID: health.id, ...health });
+      });
+      console.log(`✅ Loaded ${systemHealthSeed.length} SystemHealth records into mock store`);
       
       console.log('🎉 Seed data loaded successfully!');
     } catch (error) {
@@ -472,54 +503,10 @@ function createMockCatalystInstance() {
       predict: async (endpointKey: string, inputData: any) => {
         console.log(`🤖 MOCK QuickML predict called for endpoint: ${endpointKey}`);
         
-        const groqKey = process.env.GROQ_API_KEY;
-        const prompt = inputData.prompt || '';
-        
-        if (groqKey) {
-          try {
-            console.log('🤖 MOCK QuickML: Forwarding to Groq API for realistic mock');
-            let systemMessage = "You are an expert AI Intelligence Copilot for the Karnataka State Police. Based on the provided Context (JSON data of FIRs, Cases, etc.), answer the User's Query clearly and concisely in natural language. DO NOT output any SQL, Python code, or instructions on how to query. Simply summarize the records from the context. CRITICAL: If the Context contains 'EntityRelationships', you must explicitly use them to explain how suspects, vehicles, or cases are connected.";
-            let userMessage = prompt;
-            
-            if (inputData.context) {
-               userMessage = `Context:\n${inputData.context}\n\nQuery:\n${prompt}`;
-            }
-
-            const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${groqKey}`
-              },
-              body: JSON.stringify({
-                model: 'llama3-8b-8192',
-                messages: [
-                  { role: 'system', content: systemMessage },
-                  { role: 'user', content: userMessage }
-                ],
-                temperature: 0.3
-              })
-            });
-
-            if (response.ok) {
-              const data = await response.json();
-              const text = data.choices[0].message.content || "No response generated";
-              return { text };
-            } else {
-              const errorText = await response.text();
-              console.warn('❌ MOCK QuickML Groq API fallback failed:', errorText);
-              throw new Error(`Groq API Error: ${errorText}`);
-            }
-          } catch (e: any) {
-            console.error('❌ MOCK QuickML Groq API fallback error, executing heuristic generation instead:', e.message);
-            // Fall through to heuristic generation below
-          }
-        }
-
-        // Fallbacks if no OpenAI key or if it failed
+        // Pure local mock without external API dependencies
         if (prompt.includes('intent classifier')) {
           console.log('🤖 MOCK QuickML: Intent classifier fallback triggered, throwing error to force heuristic classification.');
-          throw new Error("No OpenAI key available for intent classification");
+          throw new Error("Local intent classification fallback");
         }
 
         let contextArray = [];

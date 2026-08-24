@@ -1,0 +1,11 @@
+[
+  {
+    "id": "SYS_1",
+    "status": "Operational",
+    "last_check": "2024-05-18T10:00:00Z",
+    "uptime_percentage": 99.9,
+    "active_nodes": 5,
+    "api_latency_ms": 120,
+    "db_connection": "Healthy"
+  }
+]

@@ -48,6 +48,8 @@ export const translations = {
     // Map Stats
     'dashboard.threatLevel': 'Threat Level',
     'dashboard.critical': 'CRITICAL',
+    'dashboard.warning': 'WARNING',
+    'dashboard.info': 'INFO',
 
     // LiveMap Controls
     'map.dataLayers': 'DATA LAYERS',
@@ -288,6 +290,36 @@ export const translations = {
     'chat.assistantTitle': 'CrimeIntel Assistant',
     'chat.assistantDesc': 'I can query FIRs, analyze criminal networks, and identify sociological patterns. Ask me anything about the current cases.',
     'chat.activeContext': 'Active Context',
+    
+    // Early Warning / Alerts
+    'earlyWarning.title': 'Early Warnings & Forecasts',
+    'earlyWarning.subtitle': 'AI-driven predictive models identifying potential crime hotspots.',
+    'earlyWarning.refreshData': 'Refresh Data',
+    'earlyWarning.activeAnomalies': 'Active Anomalies',
+    'earlyWarning.escalatingHotspots': 'Escalating Hotspots',
+    'earlyWarning.stableDistricts': 'Stable Districts',
+    'earlyWarning.automatedAnomalies': 'Automated Anomalies',
+    'earlyWarning.automatedAnomaliesDesc': 'System-detected unusual crime patterns.',
+    'earlyWarning.recentCases': 'Recent Cases',
+    'earlyWarning.increase': 'Increase',
+    'earlyWarning.noAnomalies': 'No anomalies detected at this time.',
+    'earlyWarning.districtRiskForecast': 'District Risk Forecast',
+    'earlyWarning.predictiveHotspotModeling': 'Predictive hotspot modeling',
+    'earlyWarning.escalating': 'Escalating',
+    'earlyWarning.riskScore': 'Risk Score',
+    'earlyWarning.hotspotEscalation': 'Hotspot Escalation: {district}',
+    'earlyWarning.monitor': 'MONITOR',
+    'earlyWarning.risk': 'Risk',
+    
+    // Additional Dashboard
+    'dashboard.viewAll': 'View All',
+    'dashboard.quickMLPlaceholder': "Ask Catalyst QuickML (e.g. 'Show me vehicle thefts in Bengaluru South')",
+    
+    // Additional Profiles
+    'profile.riskScore': 'Risk Score',
+    'profile.escalatingSeverity': 'Escalating Severity',
+    'profile.deescalating': 'De-escalating',
+
     'chat.entitiesInContext': 'ENTITIES IN CONTEXT',
     'chat.noEntities': 'No specific entities tracked yet.',
     'chat.appliedFilters': 'APPLIED FILTERS',
@@ -551,6 +583,8 @@ export const translations = {
     // Map Stats
     'dashboard.threatLevel': 'ಬೆದರಿಕೆ ಮಟ್ಟ',
     'dashboard.critical': 'ನಿರ್ಣಾಯಕ',
+    'dashboard.warning': 'ಎಚ್ಚರಿಕೆ',
+    'dashboard.info': 'ಮಾಹಿತಿ',
 
     // LiveMap Controls
     'map.dataLayers': 'ಡೇಟಾ ಲೇಯರ್‌ಗಳು',
@@ -1006,6 +1040,35 @@ export const translations = {
     'dataIngestion.foundEntities': '{persons} ವ್ಯಕ್ತಿಗಳು, {vehicles} ವಾಹನಗಳು, {phones} ಫೋನ್ ದಾಖಲೆಗಳು ಕಂಡುಬಂದಿವೆ',
     'dataIngestion.builtGraph': '{count} ಸಂಬಂಧಗಳೊಂದಿಗೆ ನಾಲೆಡ್ಜ್ ಗ್ರಾಫ್ ನಿರ್ಮಿಸಲಾಗಿದೆ',
     'dataIngestion.viewFirDetails': 'FIR ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
-    'dataIngestion.viewGraph': 'ನಾಲೆಡ್ಜ್ ಗ್ರಾಫ್ ವೀಕ್ಷಿಸಿ'
+    'dataIngestion.viewGraph': 'ನಾಲೆಡ್ಜ್ ಗ್ರಾಫ್ ವೀಕ್ಷಿಸಿ',
+    
+    // Early Warning / Alerts
+    'earlyWarning.title': 'ಮುನ್ನೆಚ್ಚರಿಕೆಗಳು ಮತ್ತು ಮುನ್ಸೂಚನೆಗಳು',
+    'earlyWarning.subtitle': 'ಸಂಭಾವ್ಯ ಅಪರಾಧ ಹಾಟ್‌ಸ್ಪಾಟ್‌ಗಳನ್ನು ಗುರುತಿಸುವ AI ಆಧಾರಿತ ಮುನ್ಸೂಚಕ ಮಾದರಿಗಳು.',
+    'earlyWarning.refreshData': 'ಡೇಟಾ ರಿಫ್ರೆಶ್ ಮಾಡಿ',
+    'earlyWarning.activeAnomalies': 'ಸಕ್ರಿಯ ವೈಪರೀತ್ಯಗಳು',
+    'earlyWarning.escalatingHotspots': 'ಹೆಚ್ಚುತ್ತಿರುವ ಹಾಟ್‌ಸ್ಪಾಟ್‌ಗಳು',
+    'earlyWarning.stableDistricts': 'ಸ್ಥಿರ ಜಿಲ್ಲೆಗಳು',
+    'earlyWarning.automatedAnomalies': 'ಸ್ವಯಂಚಾಲಿತ ವೈಪರೀತ್ಯಗಳು',
+    'earlyWarning.automatedAnomaliesDesc': 'ಸಿಸ್ಟಮ್ ಪತ್ತೆಹಚ್ಚಿದ ಅಸಾಮಾನ್ಯ ಅಪರಾಧ ಮಾದರಿಗಳು.',
+    'earlyWarning.recentCases': 'ಇತ್ತೀಚಿನ ಪ್ರಕರಣಗಳು',
+    'earlyWarning.increase': 'ಹೆಚ್ಚಳ',
+    'earlyWarning.noAnomalies': 'ಈ ಸಮಯದಲ್ಲಿ ಯಾವುದೇ ವೈಪರೀತ್ಯಗಳು ಪತ್ತೆಯಾಗಿಲ್ಲ.',
+    'earlyWarning.districtRiskForecast': 'ಜಿಲ್ಲಾ ಅಪಾಯ ಮುನ್ಸೂಚನೆ',
+    'earlyWarning.predictiveHotspotModeling': 'ಮುನ್ಸೂಚಕ ಹಾಟ್‌ಸ್ಪಾಟ್ ಮಾಡೆಲಿಂಗ್',
+    'earlyWarning.escalating': 'ಹೆಚ್ಚುತ್ತಿದೆ',
+    'earlyWarning.riskScore': 'ಅಪಾಯದ ಅಂಕ',
+    'earlyWarning.hotspotEscalation': 'ಹಾಟ್‌ಸ್ಪಾಟ್ ಹೆಚ್ಚಳ: {district}',
+    'earlyWarning.monitor': 'ವೀಕ್ಷಿಸಿ',
+    'earlyWarning.risk': 'ಅಪಾಯ',
+
+    // Additional Dashboard
+    'dashboard.viewAll': 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ',
+    'dashboard.quickMLPlaceholder': "ಕ್ಯಾಟಲಿಸ್ಟ್ ಕ್ವಿಕ್‌ಎಂಎಲ್ ಅನ್ನು ಕೇಳಿ (ಉದಾ. 'ಬೆಂಗಳೂರು ದಕ್ಷಿಣದಲ್ಲಿ ವಾಹನ ಕಳ್ಳತನಗಳನ್ನು ತೋರಿಸಿ')",
+
+    // Additional Profiles
+    'profile.riskScore': 'ಅಪಾಯದ ಅಂಕ',
+    'profile.escalatingSeverity': 'ಹೆಚ್ಚುತ್ತಿರುವ ತೀವ್ರತೆ',
+    'profile.deescalating': 'ಕಡಿಮೆಯಾಗುತ್ತಿದೆ'
   }
 };

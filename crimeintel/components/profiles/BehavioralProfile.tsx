@@ -3,6 +3,7 @@
 import React from "react";
 import { Activity } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface BehavioralProfileProps {
   person: any;
@@ -10,6 +11,7 @@ interface BehavioralProfileProps {
 }
 
 export function BehavioralProfile({ person, firs }: BehavioralProfileProps) {
+  const { t } = useLanguage();
   // Infer behavior from FIRs
   
   // 1. Preferred Time Window
@@ -49,10 +51,10 @@ export function BehavioralProfile({ person, firs }: BehavioralProfileProps) {
     const lastSevere = isSevere(sorted[sorted.length - 1].crime_type_en || "");
     
     if (!firstSevere && lastSevere) {
-      escalation = "Escalating Severity";
+      escalation = t('profile.escalatingSeverity');
       escalationClass = "text-destructive font-semibold";
     } else if (firstSevere && !lastSevere) {
-      escalation = "De-escalating";
+      escalation = t('profile.deescalating');
       escalationClass = "text-success font-semibold";
     } else {
       escalation = "Consistent Pattern (No Escalation)";

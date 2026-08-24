@@ -52,9 +52,9 @@ export function AlertsDashboard() {
 
   const getSeverityBadge = (severity: string) => {
     switch (severity) {
-      case "critical": return <Badge variant="destructive">Critical</Badge>;
-      case "warning": return <Badge variant="secondary" className="bg-warning text-warning-foreground">Warning</Badge>;
-      default: return <Badge variant="outline">Info</Badge>;
+      case "critical": return <Badge variant="destructive">{t('dashboard.critical')}</Badge>;
+      case "warning": return <Badge variant="secondary" className="bg-warning text-warning-foreground">{t('dashboard.warning')}</Badge>;
+      default: return <Badge variant="outline">{t('dashboard.info')}</Badge>;
     }
   };
 
@@ -161,7 +161,7 @@ export function AlertsDashboard() {
             {anomalies.length === 0 && (
               <div className="text-center p-6 text-muted-foreground border rounded-lg border-dashed">
                 <CheckCircle2 className="w-8 h-8 mx-auto mb-2 text-success opacity-50" />
-                No anomalies detected at this time.
+                {t('earlyWarning.noAnomalies')}
               </div>
             )}
           </CardContent>
@@ -172,9 +172,9 @@ export function AlertsDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Map className="w-5 h-5 text-warning" />
-              District Risk Forecast
+              {t('earlyWarning.districtRiskForecast')}
             </CardTitle>
-            <CardDescription>Predictive hotspot modeling</CardDescription>
+            <CardDescription>{t('earlyWarning.predictiveHotspotModeling')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -183,12 +183,12 @@ export function AlertsDashboard() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold">{h.district}</span>
-                      {h.trend === "escalating" && <Badge variant="destructive" className="text-[10px] h-4">Escalating</Badge>}
+                      {h.trend === "escalating" && <Badge variant="destructive" className="text-[10px] h-4">{t('earlyWarning.escalating')}</Badge>}
                     </div>
                     <p className="text-xs text-muted-foreground line-clamp-1 mt-1">{h.reasoning}</p>
                   </div>
                   <div className="flex flex-col items-end pl-4 border-l ml-4 min-w-[80px]">
-                    <span className="text-[10px] text-muted-foreground uppercase">Risk Score</span>
+                    <span className="text-[10px] text-muted-foreground uppercase">{t('earlyWarning.riskScore')}</span>
                     <span className={`font-bold text-lg ${h.risk_score >= 80 ? 'text-destructive' : h.risk_score >= 50 ? 'text-warning' : 'text-success'}`}>
                       {h.risk_score}
                     </span>

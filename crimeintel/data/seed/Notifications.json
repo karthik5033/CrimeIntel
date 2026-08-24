@@ -1,0 +1,20 @@
+[
+  {
+    "id": "NOTIF_1",
+    "type": "ALERT",
+    "title": "High Risk Suspect Spotted",
+    "message": "Known offender identified near MG Road.",
+    "district_id": "DIST_1",
+    "timestamp": "2024-05-18T10:30:00Z",
+    "read": false
+  },
+  {
+    "id": "NOTIF_2",
+    "type": "WARNING",
+    "title": "Unusual Gathering",
+    "message": "Large crowd forming at City Square.",
+    "district_id": "DIST_1",
+    "timestamp": "2024-05-18T09:15:00Z",
+    "read": true
+  }
+]

@@ -6,6 +6,7 @@ import { useLanguage } from '@/lib/LanguageContext';
 
 export interface CrimeEvent {
   id: string;
+  referenceId?: string;
   type: string;
   location: string;
   message: string;
@@ -56,7 +57,7 @@ export function LiveEventFeed() {
   };
 
   const getTranslatedMessage = (evt: CrimeEvent) => {
-    const loc = t(`location.${evt.location}` as any) || evt.location;
+    const loc = evt.location;
     switch (evt.type) {
       case 'FIR_CREATED':
         return t('dashboard.events.firCreated').replace('{location}', loc);
@@ -65,7 +66,7 @@ export function LiveEventFeed() {
       case 'SUSPECT_SPOTTED':
         return t('dashboard.events.suspectSpotted').replace('{location}', loc);
       case 'CASE_CLOSED':
-        const caseId = evt.id.replace('evt_', '').toUpperCase();
+        const caseId = evt.referenceId || evt.id.replace('evt_', '').toUpperCase();
         return t('dashboard.events.caseClosed').replace('{location}', loc).replace('{id}', caseId);
       default:
         return evt.message;
@@ -112,7 +113,7 @@ export function LiveEventFeed() {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-foreground truncate">{getTranslatedMessage(evt)}</p>
                 <div className="flex items-center justify-between mt-1">
-                  <span className="text-[10px] text-muted-foreground uppercase">{t(`location.${evt.location}` as any) || evt.location}</span>
+                  <span className="text-[10px] text-muted-foreground uppercase">{evt.location}</span>
                   <span className="text-[10px] text-muted-foreground">
                     {new Date(evt.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                   </span>

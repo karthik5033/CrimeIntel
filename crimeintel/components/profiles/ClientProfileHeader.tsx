@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/AuthContext";
 import { maskName, maskAddress, canViewUnmaskedData } from "@/lib/utils/dataMasking";
 import { AuditLogger } from "@/lib/api/auditLogger";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface ClientProfileHeaderProps {
   person: any;
@@ -16,6 +17,7 @@ interface ClientProfileHeaderProps {
 export function ClientProfileHeader({ person, roleType }: ClientProfileHeaderProps) {
   const { role, userId } = useAuth();
   const [isUnmasked, setIsUnmasked] = React.useState(false);
+  const { t } = useLanguage();
 
   const canUnmask = canViewUnmaskedData(role);
 
@@ -73,7 +75,7 @@ export function ClientProfileHeader({ person, roleType }: ClientProfileHeaderPro
       </div>
 
       <div className="flex flex-col items-center justify-center bg-card border rounded-lg p-6 min-w-[150px] shadow-sm">
-        <div className="text-sm font-medium text-muted-foreground mb-2">Risk Score</div>
+        <div className="text-sm font-medium text-muted-foreground mb-2">{t('profile.riskScore')}</div>
         <div className="flex items-center gap-2">
           {person.risk_score >= 80 && <ShieldAlert className="w-6 h-6 text-destructive" />}
           <span className={`text-4xl font-bold ${person.risk_score >= 80 ? "text-destructive" : person.risk_score >= 50 ? "text-warning" : "text-success"}`}>

@@ -17,7 +17,7 @@ import { useLanguage } from "@/lib/LanguageContext";
 
 // Sci-Fi Complex Data Telemetry (Fallback)
 const fallbackData = [
-  { time: "00:00", baseline: 800, telemetry: 820, forecast: 810, anomaly: null }
+  { time: "00:00", timestamp: Date.now(), baseline: 800, telemetry: 820, anomaly: null }
 ];
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -58,6 +58,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export function CrimeTrendChart() {
   const { t } = useLanguage();
   const [trendData, setTrendData] = useState<any[]>(fallbackData);
+  const [summary, setSummary] = useState<any>(null);
   
   useEffect(() => {
     async function loadTrend() {
@@ -67,6 +68,9 @@ export function CrimeTrendChart() {
           const data = await res.json();
           if (data.trend && data.trend.length > 0) {
             setTrendData(data.trend);
+          }
+          if (data.summary) {
+            setSummary(data.summary);
           }
         }
       } catch (e) {
@@ -106,11 +110,19 @@ export function CrimeTrendChart() {
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" strokeOpacity={0.5} />
             
             <XAxis 
-              dataKey="time" 
+              dataKey="timestamp" 
+              type="number"
+              scale="time"
+              domain={['dataMin', 'dataMax']}
               axisLine={false}
               tickLine={false}
               tick={{ fill: 'var(--muted-foreground)', fontSize: 11, fontWeight: 500 }}
+              tickFormatter={(val) => {
+                const d = new Date(val);
+                return d.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+              }}
               dy={10}
+              minTickGap={30}
             />
             
             <YAxis 
@@ -131,19 +143,6 @@ export function CrimeTrendChart() {
               strokeOpacity={0.3}
               strokeWidth={1.5}
               fill="url(#areaFill)" 
-            />
-
-            {/* AI Predicted Line */}
-            <Line 
-              type="monotone" 
-              dataKey="forecast" 
-              name="AI Forecast"
-              stroke="var(--primary)" 
-              strokeOpacity={0.5}
-              strokeWidth={2}
-              strokeDasharray="4 4"
-              dot={false}
-              activeDot={false}
             />
 
             {/* Actual Track */}
@@ -176,21 +175,39 @@ export function CrimeTrendChart() {
             <Activity className="h-3.5 w-3.5 text-primary" />
             <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">{t('chart.accuracy')}</span>
           </div>
-          <div className="text-2xl font-bold text-foreground tracking-tight">94.2<span className="text-sm text-muted-foreground font-medium">%</span></div>
+          <div className="text-2xl font-bold text-foreground tracking-tight">{summary?.accuracy || "94.2"}<span className="text-sm text-muted-foreground font-medium">%</span></div>
           <div className="w-full bg-muted h-1.5 mt-2 rounded-full overflow-hidden">
-            <div className="bg-primary h-full w-[94.2%]" />
+            <div className="bg-primary h-full transition-all duration-500" style={{ width: `${summary?.accuracy || 94.2}%` }} />
           </div>
         </div>
 
-        <div className="bg-destructive/5 border border-destructive/20 rounded-lg p-3 relative overflow-hidden transition-all">
-          <div className="absolute top-0 left-0 w-1 h-full bg-destructive" />
+        <div className={`border rounded-lg p-3 relative overflow-hidden transition-all ${
+          summary?.threatLevel === 'CRITICAL' ? 'bg-destructive/5 border-destructive/20' : 
+          summary?.threatLevel === 'ELEVATED' ? 'bg-warning/5 border-warning/20' : 'bg-success/5 border-success/20'
+        }`}>
+          <div className={`absolute top-0 left-0 w-1 h-full ${
+            summary?.threatLevel === 'CRITICAL' ? 'bg-destructive' : 
+            summary?.threatLevel === 'ELEVATED' ? 'bg-warning' : 'bg-success'
+          }`} />
           <div className="flex items-center gap-2 mb-1">
-            <AlertCircle className="h-3.5 w-3.5 text-destructive animate-pulse" />
-            <span className="text-[10px] text-destructive font-bold uppercase tracking-wider">{t('chart.threatIndex')}</span>
+            <AlertCircle className={`h-3.5 w-3.5 animate-pulse ${
+              summary?.threatLevel === 'CRITICAL' ? 'text-destructive' : 
+              summary?.threatLevel === 'ELEVATED' ? 'text-warning' : 'text-success'
+            }`} />
+            <span className={`text-[10px] font-bold uppercase tracking-wider ${
+              summary?.threatLevel === 'CRITICAL' ? 'text-destructive' : 
+              summary?.threatLevel === 'ELEVATED' ? 'text-warning' : 'text-success'
+            }`}>{t('chart.threatIndex')}</span>
           </div>
-          <div className="text-lg font-bold text-destructive tracking-wide">{t('dashboard.critical')}</div>
-          <div className="text-[10px] text-destructive/80 mt-1 font-medium">
-            {t('chart.sectorAnomaly')}
+          <div className={`text-lg font-bold tracking-wide ${
+            summary?.threatLevel === 'CRITICAL' ? 'text-destructive' : 
+            summary?.threatLevel === 'ELEVATED' ? 'text-warning' : 'text-success'
+          }`}>{summary?.threatLevel || t('dashboard.critical')}</div>
+          <div className={`text-[10px] mt-1 font-medium ${
+            summary?.threatLevel === 'CRITICAL' ? 'text-destructive/80' : 
+            summary?.threatLevel === 'ELEVATED' ? 'text-warning/80' : 'text-success/80'
+          }`}>
+            {summary?.threatDetail || t('chart.sectorAnomaly')}
           </div>
         </div>
 

@@ -27,6 +27,10 @@ export const ServerDataLoader = {
 
   getSocioEconomicData: () => CatalystDataStore.getSocioEconomicData(),
   getTransactions: () => CatalystDataStore.getTransactions(),
+
+  getDistricts: () => CatalystDataStore.getDistricts(),
+  getNotifications: () => CatalystDataStore.getNotifications(),
+  getSystemHealth: () => CatalystDataStore.getSystemHealth(),
   
   // Note: AuditLogs may not be implemented in datastore.ts yet, 
   // but it should also connect to Catalyst.

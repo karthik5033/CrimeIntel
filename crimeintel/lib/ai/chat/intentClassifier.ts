@@ -89,17 +89,17 @@ export class IntentClassifier {
   private static basicHeuristicClassification(query: string, context: ChatContext): ParsedQuery {
     const lowerQuery = query.toLowerCase();
     
-    let intent: QueryIntent = 'DIRECT_RETRIEVAL';
+    let intent: QueryIntent = 'CONVERSATIONAL'; // Default to conversational for unrecognized gibberish
     if (/\b(how many|trend|compare|hotspots?|most|highest|top|areas?|which areas?)\b/.test(lowerQuery)) {
       intent = 'AGGREGATE_ANALYTICAL';
-    } else if (/\b(connect|link|relation)\b/.test(lowerQuery)) {
+    } else if (/\b(connect|link|relation|network)\b/.test(lowerQuery)) {
       intent = 'RELATIONSHIP_QUERY';
-    } else if (/\b(why|explain)\b/.test(lowerQuery)) {
+    } else if (/\b(why|explain|reason)\b/.test(lowerQuery)) {
       intent = 'REASONING_QUERY';
     } else if (/\b(what about|he|she|they)\b/.test(lowerQuery)) {
       intent = 'FOLLOW_UP';
-    } else if (/\b(hello|hi|hey|test|mike|who are you)\b/.test(lowerQuery)) {
-      intent = 'CONVERSATIONAL';
+    } else if (/\b(show|find|list|get|search|cases?|firs?|incidents?|records?|suspects?)\b/.test(lowerQuery)) {
+      intent = 'DIRECT_RETRIEVAL';
     }
 
     // Basic entity extraction (very naive fallback)
@@ -124,6 +124,7 @@ export class IntentClassifier {
     for (const [type, keywords] of Object.entries(CRIME_TYPE_MAPPINGS)) {
       if (keywords.some(k => lowerQuery.includes(k))) {
         entities.crime_types = [type];
+        if (intent === 'CONVERSATIONAL') intent = 'DIRECT_RETRIEVAL';
         break;
       }
     }
@@ -131,6 +132,7 @@ export class IntentClassifier {
     const firMatch = lowerQuery.match(/fir\s*(?:no)?\s*[-#:]?\s*(\d+)/i);
     if (firMatch) {
       entities.fir_numbers = [firMatch[1]];
+      intent = 'DIRECT_RETRIEVAL';
     }
 
     // Extract potential names (capitalized words not at start of string)

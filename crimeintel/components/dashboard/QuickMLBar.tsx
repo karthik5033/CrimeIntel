@@ -5,10 +5,12 @@ import { Sparkles, Search, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export function QuickMLBar() {
   const [query, setQuery] = useState("");
   const router = useRouter();
+  const { t } = useLanguage();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ export function QuickMLBar() {
       <Input
         type="text"
         className="block w-full pl-12 pr-24 py-6 text-base rounded-full border-primary/20 bg-card/80 backdrop-blur-sm focus-visible:ring-primary focus-visible:border-primary placeholder:text-muted-foreground/70"
-        placeholder="Ask Catalyst QuickML (e.g. 'Show me vehicle thefts in Bengaluru South')"
+        placeholder={t('dashboard.quickMLPlaceholder')}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

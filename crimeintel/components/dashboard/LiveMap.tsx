@@ -175,7 +175,7 @@ export function LiveMap() {
                   <MapPin className="h-6 w-6 text-primary relative z-10" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 leading-tight tracking-tight">{t(`map.spot.${selectedSpot.id}.name` as any)}</h3>
+                  <h3 className="text-lg font-bold text-slate-900 leading-tight tracking-tight">{selectedSpot.name}</h3>
                   <p className="text-xs text-muted-foreground font-mono font-bold tracking-wider opacity-70">NODE-{selectedSpot.id.toUpperCase()}</p>
                 </div>
               </div>
@@ -219,16 +219,12 @@ export function LiveMap() {
                       {t('dashboard.liveIntelligence')}
                     </span>
                     <ExplainabilityBadge 
-                      data={{
-                        mechanism: "Predictive spatial modeling using historical incident density and real-time personnel deployment data.",
-                        confidence: 85,
-                        dataSources: ["Dispatch Logs", "Historical FIRs (Last 30 Days)"],
-                      }}
+                      data={selectedSpot.explainability}
                       contextId={`map-alert-${selectedSpot.id}`}
                     />
                   </div>
                   <p className="text-sm font-medium text-slate-700 leading-relaxed">
-                    {t(`map.spot.${selectedSpot.id}.alert` as any)}
+                    {selectedSpot.recentAlert}
                   </p>
                 </div>
                 

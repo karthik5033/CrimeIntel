@@ -71,7 +71,7 @@ export function EarlyWarningSection() {
         </div>
         <Button variant="outline" size="sm" asChild className="border-destructive/30 text-destructive hover:bg-destructive/10">
           <Link href="/alerts">
-            View All <ArrowRight className="w-4 h-4 ml-2" />
+            {t('dashboard.viewAll')} <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
         </Button>
       </CardHeader>
@@ -94,13 +94,17 @@ export function EarlyWarningSection() {
             <TrendingUp className="w-5 h-5 text-warning mt-0.5 shrink-0" />
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <h4 className="font-semibold text-foreground">Hotspot Escalation: {hotspot.district}</h4>
-                <Badge variant="outline" className="text-[10px] bg-warning/10 text-warning border-warning/30">MONITOR</Badge>
+                <h4 className="font-semibold text-foreground">
+                  {t('earlyWarning.hotspotEscalation').replace('{district}', hotspot.district)}
+                </h4>
+                <Badge variant="outline" className="text-[10px] bg-warning/10 text-warning border-warning/30">
+                  {t('earlyWarning.monitor')}
+                </Badge>
               </div>
               <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{hotspot.reasoning}</p>
             </div>
             <div className="text-right">
-              <div className="text-[10px] uppercase text-muted-foreground font-semibold">Risk</div>
+              <div className="text-[10px] uppercase text-muted-foreground font-semibold">{t('earlyWarning.risk')}</div>
               <div className="font-bold text-warning">{hotspot.risk_score}</div>
             </div>
           </div>

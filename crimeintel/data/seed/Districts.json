@@ -1,0 +1,52 @@
+[
+  {
+    "id": "DIST_1",
+    "name": "Bengaluru Urban",
+    "name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+    "lat": 12.9716,
+    "lng": 77.5946,
+    "zone": "Central",
+    "division": "South",
+    "officers_deployed": 1205
+  },
+  {
+    "id": "DIST_2",
+    "name": "Mysuru",
+    "name_kn": "ಮೈಸೂರು",
+    "lat": 12.2958,
+    "lng": 76.6394,
+    "zone": "South",
+    "division": "Mysuru",
+    "officers_deployed": 450
+  },
+  {
+    "id": "DIST_3",
+    "name": "Mangaluru",
+    "name_kn": "ಮಂಗಳೂರು",
+    "lat": 12.9141,
+    "lng": 74.8560,
+    "zone": "West",
+    "division": "Mangaluru",
+    "officers_deployed": 320
+  },
+  {
+    "id": "DIST_4",
+    "name": "Hubballi-Dharwad",
+    "name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
+    "lat": 15.3647,
+    "lng": 75.1240,
+    "zone": "North",
+    "division": "Hubballi",
+    "officers_deployed": 280
+  },
+  {
+    "id": "DIST_5",
+    "name": "Belagavi",
+    "name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 15.8497,
+    "lng": 74.4977,
+    "zone": "North",
+    "division": "Belagavi",
+    "officers_deployed": 210
+  }
+]

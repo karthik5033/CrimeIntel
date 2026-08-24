@@ -4,6 +4,7 @@ import { ContextManager } from '@/lib/ai/chat/contextManager';
 import { IntentClassifier } from '@/lib/ai/chat/intentClassifier';
 import { Coordinator } from '@/lib/ai/agents/coordinator';
 import { CatalystQuickML } from '@/lib/catalyst/quickml';
+import { ReasoningEngine } from '@/lib/reasoning/engine';
 
 export async function POST(request: Request) {
   try {
@@ -62,6 +63,14 @@ export async function POST(request: Request) {
       quickMLResponse = "*(Intelligence retrieved via Pre-computational RAG and Graph RAG)*\n\n" + quickMLResponse;
     }
 
+    // 5.1 Trigger Reasoning Engine for analytical traces
+    let reasoningBlockOutput = null;
+    try {
+      reasoningBlockOutput = await ReasoningEngine.processQuery(parsedQuery.resolvedQuery, evidence);
+    } catch (e) {
+      console.warn("Reasoning Engine failed to process query:", e);
+    }
+
     // Fallback if QuickML is unavailable
     if (!quickMLResponse) {
       quickMLResponse = "I retrieved the relevant data but the generative model is currently unavailable to summarize it.";
@@ -87,6 +96,7 @@ export async function POST(request: Request) {
       text_summary: quickMLResponse,
       data_table: dataTable.length > 0 ? dataTable : undefined,
       rag_context: evidence,
+      reasoning_block: reasoningBlockOutput,
     });
 
   } catch (error) {

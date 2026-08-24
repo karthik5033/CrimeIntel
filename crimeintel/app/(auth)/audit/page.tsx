@@ -6,6 +6,8 @@ import { ShieldCheck, Search, Filter, Download, FileText, ChevronRight } from "l
 import { useLanguage } from "@/lib/LanguageContext";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { downloadDataAsCsv } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { 
   Table, 
@@ -46,9 +48,12 @@ export default function AuditDashboard() {
       event_type: "EXPORT",
       user_id: "ADMIN",
       user_role: "ADMIN",
-      details: { export_type: "SYSTEM_GOVERNANCE_REPORT", format: "PDF" }
+      details: { export_type: "SYSTEM_GOVERNANCE_REPORT", format: "CSV" }
     });
-    alert("System Governance Report (PDF) generation initiated. In a real system, this would trigger SmartBrowz.");
+    
+    // Use the CSV export functionality
+    const dataToExport = filteredLogs.length > 0 ? filteredLogs : logs;
+    downloadDataAsCsv(dataToExport, `System_Governance_Report_${new Date().toISOString().split('T')[0]}`);
   };
 
   const getEventBadgeColor = (type: string) => {

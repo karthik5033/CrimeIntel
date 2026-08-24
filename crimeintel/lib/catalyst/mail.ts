@@ -21,7 +21,7 @@ export const CatalystMail = {
       const app = getCatalystApp();
       if (app.email) {
         await app.email().sendMail({
-          from_email: options.fromEmail || 'alerts@crimeintel.ksp.gov.in',
+          from_email: options.fromEmail || process.env.CATALYST_ALERT_FROM_EMAIL || 'alerts@crimeintel.ksp.gov.in',
           to_email: [options.toEmail],
           subject: options.subject,
           content: options.content,

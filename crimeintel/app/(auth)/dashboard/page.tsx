@@ -40,10 +40,13 @@ import Link from "next/link";
 import { PrintButton } from "@/components/reports/PrintButton";
 import { PrintHeader } from "@/components/reports/PrintHeader";
 import { PrintFooter } from "@/components/reports/PrintFooter";
+import { downloadDataAsCsv } from "@/lib/utils";
+import { Download } from "lucide-react";
 
 export default function DashboardPage() {
   const { t } = useLanguage();
   const [recentFIRs, setRecentFIRs] = useState<any[]>([]);
+  const [fullFIRData, setFullFIRData] = useState<any[]>([]);
   const [stats, setStats] = useState({
     activeInvestigations: 0,
     personsOfInterest: 0,
@@ -91,6 +94,7 @@ export default function DashboardPage() {
         
         // Get latest 5 FIRs (already sorted by date DESC in query)
         setRecentFIRs(allFIRs.slice(0, 5));
+        setFullFIRData(allFIRs);
         
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load data');
@@ -141,7 +145,7 @@ export default function DashboardPage() {
     <div className="flex-1 space-y-8 p-8 pt-6 max-w-7xl mx-auto w-full print:max-w-full print:p-0">
       <PrintHeader title="Command Center Dashboard" subtitle="Real-time operations overview" />
 
-      <QuickMLBar />
+      <div className="print:hidden"><QuickMLBar /></div>
 
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 no-print">
         <div>
@@ -149,7 +153,13 @@ export default function DashboardPage() {
           <p className="text-muted-foreground mt-1">{t('dashboard.subtitle')}</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="outline">{t('dashboard.downloadCsv')}</Button>
+          <Button 
+            variant="outline" 
+            onClick={() => downloadDataAsCsv(fullFIRData.length > 0 ? fullFIRData : recentFIRs, `CrimeIntel_Dashboard_Report_${new Date().toISOString().split('T')[0]}`)}
+          >
+            <Download className="w-4 h-4 mr-2" />
+            {t('dashboard.downloadCsv')}
+          </Button>
           <PrintButton label={t('dashboard.generateReport') || 'Generate Report'} className="bg-primary hover:bg-primary/90 shadow-sm text-white" />
         </div>
       </div>
@@ -244,7 +254,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Side Panel (Live Event Feed) */}
-        <div className="col-span-2 flex flex-col h-full">
+        <div className="col-span-2 flex flex-col h-full print:hidden">
           <LiveEventFeed />
           
           <div className="mt-4 p-4 border border-border/50 bg-muted/20 rounded-lg shadow-sm">
@@ -258,7 +268,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <LiveMap />
+      <div className="print:hidden"><LiveMap /></div>
 
       {/* Recent Cases Table */}
       <Card className="shadow-sm border-border/50 bg-card/50">
@@ -278,7 +288,7 @@ export default function DashboardPage() {
                 <TableHead className="font-semibold">{t('table.location')}</TableHead>
                 <TableHead className="font-semibold">{t('table.date')}</TableHead>
                 <TableHead className="font-semibold">{t('table.status')}</TableHead>
-                <TableHead className="text-right font-semibold">{t('table.action')}</TableHead>
+                <TableHead className="text-right font-semibold print:hidden">{t('table.action')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -303,11 +313,11 @@ export default function DashboardPage() {
                       {new Date(fir.date).toLocaleDateString()}
                     </TableCell>
                     <TableCell>
-                      <Badge variant="secondary" className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 font-normal">
+                      <Badge variant="secondary" className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 font-normal print:border print:border-slate-300 print:text-slate-900">
                         {fir.status_en}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right print:hidden">
                       <Button variant="ghost" size="sm">{t('table.investigate')}</Button>
                     </TableCell>
                   </TableRow>
