@@ -501,8 +501,50 @@ function createMockCatalystInstance() {
     }),
     quickML: () => ({
       predict: async (endpointKey: string, inputData: any) => {
-        console.log(`🤖 MOCK QuickML predict called for endpoint: ${endpointKey}`);
+        const groqKey = process.env.GROQ_API_KEY;
+        const prompt = inputData.prompt || '';
         
+        if (groqKey) {
+          try {
+            console.log('🤖 MOCK QuickML: Forwarding to Groq API for realistic mock');
+            let systemMessage = "You are an expert AI Intelligence Copilot for the Karnataka State Police. Based on the provided Context (JSON data of FIRs, Cases, etc.), answer the User's Query clearly and concisely in natural language. DO NOT output any SQL, Python code, or instructions on how to query. Simply summarize the records from the context.";
+            let userMessage = prompt;
+            
+            if (inputData.context) {
+               userMessage = `Context:\n${inputData.context}\n\nQuery:\n${prompt}`;
+            }
+
+            const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${groqKey}`
+              },
+              body: JSON.stringify({
+                model: 'llama-3.1-8b-instant',
+                messages: [
+                  { role: 'system', content: systemMessage },
+                  { role: 'user', content: userMessage }
+                ],
+                temperature: 0.3
+              })
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              const text = data.choices[0].message.content || "No response generated";
+              return { text };
+            } else {
+              const errorText = await response.text();
+              console.warn('❌ MOCK QuickML Groq API fallback failed:', errorText);
+              return { text: `API Error: The Groq API returned an error. Details: ${errorText}` };
+            }
+          } catch (e: any) {
+            console.error('❌ MOCK QuickML Groq API fallback error:', e);
+            return { text: `API Connection Error: ${e.message}` };
+          }
+        }
+
         // Pure local mock without external API dependencies
         if (prompt.includes('intent classifier')) {
           console.log('🤖 MOCK QuickML: Intent classifier fallback triggered, throwing error to force heuristic classification.');

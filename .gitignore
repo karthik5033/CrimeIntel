@@ -9,3 +9,6 @@ Test pdfs/
 
 # Database files
 db/
+
+# Build archives
+*.zip

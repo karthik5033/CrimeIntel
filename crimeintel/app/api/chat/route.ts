@@ -70,7 +70,6 @@ export async function POST(request: Request) {
     } catch (e) {
       console.warn("Reasoning Engine failed to process query:", e);
     }
-
     // Fallback if QuickML is unavailable
     if (!quickMLResponse) {
       quickMLResponse = "I retrieved the relevant data but the generative model is currently unavailable to summarize it.";
