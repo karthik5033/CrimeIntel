@@ -1,6 +1,56 @@
 import { getCatalystApp } from './index';
 
 /**
+ * Builds a parameterized ZCQL query with safe parameter substitution.
+ * Escapes single quotes by doubling them (ZCQL standard) to prevent SQL injection.
+ * 
+ * @param baseQuery - Query template with {param} placeholders
+ * @param params - Object mapping parameter names to values
+ * @returns Safe query string with parameters substituted
+ * 
+ * @example
+ * buildParameterizedQuery(
+ *   "SELECT * FROM Persons WHERE ROWID = '{id}'",
+ *   { id: "P-123" }
+ * )
+ * // Returns: "SELECT * FROM Persons WHERE ROWID = 'P-123'"
+ * 
+ * @example
+ * // Handles SQL injection by escaping quotes
+ * buildParameterizedQuery(
+ *   "SELECT * FROM Persons WHERE ROWID = '{id}'",
+ *   { id: "'; DROP TABLE Persons; --" }
+ * )
+ * // Returns: "SELECT * FROM Persons WHERE ROWID = '''; DROP TABLE Persons; --'"
+ */
+function buildParameterizedQuery(
+  baseQuery: string,
+  params: Record<string, string | number>
+): string {
+  let query = baseQuery;
+  
+  // Escape single quotes in string parameters (ZCQL standard: double them)
+  const escaped: Record<string, string> = {};
+  for (const [key, value] of Object.entries(params)) {
+    if (typeof value === 'string') {
+      // Escape single quotes by doubling them
+      escaped[key] = value.replace(/'/g, "''");
+    } else {
+      // Convert numbers to strings without quotes
+      escaped[key] = String(value);
+    }
+  }
+  
+  // Replace placeholders with escaped values
+  for (const [key, value] of Object.entries(escaped)) {
+    const placeholder = `{${key}}`;
+    query = query.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value);
+  }
+  
+  return query;
+}
+
+/**
  * DataStore API layer - Connects Next.js to Catalyst Data Store via ZCQL/SDK
  * NO FALLBACKS - If Catalyst is not configured or empty, operations will fail.
  * This forces proper data loading and proves real Catalyst integration.
@@ -27,7 +77,11 @@ export const CatalystDataStore = {
       throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
     
-    const queryResult = await zcql.executeZCQLQuery(`SELECT * FROM Persons WHERE ROWID = '${id}'`);
+    const query = buildParameterizedQuery(
+      "SELECT * FROM Persons WHERE ROWID = '{id}'",
+      { id }
+    );
+    const queryResult = await zcql.executeZCQLQuery(query);
     return queryResult.length > 0 ? (queryResult[0].Persons || queryResult[0]) : null;
   },
 
@@ -65,7 +119,11 @@ export const CatalystDataStore = {
       throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
     
-    const queryResult = await zcql.executeZCQLQuery(`SELECT * FROM FIRs WHERE ROWID = '${id}'`);
+    const query = buildParameterizedQuery(
+      "SELECT * FROM FIRs WHERE ROWID = '{id}'",
+      { id }
+    );
+    const queryResult = await zcql.executeZCQLQuery(query);
     return queryResult.length > 0 ? (queryResult[0].FIRs || queryResult[0]) : null;
   },
 
@@ -155,9 +213,11 @@ export const CatalystDataStore = {
       throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
     
-    const queryResult = await zcql.executeZCQLQuery(
-      `SELECT * FROM EntityRelationships WHERE source = '${entityId}' OR target = '${entityId}'`
+    const query = buildParameterizedQuery(
+      "SELECT * FROM EntityRelationships WHERE source = '{entityId}' OR target = '{entityId}'",
+      { entityId }
     );
+    const queryResult = await zcql.executeZCQLQuery(query);
     return queryResult.map((row: any) => row.EntityRelationships || row);
   },
 

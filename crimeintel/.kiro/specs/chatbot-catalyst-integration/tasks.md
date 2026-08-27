@@ -1,0 +1,663 @@
+# Implementation Plan: Chatbot Catalyst Integration Fix
+
+## Overview
+This task list implements the fix for the Zoho Catalyst integration cascade failure that causes all services to fall back to mock implementations. The fix follows a 4-phase approach: Authentication → LLM Pipeline → Data Security → Session Persistence.
+
+---
+
+## Bug Condition Exploration Test
+
+- [x] 1. Write bug condition exploration test
+  - **Property 1: Bug Condition** - Catalyst Service Fallback Detection
+  - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
+  - **DO NOT attempt to fix the test or the code when it fails**
+  - **NOTE**: This test encodes the expected behavior - it will validate the fix when it passes after implementation
+  - **GOAL**: Surface counterexamples that demonstrate authentication cascade failures
+  - **Scoped PBT Approach**: Test concrete failing scenarios - SDK init without credentials, QuickML hardcoded responses, Reasoning Engine fallback with confidence=30
+  - Create test file `tests/integration/catalyst-integration.test.ts`
+  - Test 1.1: Call `getCatalystApp()` with `USE_MOCK_CATALYST=false` but no OAuth credentials → should silently return mock instance (line 148 of index.ts)
+  - Test 1.2: Call `CatalystQuickML.generateResponse("hello")` → should return hardcoded string "Hello Officer. I am ready to assist with your investigation." from mock predict()
+  - Test 1.3: Call `ReasoningEngine.processQuery("analyze murder cases")` → should return fallbackReasoning() with confidence.score=30 and empty mechanisms array
+  - Test 1.4: Call `CatalystNoSQL.getChatSession("test-123")` → should return empty array [] from mock NoSQL
+  - Test 1.5: Call `getPersonById("'; DROP TABLE Persons; --")` → should create vulnerable query string with unescaped SQL injection payload
+  - Assert that:
+    - SDK returns mock instance despite `USE_MOCK_CATALYST=false`
+    - QuickML responses match hardcoded templates exactly
+    - Reasoning confidence is exactly 30 with empty mechanisms
+    - Session retrieval returns empty regardless of session_id
+    - SQL queries use string interpolation vulnerable to injection
+  - Run test on UNFIXED code
+  - **EXPECTED OUTCOME**: Test FAILS (this is correct - it proves the bug exists)
+  - Document counterexamples found:
+    - Example: `getCatalystApp()` authentication failure silently falls back to mock
+    - Example: `generateResponse("hello")` returns "Hello Officer..." instead of GLM-generated text
+    - Example: `processQuery()` returns { confidence: { score: 30 }, mechanisms: [] }
+    - Example: String interpolation query: `` `SELECT * FROM Persons WHERE ROWID = ''; DROP TABLE Persons; --'` ``
+  - Mark task complete when test is written, run, and failures are documented
+  - _Requirements: 1.1, 1.2, 1.3, 1.7, 1.8, 1.9, 1.10, 1.14, 1.15, 1.18, 1.6_
+
+---
+
+## Preservation Property Tests
+
+- [x] 2. Write preservation property tests (BEFORE implementing fix)
+  - **Property 2: Preservation** - API Contract and Data Structure Stability
+  - **IMPORTANT**: Follow observation-first methodology
+  - Create test file `tests/integration/preservation.test.ts`
+  - **Step 1 - Observe**: Run UNFIXED code and document actual behavior for non-buggy inputs
+  - Observe: POST to `/api/chat` with `{ message: "hello", language: "en", sessionId: "test" }` returns structure `{ text_summary: string, data_table: any[], rag_context: any, reasoning_block: object }`
+  - Observe: Seed data FIRs.json has fields: `fir_no`, `crime_type_en`, `district_id`, `date`, `status_en`, `description`
+  - Observe: Intent classification recognizes 6 types: DIRECT_RETRIEVAL, AGGREGATE_ANALYTICAL, REASONING_QUERY, RELATIONSHIP_QUERY, CONVERSATIONAL, FOLLOW_UP
+  - Observe: Kannada query `{ message: "ಕೊಲೆ", language: "kn" }` translates to "murder" and returns translated response
+  - Observe: ReasoningBlock UI component expects `{ claim, mechanisms, evidence, alternatives, confidence }` structure
+  - **Step 2 - Write Property Tests**: Create property-based tests capturing observed behavior patterns
+  - Test 2.1: FOR ALL valid chat requests, response MUST have fields: `text_summary` (string), `data_table` (array), `rag_context` (object), `reasoning_block` (object)
+  - Test 2.2: FOR ALL seed data records, schema MUST match existing JSON structure with same field names and types
+  - Test 2.3: FOR ALL intent classification inputs, output MUST be one of the 6 valid intent types
+  - Test 2.4: FOR ALL Kannada queries (`language: "kn"`), translation service MUST continue to work (uses external API, not affected by Catalyst fix)
+  - Test 2.5: FOR ALL reasoning outputs, structure MUST include `claim` (string), `mechanisms` (array), `evidence` (array), `alternatives` (array), `confidence` (object with level and score)
+  - Use property-based testing library (e.g., fast-check for TypeScript) to generate many test cases
+  - Run tests on UNFIXED code
+  - **EXPECTED OUTCOME**: Tests PASS (this confirms baseline behavior to preserve)
+  - Mark task complete when tests are written, run, and passing on unfixed code
+  - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14_
+
+---
+
+## Phase 1: Authentication & Infrastructure
+
+- [ ] 3. Fix Catalyst authentication and infrastructure
+
+  - [x] 3.1 Create centralized OAuth authentication module
+    - **File**: `lib/catalyst/auth.ts` (NEW FILE)
+    - **Purpose**: Create shared OAuth token management with caching
+    - **Changes**:
+      - Create singleton token cache: `let cachedAccessToken: string | null = null; let tokenExpiry: number = 0;`
+      - Implement `getSharedAccessToken(): Promise<string>` function
+      - Check cached token validity (expires in > 60 seconds)
+      - If expired, fetch new token via Zoho OAuth refresh token flow: POST to `https://accounts.zoho.in/oauth/v2/token`
+      - Request body: `{ client_id, client_secret, refresh_token, grant_type: 'refresh_token' }`
+      - Parse response: `{ access_token, expires_in }`
+      - Cache token and expiry timestamp
+      - Throw explicit error if credentials missing: `CATALYST_CLIENT_ID`, `CATALYST_CLIENT_SECRET`, `CATALYST_REFRESH_TOKEN` required
+      - Export function for use by QuickML, Reasoning Engine, and other services
+    - **Testing**:
+      - Unit test: Call with valid credentials → should return token
+      - Unit test: Call twice within 60s → should return cached token without API call
+      - Unit test: Call without credentials → should throw clear error message
+      - Integration test: Verify token works with real Catalyst API endpoint
+    - **Acceptance Criteria**:
+      - ✅ Token caching reduces OAuth API calls
+      - ✅ Throws explicit error when credentials missing
+      - ✅ Returns valid access token that works with Catalyst services
+    - _Bug_Condition: isBugCondition(state) where NOT state.catalyst_authenticated_
+    - _Expected_Behavior: getSharedAccessToken() returns valid Bearer token for all Catalyst services_
+    - _Preservation: Does not affect existing translation service or frontend logic_
+    - _Requirements: 2.1, 2.2, 2.3_
+
+  - [x] 3.2 Update SDK initialization with strict mode
+    - **File**: `lib/catalyst/index.ts`
+    - **Dependencies**: Task 3.1 complete
+    - **Changes**:
+      - **Change 1**: Add OAuth Refresh Token strategy before Strategy 4 (lines 130-145)
+        - Check for `CATALYST_CLIENT_ID`, `CATALYST_CLIENT_SECRET`, `CATALYST_REFRESH_TOKEN` env vars
+        - If present, import `getSharedAccessToken` from `./auth`
+        - Call `const accessToken = await getSharedAccessToken()`
+        - Initialize SDK with token: `catalyst.initialize({ type: 'token', token: accessToken, project_id, environment })`
+        - Log success: "✅ OAuth Refresh Token authentication successful"
+      - **Change 2**: Update catch block on line 148 to respect `USE_MOCK_CATALYST` flag
+        - Replace silent fallback with conditional logic - if `USE_MOCK_CATALYST=false`, throw error with message explaining credentials needed
+        - If `USE_MOCK_CATALYST=true`, continue with mock fallback as before
+      - **Change 3**: Extract hardcoded org ID to environment variable
+        - Search codebase for `60078981781`
+        - Replace all occurrences with `process.env.CATALYST_ORG_ID || '60078981781'`
+    - **Testing**:
+      - Integration test: Set valid OAuth credentials + `USE_MOCK_CATALYST=false` → should authenticate successfully
+      - Integration test: Set `USE_MOCK_CATALYST=false` without credentials → should throw clear error (not silent fallback)
+      - Integration test: Set `USE_MOCK_CATALYST=true` → should return mock instance regardless of credentials
+      - Unit test: Verify SDK instance is real (not mock) when authenticated
+    - **Acceptance Criteria**:
+      - ✅ OAuth strategy successfully authenticates with real credentials
+      - ✅ Strict mode throws error when auth fails and mock disabled
+      - ✅ Org ID is configurable via environment variable
+      - ✅ SDK returns real Catalyst instance (not mock) when authenticated
+    - _Bug_Condition: isBugCondition(state) where state.using_mock = TRUE despite USE_MOCK_CATALYST=false_
+    - _Expected_Behavior: System throws clear startup error instead of silent fallback when auth fails_
+    - _Preservation: Mock mode still works when USE_MOCK_CATALYST=true for development_
+    - _Requirements: 2.1, 2.2, 2.3_
+
+  - [x] 3.3 Configure environment variables
+    - **File**: `.env.local` (create if doesn't exist)
+    - **Dependencies**: None (can run in parallel with 3.1, 3.2)
+    - **Changes**:
+      - Add new required variables for OAuth authentication
+      - Document credential generation process in README
+      - Create `.env.local.example` file for team reference
+    - **Testing**:
+      - Verify app reads variables correctly
+      - Verify credentials work with Catalyst OAuth API
+    - **Acceptance Criteria**:
+      - ✅ All required environment variables are documented
+      - ✅ Credentials generation instructions are clear
+      - ✅ .env.local.example file created for team reference
+    - _Requirements: 2.1, 3.9_
+
+  - [x] 3.4 Test authentication flow end-to-end
+    - **File**: `tests/integration/auth-flow.test.ts` (NEW FILE)
+    - **Dependencies**: Tasks 3.1, 3.2, 3.3 complete
+    - **Changes**:
+      - Create integration test file
+      - Test 1: Verify `getCatalystApp()` returns authenticated instance
+      - Test 2: Execute simple ZCQL query: `SELECT * FROM FIRs LIMIT 1`
+      - Test 3: Verify result comes from real Catalyst Data Store (not seed JSON)
+      - Test 4: Check ROWID format is real Catalyst ID (not "MOCK_*")
+      - Test 5: Verify NoSQL table connection works
+    - **Testing**:
+      - Run integration test suite
+      - Verify all tests pass
+      - Check console logs show OAuth authentication successful
+    - **Acceptance Criteria**:
+      - ✅ SDK authenticates successfully with real credentials
+      - ✅ ZCQL queries return data from real Catalyst Data Store
+      - ✅ NoSQL operations connect to real Catalyst tables
+      - ✅ No "⚠️ Falling back to MOCK mode" warnings appear
+    - _Bug_Condition: isBugCondition(state) where NOT state.catalyst_authenticated_
+    - _Expected_Behavior: All Catalyst services operate against real cloud infrastructure_
+    - _Preservation: Seed data structure matches existing JSON format_
+    - _Requirements: 2.1, 2.3, 2.4, 3.1_
+
+---
+
+## Phase 2: LLM Pipeline
+
+- [x] 4. Fix QuickML/GLM LLM response generation
+
+  - [x] 4.1 Update QuickML OAuth integration
+    - **File**: `lib/catalyst/quickml.ts`
+    - **Dependencies**: Task 3.1 complete (auth.ts exists)
+    - **Changes**:
+      - Import shared OAuth module at top of file
+      - Replace SDK credential method with `getSharedAccessToken()` from auth module
+      - Update fetch headers to include Authorization Bearer token and CATALYST-ORG
+      - Remove fallback to mock predict() when API fails (throw error instead)
+      - Keep existing Groq fallback if `GROQ_API_KEY` configured
+    - **Testing**:
+      - Unit test: Mock `getSharedAccessToken()` to return fake token, verify headers correct
+      - Integration test: Call `generateResponse("hello")` with real credentials, verify response NOT hardcoded
+      - Integration test: Verify response length > 50 chars
+    - **Acceptance Criteria**:
+      - ✅ Uses shared OAuth token from auth.ts
+      - ✅ Sends proper authentication headers to Catalyst GLM API
+      - ✅ Throws error on auth failure instead of silent fallback
+      - ✅ Generates real LLM responses (not hardcoded templates)
+    - _Bug_Condition: isBugCondition(state) where NOT state.quickml_functional_
+    - _Expected_Behavior: QuickML generates natural language responses using GLM 47B model_
+    - _Preservation: API interface unchanged, still accepts same prompt/context parameters_
+    - _Requirements: 2.7, 2.8, 2.9, 2.10_
+
+  - [x] 4.2 Implement context summarization
+    - **File**: `lib/catalyst/quickml.ts`
+    - **Dependencies**: Task 4.1 complete
+    - **Changes**:
+      - Add `summarizeRagContext()` function that caps records at 15
+      - Extract only key fields (fir_no, crime_type_en, district_id, date, status_en, description)
+      - Update userMessage construction to use summarized context
+    - **Testing**:
+      - Unit test: Call with 50 FIR records, verify output contains max 15 records
+      - Unit test: Verify summary only includes key fields
+      - Unit test: Verify summary string length < 5000 chars
+      - Integration test: Send chat query with large RAG context, verify no token limit errors
+    - **Acceptance Criteria**:
+      - ✅ Context capped at 15 records maximum
+      - ✅ Only essential fields included in summary
+      - ✅ No token overflow errors with large contexts
+      - ✅ GLM API calls complete successfully
+    - _Expected_Behavior: Context size optimized to stay within GLM token limits_
+    - _Preservation: Existing context structure unchanged, only summarized before sending to LLM_
+    - _Requirements: 2.11_
+
+  - [x] 4.3 Create domain-specific system prompt
+    - **File**: `lib/catalyst/quickml.ts`
+    - **Dependencies**: Task 4.1 complete
+    - **Changes**:
+      - Replace generic system prompt with Karnataka State Police domain prompt
+      - Include role description for FIR analysis and intelligence insights
+      - Add guidelines for law enforcement terminology and confidence levels
+      - Include current query context and active filters
+    - **Testing**:
+      - Integration test: Send query "show murder cases", verify response uses law enforcement terminology
+      - Integration test: Verify response mentions FIR numbers when available
+      - Integration test: Send Kannada query, verify response culturally appropriate
+      - Manual review: Check 10 sample responses for domain appropriateness
+    - **Acceptance Criteria**:
+      - ✅ Responses use law enforcement terminology
+      - ✅ Responses reference FIR numbers and specific evidence
+      - ✅ Responses apply criminological frameworks when appropriate
+      - ✅ Kannada responses are culturally accurate
+    - _Expected_Behavior: GLM generates domain-specific responses appropriate for Karnataka State Police_
+    - _Preservation: System prompt structure unchanged, only content improved_
+    - _Requirements: 2.12_
+
+  - [x] 4.4 Update Reasoning Engine SDK usage
+    - **File**: `lib/reasoning/engine.ts`
+    - **Dependencies**: Task 3.2 complete (getCatalystApp working)
+    - **Changes**:
+      - Remove independent SDK initialization, import and use `getCatalystApp()` instead
+      - Use shared OAuth for GLM API calls via `getSharedAccessToken()`
+      - Update fetch headers with Authorization Bearer token and CATALYST-ORG
+      - Request JSON response format if GLM supports it
+    - **Testing**:
+      - Unit test: Verify `getCatalystApp()` called only once
+      - Integration test: Call `processQuery("analyze murder cases")`, verify uses shared SDK
+      - Integration test: Verify response NOT fallbackReasoning() with confidence=30
+      - Integration test: Verify reasoning output has populated mechanisms array
+    - **Acceptance Criteria**:
+      - ✅ Uses shared SDK instance from getCatalystApp()
+      - ✅ No independent SDK initialization
+      - ✅ Uses shared OAuth token
+      - ✅ Returns real reasoning output (not fallback)
+    - _Bug_Condition: isBugCondition(state) where NOT state.reasoning_engine_functional_
+    - _Expected_Behavior: Reasoning Engine uses shared authenticated instance_
+    - _Preservation: Reasoning output structure unchanged_
+    - _Requirements: 2.15, 2.16_
+
+  - [x] 4.5 Improve JSON parsing robustness
+    - **File**: `lib/reasoning/engine.ts`
+    - **Dependencies**: Task 4.4 complete
+    - **Changes**:
+      - Update JSON parsing to handle markdown code blocks
+      - Strip ``` json ``` wrappers if present
+      - Validate required fields (claim, confidence) exist
+      - Fall back to fallbackReasoning() on parse errors
+      - Log raw response on errors for debugging
+    - **Testing**:
+      - Unit test: Parse response with markdown code blocks
+      - Unit test: Parse response with plain JSON
+      - Unit test: Parse response with invalid JSON → should return fallbackReasoning()
+      - Unit test: Parse response missing required fields → should return fallbackReasoning()
+    - **Acceptance Criteria**:
+      - ✅ Handles markdown-wrapped JSON responses
+      - ✅ Handles plain JSON responses
+      - ✅ Validates required fields
+      - ✅ Falls back gracefully on parse errors
+    - _Expected_Behavior: Robust JSON parsing handles various GLM response formats_
+    - _Preservation: Fallback behavior preserved when parsing genuinely fails_
+    - _Requirements: 2.17_
+
+  - [x] 4.6 Verify bug condition exploration test now passes
+    - **Property 1: Expected Behavior** - Real Catalyst Service Integration
+    - **IMPORTANT**: Re-run the SAME test from task 1 - do NOT write a new test
+    - Run `tests/integration/catalyst-integration.test.ts` from task 1
+    - **EXPECTED OUTCOME**: Test PASSES (confirms bug is fixed)
+    - Verify:
+      - `getCatalystApp()` returns real SDK instance (not mock)
+      - `CatalystQuickML.generateResponse("hello")` returns LLM-generated text (not hardcoded template)
+      - `ReasoningEngine.processQuery()` returns reasoning with confidence != 30 and populated mechanisms
+      - `CatalystNoSQL.getChatSession()` retrieves real session data (not empty array)
+    - _Requirements: 2.9, 2.10, 2.11, 2.17_
+
+  - [x] 4.7 Verify preservation tests still pass
+    - **Property 2: Preservation** - API Contract and Data Structure Stability
+    - **IMPORTANT**: Re-run the SAME tests from task 2 - do NOT write new tests
+    - Run `tests/integration/preservation.test.ts` from task 2
+    - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)
+    - Verify all preservation properties still hold:
+      - API response structure unchanged
+      - Seed data schema unchanged
+      - Intent classification types unchanged
+      - Translation service still works
+      - UI component compatibility preserved
+    - _Requirements: 3.3, 3.4, 3.5, 3.6, 3.7_
+
+---
+
+## Phase 3: Data Security & Quality
+
+- [x] 5. Fix database security and query optimization
+
+  - [x] 5.1 Implement parameterized query helper
+    - **File**: `lib/catalyst/datastore.ts`
+    - **Dependencies**: Task 3.2 complete (SDK authenticated)
+    - **Changes**:
+      - Add `buildParameterizedQuery()` function at top of file
+      - Escape single quotes in string parameters (ZCQL standard: double them)
+      - Replace {param} placeholders with escaped values
+      - Handle both string and numeric parameters
+      - Add JSDoc documentation with examples
+    - **Testing**:
+      - Unit test: Normal input → correct substitution
+      - Unit test: SQL injection payload → properly escaped
+      - Unit test: Single quotes in data (e.g., "O'Brien") → escaped correctly
+      - Unit test: Multiple parameters → all substituted correctly
+      - Unit test: Numeric parameters → converted to string without quotes
+    - **Acceptance Criteria**:
+      - ✅ Escapes single quotes by doubling them
+      - ✅ Prevents SQL injection by treating malicious input as literal
+      - ✅ Handles multiple parameters correctly
+      - ✅ Handles numeric and string parameters
+    - _Bug_Condition: isBugCondition(input) where input contains SQL injection payload_
+    - _Expected_Behavior: All user inputs safely escaped before query execution_
+    - _Preservation: Query results for valid inputs remain unchanged_
+    - _Requirements: 2.5_
+
+  - [x] 5.2 Fix SQL injection in getPersonById
+    - **File**: `lib/catalyst/datastore.ts`
+    - **Dependencies**: Task 5.1 complete
+    - **Changes**:
+      - Replace string interpolation in `getPersonById()` with `buildParameterizedQuery()`
+      - Update query from `` `SELECT * FROM Persons WHERE ROWID = '${id}'` `` to parameterized version
+    - **Testing**:
+      - Security test: Call with `"'; DROP TABLE Persons; --"` → should safely escape and return no results
+      - Security test: Call with `"P-123' OR '1'='1"` → should escape and return no results
+      - Functional test: Call with valid ID "P-123" → should return correct person record
+      - Functional test: Call with name containing quote → should handle correctly
+    - **Acceptance Criteria**:
+      - ✅ SQL injection attempts are safely escaped
+      - ✅ Valid queries still return correct results
+      - ✅ Special characters in IDs handled correctly
+    - _Bug_Condition: isBugCondition(input) where input.id contains SQL metacharacters_
+    - _Expected_Behavior: All inputs treated as literal values, SQL injection prevented_
+    - _Preservation: Query results for valid IDs unchanged_
+    - _Requirements: 2.5, 1.6_
+
+  - [x] 5.3 Apply parameterized queries to all methods
+    - **File**: `lib/catalyst/datastore.ts`
+    - **Dependencies**: Task 5.2 complete
+    - **Changes**:
+      - Update `getFIRs()` method to use parameterized queries
+      - Update `getVehicles()` method to use parameterized queries
+      - Update `getEntityRelationships()` method to use parameterized queries
+      - Search for all string interpolation in ZCQL queries
+      - Replace with parameterized query builder
+    - **Testing**:
+      - Security audit: Search codebase for `` `SELECT.*\$\{.*\}` `` regex → should find 0 matches
+      - Integration test: Test all datastore methods with malicious inputs
+      - Integration test: Test all datastore methods with valid inputs → verify results unchanged
+    - **Acceptance Criteria**:
+      - ✅ No string interpolation in ZCQL queries
+      - ✅ All queries use parameterized query builder
+      - ✅ All datastore methods protected from SQL injection
+      - ✅ Functional tests pass with valid inputs
+    - _Expected_Behavior: All ZCQL queries use parameterized approach_
+    - _Preservation: Query results for valid inputs remain unchanged_
+    - _Requirements: 2.5_
+
+  - [x] 5.4 Implement dynamic district mapping
+    - **File**: `lib/catalyst/datastore.ts` and `lib/ai/agents/sqlAgent.ts`
+    - **Dependencies**: Task 5.1 complete
+    - **Changes**:
+      - Add `getDistricts()` method to datastore.ts
+      - Create `getDistrictMapping()` function in sqlAgent.ts that queries database
+      - Map both English and Kannada names to district IDs
+      - Cache mapping at module initialization
+      - Export `resolveDistrictId()` helper function
+    - **Testing**:
+      - Integration test: Verify `getDistricts()` returns data from Catalyst Data Store
+      - Integration test: Add new district → verify mapping updates on next query
+      - Unit test: Test with English name "Bengaluru" → returns correct ID
+      - Unit test: Test with Kannada name → returns correct ID
+      - Unit test: Test with unknown district → returns null
+    - **Acceptance Criteria**:
+      - ✅ District mapping loaded from database (not hardcoded)
+      - ✅ Supports both English and Kannada district names
+      - ✅ Mapping cached for performance
+      - ✅ New districts automatically included
+    - _Expected_Behavior: District mapping dynamically loaded from Catalyst Data Store_
+    - _Preservation: Existing district name resolution behavior unchanged_
+    - _Requirements: 2.6_
+
+  - [x] 5.5 Update GraphAgent with server-side filtering
+    - **File**: `lib/ai/agents/graphAgent.ts`
+    - **Dependencies**: Task 5.1 complete
+    - **Changes**:
+      - Replace client-side filtering (fetch all then filter in JS) with server-side WHERE clause
+      - Create `getRelationshipsForEntity()` function using parameterized ZCQL query
+      - Use LIKE pattern for partial matching: `WHERE source LIKE '%{entity}%' OR target LIKE '%{entity}%'`
+      - Add LIMIT clause to prevent unbounded result sets (e.g., LIMIT 100)
+    - **Testing**:
+      - Performance test: Query entity with 1000+ relationships → verify only relevant rows returned
+      - Integration test: Query entity "John Doe" → verify returns correct relationships
+      - Integration test: Query non-existent entity → returns empty array
+      - Verify query includes LIMIT clause
+    - **Acceptance Criteria**:
+      - ✅ ZCQL query uses WHERE clause (server-side filtering)
+      - ✅ No client-side array filtering of full dataset
+      - ✅ Query results limited to 100 rows
+      - ✅ Performance improved for large datasets
+    - _Expected_Behavior: GraphAgent uses server-side WHERE clause filtering_
+    - _Preservation: Query results for valid entities unchanged_
+    - _Requirements: 2.23_
+
+  - [x] 5.6 Disable VectorAgent until embeddings ready
+    - **File**: `lib/ai/agents/vectorAgent.ts`
+    - **Dependencies**: None
+    - **Changes**:
+      - Update `search()` method to check for `QUICKML_EMBEDDING_ENDPOINT_KEY` env var
+      - Return empty array if embeddings not configured
+      - Add TODO comment for future implementation with real Catalyst QuickML embeddings
+      - Comment out VectorAgent usage in relevant places
+    - **Testing**:
+      - Unit test: Call without `QUICKML_EMBEDDING_ENDPOINT_KEY` → returns empty array
+      - Integration test: Run chat query → verify no fake similarity scores displayed
+      - Integration test: Verify RAG context only includes SQL and Graph results
+    - **Acceptance Criteria**:
+      - ✅ VectorAgent disabled when embeddings not configured
+      - ✅ No fake similarity scores displayed in UI
+      - ✅ Chat system works without vector search
+      - ✅ Clear TODO for future implementation
+    - _Expected_Behavior: VectorAgent disabled until real embeddings configured_
+    - _Preservation: Existing SQL and Graph retrieval continue to work_
+    - _Requirements: 2.24_
+
+  - [x] 5.7 Create data seeding endpoint
+    - **File**: `app/api/admin/seed/route.ts` (NEW FILE)
+    - **Dependencies**: Task 3.2 complete (SDK authenticated), Task 5.3 complete
+    - **Changes**:
+      - Create new API route file
+      - Require `ADMIN_SEED_TOKEN` authentication header
+      - Verify Catalyst authenticated (not mock mode)
+      - Import seed JSON files (FIRs, Persons, Vehicles, EntityRelationships, Districts)
+      - Loop through and insert each record to Catalyst Data Store
+      - Return summary of seeded records
+      - Add insert methods to datastore.ts if needed
+    - **Testing**:
+      - Security test: Call without token → returns 401 Unauthorized
+      - Security test: Call with wrong token → returns 401 Unauthorized
+      - Security test: Call in mock mode → returns 400 error
+      - Integration test: Call with valid token → successfully seeds all tables
+      - Integration test: Query tables after seeding → verify data present
+    - **Acceptance Criteria**:
+      - ✅ Requires valid admin token for security
+      - ✅ Prevents seeding in mock mode
+      - ✅ Successfully loads all seed data to Catalyst
+      - ✅ Returns summary of seeded records
+      - ✅ Handles errors gracefully
+    - _Expected_Behavior: One-time endpoint loads seed data to real Catalyst Data Store_
+    - _Preservation: Seed data structure matches existing JSON format_
+    - _Requirements: 3.1_
+
+  - [x] 5.8 Test data security and quality
+    - **File**: `tests/integration/data-security.test.ts` (NEW FILE)
+    - **Dependencies**: Tasks 5.1-5.7 complete
+    - **Changes**:
+      - Create security test file
+      - Test SQL injection attempts on all datastore methods
+      - Verify no string interpolation in ZCQL queries (code analysis)
+      - Verify GraphAgent uses server-side filtering
+      - Verify VectorAgent returns empty when embeddings not configured
+      - Verify seed endpoint requires authentication
+      - Verify district mapping loads from database
+    - **Testing**:
+      - Run security test suite
+      - Verify all SQL injection tests pass
+      - Manual code review: Search for vulnerable patterns
+    - **Acceptance Criteria**:
+      - ✅ All SQL injection attempts safely escaped
+      - ✅ No vulnerable string interpolation in queries
+      - ✅ Server-side filtering implemented
+      - ✅ VectorAgent properly disabled
+      - ✅ Seed endpoint secured
+    - _Bug_Condition: isBugCondition(input) where input contains SQL injection payload_
+    - _Expected_Behavior: All user inputs safely handled_
+    - _Preservation: Valid queries return correct results_
+    - _Requirements: 2.5, 2.6, 2.23, 2.24_
+
+---
+
+## Phase 4: Session Persistence
+
+- [x] 6. Fix session context persistence
+
+  - [x] 6.1 Define NoSQL schema for ChatSessions
+    - **File**: `lib/catalyst/nosql.ts`
+    - **Dependencies**: Task 3.2 complete (SDK authenticated)
+    - **Changes**:
+      - Add TypeScript interface `ChatSession` with fields: session_id, updated_at, user_id, data, ttl
+      - Define nested data structure: entities, conversation_history, active_context
+      - Add `createEmptySession()` helper function
+      - Set TTL to 30 days from creation
+    - **Testing**:
+      - Unit test: Create empty session → verify structure matches schema
+      - Unit test: Verify TTL is 30 days from creation
+      - Type check: Verify TypeScript compiles without errors
+    - **Acceptance Criteria**:
+      - ✅ Schema documented with TypeScript interface
+      - ✅ Empty session template helper created
+      - ✅ TTL field configured for auto-deletion
+    - _Expected_Behavior: ChatSession schema supports entity accumulation and conversation history_
+    - _Preservation: Schema designed to be forward-compatible_
+    - _Requirements: 2.19, 2.20, 2.21_
+
+  - [x] 6.2 Implement upsert logic for saveChatSession
+    - **File**: `lib/catalyst/nosql.ts`
+    - **Dependencies**: Task 6.1 complete
+    - **Changes**:
+      - Replace `insertItems` with upsert logic (try update first, then insert)
+      - Update TTL on each save (extends 30-day window)
+      - Log whether session was created or updated
+      - Handle errors gracefully
+    - **Testing**:
+      - Integration test: Save new session → should insert successfully
+      - Integration test: Update existing session → should update successfully
+      - Integration test: Save same session twice → second call should update (not fail)
+      - Integration test: Verify TTL updated on each save
+    - **Acceptance Criteria**:
+      - ✅ Upsert logic handles new and existing sessions
+      - ✅ TTL refreshed on each save
+      - ✅ No duplicate session errors
+      - ✅ Efficient update-first approach
+    - _Bug_Condition: isBugCondition(state) where NOT state.nosql_persistent_
+    - _Expected_Behavior: Session data persists correctly in Catalyst NoSQL_
+    - _Preservation: Session data structure unchanged_
+    - _Requirements: 2.20, 1.18_
+
+  - [x] 6.3 Update getChatSession with fallback
+    - **File**: `lib/catalyst/nosql.ts`
+    - **Dependencies**: Task 6.1 complete
+    - **Changes**:
+      - Update `getChatSession()` to return session data when found
+      - Return empty template for new sessions (not null)
+      - Return null on error (distinguishable from new session)
+      - Add logging for debugging
+    - **Testing**:
+      - Integration test: Fetch existing session → returns session data
+      - Integration test: Fetch non-existent session → returns empty template
+      - Integration test: Fetch with network error → returns null
+      - Unit test: Verify empty template has correct structure
+    - **Acceptance Criteria**:
+      - ✅ Returns session data when found
+      - ✅ Returns empty template for new sessions (not null)
+      - ✅ Returns null on error
+      - ✅ Logs informative messages
+    - _Bug_Condition: isBugCondition(state) where getChatSession always returns empty array_
+    - _Expected_Behavior: Session retrieval returns actual persisted data_
+    - _Preservation: Empty session structure matches existing format_
+    - _Requirements: 2.19, 1.18_
+
+  - [x] 6.4 Configure TTL policy in Catalyst console
+    - **File**: N/A (manual configuration)
+    - **Dependencies**: Task 6.1 complete
+    - **Changes**:
+      - Log into Zoho Catalyst console
+      - Navigate to ChatSessions NoSQL table
+      - Enable TTL policy with `ttl` field
+      - Set TTL unit (seconds or days)
+      - Document configuration in README
+    - **Testing**:
+      - Manual test: Create session with TTL 1 minute in past → verify auto-deleted
+      - Manual test: Create session with TTL 30 days in future → verify persists
+      - Manual test: Update session → verify TTL extended
+    - **Acceptance Criteria**:
+      - ✅ TTL policy enabled in Catalyst console
+      - ✅ TTL attribute configured as `ttl`
+      - ✅ Sessions auto-delete after 30 days
+      - ✅ Configuration documented in README
+    - _Expected_Behavior: Catalyst automatically deletes expired sessions_
+    - _Preservation: Active sessions unaffected_
+    - _Requirements: 2.22_
+
+  - [x] 6.5 Update ContextManager to use persistent sessions
+    - **File**: `lib/context/manager.ts`
+    - **Dependencies**: Tasks 6.2, 6.3 complete
+    - **Changes**:
+      - Update `getSession()` to use `CatalystNoSQL.getChatSession()`
+      - Update `saveSession()` to use `CatalystNoSQL.saveChatSession()`
+      - Ensure session persisted after each conversation turn
+      - Handle errors gracefully with empty template fallback
+    - **Testing**:
+      - Integration test: Get new session → returns empty template
+      - Integration test: Save session → persists to NoSQL
+      - Integration test: Get saved session → returns persisted data
+      - Integration test: Update session → correctly upserts
+    - **Acceptance Criteria**:
+      - ✅ Uses Catalyst NoSQL for session storage
+      - ✅ Sessions persist across requests
+      - ✅ Errors handled gracefully
+    - _Expected_Behavior: ContextManager persists sessions to Catalyst NoSQL_
+    - _Preservation: Session context structure unchanged_
+    - _Requirements: 2.19, 2.20_
+
+  - [x] 6.6 Test conversation flow with persistence
+    - **File**: `tests/integration/session-persistence.test.ts` (NEW FILE)
+    - **Dependencies**: Tasks 6.1-6.5 complete
+    - **Changes**:
+      - Create integration test file
+      - Test 1: Send initial query → verify session created
+      - Test 2: Send follow-up query with same sessionId → verify uses previous context
+      - Test 3: Verify Active Context sidebar shows accumulated entities
+      - Test 4: Test query "what about last year?" → verify resolves against previous context
+      - Test 5: Verify session data persists between requests
+    - **Testing**:
+      - Run integration test suite
+      - Manual test: Use chat UI with follow-up queries
+      - Verify Active Context widget displays correctly
+    - **Acceptance Criteria**:
+      - ✅ Session context persists across requests
+      - ✅ Follow-up queries use accumulated context
+      - ✅ Active Context sidebar displays entities
+      - ✅ Conversation flow feels natural
+    - _Bug_Condition: isBugCondition(state) where NOT state.nosql_persistent_
+    - _Expected_Behavior: Session context persists and follow-up queries work correctly_
+    - _Preservation: Conversation flow behavior improved but compatible_
+    - _Requirements: 2.19, 2.21, 2.22, 1.19, 1.20_
+
+---
+
+## Final Checkpoint
+
+- [x] 7. Ensure all tests pass and system is functional
+  - Run full test suite: `npm test`
+  - Verify all integration tests pass
+  - Verify all unit tests pass
+  - Verify security tests pass
+  - Verify preservation tests still pass
+  - Manual testing checklist:
+    - Send "hello" query → receives GLM-generated greeting (not hardcoded)
+    - Send "show murder cases in Bengaluru" → receives intelligent analysis with FIR numbers
+    - Verify reasoning block shows mechanisms and confidence > 30
+    - Send follow-up query "what about last year?" → uses previous context
+    - Verify Active Context sidebar shows accumulated entities
+    - Verify no hardcoded fallback strings appear
+    - Verify no "Falling back to MOCK mode" warnings in console
+  - Ask user if any questions or issues arise
+  - _Requirements: All requirements 1.1-3.14_

@@ -182,42 +182,47 @@ export async function GET(request: NextRequest) {
     const activeEdges: any[] = [];
     const maxEdges = 150;
     
-    const adj = new Map<string, any[]>();
-    relationships.forEach((rel: any) => {
-      if (!adj.has(rel.source)) adj.set(rel.source, []);
-      if (!adj.has(rel.target)) adj.set(rel.target, []);
-      adj.get(rel.source)!.push(rel);
-      adj.get(rel.target)!.push(rel);
-    });
+    if (relationships.length <= maxEdges) {
+      // Small graph, use all relationships directly to preserve all disconnected components
+      activeEdges.push(...relationships);
+    } else {
+      const adj = new Map<string, any[]>();
+      relationships.forEach((rel: any) => {
+        if (!adj.has(rel.source)) adj.set(rel.source, []);
+        if (!adj.has(rel.target)) adj.set(rel.target, []);
+        adj.get(rel.source)!.push(rel);
+        adj.get(rel.target)!.push(rel);
+      });
 
-    const queue: string[] = [];
-    // Seed with a few varied nodes to ensure a rich graph if one component is small
-    if (relationships.length > 0) queue.push(relationships[0].source);
-    if (relationships.length > 500) queue.push(relationships[500].source);
-    if (relationships.length > 1000) queue.push(relationships[1000].source);
+      const queue: string[] = [];
+      // Seed with a few varied nodes to ensure a rich graph if one component is small
+      if (relationships.length > 0) queue.push(relationships[0].source);
+      if (relationships.length > 500) queue.push(relationships[500].source);
+      if (relationships.length > 1000) queue.push(relationships[1000].source);
 
-    const visitedEdges = new Set<string>();
-    const visitedNodesBFS = new Set<string>();
-    
-    while (queue.length > 0 && activeEdges.length < maxEdges) {
-      const current = queue.shift()!;
-      if (visitedNodesBFS.has(current)) continue;
-      visitedNodesBFS.add(current);
+      const visitedEdges = new Set<string>();
+      const visitedNodesBFS = new Set<string>();
       
-      const edges = adj.get(current) || [];
-      let branchCount = 0;
-      
-      for (const edge of edges) {
-        if (branchCount >= 5) break; // Limit branching to force deeper hierarchies and prevent massive horizontal spreading
+      while (queue.length > 0 && activeEdges.length < maxEdges) {
+        const current = queue.shift()!;
+        if (visitedNodesBFS.has(current)) continue;
+        visitedNodesBFS.add(current);
         
-        // Create unique edge key
-        const edgeKey = `${edge.source}-${edge.target}-${edge.type}`;
-        if (!visitedEdges.has(edgeKey)) {
-          visitedEdges.add(edgeKey);
-          activeEdges.push(edge);
-          branchCount++;
-          if (activeEdges.length >= maxEdges) break;
-          queue.push(edge.source === current ? edge.target : edge.source);
+        const edges = adj.get(current) || [];
+        let branchCount = 0;
+        
+        for (const edge of edges) {
+          if (branchCount >= 5) break; // Limit branching to force deeper hierarchies and prevent massive horizontal spreading
+          
+          // Create unique edge key
+          const edgeKey = `${edge.source}-${edge.target}-${edge.type}`;
+          if (!visitedEdges.has(edgeKey)) {
+            visitedEdges.add(edgeKey);
+            activeEdges.push(edge);
+            branchCount++;
+            if (activeEdges.length >= maxEdges) break;
+            queue.push(edge.source === current ? edge.target : edge.source);
+          }
         }
       }
     }

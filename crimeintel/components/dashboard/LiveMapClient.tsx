@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { MapContainer, TileLayer, Marker, useMap, GeoJSON, Polygon, LayerGroup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMap, Circle, Polygon, LayerGroup, GeoJSON, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 // Custom marker icon using an SVG Map Pin
-const createCustomIcon = (isCritical: boolean, isSelected: boolean) => {
-  const color = isCritical ? '#ef4444' : (isSelected ? '#3b82f6' : '#94a3b8');
-  const size = isSelected ? 24 : 16;
+const createCustomIcon = (threat: string, isSelected: boolean) => {
+  const isCritical = threat === 'Critical';
+  const color = isCritical ? '#ef4444' : (isSelected ? '#3b82f6' : '#64748b');
+  const size = isSelected ? 28 : 20;
   
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}" stroke="white" stroke-width="2.5" style="filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.4));"><circle cx="12" cy="12" r="9"/></svg>`;
 
@@ -20,55 +21,46 @@ const createCustomIcon = (isCritical: boolean, isSelected: boolean) => {
   });
 };
 
-function MapCameraUpdater({ lat, lng }: { lat: number; lng: number }) {
+// Custom marker icon for Police Stations
+const createPSIcon = (mapStyle: string) => {
+  const color = mapStyle === 'dark' ? '#0ea5e9' : '#1d4ed8'; // blue theme
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="${color}" stroke="white" stroke-width="2" style="filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.4));"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+  return L.divIcon({
+    className: 'bg-transparent border-none outline-none',
+    html: svg,
+    iconSize: [16, 16],
+    iconAnchor: [8, 8]
+  });
+};
+
+function MapCameraUpdater({ lat, lng, isSelected }: { lat: number; lng: number, isSelected: boolean }) {
   const map = useMap();
   useEffect(() => {
-    map.flyTo([lat, lng], map.getZoom() > 10 ? map.getZoom() : 11, {
-      animate: true,
-      duration: 1.5
-    });
-  }, [lat, lng, map]);
+    if (isSelected) {
+      map.flyTo([lat, lng], 11, {
+        animate: true,
+        duration: 1.5
+      });
+    }
+  }, [lat, lng, isSelected, map]);
   return null;
 }
 
-// Generates realistic clustered scatter points for the heatmap
-const generateCluster = (centerLat: number, centerLng: number, count: number, radiusInDegrees: number) => {
-  const points = [];
-  for (let i = 0; i < count; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const r = radiusInDegrees * Math.pow(Math.random(), 2);
-    const lat = centerLat + r * Math.cos(angle);
-    const lng = centerLng + r * Math.sin(angle);
-    points.push([lat, lng, Math.random() * 0.4]); 
-  }
-  return points;
-};
-
-function HeatmapLayer({ isVisible, mapStyle, hotspots }: { isVisible: boolean, mapStyle: string, hotspots: any[] }) {
+function HeatmapLayer({ isVisible, mapStyle, firPoints }: { isVisible: boolean, mapStyle: string, firPoints: any[] }) {
   const map = useMap();
-  
-  const heatmapData = useMemo(() => {
-    return hotspots.flatMap(spot => 
-      generateCluster(spot.lat, spot.lng, spot.activeCases, 0.05)
-    );
-  }, [hotspots]);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || !firPoints || firPoints.length === 0) return;
 
     require('leaflet.heat');
     
     // @ts-ignore
     if (typeof L.heatLayer === 'function') {
-      
-      const isDark = mapStyle === 'dark' || mapStyle === 'satellite';
-      
-      // @ts-ignore
-      const heat = L.heatLayer(heatmapData, {
-        radius: 18,
-        blur: 25,
+      const heat = L.heatLayer(firPoints, {
+        radius: 16,
+        blur: 20,
         maxZoom: 13,
-        minOpacity: 0.05,
+        minOpacity: 0.1,
         gradient: {
           0.3: '#fde047', // Yellow 300
           0.5: '#f59e0b', // Amber 500
@@ -82,35 +74,28 @@ function HeatmapLayer({ isVisible, mapStyle, hotspots }: { isVisible: boolean, m
         map.removeLayer(heat);
       };
     }
-  }, [map, heatmapData, isVisible, mapStyle]);
+  }, [map, firPoints, isVisible, mapStyle]);
 
   return null;
 }
 
 // Predictive Forecast Heatmap Layer
-function PredictiveHeatmapLayer({ isVisible, mapStyle, hotspots }: { isVisible: boolean, mapStyle: string, hotspots: any[] }) {
+function PredictiveHeatmapLayer({ isVisible, mapStyle, recentSpikes }: { isVisible: boolean, mapStyle: string, recentSpikes: any[] }) {
   const map = useMap();
-  
-  const predictiveData = useMemo(() => {
-    return hotspots.flatMap(spot => {
-      const forecast = Math.round(spot.activeCases * 1.2);
-      return generateCluster(spot.lat + 0.02, spot.lng + 0.02, forecast, 0.08);
-    });
-  }, [hotspots]);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || !recentSpikes || recentSpikes.length === 0) return;
 
     require('leaflet.heat');
     
     // @ts-ignore
     if (typeof L.heatLayer === 'function') {
       // @ts-ignore
-      const heat = L.heatLayer(predictiveData, {
+      const heat = L.heatLayer(recentSpikes, {
         radius: 20,
-        blur: 30,
+        blur: 25,
         maxZoom: 13,
-        minOpacity: 0.1,
+        minOpacity: 0.15,
         gradient: {
           0.2: '#c084fc', // Purple 400
           0.5: '#a855f7', // Purple 500
@@ -123,21 +108,22 @@ function PredictiveHeatmapLayer({ isVisible, mapStyle, hotspots }: { isVisible: 
         map.removeLayer(heat);
       };
     }
-  }, [map, predictiveData, isVisible, mapStyle]);
+  }, [map, recentSpikes, isVisible, mapStyle]);
 
   return null;
 }
 
-// Generates a tactical "Pro" grid to simulate Ward Zones
-function WardsGridLayer({ isVisible }: { isVisible: boolean }) {
-  if (!isVisible) return null;
+// Generates a tactical "Pro" grid to simulate Ward Zones dynamically around the selected spot using real FIR intersection
+function WardsGridLayer({ isVisible, selectedSpot, firPoints }: { isVisible: boolean, selectedSpot: any, firPoints: any[] }) {
+  if (!isVisible || !selectedSpot || !firPoints) return null;
 
   const gridPolygons = [];
-  const latStart = 12.83;
-  const latEnd = 13.13;
-  const lngStart = 77.45;
-  const lngEnd = 77.75;
-  const steps = 14; 
+  const offset = 0.25; // Dynamic radius around selected spot
+  const latStart = selectedSpot.lat - offset;
+  const latEnd = selectedSpot.lat + offset;
+  const lngStart = selectedSpot.lng - offset;
+  const lngEnd = selectedSpot.lng + offset;
+  const steps = 12; 
   
   for(let i=0; i<steps; i++) {
     for(let j=0; j<steps; j++) {
@@ -146,86 +132,135 @@ function WardsGridLayer({ isVisible }: { isVisible: boolean }) {
       const lng1 = lngStart + (lngEnd - lngStart) * (j/steps);
       const lng2 = lngStart + (lngEnd - lngStart) * ((j+1)/steps);
       
-      const isActive = Math.random() > 0.85;
-      const fillColor = isActive ? '#8b5cf6' : 'transparent';
-      const fillOpacity = isActive ? Math.random() * 0.15 : 0;
+      // Real intersection: count how many FIR points fall in this grid cell
+      let count = 0;
+      for (const [flat, flng] of firPoints) {
+        if (flat >= lat1 && flat < lat2 && flng >= lng1 && flng < lng2) {
+          count++;
+        }
+      }
 
-      gridPolygons.push(
-        <Polygon 
-          key={`${i}-${j}`}
-          positions={[[lat1, lng1], [lat1, lng2], [lat2, lng2], [lat2, lng1]]}
-          pathOptions={{ 
-            color: '#8b5cf6', 
-            weight: 1, 
-            opacity: 0.3,
-            fillColor,
-            fillOpacity,
-            dashArray: '2, 4' 
-          }}
-        />
-      );
+      // Only draw if there are active cases
+      if (count > 0) {
+        // Base opacity on count (e.g. 1 point = 0.1, 5+ points = 0.5 max)
+        const fillOpacity = Math.min(count * 0.1, 0.5);
+        
+        gridPolygons.push(
+          <Polygon 
+            key={`${i}-${j}`}
+            positions={[[lat1, lng1], [lat1, lng2], [lat2, lng2], [lat2, lng1]]}
+            pathOptions={{ 
+              color: '#8b5cf6', 
+              weight: 1, 
+              opacity: 0.5,
+              fillColor: '#8b5cf6',
+              fillOpacity,
+              dashArray: '4, 4' 
+            }}
+          />
+        );
+      }
     }
   }
   return <LayerGroup>{gridPolygons}</LayerGroup>;
 }
 
-export default function LiveMapClient({ hotspots, selectedSpot, onSelect, showHeatmap, showBoundaries, showWards, showPredictive, mapStyle }: any) {
-  const defaultCenter: [number, number] = [12.9716, 77.5946]; 
-  
+export default function LiveMapClient({ hotspots, firPoints, recentSpikes, policeStations, selectedSpot, onSelect, showHeatmap, showBoundaries, showWards, showPredictive, mapStyle }: any) {
+  // Center of Karnataka State
+  const defaultCenter: [number, number] = [15.3173, 75.7139]; 
+  const defaultZoom = 7;
+
   const [geoJsonData, setGeoJsonData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('/bangalore.json?t=' + (Date.now() + 3000))
+    fetch('/karnataka.json')
       .then(res => res.json())
       .then(data => setGeoJsonData(data))
-      .catch(err => {});
+      .catch(err => console.error("Failed to load geojson", err));
   }, []);
 
-  const karnatakaBounds = L.latLngBounds([10.0, 72.0], [20.0, 80.0]);
-
   // Determine Tile URL based on selected Style Mode
-  let tileUrl = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
-  if (mapStyle === 'dark') tileUrl = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+  let tileUrl = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}";
+  if (mapStyle === 'dark') tileUrl = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}";
   if (mapStyle === 'satellite') tileUrl = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 
   return (
     <div className="absolute inset-0 z-0 h-full w-full bg-slate-900">
       <MapContainer 
         center={defaultCenter} 
-        zoom={10.5} 
+        zoom={defaultZoom} 
         style={{ height: "100%", width: "100%", zIndex: 1 }}
         zoomControl={true}
         scrollWheelZoom={true}
         attributionControl={false}
-        minZoom={4}
+        minZoom={5}
       >
         <TileLayer url={tileUrl} />
         
-        {/* District Boundaries Layer */}
+        {/* District Boundaries Layer (Real Karnataka GeoJSON) */}
         {showBoundaries && geoJsonData && (
           <GeoJSON 
             key={geoJsonData.type}
             data={geoJsonData} 
             style={{
               color: mapStyle === 'light' ? '#2563eb' : '#0ea5e9', 
-              weight: 3,
-              opacity: 1.0,
+              weight: 2,
+              opacity: 0.6,
               fillColor: mapStyle === 'light' ? '#3b82f6' : '#0ea5e9', 
-              fillOpacity: 0.08
+              fillOpacity: 0.05,
+              dashArray: '8, 8'
             }}
-            // PROPER FIX: Prevents Leaflet from rendering broken marker images for Point features
             pointToLayer={(feature, latlng) => L.circleMarker(latlng, { radius: 0, opacity: 0, fillOpacity: 0 })}
+            onEachFeature={(feature, layer) => {
+              if (feature.properties && feature.properties.district) {
+                layer.bindTooltip(feature.properties.district, { direction: 'center', className: 'text-xs font-bold bg-white/90 border-none shadow-sm rounded px-2 py-1' });
+              }
+            }}
           />
         )}
 
-        <WardsGridLayer isVisible={showWards} />
+        {/* Dynamic Wards Grid around active selection */}
+        <WardsGridLayer isVisible={showWards} selectedSpot={selectedSpot} firPoints={firPoints} />
         
-        <HeatmapLayer isVisible={showHeatmap} mapStyle={mapStyle} hotspots={hotspots} />
+        {/* Intensity Heatmap */}
+        <HeatmapLayer isVisible={showHeatmap} mapStyle={mapStyle} firPoints={firPoints} />
       
-        {/* Predictive layer - more spread out, different color tuning */}
-        <PredictiveHeatmapLayer isVisible={showPredictive} mapStyle={mapStyle} hotspots={hotspots} />
+        {/* Predictive 7-Day Forecast */}
+        <PredictiveHeatmapLayer isVisible={showPredictive} mapStyle={mapStyle} recentSpikes={recentSpikes} />
 
-        {selectedSpot && <MapCameraUpdater lat={selectedSpot.lat} lng={selectedSpot.lng} />}
+        {/* Hotspot Markers (District HQs) */}
+        {hotspots.map((spot: any) => {
+          const isSelected = selectedSpot?.id === spot.id;
+          return (
+            <Marker 
+              key={spot.id} 
+              position={[spot.lat, spot.lng]}
+              icon={createCustomIcon(spot.threat, isSelected)}
+              eventHandlers={{
+                click: () => onSelect(spot)
+              }}
+            >
+              <Tooltip direction="top" offset={[0, -10]} opacity={1} className="font-bold text-xs">
+                {spot.name}
+              </Tooltip>
+            </Marker>
+          );
+        })}
+
+        {/* Police Station Markers */}
+        {(policeStations || []).map((station: any) => (
+          <Marker 
+            key={station.id} 
+            position={[station.lat, station.lng]}
+            icon={createPSIcon(mapStyle)}
+          >
+            <Tooltip direction="right" offset={[10, 0]} opacity={1} className="text-xs">
+              {station.name_en}
+            </Tooltip>
+          </Marker>
+        ))}
+
+        {selectedSpot && <MapCameraUpdater lat={selectedSpot.lat} lng={selectedSpot.lng} isSelected={true} />}
       </MapContainer>
     </div>
   );

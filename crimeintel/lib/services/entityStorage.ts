@@ -25,6 +25,35 @@ import type {
   ExtractionResult,
 } from './entityExtractor';
 
+/**
+ * Builds a parameterized ZCQL query with safe parameter substitution.
+ * Escapes single quotes by doubling them (ZCQL standard) to prevent SQL injection.
+ */
+function buildParameterizedQuery(
+  baseQuery: string,
+  params: Record<string, string | number>
+): string {
+  let query = baseQuery;
+  
+  // Escape single quotes in string parameters
+  const escaped: Record<string, string> = {};
+  for (const [key, value] of Object.entries(params)) {
+    if (typeof value === 'string') {
+      escaped[key] = value.replace(/'/g, "''");
+    } else {
+      escaped[key] = String(value);
+    }
+  }
+  
+  // Replace placeholders with escaped values
+  for (const [key, value] of Object.entries(escaped)) {
+    const placeholder = `{${key}}`;
+    query = query.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value);
+  }
+  
+  return query;
+}
+
 export interface StorageResult {
   personsStored: number;
   vehiclesStored: number;
@@ -414,11 +443,11 @@ export class EntityStorage {
 
     try {
       const [persons, vehicles, phones, weapons, bankAccounts] = await Promise.all([
-        zcql.executeZCQLQuery(`SELECT * FROM Persons WHERE fir_id = '${firId}'`),
-        zcql.executeZCQLQuery(`SELECT * FROM Vehicles WHERE fir_id = '${firId}'`),
-        zcql.executeZCQLQuery(`SELECT * FROM PhoneRecords WHERE fir_id = '${firId}'`),
-        zcql.executeZCQLQuery(`SELECT * FROM Weapons WHERE fir_id = '${firId}'`),
-        zcql.executeZCQLQuery(`SELECT * FROM BankAccounts WHERE fir_id = '${firId}'`),
+        zcql.executeZCQLQuery(buildParameterizedQuery("SELECT * FROM Persons WHERE fir_id = '{firId}'", { firId })),
+        zcql.executeZCQLQuery(buildParameterizedQuery("SELECT * FROM Vehicles WHERE fir_id = '{firId}'", { firId })),
+        zcql.executeZCQLQuery(buildParameterizedQuery("SELECT * FROM PhoneRecords WHERE fir_id = '{firId}'", { firId })),
+        zcql.executeZCQLQuery(buildParameterizedQuery("SELECT * FROM Weapons WHERE fir_id = '{firId}'", { firId })),
+        zcql.executeZCQLQuery(buildParameterizedQuery("SELECT * FROM BankAccounts WHERE fir_id = '{firId}'", { firId })),
       ]);
 
       return {
@@ -443,11 +472,11 @@ export class EntityStorage {
 
     try {
       await Promise.all([
-        zcql.executeZCQLQuery(`DELETE FROM Persons WHERE fir_id = '${firId}'`),
-        zcql.executeZCQLQuery(`DELETE FROM Vehicles WHERE fir_id = '${firId}'`),
-        zcql.executeZCQLQuery(`DELETE FROM PhoneRecords WHERE fir_id = '${firId}'`),
-        zcql.executeZCQLQuery(`DELETE FROM Weapons WHERE fir_id = '${firId}'`),
-        zcql.executeZCQLQuery(`DELETE FROM BankAccounts WHERE fir_id = '${firId}'`),
+        zcql.executeZCQLQuery(buildParameterizedQuery("DELETE FROM Persons WHERE fir_id = '{firId}'", { firId })),
+        zcql.executeZCQLQuery(buildParameterizedQuery("DELETE FROM Vehicles WHERE fir_id = '{firId}'", { firId })),
+        zcql.executeZCQLQuery(buildParameterizedQuery("DELETE FROM PhoneRecords WHERE fir_id = '{firId}'", { firId })),
+        zcql.executeZCQLQuery(buildParameterizedQuery("DELETE FROM Weapons WHERE fir_id = '{firId}'", { firId })),
+        zcql.executeZCQLQuery(buildParameterizedQuery("DELETE FROM BankAccounts WHERE fir_id = '{firId}'", { firId })),
       ]);
 
       console.log(`✅ Deleted all entities for FIR: ${firId}`);

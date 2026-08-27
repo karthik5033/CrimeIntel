@@ -5,6 +5,65 @@ import { getCatalystApp } from './index';
  * Handles storing chat sessions, reasoning outputs, document metadata, and unstructured search embeddings.
  */
 
+/**
+ * ChatSession Schema
+ * Stored in Catalyst NoSQL ChatSessions table
+ */
+export interface ChatSession {
+  session_id: string;           // Partition key
+  updated_at: number;            // Last update timestamp (epoch ms)
+  user_id?: string;              // Optional user identifier
+  data: {
+    entities: {
+      crime_types: string[];
+      districts: string[];
+      person_names: string[];
+      vehicle_numbers: string[];
+      date_ranges: string[];
+    };
+    conversation_history: Array<{
+      role: 'user' | 'assistant';
+      content: string;
+      timestamp: number;
+    }>;
+    active_context: {
+      last_intent: string;
+      last_query: string;
+      accumulated_filters: Record<string, any>;
+    };
+  };
+  ttl: number;                  // Epoch timestamp for auto-deletion (30 days)
+}
+
+/**
+ * Creates an empty session template for new sessions
+ */
+export function createEmptySession(sessionId: string): ChatSession {
+  const now = Date.now();
+  const ttl = now + (30 * 24 * 60 * 60 * 1000); // 30 days from now
+  
+  return {
+    session_id: sessionId,
+    updated_at: now,
+    data: {
+      entities: {
+        crime_types: [],
+        districts: [],
+        person_names: [],
+        vehicle_numbers: [],
+        date_ranges: []
+      },
+      conversation_history: [],
+      active_context: {
+        last_intent: '',
+        last_query: '',
+        accumulated_filters: {}
+      }
+    },
+    ttl
+  };
+}
+
 interface DocumentMetadata {
   fileId: string;
   fileName: string;
@@ -178,53 +237,116 @@ export const CatalystNoSQL = {
   },
 
   // Save Chat Session
-  saveChatSession: async (sessionId: string, sessionData: any) => {
+  saveChatSession: async (sessionId: string, sessionData: any): Promise<boolean> => {
     try {
       const app = getCatalystApp();
       const nosql = app.nosql();
-      if (nosql) {
-        const table = nosql.table('ChatSessions');
-        const { NoSQLItem } = require('zcatalyst-sdk-node/lib/no-sql');
+      if (!nosql) {
+        console.warn('⚠️ NoSQL not available, session not persisted');
+        return false;
+      }
+
+      const table = nosql.table('ChatSessions');
+      const { NoSQLItem, NoSQLEnum, NoSQLMarshall } = require('zcatalyst-sdk-node/lib/no-sql');
+      
+      const ttl = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30 days from now
+      const updatedAt = Date.now();
+      
+      // Try update first (more efficient for existing sessions)
+      try {
+        const updateAttributes = [
+          {
+            operation_type: NoSQLEnum.NoSQLUpdateOperationType.PUT,
+            update_value: NoSQLMarshall.make(JSON.stringify(sessionData)),
+            attribute_path: ['data']
+          },
+          {
+            operation_type: NoSQLEnum.NoSQLUpdateOperationType.PUT,
+            update_value: NoSQLMarshall.make(updatedAt),
+            attribute_path: ['updated_at']
+          },
+          {
+            operation_type: NoSQLEnum.NoSQLUpdateOperationType.PUT,
+            update_value: NoSQLMarshall.make(ttl),
+            attribute_path: ['ttl']
+          }
+        ];
         
-        await table.insertItems({
-          item: NoSQLItem.from({
-            session_id: sessionId,
-            data: JSON.stringify(sessionData),
-            updated_at: new Date().toISOString()
-          })
+        await table.updateItems({
+          keys: NoSQLItem.from({ session_id: sessionId }),
+          update_attributes: updateAttributes
         });
+        
+        console.log(`✅ Updated session: ${sessionId}`);
         return true;
+      } catch (updateError: any) {
+        // If update fails (session doesn't exist), insert new
+        if (updateError.message?.includes('not found') || updateError.code === 'ITEM_NOT_FOUND') {
+          try {
+            await table.insertItems({
+              item: NoSQLItem.from({
+                session_id: sessionId,
+                data: JSON.stringify(sessionData),
+                updated_at: updatedAt,
+                ttl: ttl
+              })
+            });
+            console.log(`✅ Created new session: ${sessionId}`);
+            return true;
+          } catch (insertError) {
+            console.error('❌ Failed to insert session:', insertError);
+            return false;
+          }
+        }
+        console.error('❌ Failed to update session:', updateError);
+        return false;
       }
     } catch (e) {
-      console.warn('Catalyst NoSQL saveChatSession fallback:', (e as Error).message);
+      console.warn('Catalyst NoSQL saveChatSession error:', (e as Error).message);
+      return false;
     }
-    return false;
   },
 
   // Get Chat Session
-  getChatSession: async (sessionId: string) => {
+  getChatSession: async (sessionId: string): Promise<ChatSession | null> => {
     try {
       const app = getCatalystApp();
       const nosql = app.nosql();
-      if (nosql) {
-        const table = nosql.table('ChatSessions');
-        const { NoSQLItem, NoSQLUnMarshall } = require('zcatalyst-sdk-node/lib/no-sql');
-        
-        const response = await table.fetchItem({
-          keys: NoSQLItem.from({ session_id: sessionId })
-        });
-        
-        if (response && response.length > 0) {
-          const row = NoSQLUnMarshall.makeNative(response[0]);
-          if (row.data) {
-            return JSON.parse(row.data as string);
-          }
+      if (!nosql) {
+        console.warn('⚠️ NoSQL not available, returning empty session template');
+        return createEmptySession(sessionId);
+      }
+
+      const table = nosql.table('ChatSessions');
+      const { NoSQLItem, NoSQLUnMarshall } = require('zcatalyst-sdk-node/lib/no-sql');
+      
+      const response = await table.fetchItem({
+        keys: NoSQLItem.from({ session_id: sessionId })
+      });
+      
+      if (response && response.length > 0) {
+        const row = NoSQLUnMarshall.makeNative(response[0]);
+        if (row.data) {
+          const sessionData = typeof row.data === 'string' ? JSON.parse(row.data) : row.data;
+          console.log(`✅ Retrieved session: ${sessionId}`);
+          return {
+            session_id: sessionId,
+            updated_at: row.updated_at as number,
+            user_id: row.user_id as string | undefined,
+            data: sessionData,
+            ttl: row.ttl as number
+          };
         }
       }
+      
+      // Return empty template for new sessions (not null)
+      console.log(`📝 New session (no existing data): ${sessionId}`);
+      return createEmptySession(sessionId);
     } catch (e) {
-      // Fallback
+      // Return null on error (distinguishable from new session)
+      console.error('❌ Error fetching session:', (e as Error).message);
+      return null;
     }
-    return null;
   },
 
   // Delete Chat Session

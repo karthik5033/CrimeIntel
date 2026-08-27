@@ -13,7 +13,7 @@ let tokenExpiry: number = 0;
 /**
  * Generate OAuth access token from Client ID/Secret
  */
-async function getAccessToken(): Promise<string> {
+export async function getAccessToken(): Promise<string> {
   // Return cached token if still valid
   if (cachedAccessToken && Date.now() < tokenExpiry) {
     return cachedAccessToken;
@@ -21,18 +21,19 @@ async function getAccessToken(): Promise<string> {
 
   const clientId = process.env.CATALYST_CLIENT_ID;
   const clientSecret = process.env.CATALYST_CLIENT_SECRET;
+  const refreshToken = process.env.CATALYST_REFRESH_TOKEN;
 
-  if (!clientId || !clientSecret) {
-    throw new Error('CATALYST_CLIENT_ID and CATALYST_CLIENT_SECRET must be set in .env.local');
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error('CATALYST_CLIENT_ID, CATALYST_CLIENT_SECRET, and CATALYST_REFRESH_TOKEN must be set in .env.local to authenticate with Zoho APIs locally.');
   }
 
-  console.log('🔑 Generating new access token...');
+  console.log('🔑 Generating new access token via Refresh Token...');
 
   const params = new URLSearchParams({
     client_id: clientId,
     client_secret: clientSecret,
-    grant_type: 'client_credentials',
-    scope: 'ZohoCatalyst.projects.ALL ZohoCatalyst.filestore.CREATE ZohoCatalyst.datastore.CREATE'
+    refresh_token: refreshToken,
+    grant_type: 'refresh_token'
   });
 
   const response = await fetch(OAUTH_TOKEN_URL, {
@@ -49,6 +50,10 @@ async function getAccessToken(): Promise<string> {
   }
 
   const data = await response.json();
+  
+  if (data.error) {
+    throw new Error(`Zoho OAuth Error: ${data.error}`);
+  }
   
   if (!data.access_token) {
     throw new Error('No access token in response');

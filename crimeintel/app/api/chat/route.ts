@@ -98,8 +98,8 @@ export async function POST(request: Request) {
       reasoning_block: reasoningBlockOutput,
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Chat API Error:", error);
-    return NextResponse.json({ error: "Failed to process query" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to process query", details: error.message, stack: error.stack }, { status: 500 });
   }
 }

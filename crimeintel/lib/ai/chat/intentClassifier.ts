@@ -11,6 +11,7 @@ export type QueryIntent =
 
 export interface ParsedQuery {
   intent: QueryIntent;
+  confidence?: number;
   entities: {
     district?: string;
     crime_types?: string[];
@@ -50,6 +51,7 @@ export class IntentClassifier {
       Return ONLY a JSON object with this exact structure:
       {
         "intent": "...",
+        "confidence": 0.95,
         "entities": {
           "district": "...",
           "crime_types": ["..."],
@@ -77,6 +79,10 @@ export class IntentClassifier {
       if (!parsed.intent || !parsed.entities) {
         throw new Error("Invalid format returned by QuickML");
       }
+      
+      if (parsed.confidence === undefined) {
+        parsed.confidence = 1.0;
+      }
 
       return parsed;
     } catch (error) {
@@ -90,16 +96,23 @@ export class IntentClassifier {
     const lowerQuery = query.toLowerCase();
     
     let intent: QueryIntent = 'CONVERSATIONAL'; // Default to conversational for unrecognized gibberish
+    let confidence = 0.5; // Default low confidence for heuristics
+
     if (/\b(how many|trend|compare|hotspots?|most|highest|top|areas?|which areas?)\b/.test(lowerQuery)) {
       intent = 'AGGREGATE_ANALYTICAL';
+      confidence = 0.8;
     } else if (/\b(connect|link|relation|network)\b/.test(lowerQuery)) {
       intent = 'RELATIONSHIP_QUERY';
+      confidence = 0.8;
     } else if (/\b(why|explain|reason)\b/.test(lowerQuery)) {
       intent = 'REASONING_QUERY';
+      confidence = 0.8;
     } else if (/\b(what about|he|she|they)\b/.test(lowerQuery)) {
       intent = 'FOLLOW_UP';
+      confidence = 0.7;
     } else if (/\b(show|find|list|get|search|cases?|firs?|incidents?|records?|suspects?)\b/.test(lowerQuery)) {
       intent = 'DIRECT_RETRIEVAL';
+      confidence = 0.8;
     }
 
     // Basic entity extraction (very naive fallback)
@@ -108,25 +121,34 @@ export class IntentClassifier {
     if (lowerQuery.includes('mysuru') || lowerQuery.includes('mysore')) entities.district = 'Mysuru';
     
     const CRIME_TYPE_MAPPINGS: Record<string, string[]> = {
-      'Theft': ['theft', 'steal', 'stolen'],
-      'Murder': ['murder', 'kill', 'homicide'],
-      'Robbery': ['robbery', 'robery', 'robbed'], // Covers the 'robery' typo
+      'Theft': ['theft', 'steal', 'stolen', 'kalla', 'kallathana', 'thefit'],
+      'Murder': ['murder', 'kill', 'homicide', 'kolle'],
+      'Robbery': ['robbery', 'robery', 'robbed', 'dacoity'], 
       'Burglary': ['burglary', 'burglar', 'break in', 'broke in'],
-      'Assault': ['assault', 'attack', 'beat'],
-      'Online Fraud': ['fraud', 'scam', 'cheat', 'fake', 'online'],
+      'Assault': ['assault', 'attack', 'beat', 'halli'],
+      'Online Fraud': ['fraud', 'scam', 'cheat', 'fake', 'online', 'mosha'],
       'Sexual Harassment': ['harass', 'molest'],
       'Rape': ['rape', 'sexual'],
       'Hit and Run': ['hit and run', 'accident'],
-      'Cheating': ['cheat', 'deceive'],
+      'Cheating': ['cheat', 'deceive', 'mosa'],
       'Cyber Stalking': ['cyber', 'stalk']
     };
 
+    entities.crime_types = entities.crime_types || [];
     for (const [type, keywords] of Object.entries(CRIME_TYPE_MAPPINGS)) {
       if (keywords.some(k => lowerQuery.includes(k))) {
-        entities.crime_types = [type];
-        if (intent === 'CONVERSATIONAL') intent = 'DIRECT_RETRIEVAL';
-        break;
+        if (!entities.crime_types.includes(type)) {
+          entities.crime_types.push(type);
+        }
+        if (intent === 'CONVERSATIONAL') {
+          intent = 'DIRECT_RETRIEVAL';
+          confidence = 0.7;
+        }
       }
+    }
+    
+    if (entities.crime_types.length === 0) {
+      delete entities.crime_types;
     }
     // Extract FIR numbers (e.g., "fir 13", "fir no 2001", "fir-13")
     const firMatch = lowerQuery.match(/fir\s*(?:no)?\s*[-#:]?\s*(\d+)/i);
@@ -147,6 +169,7 @@ export class IntentClassifier {
 
     return {
       intent,
+      confidence,
       entities,
       resolvedQuery: query
     };

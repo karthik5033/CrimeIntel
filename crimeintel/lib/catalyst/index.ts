@@ -36,6 +36,20 @@ if (!globalAny.__mockDataStore) {
 
 const mockDataStore = globalAny.__mockDataStore;
 
+// Singleton init promise to deduplicate concurrent init calls
+let initPromise: Promise<any> | null = null;
+
+/**
+ * getCatalystApp - Returns the Catalyst SDK app instance.
+ * 
+ * CRITICAL DESIGN: This function is NOT async. It returns the cached instance
+ * synchronously when available. This is required because 40+ callers in the
+ * codebase call it without `await`.
+ * 
+ * On first call (before eager init completes), it returns the mock instance
+ * to avoid breaking callers. The eager init at module load populates the
+ * real instance for subsequent calls.
+ */
 export function getCatalystApp(req?: any): any {
   // If running in browser client, throw error
   if (typeof window !== 'undefined') {
@@ -47,14 +61,62 @@ export function getCatalystApp(req?: any): any {
     return catalystInstance;
   }
 
-  // If mock mode, return mock instance
+  // If mock mode, return mock instance immediately
   if (USE_MOCK) {
     console.log('⚠️ Using MOCK Catalyst instance');
     catalystInstance = createMockCatalystInstance();
     return catalystInstance;
   }
 
-  // Real Catalyst SDK initialization
+  // Async init hasn't completed yet. For non-awaiting callers, we MUST
+  // return a working instance right now. Fall back to mock.
+  // The eager init (below) will replace this with the real SDK once ready.
+  console.warn('⚠️ Catalyst SDK not yet initialized (async init in progress). Using MOCK for now.');
+  catalystInstance = createMockCatalystInstance();
+  return catalystInstance;
+}
+
+/**
+ * Async version of getCatalystApp for callers that CAN await.
+ * Waits for the real SDK to initialize before returning.
+ */
+export async function getCatalystAppAsync(req?: any): Promise<any> {
+  if (catalystInstance) return catalystInstance;
+  
+  if (USE_MOCK) {
+    catalystInstance = createMockCatalystInstance();
+    return catalystInstance;
+  }
+
+  // Wait for eager init to complete
+  if (initPromise) {
+    return initPromise;
+  }
+
+  // Trigger init if not started
+  initPromise = performAsyncInit();
+  try {
+    return await initPromise;
+  } finally {
+    initPromise = null;
+  }
+}
+
+/**
+ * Synchronous accessor for callers that cannot await.
+ * Returns the cached instance or null if not yet initialized.
+ * Most callers should use getCatalystApp() instead.
+ */
+export function getCatalystAppSync(): any {
+  if (catalystInstance) return catalystInstance;
+  if (USE_MOCK) {
+    catalystInstance = createMockCatalystInstance();
+    return catalystInstance;
+  }
+  return null;
+}
+
+async function performAsyncInit(): Promise<any> {
   try {
     const catalyst = require('zcatalyst-sdk-node');
     
@@ -81,7 +143,6 @@ export function getCatalystApp(req?: any): any {
     if (fs.existsSync(projectCatalystRc)) {
       try {
         console.log('📋 Using local .catalystrc from project directory:', projectCatalystRc);
-        // Initialize without auth - SDK will use local .catalystrc
         catalystInstance = catalyst.initialize();
         console.log('✅ Local .catalystrc authentication successful');
         return catalystInstance;
@@ -102,12 +163,33 @@ export function getCatalystApp(req?: any): any {
       }
     }
     
-    // Strategy 3: Client ID/Secret authentication
+    // Strategy 3: OAuth Refresh Token authentication
     const clientId = process.env.CATALYST_CLIENT_ID;
     const clientSecret = process.env.CATALYST_CLIENT_SECRET;
+    const refreshToken = process.env.CATALYST_REFRESH_TOKEN;
+    
+    if (clientId && clientSecret && refreshToken) {
+      try {
+        console.log('🔑 Using OAuth Refresh Token authentication');
+        const { getSharedAccessToken } = require('./auth');
+        const accessToken = await getSharedAccessToken();
+        catalystInstance = catalyst.initialize({
+          type: 'token',
+          token: accessToken,
+          project_id: catalystConfig.projectId,
+          environment: catalystConfig.environment
+        });
+        console.log('✅ OAuth Refresh Token authentication successful');
+        return catalystInstance;
+      } catch (oauthError) {
+        console.warn('⚠️ OAuth Refresh Token authentication failed:', (oauthError as Error).message);
+      }
+    }
+    
+    // Fallback: Try Client ID/Secret without refresh token
     if (clientId && clientSecret) {
       try {
-        console.log('🔑 Using Client ID/Secret authentication');
+        console.log('🔑 Using Client ID/Secret authentication (fallback)');
         catalystInstance = catalyst.initialize({
           client_id: clientId,
           client_secret: clientSecret,
@@ -137,7 +219,6 @@ export function getCatalystApp(req?: any): any {
       }
     }
     
-    // If all fail, throw error
     throw new Error(
       'Catalyst SDK initialization failed. Please run: catalyst login\n' +
       'Or set CATALYST_TOKEN in .env.local'
@@ -145,12 +226,22 @@ export function getCatalystApp(req?: any): any {
     
   } catch (error) {
     console.warn('⚠️ Catalyst initialization failed:', (error as Error).message);
-    console.warn('⚠️ Falling back to MOCK mode for development');
     
-    // Fallback to mock mode instead of crashing
+    // When USE_MOCK is false, fall back to mock with a warning instead of crashing.
+    // This ensures the app remains functional during local dev even without full cloud auth.
+    console.warn('⚠️ Falling back to MOCK mode for development (SDK init failed)');
     catalystInstance = createMockCatalystInstance();
     return catalystInstance;
   }
+}
+
+// ── Eager initialization at module load ──────────────────────────────────
+// Kick off SDK init as soon as this module is first imported.
+// By the time the first API request arrives, catalystInstance should already be populated.
+if (typeof window === 'undefined') {
+  getCatalystAppAsync().catch((err: Error) => {
+    console.warn('⚠️ Eager Catalyst init failed, will use mock:', err.message);
+  });
 }
 
 // Mock Catalyst instance for development/testing
@@ -309,6 +400,13 @@ function createMockCatalystInstance() {
     }),
     zcql: () => ({
       executeZCQLQuery: async (query: string) => {
+        // Use direct API if configured (avoids fake local search when we want real data)
+        if (process.env.USE_MOCK_CATALYST !== 'true' && process.env.CATALYST_CLIENT_ID) {
+           console.log('🔍 PROXY ZCQL:', query.substring(0, 150));
+           const { queryDataStore } = require('./direct-api');
+           return await queryDataStore(query);
+        }
+        
         console.log('🔍 MOCK ZCQL:', query.substring(0, 150));
         
         // Parse SELECT queries
@@ -340,47 +438,60 @@ function createMockCatalystInstance() {
             return allRows.map(row => ({ [tableName]: row }));
           }
 
-          // Parse strict WHERE clause (simplified and safe)
-          const whereMatch = query.match(/WHERE\s+(\w+)\s*=\s*'([^']+)'/i);
-          if (whereMatch) {
-            const [, fieldName, fieldValue] = whereMatch;
+          // Parse WHERE clause to handle multiple AND conditions
+          const whereIndex = query.toUpperCase().indexOf('WHERE');
+          if (whereIndex !== -1) {
+            let whereClause = query.substring(whereIndex + 5).trim();
             
-            // Scan all rows for matching field
-            let matchingRows: any[] = [];
-            for (const [key, value] of table.entries()) {
-              if (String(value[fieldName]).toLowerCase() === String(fieldValue).toLowerCase()) {
-                matchingRows.push(value);
+            // Remove LIMIT if present
+            const limitIndex = whereClause.toUpperCase().indexOf('LIMIT');
+            let limit = 20;
+            if (limitIndex !== -1) {
+              const limitStr = whereClause.substring(limitIndex + 5).trim();
+              limit = parseInt(limitStr, 10) || 20;
+              whereClause = whereClause.substring(0, limitIndex).trim();
+            }
+
+            // Split conditions by AND
+            const conditionsStr = whereClause.split(/\s+AND\s+/i);
+            const conditions = conditionsStr.map(cond => {
+              const match = cond.trim().match(/([\w\.]+)\s*(?:=|LIKE)\s*'([^']+)'/i);
+              return match ? { field: match[1].replace('FIRs.', ''), value: match[2], isLike: cond.toUpperCase().includes('LIKE') } : null;
+            }).filter(c => c !== null);
+
+            if (conditions.length > 0) {
+              // Scan all rows to see which ones match all conditions
+              let matchingRows: any[] = [];
+              for (const [key, value] of table.entries()) {
+                let matchesAll = true;
+                for (const cond of conditions) {
+                  if (!cond) continue;
+                  const rowValue = String(value[cond.field] || '').toLowerCase();
+                  const condValue = String(cond.value).toLowerCase();
+                  
+                  if (cond.isLike) {
+                    const cleanTerm = condValue.replace(/%/g, '');
+                    if (!rowValue.includes(cleanTerm)) {
+                      matchesAll = false;
+                      break;
+                    }
+                  } else {
+                    if (rowValue !== condValue) {
+                      matchesAll = false;
+                      break;
+                    }
+                  }
+                }
+                
+                if (matchesAll) {
+                  matchingRows.push(value);
+                }
               }
-            }
 
-            if (matchingRows.length > 0) {
-              const limitMatch = query.match(/LIMIT\s+(\d+)/i);
-              const limit = limitMatch ? parseInt(limitMatch[1], 10) : 20;
-              console.log(`✅ MOCK: Found ${matchingRows.length} rows for ${fieldName}=${fieldValue}`);
-              return matchingRows.slice(0, limit).map((r: any) => ({ [tableName]: r }));
-            }
-
-            if (matchingRows.length === 0 && fieldValue.startsWith('FIR-')) {
-              // Dynamically create entry for newly ingested FIR
-              let row: any = {
-                ROWID: `MOCK_ROW_${Date.now()}`,
-                fir_no: fieldValue,
-                case_no: `CASE-${Date.now().toString().slice(-6)}`,
-                crime_type_en: 'Cyber Fraud / Financial Scam',
-                description: 'Uploaded FIR document under processing.',
-                status_en: 'Under Investigation',
-                district_id: 'DIST_1',
-                police_station_id: 'PS_1',
-                date: new Date().toISOString().split('T')[0]
-              };
-              table.set(row.ROWID, row);
-              console.log(`📄 MOCK: Created dynamic FIR: ${fieldValue}`);
-              return [{ [tableName]: row }];
-            } else {
-              console.log(`❌ MOCK: ${fieldName}=${fieldValue} not found anywhere. Returning generic rows for demo.`);
-              const limitMatch = query.match(/LIMIT\s+(\d+)/i);
-              const limit = limitMatch ? parseInt(limitMatch[1], 10) : 20;
-              return allRows.slice(0, limit).map((r: any) => ({ [tableName]: r }));
+              if (matchingRows.length > 0) {
+                console.log(`✅ MOCK: Found ${matchingRows.length} rows matching WHERE clause`);
+                return matchingRows.slice(0, limit).map((r: any) => ({ [tableName]: r }));
+              }
             }
           }
           
@@ -501,61 +612,75 @@ function createMockCatalystInstance() {
     }),
     quickML: () => ({
       predict: async (endpointKey: string, inputData: any) => {
-        const groqKey = process.env.GROQ_API_KEY;
-        const prompt = inputData.prompt || '';
+        // Parse the new messages format
+        let prompt = inputData.prompt || '';
+        let systemPrompt = '';
+        let rawContext = inputData.context || '';
         
-        if (groqKey) {
-          try {
-            console.log('🤖 MOCK QuickML: Forwarding to Groq API for realistic mock');
-            let systemMessage = "You are an expert AI Intelligence Copilot for the Karnataka State Police. Based on the provided Context (JSON data of FIRs, Cases, etc.), answer the User's Query clearly and concisely in natural language. DO NOT output any SQL, Python code, or instructions on how to query. Simply summarize the records from the context.";
-            let userMessage = prompt;
-            
-            if (inputData.context) {
-               userMessage = `Context:\n${inputData.context}\n\nQuery:\n${prompt}`;
+        if (inputData.messages && Array.isArray(inputData.messages)) {
+          const sysMsg = inputData.messages.find((m: any) => m.role === 'system');
+          if (sysMsg) systemPrompt = sysMsg.content;
+          
+          const userMsg = inputData.messages.find((m: any) => m.role === 'user');
+          if (userMsg) {
+            const userContent = userMsg.content;
+            const contextParts = userContent.split('\n\nContext: ');
+            prompt = contextParts[0] || '';
+            if (prompt.startsWith('Query: ')) {
+              prompt = prompt.substring(7);
             }
-
-            const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${groqKey}`
-              },
-              body: JSON.stringify({
-                model: 'llama-3.1-8b-instant',
-                messages: [
-                  { role: 'system', content: systemMessage },
-                  { role: 'user', content: userMessage }
-                ],
-                temperature: 0.3
-              })
-            });
-
-            if (response.ok) {
-              const data = await response.json();
-              const text = data.choices[0].message.content || "No response generated";
-              return { text };
-            } else {
-              const errorText = await response.text();
-              console.warn('❌ MOCK QuickML Groq API fallback failed:', errorText);
-              return { text: `API Error: The Groq API returned an error. Details: ${errorText}` };
+            if (contextParts.length > 1) {
+              rawContext = contextParts[1];
             }
-          } catch (e: any) {
-            console.error('❌ MOCK QuickML Groq API fallback error:', e);
-            return { text: `API Connection Error: ${e.message}` };
           }
         }
 
-        // Pure local mock without external API dependencies
-        if (prompt.includes('intent classifier')) {
-          console.log('🤖 MOCK QuickML: Intent classifier fallback triggered, throwing error to force heuristic classification.');
-          throw new Error("Local intent classification fallback");
+        // Mock 1: Reasoning Engine
+        if (systemPrompt.includes('Criminological Reasoning Engine') || prompt.includes('Routine Activity Theory')) {
+           return {
+             text: JSON.stringify({
+               id: `res-${Date.now()}`,
+               query: prompt,
+               claim: "Identified potential organized crime patterns based on the provided context.",
+               mechanisms: [
+                 {
+                   name: "Routine Activity Patterns",
+                   description: "Multiple incidents occur at similar times and locations, suggesting a structured approach.",
+                   theory: "Routine Activity Theory",
+                   factors: ["Temporal clustering", "Spatial clustering"]
+                 }
+               ],
+               evidence: [
+                 { id: "sys-01", type: "Statistic", description: "Aggregated incident reports indicating a trend." }
+               ],
+               alternatives: [
+                 {
+                   hypothesis: "Random unrelated incidents",
+                   status: "Rejected",
+                   reasoning: "The similarity in MO and geographic proximity reduces the likelihood of random chance."
+                 }
+               ],
+               confidence: {
+                 level: "High",
+                 score: 85,
+                 factors: ["Consistent modus operandi", "Repeated suspect descriptions"]
+               },
+               timestamp: new Date().toISOString()
+             })
+           };
         }
 
+        // Mock 2: Intent Classifier
+        if (prompt.includes('investigative assistant intent classifier')) {
+          throw new Error("Mock QuickML Intent Classifier offline to trigger robust heuristic fallback");
+        }
+
+        // Mock 3: Chat Summary
         let contextArray = [];
         let queryIntent = "";
         try {
-          if (inputData.context) {
-            const parsedCtx = JSON.parse(inputData.context);
+          if (rawContext) {
+            const parsedCtx = JSON.parse(rawContext);
             contextArray = parsedCtx.ragContext || [];
             queryIntent = parsedCtx.intent || "";
           }
@@ -571,11 +696,11 @@ function createMockCatalystInstance() {
         });
 
         let summary = "";
-        if (queryIntent === 'CONVERSATIONAL') {
+        if (queryIntent === 'CONVERSATIONAL' || (!prompt.includes('murder') && !prompt.includes('theft') && totalRecords === 0)) {
           summary += "Hello! I am the CrimeIntel Assistant. I can help you search for FIRs, analyze crime trends, and investigate connections. How can I assist you today?";
         } else if (totalRecords > 0) {
           const suspects = allItems.filter(i => i.type === 'Suspect' || i.name_en);
-          const firs = allItems.filter(i => i.crime_type_en || i.type === 'FIR');
+          const firs = allItems.filter(i => i.crime_type_en || i.type === 'FIR' || i.fir_no);
           const analytics = allItems.filter(i => i.type === 'AnalyticsResult');
           
           if (analytics.length > 0) {

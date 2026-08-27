@@ -22,6 +22,9 @@ const LiveMapClient = dynamic(() => import("./LiveMapClient"), {
 
 export function LiveMap() {
   const [hotspots, setHotspots] = useState<any[]>([]);
+  const [firPoints, setFirPoints] = useState<any[]>([]);
+  const [recentSpikes, setRecentSpikes] = useState<any[]>([]);
+  const [policeStations, setPoliceStations] = useState<any[]>([]);
   const [selectedSpotId, setSelectedSpotId] = useState<string | null>(null);
 
   // Layer Controls State
@@ -43,6 +46,9 @@ export function LiveMap() {
           if (data.hotspots && data.hotspots.length > 0) {
             setHotspots(data.hotspots);
             setSelectedSpotId(data.hotspots[0].id);
+            setFirPoints(data.firPoints || []);
+            setRecentSpikes(data.recentSpikes || []);
+            setPoliceStations(data.policeStations || []);
           }
         }
       } catch (err) {
@@ -104,6 +110,9 @@ export function LiveMap() {
             
             <LiveMapClient 
               hotspots={hotspots} 
+              firPoints={firPoints}
+              recentSpikes={recentSpikes}
+              policeStations={policeStations}
               selectedSpot={selectedSpot} 
               onSelect={(spot: any) => setSelectedSpotId(spot.id)} 
               showHeatmap={showHeatmap}

@@ -29,15 +29,15 @@ export class Coordinator {
         // No evidence gathering needed for general chat
         break;
 
-      case 'DIRECT_RETRIEVAL':
-        // Fetch structured data from SQL
-        const sqlData = await SQLAgent.retrieve(parsedQuery);
+      case 'DIRECT_RETRIEVAL': {
+        const [sqlData, vecData] = await Promise.all([
+          SQLAgent.retrieve(parsedQuery),
+          VectorAgent.retrieve(parsedQuery)
+        ]);
         if (sqlData.length > 0) evidence.push({ source: 'SQLAgent', data: sqlData });
-        
-        // Also fetch unstructured narratives from Vector DB
-        const vecData = await VectorAgent.retrieve(parsedQuery);
         if (vecData.length > 0) evidence.push({ source: 'VectorAgent', data: vecData });
         break;
+      }
 
       case 'AGGREGATE_ANALYTICAL':
         const analyticsData = await AnalyticsAgent.retrieve(parsedQuery);
@@ -50,20 +50,21 @@ export class Coordinator {
         break;
 
       case 'REASONING_QUERY':
-      case 'FOLLOW_UP':
-        // For complex reasoning or follow-ups, hit multiple agents
-        const rSqlData = await SQLAgent.retrieve(parsedQuery);
+      case 'FOLLOW_UP': {
+        const fetchGraph = (parsedQuery.entities.person_names && parsedQuery.entities.person_names.length > 0);
+        
+        const [rSqlData, rVecData, rGraphData] = await Promise.all([
+          SQLAgent.retrieve(parsedQuery),
+          VectorAgent.retrieve(parsedQuery),
+          fetchGraph ? GraphAgent.retrieve(parsedQuery) : Promise.resolve([])
+        ]);
+        
         if (rSqlData.length > 0) evidence.push({ source: 'SQLAgent', data: rSqlData });
-        
-        const rVecData = await VectorAgent.retrieve(parsedQuery);
         if (rVecData.length > 0) evidence.push({ source: 'VectorAgent', data: rVecData });
+        if (rGraphData.length > 0) evidence.push({ source: 'GraphAgent', data: rGraphData });
         
-        // If entities involve people, fetch graph
-        if (parsedQuery.entities.person_names && parsedQuery.entities.person_names.length > 0) {
-          const rGraphData = await GraphAgent.retrieve(parsedQuery);
-          if (rGraphData.length > 0) evidence.push({ source: 'GraphAgent', data: rGraphData });
-        }
         break;
+      }
     }
 
     return evidence;

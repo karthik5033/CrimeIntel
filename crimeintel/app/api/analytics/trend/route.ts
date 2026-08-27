@@ -7,56 +7,77 @@ export async function GET(request: Request) {
   try {
     const allFIRs = await DataClient.getFIRs();
     
-    // Group FIRs by Month
-    const monthlyCounts: Record<string, number> = {};
+    // Find the max date in the dataset to act as "today"
+    const maxDateStr = allFIRs.reduce((max: string, fir: any) => {
+      return (fir.date && fir.date > max) ? fir.date : max;
+    }, "2000-01-01");
     
+    // We will generate a continuous 30-day timeline up to the max date
+    const maxDate = new Date(maxDateStr);
+    const DAYS_TO_SHOW = 30;
+    const ROLLING_WINDOW = 14;
+    const BASELINE_WINDOW = 90;
+
+    // Pre-compute daily counts for O(1) lookup
+    const dailyCounts: Record<string, number> = {};
     allFIRs.forEach((fir: any) => {
-      if (!fir.date) return;
-      // Get YYYY-MM
-      const monthKey = fir.date.substring(0, 7);
-      monthlyCounts[monthKey] = (monthlyCounts[monthKey] || 0) + 1;
+      if (fir.date) {
+        dailyCounts[fir.date] = (dailyCounts[fir.date] || 0) + 1;
+      }
     });
 
-    // Sort months chronologically
-    const sortedMonths = Object.keys(monthlyCounts).sort();
-    
-    // Take the last 7 months for the chart
-    const recentMonths = sortedMonths.slice(-7);
-    
-    // Calculate baseline using an average of all previous months (simple heuristic)
-    const allCounts = Object.values(monthlyCounts);
-    const overallAvg = allCounts.reduce((a, b) => a + b, 0) / (allCounts.length || 1);
-    
-    const chartData = recentMonths.map((monthStr) => {
-      const telemetry = monthlyCounts[monthStr];
-      const baseline = Math.round(overallAvg);
+    const chartData = [];
+    let recentAnomalies = 0;
+
+    for (let i = DAYS_TO_SHOW - 1; i >= 0; i--) {
+      const targetDate = new Date(maxDate);
+      targetDate.setDate(targetDate.getDate() - i);
+      const targetTime = targetDate.getTime();
       
-      // Mark as anomaly if it's 20% higher than baseline
-      const isAnomaly = telemetry > (baseline * 1.2);
+      // Calculate rolling sum for the target date
+      let rollingSum = 0;
+      for (let j = 0; j < ROLLING_WINDOW; j++) {
+        const d = new Date(targetDate);
+        d.setDate(d.getDate() - j);
+        const dateStr = d.toISOString().split('T')[0];
+        rollingSum += (dailyCounts[dateStr] || 0);
+      }
       
-      // Convert YYYY-MM to something nicer, e.g., "Jan 26"
-      const dateObj = new Date(monthStr + "-01");
-      const timeLabel = dateObj.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+      // Calculate a long-term baseline (e.g., 90-day sum scaled down to 14-day equivalent)
+      let baselineSum = 0;
+      for (let j = 0; j < BASELINE_WINDOW; j++) {
+        const d = new Date(targetDate);
+        d.setDate(d.getDate() - j);
+        const dateStr = d.toISOString().split('T')[0];
+        baselineSum += (dailyCounts[dateStr] || 0);
+      }
       
-      return {
-        time: timeLabel,
-        timestamp: dateObj.getTime(),
+      const baseline = Math.round(baselineSum * (ROLLING_WINDOW / BASELINE_WINDOW));
+      
+      // Identify significant spikes (e.g. 50% above baseline and at least 5 incidents)
+      const isAnomaly = rollingSum > (baseline * 1.5) && rollingSum > 5;
+      if (isAnomaly) {
+        recentAnomalies++;
+      }
+      
+      chartData.push({
+        time: targetDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        timestamp: targetTime,
         baseline,
-        telemetry,
-        anomaly: isAnomaly ? telemetry : null
-      };
-    });
+        telemetry: rollingSum,
+        anomaly: isAnomaly ? rollingSum : null
+      });
+    }
 
     // Compute global metrics for the trend
-    const recentAnomalies = chartData.filter(d => d.anomaly !== null).length;
     let threatLevel = "LOW";
-    if (recentAnomalies > 3) threatLevel = "CRITICAL";
-    else if (recentAnomalies > 1) threatLevel = "ELEVATED";
+    if (recentAnomalies > 5) threatLevel = "CRITICAL";
+    else if (recentAnomalies > 2) threatLevel = "ELEVATED";
 
     const accuracy = 94.2 + (Math.random() * 2); // Dynamic mock accuracy around 95%
     const threatDetail = recentAnomalies > 0 
-      ? `Detected ${recentAnomalies} anomaly spikes in recent months.`
-      : "Crime patterns are within expected baselines.";
+      ? `Detected ${recentAnomalies} anomaly spikes in recent days.`
+      : "Active case volumes are within expected baselines.";
 
     return NextResponse.json({ 
       trend: chartData,

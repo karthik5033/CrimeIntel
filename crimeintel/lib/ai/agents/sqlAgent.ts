@@ -1,6 +1,87 @@
 import { getCatalystApp } from '@/lib/catalyst';
 import { ParsedQuery } from '../chat/intentClassifier';
 
+/**
+ * Builds a parameterized ZCQL query with safe parameter substitution.
+ * Escapes single quotes by doubling them (ZCQL standard) to prevent SQL injection.
+ */
+function buildParameterizedQuery(
+  baseQuery: string,
+  params: Record<string, string | number>
+): string {
+  let query = baseQuery;
+  
+  // Escape single quotes in string parameters
+  const escaped: Record<string, string> = {};
+  for (const [key, value] of Object.entries(params)) {
+    if (typeof value === 'string') {
+      escaped[key] = value.replace(/'/g, "''");
+    } else {
+      escaped[key] = String(value);
+    }
+  }
+  
+  // Replace placeholders with escaped values
+  for (const [key, value] of Object.entries(escaped)) {
+    const placeholder = `{${key}}`;
+    query = query.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value);
+  }
+  
+  return query;
+}
+
+/**
+ * Cached district mapping to avoid repeated database queries
+ */
+let districtMappingCache: Record<string, string> | null = null;
+let districtCacheTimestamp: number = 0;
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
+/**
+ * Gets dynamic district mapping from database.
+ * Maps both English and Kannada district names to district IDs.
+ * Results are cached for 5 minutes to improve performance.
+ */
+async function getDistrictMapping(): Promise<Record<string, string>> {
+  // Return cached mapping if still valid
+  if (districtMappingCache && Date.now() - districtCacheTimestamp < CACHE_TTL_MS) {
+    return districtMappingCache;
+  }
+  
+  const app = getCatalystApp();
+  const zcql = app.zcql();
+  
+  if (!zcql) {
+    return {};
+  }
+  
+  try {
+    const result = await zcql.executeZCQLQuery('SELECT * FROM Districts');
+    const districts = result.map((row: any) => row.Districts || row);
+    
+    const mapping: Record<string, string> = {};
+    for (const district of districts) {
+      // Map English name to district_id
+      if (district.name) {
+        mapping[district.name.toLowerCase()] = district.id;
+      }
+      // Map Kannada name to district_id
+      if (district.name_kn) {
+        mapping[district.name_kn.toLowerCase()] = district.id;
+      }
+    }
+    
+    // Update cache
+    districtMappingCache = mapping;
+    districtCacheTimestamp = Date.now();
+    
+    return mapping;
+  } catch (error) {
+    console.error('Error loading district mapping:', error);
+    return {};
+  }
+}
+
 export class SQLAgent {
   static async retrieve(parsedQuery: ParsedQuery): Promise<any[]> {
     const app = getCatalystApp();
@@ -15,30 +96,23 @@ export class SQLAgent {
       let conditions = [];
 
       if (parsedQuery.entities.district) {
-        const distMap: Record<string, string> = {
-          'Bengaluru': 'DIST_1',
-          'Bangalore': 'DIST_1',
-          'Banglore': 'DIST_1',
-          'Mysuru': 'DIST_2',
-          'Mysore': 'DIST_2',
-          'Mangaluru': 'DIST_3',
-          'Hubballi': 'DIST_4',
-          'Belagavi': 'DIST_5'
-        };
-        const mappedDistrict = distMap[parsedQuery.entities.district] || parsedQuery.entities.district;
-        conditions.push(`district_id = '${mappedDistrict}'`);
+        const d = parsedQuery.entities.district;
+        
+        // Use dynamic district mapping
+        const districtMapping = await getDistrictMapping();
+        const mappedDistrict = districtMapping[d.toLowerCase()] || d;
+        
+        conditions.push(buildParameterizedQuery("district_id = '{district}'", { district: mappedDistrict }));
       }
       
       if (parsedQuery.entities.crime_types && parsedQuery.entities.crime_types.length > 0) {
-        // For simplicity, we just use the first crime type
-        conditions.push(`crime_type_en = '${parsedQuery.entities.crime_types[0]}'`);
+        const ct = parsedQuery.entities.crime_types[0];
+        conditions.push(buildParameterizedQuery("crime_type_en LIKE '%{crimeType}%'", { crimeType: ct }));
       }
 
       if (parsedQuery.entities.fir_numbers && parsedQuery.entities.fir_numbers.length > 0) {
-        // If FIR numbers are provided, query for them (mock handles this loosely)
-        const firs = parsedQuery.entities.fir_numbers.map(f => `'${f}'`).join(',');
-        // In Catalyst ZCQL we would use IN, but let's stick to simple equal or LIKE for mock support
-        conditions.push(`fir_no LIKE '%${parsedQuery.entities.fir_numbers[0]}%'`);
+        const fir = parsedQuery.entities.fir_numbers[0];
+        conditions.push(buildParameterizedQuery("fir_no LIKE '%{fir}%'", { fir }));
       }
 
       if (conditions.length === 0) {
@@ -52,50 +126,9 @@ export class SQLAgent {
       console.log("SQLAgent Executing ZCQL:", query);
       const results = await zcql.executeZCQLQuery(query);
       
-      let finalResults = results.map((row: any) => row.FIRs || row);
-      
-      // Since mock ZCQL doesn't fully support WHERE/LIMIT, apply basic filtering locally for the mock
-      if (parsedQuery.entities.district) {
-        const distMap: Record<string, string> = {
-          'Bengaluru': 'DIST_1',
-          'Bangalore': 'DIST_1',
-          'Banglore': 'DIST_1',
-          'Mysuru': 'DIST_2',
-          'Mysore': 'DIST_2',
-          'Mangaluru': 'DIST_3',
-          'Hubballi': 'DIST_4',
-          'Belagavi': 'DIST_5'
-        };
-        const mappedDistrict = distMap[parsedQuery.entities.district] || parsedQuery.entities.district;
-        const d = parsedQuery.entities.district.toLowerCase();
-        let filtered = finalResults.filter((f: any) => 
-          f.district === mappedDistrict || 
-          f.district_id === mappedDistrict ||
-          String(f.district_id).toLowerCase().includes(d) || 
-          (f.district && String(f.district).toLowerCase().includes(d)) ||
-          (f.description && String(f.description).toLowerCase().includes(d))
-        );
-        
-        // Fallback for mock demo: if no matching district, return original array so demo doesn't fail empty
-        if (filtered.length > 0) {
-          finalResults = filtered;
-        } else {
-          console.log(`SQLAgent: Mock fallback - No cases found for district ${d}, returning generic cases instead.`);
-        }
-      }
-      
-      if (parsedQuery.entities.fir_numbers && parsedQuery.entities.fir_numbers.length > 0) {
-        const targetFir = parsedQuery.entities.fir_numbers[0].toLowerCase();
-        let filtered = finalResults.filter((f: any) => String(f.fir_no).toLowerCase().includes(targetFir) || String(f.id).toLowerCase().includes(targetFir));
-        
-        // Fallback for mock demo
-        if (filtered.length > 0) {
-          finalResults = filtered;
-        }
-      }
-
-      return finalResults.slice(0, 20);
+      return results.map((row: any) => row.FIRs || row);
     } catch (error) {
+      console.error("SQLAgent execution error:", error);
       return [];
     }
   }

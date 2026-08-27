@@ -1,51 +1,89 @@
 import { getCatalystApp } from './index';
+import { getSharedAccessToken } from './auth';
 
 /**
  * Catalyst QuickML Client
  * Executes ML pipelines for inference and embedding tasks using the published endpoint key.
  */
+
+/**
+ * Summarize RAG context to prevent token overflow
+ * Caps records at 15 and extracts only key fields
+ */
+function summarizeRagContext(contextData: any, maxRecords: number = 15): string {
+  const ragContext = contextData?.ragContext || [];
+  let summary = '';
+  let recordCount = 0;
+  
+  for (const source of ragContext) {
+    if (!source.data || !Array.isArray(source.data)) continue;
+    
+    for (const item of source.data) {
+      if (recordCount >= maxRecords) break;
+      
+      // Extract only key fields
+      const essentials: any = {};
+      const keyFields = ['fir_no', 'crime_type_en', 'district_id', 'date', 'status_en', 'description'];
+      keyFields.forEach(field => {
+        if (item[field]) essentials[field] = item[field];
+      });
+      
+      summary += JSON.stringify(essentials) + '\n';
+      recordCount++;
+    }
+    if (recordCount >= maxRecords) break;
+  }
+  
+  return summary || 'No context data available';
+}
+
 export const CatalystQuickML = {
   // LLM Generation via Pipeline Endpoint
   generateResponse: async (prompt: string, contextData: any = {}) => {
-    try {
-      const app = getCatalystApp();
-      const quickml = typeof app.quickML === 'function' ? app.quickML() : (app as any).quickml?.();
-      
-      const endpointKey = process.env.QUICKML_ENDPOINT_KEY;
-      if (!endpointKey && process.env.NODE_ENV !== 'development') {
-        console.warn('⚠️ QUICKML_ENDPOINT_KEY is not configured.');
-        return null;
-      }
+    const endpointKey = process.env.QUICKML_ENDPOINT_KEY;
 
-      // If the user provided a direct LLM Serving REST API URL instead of a pipeline endpoint key
-      if (endpointKey && endpointKey.startsWith('http')) {
+    // ── Direct HTTP LLM Serving path (independent of SDK) ──────────────
+    if (endpointKey && endpointKey.startsWith('http')) {
+      try {
         console.log(`🤖 Sending request to Catalyst LLM Serving API: ${endpointKey}`);
-        
-        let token = "";
-        try {
-          if (app.credential && typeof app.credential.getToken === 'function') {
-            const tokenResponse = await app.credential.getToken();
-            token = tokenResponse.access_token || tokenResponse.accessToken;
-          }
-        } catch (e) {
-          console.warn('Could not extract Catalyst token, proceeding without auth header', e);
-        }
 
-        const headers: Record<string, string> = {
-          'Content-Type': 'application/json',
-          'CATALYST-ORG': process.env.CATALYST_ORG_ID || '60078981781'
-        };
-        if (token) {
-          headers['Authorization'] = `Bearer ${token}`;
-        }
+        // Use shared OAuth token
+        const token = await getSharedAccessToken();
+        const orgId = process.env.CATALYST_ORG_ID || '60078981781';
+
+        // Domain-specific system prompt for Karnataka State Police
+        const systemPrompt = `You are an AI intelligence assistant for Karnataka State Police CrimeIntel system.
+
+Your role:
+- Analyze FIR (First Information Report) data from Karnataka State Police databases
+- Identify crime patterns, suspect connections, and investigative leads
+- Summarize complex intelligence data in clear, actionable insights
+- Apply criminological frameworks (Routine Activity Theory, Crime Pattern Theory) when relevant
+
+Guidelines:
+- Be concise but thorough - officers need quick actionable intelligence
+- Highlight key FIR numbers, suspect names, and location patterns
+- When data is incomplete, state confidence level and what's missing
+- Use professional law enforcement terminology
+- For Kannada queries, ensure cultural and linguistic accuracy
+
+Current query context: ${contextData?.intent || 'general inquiry'}`;
+
+        // Optimize context size to prevent token overflow
+        const contextSummary = summarizeRagContext(contextData, 15);
+        const userMessage = `Query: ${prompt}\n\nContext: ${contextSummary}`;
 
         const fetchResponse = await fetch(endpointKey, {
           method: 'POST',
-          headers,
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'CATALYST-ORG': orgId,
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
             messages: [
-              { role: 'system', content: 'You are an AI intelligence assistant.' },
-              { role: 'user', content: prompt + '\n\nContext: ' + JSON.stringify(contextData) }
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: userMessage }
             ]
           })
         });
@@ -56,32 +94,50 @@ export const CatalystQuickML = {
         } else {
           const errorText = await fetchResponse.text();
           console.error(`Catalyst LLM Serving returned ${fetchResponse.status}:`, errorText);
+
+          // Check for Groq fallback
+          if (process.env.GROQ_API_KEY) {
+            console.log('🔄 Falling back to Groq API...');
+            return await callGroqFallback(prompt, contextData);
+          }
+
           throw new Error(`LLM Serving API Error: ${fetchResponse.status}`);
         }
+      } catch (e) {
+        console.warn('Catalyst LLM Serving HTTP call failed:', (e as Error).message);
+        // Fall through to SDK pipeline or heuristic fallback below
+      }
+    }
+
+    // ── SDK QuickML Pipeline path ──────────────────────────────────────
+    try {
+      const app = await getCatalystApp();
+      const quickml = typeof app.quickML === 'function' ? app.quickML() : (app as any).quickml?.();
+
+      if (!endpointKey && process.env.NODE_ENV !== 'development') {
+        console.warn('⚠️ QUICKML_ENDPOINT_KEY is not configured.');
+        return null;
       }
 
       // Traditional QuickML Pipeline approach
       if (quickml && typeof quickml.predict === 'function') {
-        // QuickML pipeline predict requires the endpoint_key and the input data structured as expected by the pipeline.
         const input_data = {
           prompt,
           context: JSON.stringify(contextData)
         };
-        
+
         const response = await quickml.predict(endpointKey || 'mock_endpoint_key', input_data);
-        
-        // Return based on typical QuickML pipeline response structure
+
         if (response && response.text) {
           return response.text;
         } else if (response && response.prediction) {
           return response.prediction;
         } else if (response) {
-          // If structure is arbitrary, stringify the output
           return typeof response === 'string' ? response : JSON.stringify(response);
         }
       }
     } catch (e) {
-      console.warn('Catalyst QuickML LLM call failed, falling back to heuristic search:', (e as Error).message);
+      console.warn('Catalyst QuickML SDK pipeline call failed, falling back to heuristic search:', (e as Error).message);
     }
 
     // Ultimate Fallback: Local Heuristic Summarization
@@ -147,3 +203,62 @@ export const CatalystQuickML = {
     return null;
   }
 };
+
+/**
+ * Groq API fallback when Catalyst GLM is unavailable
+ */
+async function callGroqFallback(prompt: string, contextData: any): Promise<string> {
+  try {
+    const groqApiKey = process.env.GROQ_API_KEY;
+    if (!groqApiKey) {
+      throw new Error('GROQ_API_KEY not configured');
+    }
+
+    const systemPrompt = `You are an AI intelligence assistant for Karnataka State Police CrimeIntel system.
+
+Your role:
+- Analyze FIR (First Information Report) data from Karnataka State Police databases
+- Identify crime patterns, suspect connections, and investigative leads
+- Summarize complex intelligence data in clear, actionable insights
+- Apply criminological frameworks (Routine Activity Theory, Crime Pattern Theory) when relevant
+
+Guidelines:
+- Be concise but thorough - officers need quick actionable intelligence
+- Highlight key FIR numbers, suspect names, and location patterns
+- When data is incomplete, state confidence level and what's missing
+- Use professional law enforcement terminology
+- For Kannada queries, ensure cultural and linguistic accuracy
+
+Current query context: ${contextData?.intent || 'general inquiry'}`;
+
+    const contextSummary = summarizeRagContext(contextData, 15);
+    const userMessage = `Query: ${prompt}\n\nContext: ${contextSummary}`;
+
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${groqApiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'mixtral-8x7b-32768',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userMessage }
+        ],
+        temperature: 0.7,
+        max_tokens: 1024
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Groq API error: ${response.status}`);
+    }
+
+    const json = await response.json();
+    return json.choices?.[0]?.message?.content || 'Unable to generate response';
+  } catch (error) {
+    console.error('Groq fallback failed:', error);
+    throw error;
+  }
+}
