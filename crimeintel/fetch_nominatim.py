@@ -19,7 +19,7 @@ for d in districts:
     url = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(query)}&format=json&limit=6"
     print(f"Fetching for {dist_name}...")
     
-    req = urllib.request.Request(url, headers={'User-Agent': 'CrimeIntel/1.0 (test@example.com)'})
+    req = urllib.request.Request(url, headers={'User-Agent': 'KarnatakaPoliceStationsFetcher/1.0 (dev@ksp.gov.in)'})
     try:
         with urllib.request.urlopen(req) as response:
             results = json.loads(response.read().decode('utf-8'))

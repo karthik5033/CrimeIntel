@@ -15,17 +15,15 @@ const USE_MOCK = process.env.USE_MOCK_CATALYST === 'true' || process.env.NODE_EN
 // Persistent mock data store (shared across requests and Next.js hot-reloads)
 const globalAny = global as any;
 
-if (!globalAny.__mockDataStore) {
   globalAny.__mockDataStore = {
     files: new Map<string, any>(),
     tables: new Map<string, Map<string, any>>() // tableName -> Map<rowId, rowData>
   };
 
   // Initialize tables
-  ['FIRs', 'Persons', 'Vehicles', 'PhoneRecords', 'Weapons', 'BankAccounts', 'EntityRelationships', 'Embeddings', 'Districts', 'Notifications', 'SystemHealth'].forEach(table => {
+  ['FIRs', 'Persons', 'Vehicles', 'PhoneRecords', 'Weapons', 'BankAccounts', 'EntityRelationships', 'Embeddings', 'Districts', 'Notifications', 'SystemHealth', 'PoliceStations'].forEach(table => {
     globalAny.__mockDataStore.tables.set(table, new Map());
   });
-}
 
 // Ensure all new tables exist in case of hot-reload from an older global state
 ['Districts', 'Notifications', 'SystemHealth'].forEach(table => {
@@ -257,7 +255,15 @@ function createMockCatalystInstance() {
       const districtsSeed = require('../../data/seed/Districts.json');
       const notificationsSeed = require('../../data/seed/Notifications.json');
       const systemHealthSeed = require('../../data/seed/SystemHealth.json');
+      const policeStationsSeed = require('../../data/seed/PoliceStations.json');
       
+      // Load PoliceStations
+      const psTable = mockDataStore.tables.get('PoliceStations')!;
+      policeStationsSeed.forEach((ps: any) => {
+        psTable.set(ps.id, { ROWID: ps.id, ...ps });
+      });
+      console.log(`✅ Loaded ${policeStationsSeed.length} PoliceStations into mock store`);
+
       // Load FIRs
       const firsTable = mockDataStore.tables.get('FIRs')!;
       firsSeed.forEach((fir: any, i: number) => {
@@ -445,10 +451,10 @@ function createMockCatalystInstance() {
             
             // Remove LIMIT if present
             const limitIndex = whereClause.toUpperCase().indexOf('LIMIT');
-            let limit = 20;
+            let limit = 2000;
             if (limitIndex !== -1) {
               const limitStr = whereClause.substring(limitIndex + 5).trim();
-              limit = parseInt(limitStr, 10) || 20;
+              limit = parseInt(limitStr, 10) || 2000;
               whereClause = whereClause.substring(0, limitIndex).trim();
             }
 
@@ -497,7 +503,7 @@ function createMockCatalystInstance() {
           
           // Return all rows if no condition matched
           const limitMatch = query.match(/LIMIT\s+(\d+)/i);
-          const limit = limitMatch ? parseInt(limitMatch[1], 10) : 20;
+          const limit = limitMatch ? parseInt(limitMatch[1], 10) : 2000;
           console.log(`📊 MOCK: Returning ${limit} rows from ${tableName} out of ${allRows.length} total`);
           return allRows.slice(0, limit).map(row => ({ [tableName]: row }));
         }

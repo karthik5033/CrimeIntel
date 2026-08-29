@@ -1,52 +1,302 @@
 [
   {
-    "id": "DIST_1",
-    "name": "Bengaluru Urban",
-    "name_kn": "ಬೆಂಗಳೂರು ನಗರ",
-    "lat": 12.9716,
-    "lng": 77.5946,
-    "zone": "Central",
-    "division": "South",
-    "officers_deployed": 1205
+    "id": "Bidar",
+    "name": "Bidar",
+    "name_kn": "Bidar",
+    "lat": 17.98139304368879,
+    "lng": 77.21418875921141,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 459
   },
   {
-    "id": "DIST_2",
-    "name": "Mysuru",
-    "name_kn": "ಮೈಸೂರು",
-    "lat": 12.2958,
-    "lng": 76.6394,
-    "zone": "South",
-    "division": "Mysuru",
-    "officers_deployed": 450
+    "id": "Kalaburagi",
+    "name": "Kalaburagi",
+    "name_kn": "Kalaburagi",
+    "lat": 17.230940372289194,
+    "lng": 76.82961928187336,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 572
   },
   {
-    "id": "DIST_3",
-    "name": "Mangaluru",
-    "name_kn": "ಮಂಗಳೂರು",
-    "lat": 12.9141,
-    "lng": 74.8560,
-    "zone": "West",
-    "division": "Mangaluru",
-    "officers_deployed": 320
-  },
-  {
-    "id": "DIST_4",
-    "name": "Hubballi-Dharwad",
-    "name_kn": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ",
-    "lat": 15.3647,
-    "lng": 75.1240,
-    "zone": "North",
-    "division": "Hubballi",
-    "officers_deployed": 280
-  },
-  {
-    "id": "DIST_5",
+    "id": "Belagavi",
     "name": "Belagavi",
-    "name_kn": "ಬೆಳಗಾವಿ",
-    "lat": 15.8497,
-    "lng": 74.4977,
-    "zone": "North",
-    "division": "Belagavi",
-    "officers_deployed": 210
+    "name_kn": "Belagavi",
+    "lat": 16.185878066705374,
+    "lng": 74.75788761576389,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 414
+  },
+  {
+    "id": "Yadgir",
+    "name": "Yadgir",
+    "name_kn": "Yadgir",
+    "lat": 16.658844352115825,
+    "lng": 76.97018120047834,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 603
+  },
+  {
+    "id": "Bagalkote",
+    "name": "Bagalkote",
+    "name_kn": "Bagalkote",
+    "lat": 16.1691659764238,
+    "lng": 75.6472211746688,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 260
+  },
+  {
+    "id": "Raichur",
+    "name": "Raichur",
+    "name_kn": "Raichur",
+    "lat": 16.111478059640397,
+    "lng": 76.89371805211584,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 539
+  },
+  {
+    "id": "Koppal",
+    "name": "Koppal",
+    "name_kn": "Koppal",
+    "lat": 15.642594420956417,
+    "lng": 76.13937510444529,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 619
+  },
+  {
+    "id": "Gadag",
+    "name": "Gadag",
+    "name_kn": "Gadag",
+    "lat": 15.513741303730214,
+    "lng": 75.6579956488168,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 457
+  },
+  {
+    "id": "Ballari",
+    "name": "Ballari",
+    "name_kn": "Ballari",
+    "lat": 15.044572867349459,
+    "lng": 76.44117257136956,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 331
+  },
+  {
+    "id": "Dharwad",
+    "name": "Dharwad",
+    "name_kn": "Dharwad",
+    "lat": 15.342462117993685,
+    "lng": 75.14820200493776,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 545
+  },
+  {
+    "id": "Uttara Kannada",
+    "name": "Uttara Kannada",
+    "name_kn": "Uttara Kannada",
+    "lat": 14.754218913488756,
+    "lng": 74.66402095128862,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 475
+  },
+  {
+    "id": "Haveri",
+    "name": "Haveri",
+    "name_kn": "Haveri",
+    "lat": 14.77340881350611,
+    "lng": 75.42348129497825,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 368
+  },
+  {
+    "id": "Chitradurga",
+    "name": "Chitradurga",
+    "name_kn": "Chitradurga",
+    "lat": 14.305943818258047,
+    "lng": 76.57161135123066,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 370
+  },
+  {
+    "id": "Davanagere",
+    "name": "Davanagere",
+    "name_kn": "Davanagere",
+    "lat": 14.434879918916264,
+    "lng": 75.96707054415096,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 236
+  },
+  {
+    "id": "Shivamogga",
+    "name": "Shivamogga",
+    "name_kn": "Shivamogga",
+    "lat": 14.04946000494403,
+    "lng": 75.2004893704263,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 246
+  },
+  {
+    "id": "Udupi",
+    "name": "Udupi",
+    "name_kn": "Udupi",
+    "lat": 13.49162953065748,
+    "lng": 74.92206855898696,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 209
+  },
+  {
+    "id": "Chikkamagaluru",
+    "name": "Chikkamagaluru",
+    "name_kn": "Chikkamagaluru",
+    "lat": 13.459048273772815,
+    "lng": 75.67747520161682,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 447
+  },
+  {
+    "id": "Chikkaballapura",
+    "name": "Chikkaballapura",
+    "name_kn": "Chikkaballapura",
+    "lat": 13.545927368789462,
+    "lng": 77.82678264536418,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 509
+  },
+  {
+    "id": "Hassan",
+    "name": "Hassan",
+    "name_kn": "Hassan",
+    "lat": 12.951270636656961,
+    "lng": 76.12323570885233,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 334
+  },
+  {
+    "id": "Kolar",
+    "name": "Kolar",
+    "name_kn": "Kolar",
+    "lat": 13.141639248758016,
+    "lng": 78.19316991657941,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 647
+  },
+  {
+    "id": "Bengaluru Rural",
+    "name": "Bengaluru Rural",
+    "name_kn": "Bengaluru Rural",
+    "lat": 13.19541757005741,
+    "lng": 77.61660523237212,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 236
+  },
+  {
+    "id": "Dakshina Kannada",
+    "name": "Dakshina Kannada",
+    "name_kn": "Dakshina Kannada",
+    "lat": 12.82226004842041,
+    "lng": 75.26590924093695,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 429
+  },
+  {
+    "id": "Bengaluru Urban",
+    "name": "Bengaluru Urban",
+    "name_kn": "Bengaluru Urban",
+    "lat": 12.918114313368946,
+    "lng": 77.58103594641385,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 620
+  },
+  {
+    "id": "Kodagu",
+    "name": "Kodagu",
+    "name_kn": "Kodagu",
+    "lat": 12.437555667617676,
+    "lng": 75.79521462779924,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 324
+  },
+  {
+    "id": "Chamarajanagara",
+    "name": "Chamarajanagara",
+    "name_kn": "Chamarajanagara",
+    "lat": 11.980659865991093,
+    "lng": 77.02394642382524,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 518
+  },
+  {
+    "id": "Tumakuru",
+    "name": "Tumakuru",
+    "name_kn": "Tumakuru",
+    "lat": 13.595617375490004,
+    "lng": 77.04107404323811,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 322
+  },
+  {
+    "id": "Ramanagara",
+    "name": "Ramanagara",
+    "name_kn": "Ramanagara",
+    "lat": 12.760232416419347,
+    "lng": 77.31966927503493,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 616
+  },
+  {
+    "id": "Mandya",
+    "name": "Mandya",
+    "name_kn": "Mandya",
+    "lat": 12.586924692407168,
+    "lng": 76.81196638058923,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 687
+  },
+  {
+    "id": "Mysuru",
+    "name": "Mysuru",
+    "name_kn": "Mysuru",
+    "lat": 12.247015640756297,
+    "lng": 76.56018725463831,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 417
+  },
+  {
+    "id": "Vijayapura",
+    "name": "Vijayapura",
+    "name_kn": "Vijayapura",
+    "lat": 16.87291593769749,
+    "lng": 75.95919421720657,
+    "zone": "State",
+    "division": "State",
+    "officers_deployed": 645
   }
 ]

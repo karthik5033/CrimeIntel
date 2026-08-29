@@ -1,4 +1,5 @@
 const fs = require('fs');
+const turf = require('@turf/turf');
 
 const realStations = [
   // Bengaluru Urban
@@ -90,6 +91,21 @@ const realStations = [
   { name: "Chikmagalur City Police Station", lat: 13.3153, lng: 75.7754, district: "Chikmagalur" }
 ];
 
+function getRandomPointInPolygon(polygonFeature) {
+    let pt = null;
+    let bounds = turf.bbox(polygonFeature);
+    // limit attempts
+    for(let i=0; i<100; i++) {
+        pt = turf.randomPoint(1, {bbox: bounds}).features[0];
+        if (turf.booleanPointInPolygon(pt, polygonFeature)) {
+            return pt;
+        }
+    }
+    return null;
+}
+
+const prefixNames = ['City', 'Rural', 'Town', 'Traffic', 'Cyber', 'Women', 'North', 'South', 'East', 'West', 'Central', 'Local', 'Railway', 'Special'];
+
 function run() {
   const districts = JSON.parse(fs.readFileSync('data/seed/Districts.json', 'utf8'));
   const districtMap = {};
@@ -112,21 +128,52 @@ function run() {
     };
   });
   
-  // For remaining districts without explicit police stations, add one at their exact center
+  // Let's generate a dense population of police stations per district!
+  const geojson = JSON.parse(fs.readFileSync('public/karnataka_smoothed.json', 'utf8'));
+
+  let autoId = 100;
+
   districts.forEach(d => {
-    if (!finalStations.find(s => s.district_id === d.id)) {
-      finalStations.push({
-         id: `PS_REAL_AUTO_${d.id}`,
-         name_en: `${d.name} Rural Police Station`,
-         district_id: d.id,
-         lat: d.lat,
-         lng: d.lng
-      });
-    }
+      // Find the corresponding polygon
+      const districtPolygon = geojson.features.find(f => 
+          f.properties.district && 
+          (f.properties.district.toLowerCase().includes(d.name.toLowerCase()) || 
+           d.name.toLowerCase().includes(f.properties.district.toLowerCase()))
+      );
+
+      if (districtPolygon) {
+          // Generate 20 to 35 police stations for this district
+          const targetCount = Math.floor(Math.random() * 15) + 20; 
+          for (let i = 0; i < targetCount; i++) {
+              const pt = getRandomPointInPolygon(districtPolygon);
+              if (pt) {
+                  const prefix = prefixNames[Math.floor(Math.random() * prefixNames.length)];
+                  finalStations.push({
+                      id: `PS_GEN_${autoId++}`,
+                      name_en: `${d.name} ${prefix} Police Station`,
+                      district_id: d.id,
+                      lat: pt.geometry.coordinates[1],
+                      lng: pt.geometry.coordinates[0]
+                  });
+              }
+          }
+      } else {
+          // Fallback if polygon not found (just center point)
+          for (let i = 0; i < 5; i++) {
+            const prefix = prefixNames[Math.floor(Math.random() * prefixNames.length)];
+            finalStations.push({
+                id: `PS_GEN_${autoId++}`,
+                name_en: `${d.name} ${prefix} PS`,
+                district_id: d.id,
+                lat: d.lat + (Math.random() - 0.5) * 0.1,
+                lng: d.lng + (Math.random() - 0.5) * 0.1
+            });
+          }
+      }
   });
 
   fs.writeFileSync('data/seed/PoliceStations.json', JSON.stringify(finalStations, null, 2));
-  console.log(`Saved ${finalStations.length} REAL police stations to seed data!`);
+  console.log(`Saved ${finalStations.length} police stations to seed data!`);
 }
 
 run();

@@ -119,7 +119,7 @@ export function CrimeTrendChart() {
               tick={{ fill: 'var(--muted-foreground)', fontSize: 11, fontWeight: 500 }}
               tickFormatter={(val) => {
                 const d = new Date(val);
-                return d.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+                return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
               }}
               dy={10}
               minTickGap={30}

@@ -148,36 +148,168 @@ npm install
 ```
 
 ### 3. Setup environment variables
-Create a `.env.local` file in the root directory:
+Copy the example environment file and configure your credentials:
+```bash
+cp .env.local.example .env.local
+```
+
+#### Required Environment Variables
+
+Edit `.env.local` with your actual configuration:
+
 ```env
-NEXT_PUBLIC_ZOHO_PROJECT_ID=your_project_id
-ZOHO_CATALYST_API_KEY=your_api_key
+# Catalyst Project Configuration
 CATALYST_PROJECT_ID=55949000000013025
 CATALYST_ENV=Development
-CATALYST_TOKEN=optional_token_if_you_use_token_auth
+
+# Authentication Mode
+USE_MOCK_CATALYST=true  # Set to 'false' for production
+
+# OAuth 2.0 Credentials (Required for production)
+CATALYST_CLIENT_ID=<your_client_id_here>
+CATALYST_CLIENT_SECRET=<your_client_secret_here>
+CATALYST_REFRESH_TOKEN=<your_refresh_token_here>
+CATALYST_ORG_ID=60078981781
+
+# QuickML Configuration
+QUICKML_ENDPOINT_KEY=https://api.catalyst.zoho.in/quickml/v1/project/55949000000013025/glm/chat
+```
+
+#### OAuth Setup Guide
+
+CrimeIntel uses OAuth 2.0 for secure authentication with Zoho Catalyst services. You have two options:
+
+##### Method 1: Catalyst CLI (Recommended for Development)
+
+The easiest way to authenticate during local development:
+
+```bash
+# Install Catalyst CLI globally
+npm install -g zcatalyst-cli
+
+# Authenticate (opens browser for login)
+catalyst login
+
+# The CLI creates a .catalystrc file that the SDK uses automatically
+```
+
+Once authenticated, set `USE_MOCK_CATALYST=false` in `.env.local` to use real Catalyst services.
+
+##### Method 2: Manual OAuth (Required for Production)
+
+For production deployments or CI/CD pipelines, you need to generate OAuth credentials manually:
+
+**Step 1: Create a Zoho API Console Self Client**
+
+1. Visit [Zoho API Console](https://api-console.zoho.in/)
+2. Click "Add Client" → "Self Client"
+3. Note your **Client ID** and **Client Secret**
+
+**Step 2: Generate Authorization Code**
+
+Visit this URL in your browser (replace `YOUR_CLIENT_ID` with your actual client ID):
+
+```
+https://accounts.zoho.in/oauth/v2/auth?scope=ZohoCatalyst.projects.ALL,ZohoCatalyst.filestore.CREATE,ZohoCatalyst.datastore.CREATE,QuickML.deployment.READ&client_id=YOUR_CLIENT_ID&response_type=code&access_type=offline&redirect_uri=http://localhost
+```
+
+After authorizing, you'll be redirected to `http://localhost?code=AUTHORIZATION_CODE`. Copy the code parameter.
+
+**Step 3: Exchange Code for Refresh Token**
+
+Use curl or Postman to make this request:
+
+```bash
+curl -X POST https://accounts.zoho.in/oauth/v2/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "client_id=YOUR_CLIENT_ID" \
+  -d "client_secret=YOUR_CLIENT_SECRET" \
+  -d "code=AUTHORIZATION_CODE_FROM_STEP_2" \
+  -d "grant_type=authorization_code" \
+  -d "redirect_uri=http://localhost"
+```
+
+The response will include a `refresh_token`. This token doesn't expire and can be used to generate access tokens.
+
+**Step 4: Update Environment Variables**
+
+Add the credentials to your `.env.local`:
+
+```env
+CATALYST_CLIENT_ID=your_client_id_from_step_1
+CATALYST_CLIENT_SECRET=your_client_secret_from_step_1
+CATALYST_REFRESH_TOKEN=your_refresh_token_from_step_3
 USE_MOCK_CATALYST=false
 ```
 
-Notes:
-- `CATALYST_PROJECT_ID` and `CATALYST_ENV` are the primary server-side values used by the Catalyst SDK wrapper.
-- `NEXT_PUBLIC_CATALYST_PROJECT_ID` and `NEXT_PUBLIC_CATALYST_ENV` are also supported if you need client-visible configuration.
-- Set `USE_MOCK_CATALYST=true` when you want the app to run entirely against the in-memory mock Catalyst layer.
-- If you have already authenticated with the Catalyst CLI, the app can initialize from the local `~/.zcatalyst` credentials instead of a token.
+#### Authentication Modes
 
-### 4. Optional: authenticate with Catalyst CLI
-If you want to hit live File Store or Data Store services, log in first:
+CrimeIntel supports multiple authentication strategies (tried in order):
+
+1. **Local .catalystrc** - Project-level authentication file
+2. **CLI Authentication** - User-level credentials from `catalyst login`
+3. **OAuth Refresh Token** - Client ID/Secret + Refresh Token (recommended for production)
+4. **Legacy Token** - Direct token authentication (deprecated)
+
+The SDK will try each method until one succeeds. If all fail and `USE_MOCK_CATALYST=false`, the app will throw an error explaining which credentials are needed.
+
+#### Environment Variable Reference
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `CATALYST_CLIENT_ID` | Yes (production) | OAuth client ID from Zoho API Console |
+| `CATALYST_CLIENT_SECRET` | Yes (production) | OAuth client secret from Zoho API Console |
+| `CATALYST_REFRESH_TOKEN` | Yes (production) | Refresh token from OAuth flow |
+| `CATALYST_ORG_ID` | Yes | Zoho organization ID (default: 60078981781) |
+| `CATALYST_PROJECT_ID` | Yes | Catalyst project ID |
+| `CATALYST_ENV` | Yes | Catalyst environment (Development/Production) |
+| `USE_MOCK_CATALYST` | No | Set to `true` for mock mode, `false` for production |
+| `QUICKML_ENDPOINT_KEY` | Yes | Catalyst GLM endpoint URL |
+| `CATALYST_TOKEN` | No | Legacy token authentication (deprecated) |
+
+For more details, see [Zoho Catalyst OAuth Documentation](https://www.zoho.com/catalyst/help/api/oauth/refresh-access-token.html).
+
+#### NoSQL TTL Configuration
+
+CrimeIntel uses Catalyst NoSQL to store chat sessions with automatic expiration after 30 days. To enable Time-To-Live (TTL) for the `ChatSessions` table:
+
+**Manual Configuration (Required for Production):**
+
+1. Log into the [Zoho Catalyst Console](https://console.catalyst.zoho.in/)
+2. Navigate to your project → **Data Store** → **NoSQL**
+3. Select the `ChatSessions` table
+4. Go to **Settings** → **TTL Policy**
+5. Enable TTL and configure:
+   - **TTL Attribute**: `ttl`
+   - **TTL Unit**: Milliseconds (epoch timestamp)
+6. Save the configuration
+
+**How It Works:**
+- Each session automatically gets a `ttl` field set to 30 days from creation
+- On each update, the TTL is refreshed (extends the session lifetime)
+- Catalyst automatically deletes sessions after their TTL expires
+- No manual cleanup required
+
+**Testing TTL:**
 ```bash
-catalyst login
+# Create a test session with 1-minute TTL
+curl -X POST http://localhost:3000/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"sessionId":"test-ttl","message":"hello"}'
+
+# Wait 1 minute and verify it's deleted
+curl -X GET http://localhost:3000/api/chat?sessionId=test-ttl
+# Should return empty session template (not existing session)
 ```
 
-### 5. Start the development server
+### 4. Start the development server
 ```bash
 npm run dev
 ```
 
 The application will be available at `http://localhost:3000`.
 
-### 6. Validate the build
+### 5. Validate the build
 ```bash
 npm run lint
 npm run build

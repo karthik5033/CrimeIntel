@@ -310,6 +310,18 @@ export const CatalystDataStore = {
     }
   },
 
+  insertPoliceStations: async (stations: any[]): Promise<void> => {
+    const app = getCatalystApp();
+    const table = app.datastore().table('PoliceStations');
+    
+    const batchSize = 100;
+    for (let i = 0; i < stations.length; i += batchSize) {
+      const batch = stations.slice(i, i + batchSize);
+      await table.insertRows(batch);
+      console.log(`Loaded ${Math.min(i + batchSize, stations.length)} / ${stations.length} Police Stations`);
+    }
+  },
+
   insertRelationships: async (relationships: any[]): Promise<void> => {
     const app = getCatalystApp();
     const table = app.datastore().table('EntityRelationships');

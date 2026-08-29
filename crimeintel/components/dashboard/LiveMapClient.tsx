@@ -9,7 +9,7 @@ import L from "leaflet";
 const createCustomIcon = (threat: string, isSelected: boolean) => {
   const isCritical = threat === 'Critical';
   const color = isCritical ? '#ef4444' : (isSelected ? '#3b82f6' : '#64748b');
-  const size = isSelected ? 28 : 20;
+  const size = isSelected ? 12 : 8;
   
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}" stroke="white" stroke-width="2.5" style="filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.4));"><circle cx="12" cy="12" r="9"/></svg>`;
 
@@ -165,7 +165,7 @@ function WardsGridLayer({ isVisible, selectedSpot, firPoints }: { isVisible: boo
   return <LayerGroup>{gridPolygons}</LayerGroup>;
 }
 
-export default function LiveMapClient({ hotspots, firPoints, recentSpikes, policeStations, selectedSpot, onSelect, showHeatmap, showBoundaries, showWards, showPredictive, mapStyle }: any) {
+export default function LiveMapClient({ hotspots, firPoints, recentSpikes, policeStations, selectedSpot, onSelect, showHeatmap, showBoundaries, showWards, showPredictive, showPoliceStations, mapStyle }: any) {
   // Center of Karnataka State
   const defaultCenter: [number, number] = [15.3173, 75.7139]; 
   const defaultZoom = 7;
@@ -173,7 +173,7 @@ export default function LiveMapClient({ hotspots, firPoints, recentSpikes, polic
   const [geoJsonData, setGeoJsonData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('/karnataka.json')
+    fetch('/karnataka_smoothed.json')
       .then(res => res.json())
       .then(data => setGeoJsonData(data))
       .catch(err => console.error("Failed to load geojson", err));
@@ -195,7 +195,11 @@ export default function LiveMapClient({ hotspots, firPoints, recentSpikes, polic
         attributionControl={false}
         minZoom={5}
       >
-        <TileLayer url={tileUrl} />
+        <TileLayer 
+          url={tileUrl} 
+          maxNativeZoom={16}
+          maxZoom={19}
+        />
         
         {/* District Boundaries Layer (Real Karnataka GeoJSON) */}
         {showBoundaries && geoJsonData && (
@@ -204,11 +208,13 @@ export default function LiveMapClient({ hotspots, firPoints, recentSpikes, polic
             data={geoJsonData} 
             style={{
               color: mapStyle === 'light' ? '#2563eb' : '#0ea5e9', 
-              weight: 2,
+              weight: 1.5,
               opacity: 0.6,
               fillColor: mapStyle === 'light' ? '#3b82f6' : '#0ea5e9', 
               fillOpacity: 0.05,
-              dashArray: '8, 8'
+              dashArray: '4, 4',
+              lineJoin: 'round',
+              lineCap: 'round'
             }}
             pointToLayer={(feature, latlng) => L.circleMarker(latlng, { radius: 0, opacity: 0, fillOpacity: 0 })}
             onEachFeature={(feature, layer) => {
@@ -228,8 +234,8 @@ export default function LiveMapClient({ hotspots, firPoints, recentSpikes, polic
         {/* Predictive 7-Day Forecast */}
         <PredictiveHeatmapLayer isVisible={showPredictive} mapStyle={mapStyle} recentSpikes={recentSpikes} />
 
-        {/* Hotspot Markers (District HQs) */}
-        {hotspots.map((spot: any) => {
+        {/* Hotspot Markers (Police Stations) */}
+        {showPoliceStations && hotspots.map((spot: any) => {
           const isSelected = selectedSpot?.id === spot.id;
           return (
             <Marker 
@@ -247,18 +253,7 @@ export default function LiveMapClient({ hotspots, firPoints, recentSpikes, polic
           );
         })}
 
-        {/* Police Station Markers */}
-        {(policeStations || []).map((station: any) => (
-          <Marker 
-            key={station.id} 
-            position={[station.lat, station.lng]}
-            icon={createPSIcon(mapStyle)}
-          >
-            <Tooltip direction="right" offset={[10, 0]} opacity={1} className="text-xs">
-              {station.name_en}
-            </Tooltip>
-          </Marker>
-        ))}
+
 
         {selectedSpot && <MapCameraUpdater lat={selectedSpot.lat} lng={selectedSpot.lng} isSelected={true} />}
       </MapContainer>

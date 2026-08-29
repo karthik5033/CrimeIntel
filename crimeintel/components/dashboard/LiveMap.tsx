@@ -32,6 +32,7 @@ export function LiveMap() {
   const [showBoundaries, setShowBoundaries] = useState(false);
   const [showWards, setShowWards] = useState(false);
   const [showPredictive, setShowPredictive] = useState(false);
+  const [showPoliceStations, setShowPoliceStations] = useState(true);
   const [mapStyle, setMapStyle] = useState<'light' | 'dark' | 'satellite'>('light');
 
   const { t } = useLanguage();
@@ -119,6 +120,7 @@ export function LiveMap() {
               showBoundaries={showBoundaries}
               showWards={showWards}
               showPredictive={showPredictive}
+              showPoliceStations={showPoliceStations}
               mapStyle={mapStyle}
             />
             
@@ -157,6 +159,16 @@ export function LiveMap() {
                   <span className="flex items-center gap-1.5"><Hexagon className="h-3 w-3" /> {t('map.wardsGrid')}</span>
                   <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showWards ? "bg-purple-500" : "bg-slate-300")}>
                     <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showWards ? "translate-x-2.5" : "translate-x-0")} />
+                  </div>
+                </button>
+
+                <button 
+                  onClick={() => setShowPoliceStations(!showPoliceStations)}
+                  className={cn("px-2 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors", showPoliceStations ? "bg-indigo-50 text-indigo-700" : "hover:bg-slate-100 text-slate-600")}
+                >
+                  <span className="flex items-center gap-1.5"><Shield className="h-3 w-3" /> Police Stations</span>
+                  <div className={cn("w-6 h-3.5 rounded-full transition-colors relative", showPoliceStations ? "bg-indigo-500" : "bg-slate-300")}>
+                    <div className={cn("absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform", showPoliceStations ? "translate-x-2.5" : "translate-x-0")} />
                   </div>
                 </button>
 

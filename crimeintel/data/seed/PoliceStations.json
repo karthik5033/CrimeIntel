@@ -2,323 +2,6007 @@
   {
     "id": "PS_REAL_1",
     "name_en": "Cubbon Park Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bengaluru Urban",
     "lat": 12.9778,
     "lng": 77.5944
   },
   {
     "id": "PS_REAL_2",
     "name_en": "Koramangala Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bengaluru Urban",
     "lat": 12.9352,
     "lng": 77.6245
   },
   {
     "id": "PS_REAL_3",
     "name_en": "Indiranagar Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bengaluru Urban",
     "lat": 12.9784,
     "lng": 77.6408
   },
   {
     "id": "PS_REAL_4",
     "name_en": "Whitefield Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bengaluru Urban",
     "lat": 12.9698,
     "lng": 77.7499
   },
   {
     "id": "PS_REAL_5",
     "name_en": "Jayanagar Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bengaluru Urban",
     "lat": 12.925,
     "lng": 77.5938
   },
   {
     "id": "PS_REAL_6",
     "name_en": "Malleswaram Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bengaluru Urban",
     "lat": 13.0035,
     "lng": 77.571
   },
   {
     "id": "PS_REAL_7",
     "name_en": "Devaraja Police Station",
-    "district_id": "DIST_2",
+    "district_id": "Mysuru",
     "lat": 12.3086,
     "lng": 76.6525
   },
   {
     "id": "PS_REAL_8",
     "name_en": "Kuvempunagar Police Station",
-    "district_id": "DIST_2",
+    "district_id": "Mysuru",
     "lat": 12.2858,
     "lng": 76.6265
   },
   {
     "id": "PS_REAL_9",
     "name_en": "Saraswathipuram Police Station",
-    "district_id": "DIST_2",
+    "district_id": "Mysuru",
     "lat": 12.3045,
     "lng": 76.6341
   },
   {
     "id": "PS_REAL_10",
     "name_en": "Vijayanagar Police Station",
-    "district_id": "DIST_2",
+    "district_id": "Mysuru",
     "lat": 12.3276,
     "lng": 76.62
   },
   {
     "id": "PS_REAL_11",
     "name_en": "Bunder Police Station",
-    "district_id": "DIST_3",
+    "district_id": "Bidar",
     "lat": 12.8687,
     "lng": 74.8398
   },
   {
     "id": "PS_REAL_12",
     "name_en": "Kadri Police Station",
-    "district_id": "DIST_3",
+    "district_id": "Bidar",
     "lat": 12.879,
     "lng": 74.856
   },
   {
     "id": "PS_REAL_13",
     "name_en": "Pandeshwar Police Station",
-    "district_id": "DIST_3",
+    "district_id": "Bidar",
     "lat": 12.8601,
     "lng": 74.8423
   },
   {
     "id": "PS_REAL_14",
     "name_en": "Surathkal Police Station",
-    "district_id": "DIST_3",
+    "district_id": "Bidar",
     "lat": 13.005,
     "lng": 74.795
   },
   {
     "id": "PS_REAL_15",
     "name_en": "Vidyanagar Police Station",
-    "district_id": "DIST_4",
+    "district_id": "Dharwad",
     "lat": 15.3647,
     "lng": 75.1239
   },
   {
     "id": "PS_REAL_16",
     "name_en": "Suburban Police Station",
-    "district_id": "DIST_4",
+    "district_id": "Dharwad",
     "lat": 15.3533,
     "lng": 75.1435
   },
   {
     "id": "PS_REAL_17",
     "name_en": "Gokul Road Police Station",
-    "district_id": "DIST_4",
+    "district_id": "Dharwad",
     "lat": 15.367,
     "lng": 75.109
   },
   {
     "id": "PS_REAL_18",
     "name_en": "Dharwad Town Police Station",
-    "district_id": "DIST_4",
+    "district_id": "Dharwad",
     "lat": 15.4589,
     "lng": 75.0078
   },
   {
     "id": "PS_REAL_19",
     "name_en": "Camp Police Station",
-    "district_id": "DIST_5",
+    "district_id": "Belagavi",
     "lat": 15.8497,
     "lng": 74.529
   },
   {
     "id": "PS_REAL_20",
     "name_en": "Tilakwadi Police Station",
-    "district_id": "DIST_5",
+    "district_id": "Belagavi",
     "lat": 15.835,
     "lng": 74.512
   },
   {
     "id": "PS_REAL_21",
     "name_en": "Khade Bazar Police Station",
-    "district_id": "DIST_5",
+    "district_id": "Belagavi",
     "lat": 15.857,
     "lng": 74.517
   },
   {
     "id": "PS_REAL_22",
     "name_en": "Brahmpur Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Kalaburagi",
     "lat": 17.3297,
     "lng": 76.8343
   },
   {
     "id": "PS_REAL_23",
     "name_en": "Chowk Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Kalaburagi",
     "lat": 17.334,
     "lng": 76.829
   },
   {
     "id": "PS_REAL_24",
     "name_en": "Ashok Nagar Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Kalaburagi",
     "lat": 17.345,
     "lng": 76.83
   },
   {
     "id": "PS_REAL_25",
     "name_en": "Doddapete Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Shivamogga",
     "lat": 13.9299,
     "lng": 75.5681
   },
   {
     "id": "PS_REAL_26",
     "name_en": "Kote Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Shivamogga",
     "lat": 13.931,
     "lng": 75.575
   },
   {
     "id": "PS_REAL_27",
     "name_en": "Vinobanager Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Shivamogga",
     "lat": 13.935,
     "lng": 75.558
   },
   {
     "id": "PS_REAL_28",
     "name_en": "Cowl Bazaar Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Ballari",
     "lat": 15.1394,
     "lng": 76.9214
   },
   {
     "id": "PS_REAL_29",
     "name_en": "Gandhi Nagar Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Ballari",
     "lat": 15.148,
     "lng": 76.925
   },
   {
     "id": "PS_REAL_30",
     "name_en": "Tumakuru Town Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Tumakuru",
     "lat": 13.3379,
     "lng": 77.1173
   },
   {
     "id": "PS_REAL_31",
     "name_en": "Kyathsandra Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Tumakuru",
     "lat": 13.345,
     "lng": 77.13
   },
   {
     "id": "PS_REAL_32",
     "name_en": "Udupi Town Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Udupi",
     "lat": 13.3409,
     "lng": 74.7421
   },
   {
     "id": "PS_REAL_33",
     "name_en": "Malpe Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Udupi",
     "lat": 13.351,
     "lng": 74.7
   },
   {
     "id": "PS_REAL_34",
     "name_en": "Manipal Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Udupi",
     "lat": 13.345,
     "lng": 74.79
   },
   {
     "id": "PS_REAL_35",
     "name_en": "Davanagere City Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Davanagere",
     "lat": 14.4644,
     "lng": 75.9218
   },
   {
     "id": "PS_REAL_36",
     "name_en": "Vidyanagar Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Davanagere",
     "lat": 14.45,
     "lng": 75.91
   },
   {
     "id": "PS_REAL_37",
     "name_en": "Hosapete Town Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bidar",
     "lat": 15.2689,
     "lng": 76.3909
   },
   {
     "id": "PS_REAL_38",
     "name_en": "Hassan City Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Hassan",
     "lat": 13.0033,
     "lng": 76.1004
   },
   {
     "id": "PS_REAL_39",
     "name_en": "Kolar Town Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Kolar",
     "lat": 13.1367,
     "lng": 78.1291
   },
   {
     "id": "PS_REAL_40",
     "name_en": "Mandya City Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Mandya",
     "lat": 12.5218,
     "lng": 76.8951
   },
   {
     "id": "PS_REAL_41",
     "name_en": "Raichur Town Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Raichur",
     "lat": 16.2076,
     "lng": 77.3463
   },
   {
     "id": "PS_REAL_42",
     "name_en": "Bidar City Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bidar",
     "lat": 17.9104,
     "lng": 77.5199
   },
   {
     "id": "PS_REAL_43",
     "name_en": "Gol Gumbaz Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Vijayapura",
     "lat": 16.8286,
     "lng": 75.7196
   },
   {
     "id": "PS_REAL_44",
     "name_en": "Gadag Town Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Gadag",
     "lat": 15.4267,
     "lng": 75.6316
   },
   {
     "id": "PS_REAL_45",
     "name_en": "Karwar Town Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bidar",
     "lat": 14.8152,
     "lng": 74.135
   },
   {
     "id": "PS_REAL_46",
     "name_en": "Chikmagalur City Police Station",
-    "district_id": "DIST_1",
+    "district_id": "Bidar",
     "lat": 13.3153,
     "lng": 75.7754
+  },
+  {
+    "id": "PS_GEN_100",
+    "name_en": "Bidar West Police Station",
+    "district_id": "Bidar",
+    "lat": 18.070856805913277,
+    "lng": 77.24121706942509
+  },
+  {
+    "id": "PS_GEN_101",
+    "name_en": "Bidar South Police Station",
+    "district_id": "Bidar",
+    "lat": 18.111603534482203,
+    "lng": 77.40641816475427
+  },
+  {
+    "id": "PS_GEN_102",
+    "name_en": "Bidar South Police Station",
+    "district_id": "Bidar",
+    "lat": 17.69089494388366,
+    "lng": 76.85433275033782
+  },
+  {
+    "id": "PS_GEN_103",
+    "name_en": "Bidar Traffic Police Station",
+    "district_id": "Bidar",
+    "lat": 18.02708613666269,
+    "lng": 77.37098642009884
+  },
+  {
+    "id": "PS_GEN_104",
+    "name_en": "Bidar Special Police Station",
+    "district_id": "Bidar",
+    "lat": 17.885620151903087,
+    "lng": 76.83542959632321
+  },
+  {
+    "id": "PS_GEN_105",
+    "name_en": "Bidar Women Police Station",
+    "district_id": "Bidar",
+    "lat": 17.691470487758988,
+    "lng": 76.99514896756402
+  },
+  {
+    "id": "PS_GEN_106",
+    "name_en": "Bidar West Police Station",
+    "district_id": "Bidar",
+    "lat": 18.045857315916727,
+    "lng": 77.51358021228434
+  },
+  {
+    "id": "PS_GEN_107",
+    "name_en": "Bidar Central Police Station",
+    "district_id": "Bidar",
+    "lat": 18.425752573584006,
+    "lng": 77.35658016093566
+  },
+  {
+    "id": "PS_GEN_108",
+    "name_en": "Bidar East Police Station",
+    "district_id": "Bidar",
+    "lat": 18.173219542598673,
+    "lng": 77.14695418059227
+  },
+  {
+    "id": "PS_GEN_109",
+    "name_en": "Bidar Railway Police Station",
+    "district_id": "Bidar",
+    "lat": 17.78467453771543,
+    "lng": 77.05811356240494
+  },
+  {
+    "id": "PS_GEN_110",
+    "name_en": "Bidar East Police Station",
+    "district_id": "Bidar",
+    "lat": 17.730295094810366,
+    "lng": 76.8124175567544
+  },
+  {
+    "id": "PS_GEN_111",
+    "name_en": "Bidar North Police Station",
+    "district_id": "Bidar",
+    "lat": 18.028906342021326,
+    "lng": 77.30430911057836
+  },
+  {
+    "id": "PS_GEN_112",
+    "name_en": "Bidar Local Police Station",
+    "district_id": "Bidar",
+    "lat": 17.77828016200779,
+    "lng": 77.24072316349007
+  },
+  {
+    "id": "PS_GEN_113",
+    "name_en": "Bidar Central Police Station",
+    "district_id": "Bidar",
+    "lat": 17.82180418074415,
+    "lng": 77.07896094586836
+  },
+  {
+    "id": "PS_GEN_114",
+    "name_en": "Bidar Traffic Police Station",
+    "district_id": "Bidar",
+    "lat": 18.037504893225634,
+    "lng": 77.45219836881137
+  },
+  {
+    "id": "PS_GEN_115",
+    "name_en": "Bidar East Police Station",
+    "district_id": "Bidar",
+    "lat": 17.711527446475902,
+    "lng": 77.22849960575412
+  },
+  {
+    "id": "PS_GEN_116",
+    "name_en": "Bidar East Police Station",
+    "district_id": "Bidar",
+    "lat": 18.102845146422723,
+    "lng": 77.42404453362727
+  },
+  {
+    "id": "PS_GEN_117",
+    "name_en": "Bidar City Police Station",
+    "district_id": "Bidar",
+    "lat": 17.885319139813685,
+    "lng": 76.91092418701972
+  },
+  {
+    "id": "PS_GEN_118",
+    "name_en": "Bidar East Police Station",
+    "district_id": "Bidar",
+    "lat": 17.808917872480922,
+    "lng": 77.22356361768112
+  },
+  {
+    "id": "PS_GEN_119",
+    "name_en": "Bidar North Police Station",
+    "district_id": "Bidar",
+    "lat": 17.673919221842908,
+    "lng": 76.94517998084547
+  },
+  {
+    "id": "PS_GEN_120",
+    "name_en": "Bidar Local Police Station",
+    "district_id": "Bidar",
+    "lat": 17.684704028375073,
+    "lng": 77.0336555830373
+  },
+  {
+    "id": "PS_GEN_121",
+    "name_en": "Bidar East Police Station",
+    "district_id": "Bidar",
+    "lat": 17.915481872931373,
+    "lng": 76.99435613915858
+  },
+  {
+    "id": "PS_GEN_122",
+    "name_en": "Bidar Cyber Police Station",
+    "district_id": "Bidar",
+    "lat": 17.745610505879927,
+    "lng": 76.74325779577214
+  },
+  {
+    "id": "PS_GEN_123",
+    "name_en": "Bidar Cyber Police Station",
+    "district_id": "Bidar",
+    "lat": 17.873173274025326,
+    "lng": 76.91004274121055
+  },
+  {
+    "id": "PS_GEN_124",
+    "name_en": "Bidar Local Police Station",
+    "district_id": "Bidar",
+    "lat": 17.658900652432816,
+    "lng": 76.88043923264546
+  },
+  {
+    "id": "PS_GEN_125",
+    "name_en": "Bidar Women Police Station",
+    "district_id": "Bidar",
+    "lat": 17.687902185336792,
+    "lng": 77.22430537014583
+  },
+  {
+    "id": "PS_GEN_126",
+    "name_en": "Kalaburagi Women Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.14965582118014,
+    "lng": 76.68220495456373
+  },
+  {
+    "id": "PS_GEN_127",
+    "name_en": "Kalaburagi Local Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.334535351915967,
+    "lng": 76.20736881675603
+  },
+  {
+    "id": "PS_GEN_128",
+    "name_en": "Kalaburagi Traffic Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.3335879599348,
+    "lng": 77.14680390472742
+  },
+  {
+    "id": "PS_GEN_129",
+    "name_en": "Kalaburagi Rural Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.268330420037845,
+    "lng": 76.22327384974471
+  },
+  {
+    "id": "PS_GEN_130",
+    "name_en": "Kalaburagi Special Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.30694313140022,
+    "lng": 76.57922663602515
+  },
+  {
+    "id": "PS_GEN_131",
+    "name_en": "Kalaburagi Local Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.17421508261714,
+    "lng": 76.84745789116646
+  },
+  {
+    "id": "PS_GEN_132",
+    "name_en": "Kalaburagi Town Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.353844327301907,
+    "lng": 77.41263182994896
+  },
+  {
+    "id": "PS_GEN_133",
+    "name_en": "Kalaburagi Local Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.013264946593182,
+    "lng": 76.73419320405158
+  },
+  {
+    "id": "PS_GEN_134",
+    "name_en": "Kalaburagi North Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.389629553045197,
+    "lng": 77.15515252613582
+  },
+  {
+    "id": "PS_GEN_135",
+    "name_en": "Kalaburagi East Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.518983287841856,
+    "lng": 77.15931364781795
+  },
+  {
+    "id": "PS_GEN_136",
+    "name_en": "Kalaburagi West Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.224385152991847,
+    "lng": 76.29526502841472
+  },
+  {
+    "id": "PS_GEN_137",
+    "name_en": "Kalaburagi East Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.47528591774614,
+    "lng": 76.50438833688078
+  },
+  {
+    "id": "PS_GEN_138",
+    "name_en": "Kalaburagi North Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.037880283850843,
+    "lng": 76.57019105521789
+  },
+  {
+    "id": "PS_GEN_139",
+    "name_en": "Kalaburagi Cyber Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.113629950533984,
+    "lng": 76.75737534903729
+  },
+  {
+    "id": "PS_GEN_140",
+    "name_en": "Kalaburagi South Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.432453716018838,
+    "lng": 77.02711651612213
+  },
+  {
+    "id": "PS_GEN_141",
+    "name_en": "Kalaburagi East Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.29283832361762,
+    "lng": 76.54510322276177
+  },
+  {
+    "id": "PS_GEN_142",
+    "name_en": "Kalaburagi Town Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.521942629717262,
+    "lng": 77.38346445471345
+  },
+  {
+    "id": "PS_GEN_143",
+    "name_en": "Kalaburagi Rural Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.482522222085798,
+    "lng": 76.76081022123692
+  },
+  {
+    "id": "PS_GEN_144",
+    "name_en": "Kalaburagi Town Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.570200995048463,
+    "lng": 77.04866978783421
+  },
+  {
+    "id": "PS_GEN_145",
+    "name_en": "Kalaburagi Rural Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.506556313476207,
+    "lng": 77.20968461091796
+  },
+  {
+    "id": "PS_GEN_146",
+    "name_en": "Kalaburagi Women Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 16.784600562476644,
+    "lng": 76.43287980664769
+  },
+  {
+    "id": "PS_GEN_147",
+    "name_en": "Kalaburagi Cyber Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.50991039800749,
+    "lng": 76.9467804779714
+  },
+  {
+    "id": "PS_GEN_148",
+    "name_en": "Kalaburagi Local Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.289702471724464,
+    "lng": 77.10814433653486
+  },
+  {
+    "id": "PS_GEN_149",
+    "name_en": "Kalaburagi Railway Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.184432761100496,
+    "lng": 77.03903027442111
+  },
+  {
+    "id": "PS_GEN_150",
+    "name_en": "Kalaburagi Women Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.488364921340768,
+    "lng": 76.38831393900965
+  },
+  {
+    "id": "PS_GEN_151",
+    "name_en": "Kalaburagi South Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.02532920800907,
+    "lng": 76.55172700020148
+  },
+  {
+    "id": "PS_GEN_152",
+    "name_en": "Kalaburagi City Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.449246452012297,
+    "lng": 76.8685841847265
+  },
+  {
+    "id": "PS_GEN_153",
+    "name_en": "Kalaburagi City Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.60949083227931,
+    "lng": 76.61352755287359
+  },
+  {
+    "id": "PS_GEN_154",
+    "name_en": "Kalaburagi Rural Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.35195891119549,
+    "lng": 77.45283436028035
+  },
+  {
+    "id": "PS_GEN_155",
+    "name_en": "Kalaburagi West Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.22976539126533,
+    "lng": 76.97124587261025
+  },
+  {
+    "id": "PS_GEN_156",
+    "name_en": "Kalaburagi Local Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.033570380575735,
+    "lng": 77.3353034024077
+  },
+  {
+    "id": "PS_GEN_157",
+    "name_en": "Kalaburagi North Police Station",
+    "district_id": "Kalaburagi",
+    "lat": 17.532826356470903,
+    "lng": 77.04716310895225
+  },
+  {
+    "id": "PS_GEN_158",
+    "name_en": "Belagavi South Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.144865265123446,
+    "lng": 74.98663955247076
+  },
+  {
+    "id": "PS_GEN_159",
+    "name_en": "Belagavi Traffic Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.910267024370686,
+    "lng": 74.42228754536765
+  },
+  {
+    "id": "PS_GEN_160",
+    "name_en": "Belagavi Women Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.99554593265064,
+    "lng": 74.47296469773586
+  },
+  {
+    "id": "PS_GEN_161",
+    "name_en": "Belagavi Railway Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.707756407152466,
+    "lng": 75.16089422140416
+  },
+  {
+    "id": "PS_GEN_162",
+    "name_en": "Belagavi Special Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.884244018870806,
+    "lng": 75.09414862757409
+  },
+  {
+    "id": "PS_GEN_163",
+    "name_en": "Belagavi Traffic Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.857675523641591,
+    "lng": 75.37255299671982
+  },
+  {
+    "id": "PS_GEN_164",
+    "name_en": "Belagavi Special Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.457283705459947,
+    "lng": 74.63091831167537
+  },
+  {
+    "id": "PS_GEN_165",
+    "name_en": "Belagavi South Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.32545718272222,
+    "lng": 74.56472307258926
+  },
+  {
+    "id": "PS_GEN_166",
+    "name_en": "Belagavi City Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.48225247189336,
+    "lng": 74.95670960258862
+  },
+  {
+    "id": "PS_GEN_167",
+    "name_en": "Belagavi City Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.73482582755184,
+    "lng": 74.89082140187116
+  },
+  {
+    "id": "PS_GEN_168",
+    "name_en": "Belagavi West Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.939424407867508,
+    "lng": 74.60026374855902
+  },
+  {
+    "id": "PS_GEN_169",
+    "name_en": "Belagavi Women Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.599792221861543,
+    "lng": 74.63023310069113
+  },
+  {
+    "id": "PS_GEN_170",
+    "name_en": "Belagavi City Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.696429643986871,
+    "lng": 75.00176274275422
+  },
+  {
+    "id": "PS_GEN_171",
+    "name_en": "Belagavi Women Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.629254303513049,
+    "lng": 74.82277782902358
+  },
+  {
+    "id": "PS_GEN_172",
+    "name_en": "Belagavi Special Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.20074499036512,
+    "lng": 75.07935189334476
+  },
+  {
+    "id": "PS_GEN_173",
+    "name_en": "Belagavi South Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.308516257185577,
+    "lng": 74.95316115167137
+  },
+  {
+    "id": "PS_GEN_174",
+    "name_en": "Belagavi West Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.525489936691947,
+    "lng": 75.1426454203406
+  },
+  {
+    "id": "PS_GEN_175",
+    "name_en": "Belagavi Local Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.704947088313407,
+    "lng": 75.09654156828537
+  },
+  {
+    "id": "PS_GEN_176",
+    "name_en": "Belagavi Central Police Station",
+    "district_id": "Belagavi",
+    "lat": 15.948684073533029,
+    "lng": 75.10010226575413
+  },
+  {
+    "id": "PS_GEN_177",
+    "name_en": "Belagavi City Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.593208880572416,
+    "lng": 75.043251523368
+  },
+  {
+    "id": "PS_GEN_178",
+    "name_en": "Belagavi Local Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.838268691918575,
+    "lng": 74.94132804906036
+  },
+  {
+    "id": "PS_GEN_179",
+    "name_en": "Belagavi North Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.31171083356978,
+    "lng": 74.48705573028393
+  },
+  {
+    "id": "PS_GEN_180",
+    "name_en": "Belagavi Rural Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.055875857146173,
+    "lng": 74.88117236606521
+  },
+  {
+    "id": "PS_GEN_181",
+    "name_en": "Belagavi Cyber Police Station",
+    "district_id": "Belagavi",
+    "lat": 16.72590045341536,
+    "lng": 74.77501836817926
+  },
+  {
+    "id": "PS_GEN_182",
+    "name_en": "Yadgir Special Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.796509307390824,
+    "lng": 76.79374399939168
+  },
+  {
+    "id": "PS_GEN_183",
+    "name_en": "Yadgir Women Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.641856934694086,
+    "lng": 77.21317073037551
+  },
+  {
+    "id": "PS_GEN_184",
+    "name_en": "Yadgir Town Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.703347606905265,
+    "lng": 76.94275599926256
+  },
+  {
+    "id": "PS_GEN_185",
+    "name_en": "Yadgir Town Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.71071824779939,
+    "lng": 76.96878963927696
+  },
+  {
+    "id": "PS_GEN_186",
+    "name_en": "Yadgir Special Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.526951732491597,
+    "lng": 77.12160660427577
+  },
+  {
+    "id": "PS_GEN_187",
+    "name_en": "Yadgir Central Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.707823379191836,
+    "lng": 77.24731575993381
+  },
+  {
+    "id": "PS_GEN_188",
+    "name_en": "Yadgir West Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.700651282077246,
+    "lng": 77.06461838621586
+  },
+  {
+    "id": "PS_GEN_189",
+    "name_en": "Yadgir Special Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.44839580088225,
+    "lng": 76.5589147972813
+  },
+  {
+    "id": "PS_GEN_190",
+    "name_en": "Yadgir Local Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.748344454786952,
+    "lng": 77.35766492346937
+  },
+  {
+    "id": "PS_GEN_191",
+    "name_en": "Yadgir Traffic Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.62504956590821,
+    "lng": 77.22412163010779
+  },
+  {
+    "id": "PS_GEN_192",
+    "name_en": "Yadgir East Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.775945263822475,
+    "lng": 77.1171337851893
+  },
+  {
+    "id": "PS_GEN_193",
+    "name_en": "Yadgir Women Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.749540894041473,
+    "lng": 77.28032319860316
+  },
+  {
+    "id": "PS_GEN_194",
+    "name_en": "Yadgir Central Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.77126665488741,
+    "lng": 76.82676066084466
+  },
+  {
+    "id": "PS_GEN_195",
+    "name_en": "Yadgir Cyber Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.675917938799202,
+    "lng": 76.55421459398713
+  },
+  {
+    "id": "PS_GEN_196",
+    "name_en": "Yadgir West Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.73175390181409,
+    "lng": 77.28409592262477
+  },
+  {
+    "id": "PS_GEN_197",
+    "name_en": "Yadgir Central Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.40710371241435,
+    "lng": 76.46960531345786
+  },
+  {
+    "id": "PS_GEN_198",
+    "name_en": "Yadgir Town Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.681889732457332,
+    "lng": 77.10286098858235
+  },
+  {
+    "id": "PS_GEN_199",
+    "name_en": "Yadgir Traffic Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.83502857323505,
+    "lng": 77.1667907328712
+  },
+  {
+    "id": "PS_GEN_200",
+    "name_en": "Yadgir Traffic Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.774796292581048,
+    "lng": 77.3548330069202
+  },
+  {
+    "id": "PS_GEN_201",
+    "name_en": "Yadgir South Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.412113800268482,
+    "lng": 76.6736758317386
+  },
+  {
+    "id": "PS_GEN_202",
+    "name_en": "Yadgir Town Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.62030096340427,
+    "lng": 77.0340742462327
+  },
+  {
+    "id": "PS_GEN_203",
+    "name_en": "Yadgir Railway Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.671819819638195,
+    "lng": 77.24265744422749
+  },
+  {
+    "id": "PS_GEN_204",
+    "name_en": "Yadgir East Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.42793530447757,
+    "lng": 76.49536403829245
+  },
+  {
+    "id": "PS_GEN_205",
+    "name_en": "Yadgir North Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.626531610163887,
+    "lng": 77.28218114282096
+  },
+  {
+    "id": "PS_GEN_206",
+    "name_en": "Yadgir Central Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.47201802968167,
+    "lng": 76.70349833607243
+  },
+  {
+    "id": "PS_GEN_207",
+    "name_en": "Yadgir Railway Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.575379785741436,
+    "lng": 76.68831671413719
+  },
+  {
+    "id": "PS_GEN_208",
+    "name_en": "Yadgir City Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.2204477106876,
+    "lng": 76.34897276770118
+  },
+  {
+    "id": "PS_GEN_209",
+    "name_en": "Yadgir East Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.61134804104896,
+    "lng": 77.41020703196712
+  },
+  {
+    "id": "PS_GEN_210",
+    "name_en": "Yadgir Traffic Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.652992824310072,
+    "lng": 77.32795500546307
+  },
+  {
+    "id": "PS_GEN_211",
+    "name_en": "Yadgir Traffic Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.755852711713167,
+    "lng": 77.42538697868389
+  },
+  {
+    "id": "PS_GEN_212",
+    "name_en": "Yadgir Central Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.555121606533227,
+    "lng": 76.67414062892176
+  },
+  {
+    "id": "PS_GEN_213",
+    "name_en": "Yadgir Special Police Station",
+    "district_id": "Yadgir",
+    "lat": 16.83151020466733,
+    "lng": 77.39444658138227
+  },
+  {
+    "id": "PS_GEN_214",
+    "name_en": "Bagalkote North Police Station",
+    "district_id": "Bagalkote",
+    "lat": 15.91017760762209,
+    "lng": 75.50667383727186
+  },
+  {
+    "id": "PS_GEN_215",
+    "name_en": "Bagalkote Railway Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.184972925087493,
+    "lng": 75.69736096552798
+  },
+  {
+    "id": "PS_GEN_216",
+    "name_en": "Bagalkote Town Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.297003910901648,
+    "lng": 75.75234668661649
+  },
+  {
+    "id": "PS_GEN_217",
+    "name_en": "Bagalkote West Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.478397325439474,
+    "lng": 75.3535691816658
+  },
+  {
+    "id": "PS_GEN_218",
+    "name_en": "Bagalkote Special Police Station",
+    "district_id": "Bagalkote",
+    "lat": 15.931485452733842,
+    "lng": 75.61576292327531
+  },
+  {
+    "id": "PS_GEN_219",
+    "name_en": "Bagalkote City Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.303037286628122,
+    "lng": 75.2386294610839
+  },
+  {
+    "id": "PS_GEN_220",
+    "name_en": "Bagalkote Town Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.50381415107714,
+    "lng": 75.05586829505788
+  },
+  {
+    "id": "PS_GEN_221",
+    "name_en": "Bagalkote Cyber Police Station",
+    "district_id": "Bagalkote",
+    "lat": 15.935738890687727,
+    "lng": 76.28612179595244
+  },
+  {
+    "id": "PS_GEN_222",
+    "name_en": "Bagalkote Central Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.398993743535772,
+    "lng": 75.11807423251904
+  },
+  {
+    "id": "PS_GEN_223",
+    "name_en": "Bagalkote West Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.233715560926992,
+    "lng": 75.24650925937556
+  },
+  {
+    "id": "PS_GEN_224",
+    "name_en": "Bagalkote Traffic Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.49958728306593,
+    "lng": 75.19787406011996
+  },
+  {
+    "id": "PS_GEN_225",
+    "name_en": "Bagalkote Women Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.362931136942446,
+    "lng": 75.55408237483564
+  },
+  {
+    "id": "PS_GEN_226",
+    "name_en": "Bagalkote West Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.172158869568925,
+    "lng": 75.88159521278038
+  },
+  {
+    "id": "PS_GEN_227",
+    "name_en": "Bagalkote Traffic Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.199918837278187,
+    "lng": 75.36596017222166
+  },
+  {
+    "id": "PS_GEN_228",
+    "name_en": "Bagalkote West Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.594707099519525,
+    "lng": 75.36151842047104
+  },
+  {
+    "id": "PS_GEN_229",
+    "name_en": "Bagalkote West Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.10756720371476,
+    "lng": 75.94581274456684
+  },
+  {
+    "id": "PS_GEN_230",
+    "name_en": "Bagalkote East Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.085906613178988,
+    "lng": 75.6311565241089
+  },
+  {
+    "id": "PS_GEN_231",
+    "name_en": "Bagalkote Town Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.404629768507988,
+    "lng": 75.45089314591492
+  },
+  {
+    "id": "PS_GEN_232",
+    "name_en": "Bagalkote Traffic Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.27463330522822,
+    "lng": 75.36040485507198
+  },
+  {
+    "id": "PS_GEN_233",
+    "name_en": "Bagalkote Central Police Station",
+    "district_id": "Bagalkote",
+    "lat": 15.97070423651688,
+    "lng": 75.55007697618106
+  },
+  {
+    "id": "PS_GEN_234",
+    "name_en": "Bagalkote Cyber Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.194990620152872,
+    "lng": 75.5447651939206
+  },
+  {
+    "id": "PS_GEN_235",
+    "name_en": "Bagalkote Local Police Station",
+    "district_id": "Bagalkote",
+    "lat": 15.894097302746712,
+    "lng": 75.64589995576476
+  },
+  {
+    "id": "PS_GEN_236",
+    "name_en": "Bagalkote Cyber Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.448830727765554,
+    "lng": 75.41901004546874
+  },
+  {
+    "id": "PS_GEN_237",
+    "name_en": "Bagalkote South Police Station",
+    "district_id": "Bagalkote",
+    "lat": 15.955996834923482,
+    "lng": 75.73894502819024
+  },
+  {
+    "id": "PS_GEN_238",
+    "name_en": "Bagalkote Central Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.116685260167923,
+    "lng": 75.99510016430266
+  },
+  {
+    "id": "PS_GEN_239",
+    "name_en": "Bagalkote Town Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.22740616034948,
+    "lng": 75.2917209658194
+  },
+  {
+    "id": "PS_GEN_240",
+    "name_en": "Bagalkote Railway Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.34387521553968,
+    "lng": 75.60170457715074
+  },
+  {
+    "id": "PS_GEN_241",
+    "name_en": "Bagalkote Local Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.526624643343848,
+    "lng": 75.44538324433964
+  },
+  {
+    "id": "PS_GEN_242",
+    "name_en": "Bagalkote Town Police Station",
+    "district_id": "Bagalkote",
+    "lat": 15.9288206329669,
+    "lng": 76.26988979156583
+  },
+  {
+    "id": "PS_GEN_243",
+    "name_en": "Bagalkote Rural Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.45040275697222,
+    "lng": 75.115403346646
+  },
+  {
+    "id": "PS_GEN_244",
+    "name_en": "Bagalkote Central Police Station",
+    "district_id": "Bagalkote",
+    "lat": 16.14027649377103,
+    "lng": 75.72959301974215
+  },
+  {
+    "id": "PS_GEN_245",
+    "name_en": "Bagalkote West Police Station",
+    "district_id": "Bagalkote",
+    "lat": 15.982825960580634,
+    "lng": 75.8873746395378
+  },
+  {
+    "id": "PS_GEN_246",
+    "name_en": "Raichur East Police Station",
+    "district_id": "Raichur",
+    "lat": 16.262899167399777,
+    "lng": 76.61941994202387
+  },
+  {
+    "id": "PS_GEN_247",
+    "name_en": "Raichur Local Police Station",
+    "district_id": "Raichur",
+    "lat": 16.00643192069329,
+    "lng": 77.3340677126428
+  },
+  {
+    "id": "PS_GEN_248",
+    "name_en": "Raichur East Police Station",
+    "district_id": "Raichur",
+    "lat": 15.930148122945509,
+    "lng": 76.59208532131649
+  },
+  {
+    "id": "PS_GEN_249",
+    "name_en": "Raichur North Police Station",
+    "district_id": "Raichur",
+    "lat": 15.95277063092816,
+    "lng": 77.4187998167586
+  },
+  {
+    "id": "PS_GEN_250",
+    "name_en": "Raichur Traffic Police Station",
+    "district_id": "Raichur",
+    "lat": 16.262796619513782,
+    "lng": 76.68940196949
+  },
+  {
+    "id": "PS_GEN_251",
+    "name_en": "Raichur Town Police Station",
+    "district_id": "Raichur",
+    "lat": 15.988817412777983,
+    "lng": 76.73345792310799
+  },
+  {
+    "id": "PS_GEN_252",
+    "name_en": "Raichur City Police Station",
+    "district_id": "Raichur",
+    "lat": 16.036797966460213,
+    "lng": 77.22957202370132
+  },
+  {
+    "id": "PS_GEN_253",
+    "name_en": "Raichur City Police Station",
+    "district_id": "Raichur",
+    "lat": 15.746631031110965,
+    "lng": 76.771772559437
+  },
+  {
+    "id": "PS_GEN_254",
+    "name_en": "Raichur City Police Station",
+    "district_id": "Raichur",
+    "lat": 15.946751085758294,
+    "lng": 77.0299571008511
+  },
+  {
+    "id": "PS_GEN_255",
+    "name_en": "Raichur City Police Station",
+    "district_id": "Raichur",
+    "lat": 16.10436285133361,
+    "lng": 76.75578009908561
+  },
+  {
+    "id": "PS_GEN_256",
+    "name_en": "Raichur Special Police Station",
+    "district_id": "Raichur",
+    "lat": 16.20359745344492,
+    "lng": 76.45075781519424
+  },
+  {
+    "id": "PS_GEN_257",
+    "name_en": "Raichur West Police Station",
+    "district_id": "Raichur",
+    "lat": 15.941964344016009,
+    "lng": 76.54017245786744
+  },
+  {
+    "id": "PS_GEN_258",
+    "name_en": "Raichur City Police Station",
+    "district_id": "Raichur",
+    "lat": 15.750307849205358,
+    "lng": 76.70505194561896
+  },
+  {
+    "id": "PS_GEN_259",
+    "name_en": "Raichur Railway Police Station",
+    "district_id": "Raichur",
+    "lat": 16.26014333467966,
+    "lng": 77.17810144407007
+  },
+  {
+    "id": "PS_GEN_260",
+    "name_en": "Raichur City Police Station",
+    "district_id": "Raichur",
+    "lat": 16.211907923667592,
+    "lng": 77.09793994736488
+  },
+  {
+    "id": "PS_GEN_261",
+    "name_en": "Raichur North Police Station",
+    "district_id": "Raichur",
+    "lat": 15.954560444343771,
+    "lng": 77.11164651893749
+  },
+  {
+    "id": "PS_GEN_262",
+    "name_en": "Raichur Traffic Police Station",
+    "district_id": "Raichur",
+    "lat": 16.248844390331517,
+    "lng": 76.70719813331552
+  },
+  {
+    "id": "PS_GEN_263",
+    "name_en": "Raichur West Police Station",
+    "district_id": "Raichur",
+    "lat": 16.018854851390742,
+    "lng": 77.3247782378744
+  },
+  {
+    "id": "PS_GEN_264",
+    "name_en": "Raichur Special Police Station",
+    "district_id": "Raichur",
+    "lat": 15.965085054018504,
+    "lng": 76.6453787662545
+  },
+  {
+    "id": "PS_GEN_265",
+    "name_en": "Raichur Special Police Station",
+    "district_id": "Raichur",
+    "lat": 16.42314588731151,
+    "lng": 77.18131661915822
+  },
+  {
+    "id": "PS_GEN_266",
+    "name_en": "Raichur Town Police Station",
+    "district_id": "Raichur",
+    "lat": 15.910562251095175,
+    "lng": 76.4328111629816
+  },
+  {
+    "id": "PS_GEN_267",
+    "name_en": "Raichur Central Police Station",
+    "district_id": "Raichur",
+    "lat": 16.40038062931423,
+    "lng": 77.20900352522902
+  },
+  {
+    "id": "PS_GEN_268",
+    "name_en": "Raichur Cyber Police Station",
+    "district_id": "Raichur",
+    "lat": 15.885042311238252,
+    "lng": 76.79311916979216
+  },
+  {
+    "id": "PS_GEN_269",
+    "name_en": "Raichur Central Police Station",
+    "district_id": "Raichur",
+    "lat": 16.29297786690509,
+    "lng": 77.31047803290112
+  },
+  {
+    "id": "PS_GEN_270",
+    "name_en": "Raichur Special Police Station",
+    "district_id": "Raichur",
+    "lat": 15.865719038635731,
+    "lng": 76.55149904592655
+  },
+  {
+    "id": "PS_GEN_271",
+    "name_en": "Raichur City Police Station",
+    "district_id": "Raichur",
+    "lat": 16.347519185724934,
+    "lng": 76.80068643735252
+  },
+  {
+    "id": "PS_GEN_272",
+    "name_en": "Raichur West Police Station",
+    "district_id": "Raichur",
+    "lat": 16.015034702463073,
+    "lng": 77.10735802980425
+  },
+  {
+    "id": "PS_GEN_273",
+    "name_en": "Raichur West Police Station",
+    "district_id": "Raichur",
+    "lat": 16.206219287704467,
+    "lng": 76.9251361146415
+  },
+  {
+    "id": "PS_GEN_274",
+    "name_en": "Raichur Railway Police Station",
+    "district_id": "Raichur",
+    "lat": 15.803403109703646,
+    "lng": 76.4973048610892
+  },
+  {
+    "id": "PS_GEN_275",
+    "name_en": "Koppal Railway Police Station",
+    "district_id": "Koppal",
+    "lat": 15.799894936054162,
+    "lng": 76.14130038301171
+  },
+  {
+    "id": "PS_GEN_276",
+    "name_en": "Koppal East Police Station",
+    "district_id": "Koppal",
+    "lat": 15.47474777668652,
+    "lng": 76.27689615587133
+  },
+  {
+    "id": "PS_GEN_277",
+    "name_en": "Koppal North Police Station",
+    "district_id": "Koppal",
+    "lat": 15.505999722622974,
+    "lng": 76.31015017840421
+  },
+  {
+    "id": "PS_GEN_278",
+    "name_en": "Koppal City Police Station",
+    "district_id": "Koppal",
+    "lat": 15.355588343360177,
+    "lng": 76.41748334966267
+  },
+  {
+    "id": "PS_GEN_279",
+    "name_en": "Koppal Special Police Station",
+    "district_id": "Koppal",
+    "lat": 15.696540080193156,
+    "lng": 76.04703848186169
+  },
+  {
+    "id": "PS_GEN_280",
+    "name_en": "Koppal Special Police Station",
+    "district_id": "Koppal",
+    "lat": 15.613641463075744,
+    "lng": 76.13395953519502
+  },
+  {
+    "id": "PS_GEN_281",
+    "name_en": "Koppal Special Police Station",
+    "district_id": "Koppal",
+    "lat": 15.590925501612707,
+    "lng": 76.3706014478125
+  },
+  {
+    "id": "PS_GEN_282",
+    "name_en": "Koppal Rural Police Station",
+    "district_id": "Koppal",
+    "lat": 15.613213009094787,
+    "lng": 76.38338781919344
+  },
+  {
+    "id": "PS_GEN_283",
+    "name_en": "Koppal South Police Station",
+    "district_id": "Koppal",
+    "lat": 15.51353881904638,
+    "lng": 75.94790857944928
+  },
+  {
+    "id": "PS_GEN_284",
+    "name_en": "Koppal Local Police Station",
+    "district_id": "Koppal",
+    "lat": 15.203235065751626,
+    "lng": 76.12226408148217
+  },
+  {
+    "id": "PS_GEN_285",
+    "name_en": "Koppal Town Police Station",
+    "district_id": "Koppal",
+    "lat": 15.809464822423582,
+    "lng": 76.10762102017128
+  },
+  {
+    "id": "PS_GEN_286",
+    "name_en": "Koppal South Police Station",
+    "district_id": "Koppal",
+    "lat": 15.527200971627773,
+    "lng": 76.58543541882646
+  },
+  {
+    "id": "PS_GEN_287",
+    "name_en": "Koppal Railway Police Station",
+    "district_id": "Koppal",
+    "lat": 15.43602225991756,
+    "lng": 76.25489364458272
+  },
+  {
+    "id": "PS_GEN_288",
+    "name_en": "Koppal East Police Station",
+    "district_id": "Koppal",
+    "lat": 15.495164194736766,
+    "lng": 76.6670715866982
+  },
+  {
+    "id": "PS_GEN_289",
+    "name_en": "Koppal East Police Station",
+    "district_id": "Koppal",
+    "lat": 15.42858058716239,
+    "lng": 76.49832032326117
+  },
+  {
+    "id": "PS_GEN_290",
+    "name_en": "Koppal City Police Station",
+    "district_id": "Koppal",
+    "lat": 15.567941246858997,
+    "lng": 76.44848153163677
+  },
+  {
+    "id": "PS_GEN_291",
+    "name_en": "Koppal North Police Station",
+    "district_id": "Koppal",
+    "lat": 15.870401606514132,
+    "lng": 76.11897206167446
+  },
+  {
+    "id": "PS_GEN_292",
+    "name_en": "Koppal Town Police Station",
+    "district_id": "Koppal",
+    "lat": 15.677886638463455,
+    "lng": 76.54052431132227
+  },
+  {
+    "id": "PS_GEN_293",
+    "name_en": "Koppal Local Police Station",
+    "district_id": "Koppal",
+    "lat": 15.660990448164226,
+    "lng": 76.04417006338649
+  },
+  {
+    "id": "PS_GEN_294",
+    "name_en": "Koppal City Police Station",
+    "district_id": "Koppal",
+    "lat": 15.499058756398151,
+    "lng": 76.58505757775937
+  },
+  {
+    "id": "PS_GEN_295",
+    "name_en": "Koppal North Police Station",
+    "district_id": "Koppal",
+    "lat": 15.882615751032528,
+    "lng": 76.29193073256678
+  },
+  {
+    "id": "PS_GEN_296",
+    "name_en": "Koppal Traffic Police Station",
+    "district_id": "Koppal",
+    "lat": 15.84288789786095,
+    "lng": 76.11470515743146
+  },
+  {
+    "id": "PS_GEN_297",
+    "name_en": "Koppal Cyber Police Station",
+    "district_id": "Koppal",
+    "lat": 15.573939658476558,
+    "lng": 76.53409850229184
+  },
+  {
+    "id": "PS_GEN_298",
+    "name_en": "Koppal Women Police Station",
+    "district_id": "Koppal",
+    "lat": 15.62369744119436,
+    "lng": 76.67661931722293
+  },
+  {
+    "id": "PS_GEN_299",
+    "name_en": "Koppal North Police Station",
+    "district_id": "Koppal",
+    "lat": 15.338248047376384,
+    "lng": 75.96773127303862
+  },
+  {
+    "id": "PS_GEN_300",
+    "name_en": "Koppal Rural Police Station",
+    "district_id": "Koppal",
+    "lat": 15.44870054952467,
+    "lng": 76.51103401539528
+  },
+  {
+    "id": "PS_GEN_301",
+    "name_en": "Koppal Rural Police Station",
+    "district_id": "Koppal",
+    "lat": 15.591369459244829,
+    "lng": 76.51416274491046
+  },
+  {
+    "id": "PS_GEN_302",
+    "name_en": "Koppal Rural Police Station",
+    "district_id": "Koppal",
+    "lat": 15.83259861763533,
+    "lng": 75.95324086622945
+  },
+  {
+    "id": "PS_GEN_303",
+    "name_en": "Gadag East Police Station",
+    "district_id": "Gadag",
+    "lat": 15.480220008176204,
+    "lng": 75.53442743330011
+  },
+  {
+    "id": "PS_GEN_304",
+    "name_en": "Gadag Cyber Police Station",
+    "district_id": "Gadag",
+    "lat": 15.326052561920712,
+    "lng": 75.87536203751978
+  },
+  {
+    "id": "PS_GEN_305",
+    "name_en": "Gadag South Police Station",
+    "district_id": "Gadag",
+    "lat": 15.718794863049359,
+    "lng": 75.40578414491112
+  },
+  {
+    "id": "PS_GEN_306",
+    "name_en": "Gadag Special Police Station",
+    "district_id": "Gadag",
+    "lat": 15.629212066646174,
+    "lng": 75.57085652440207
+  },
+  {
+    "id": "PS_GEN_307",
+    "name_en": "Gadag Local Police Station",
+    "district_id": "Gadag",
+    "lat": 15.184024533104973,
+    "lng": 75.85137973201776
+  },
+  {
+    "id": "PS_GEN_308",
+    "name_en": "Gadag West Police Station",
+    "district_id": "Gadag",
+    "lat": 15.15703109352887,
+    "lng": 75.42361327464303
+  },
+  {
+    "id": "PS_GEN_309",
+    "name_en": "Gadag Rural Police Station",
+    "district_id": "Gadag",
+    "lat": 15.813237370422,
+    "lng": 75.55935514056723
+  },
+  {
+    "id": "PS_GEN_310",
+    "name_en": "Gadag East Police Station",
+    "district_id": "Gadag",
+    "lat": 15.177482772638937,
+    "lng": 75.76764384976853
+  },
+  {
+    "id": "PS_GEN_311",
+    "name_en": "Gadag Local Police Station",
+    "district_id": "Gadag",
+    "lat": 15.539606627879627,
+    "lng": 75.71091498380049
+  },
+  {
+    "id": "PS_GEN_312",
+    "name_en": "Gadag South Police Station",
+    "district_id": "Gadag",
+    "lat": 15.290376581892948,
+    "lng": 75.50452153193125
+  },
+  {
+    "id": "PS_GEN_313",
+    "name_en": "Gadag North Police Station",
+    "district_id": "Gadag",
+    "lat": 15.235790638593116,
+    "lng": 75.63024145436145
+  },
+  {
+    "id": "PS_GEN_314",
+    "name_en": "Gadag Central Police Station",
+    "district_id": "Gadag",
+    "lat": 15.701285101990106,
+    "lng": 75.36784969708465
+  },
+  {
+    "id": "PS_GEN_315",
+    "name_en": "Gadag South Police Station",
+    "district_id": "Gadag",
+    "lat": 15.562761001513353,
+    "lng": 75.59731178319973
+  },
+  {
+    "id": "PS_GEN_316",
+    "name_en": "Gadag East Police Station",
+    "district_id": "Gadag",
+    "lat": 15.733540283764507,
+    "lng": 75.980808780309
+  },
+  {
+    "id": "PS_GEN_317",
+    "name_en": "Gadag Central Police Station",
+    "district_id": "Gadag",
+    "lat": 15.097899292420296,
+    "lng": 75.52485392953345
+  },
+  {
+    "id": "PS_GEN_318",
+    "name_en": "Gadag Special Police Station",
+    "district_id": "Gadag",
+    "lat": 15.485247023790299,
+    "lng": 75.5288531064747
+  },
+  {
+    "id": "PS_GEN_319",
+    "name_en": "Gadag South Police Station",
+    "district_id": "Gadag",
+    "lat": 15.787950025300479,
+    "lng": 75.58810303573131
+  },
+  {
+    "id": "PS_GEN_320",
+    "name_en": "Gadag Rural Police Station",
+    "district_id": "Gadag",
+    "lat": 15.095301541469613,
+    "lng": 75.74276651239936
+  },
+  {
+    "id": "PS_GEN_321",
+    "name_en": "Gadag Rural Police Station",
+    "district_id": "Gadag",
+    "lat": 15.553169558821391,
+    "lng": 75.7429357347681
+  },
+  {
+    "id": "PS_GEN_322",
+    "name_en": "Gadag Local Police Station",
+    "district_id": "Gadag",
+    "lat": 15.298262324823966,
+    "lng": 75.66080981175588
+  },
+  {
+    "id": "PS_GEN_323",
+    "name_en": "Gadag Special Police Station",
+    "district_id": "Gadag",
+    "lat": 15.64850949379566,
+    "lng": 75.62412155712202
+  },
+  {
+    "id": "PS_GEN_324",
+    "name_en": "Gadag Cyber Police Station",
+    "district_id": "Gadag",
+    "lat": 15.680151447479648,
+    "lng": 75.40767737446554
+  },
+  {
+    "id": "PS_GEN_325",
+    "name_en": "Gadag City Police Station",
+    "district_id": "Gadag",
+    "lat": 15.681166246703652,
+    "lng": 75.42471702992134
+  },
+  {
+    "id": "PS_GEN_326",
+    "name_en": "Gadag Special Police Station",
+    "district_id": "Gadag",
+    "lat": 15.762226603092614,
+    "lng": 75.50963534287526
+  },
+  {
+    "id": "PS_GEN_327",
+    "name_en": "Gadag City Police Station",
+    "district_id": "Gadag",
+    "lat": 15.042722614855117,
+    "lng": 75.68012214510372
+  },
+  {
+    "id": "PS_GEN_328",
+    "name_en": "Ballari North Police Station",
+    "district_id": "Ballari",
+    "lat": 15.203102131815504,
+    "lng": 76.70450735838331
+  },
+  {
+    "id": "PS_GEN_329",
+    "name_en": "Ballari Special Police Station",
+    "district_id": "Ballari",
+    "lat": 15.047252575874055,
+    "lng": 76.46450124094835
+  },
+  {
+    "id": "PS_GEN_330",
+    "name_en": "Ballari Town Police Station",
+    "district_id": "Ballari",
+    "lat": 14.858979288649651,
+    "lng": 76.6585598755848
+  },
+  {
+    "id": "PS_GEN_331",
+    "name_en": "Ballari Local Police Station",
+    "district_id": "Ballari",
+    "lat": 15.445752042657238,
+    "lng": 76.88295953016448
+  },
+  {
+    "id": "PS_GEN_332",
+    "name_en": "Ballari Town Police Station",
+    "district_id": "Ballari",
+    "lat": 14.685045885426229,
+    "lng": 76.47398581622065
+  },
+  {
+    "id": "PS_GEN_333",
+    "name_en": "Ballari South Police Station",
+    "district_id": "Ballari",
+    "lat": 15.01984627375227,
+    "lng": 75.99397718811761
+  },
+  {
+    "id": "PS_GEN_334",
+    "name_en": "Ballari Rural Police Station",
+    "district_id": "Ballari",
+    "lat": 15.137148432193797,
+    "lng": 76.65672733755268
+  },
+  {
+    "id": "PS_GEN_335",
+    "name_en": "Ballari Town Police Station",
+    "district_id": "Ballari",
+    "lat": 15.043908712409939,
+    "lng": 76.66355688232947
+  },
+  {
+    "id": "PS_GEN_336",
+    "name_en": "Ballari City Police Station",
+    "district_id": "Ballari",
+    "lat": 15.616763149404955,
+    "lng": 76.93330877442538
+  },
+  {
+    "id": "PS_GEN_337",
+    "name_en": "Ballari Central Police Station",
+    "district_id": "Ballari",
+    "lat": 14.825443592025417,
+    "lng": 75.78860173499748
+  },
+  {
+    "id": "PS_GEN_338",
+    "name_en": "Ballari Special Police Station",
+    "district_id": "Ballari",
+    "lat": 14.591642403512925,
+    "lng": 76.48278887768336
+  },
+  {
+    "id": "PS_GEN_339",
+    "name_en": "Ballari West Police Station",
+    "district_id": "Ballari",
+    "lat": 14.989795805540576,
+    "lng": 76.32985269076909
+  },
+  {
+    "id": "PS_GEN_340",
+    "name_en": "Ballari Central Police Station",
+    "district_id": "Ballari",
+    "lat": 15.340526628052856,
+    "lng": 76.61692508193921
+  },
+  {
+    "id": "PS_GEN_341",
+    "name_en": "Ballari Rural Police Station",
+    "district_id": "Ballari",
+    "lat": 14.967429590335984,
+    "lng": 76.4786135919167
+  },
+  {
+    "id": "PS_GEN_342",
+    "name_en": "Ballari Women Police Station",
+    "district_id": "Ballari",
+    "lat": 14.779637732789602,
+    "lng": 76.39448485001732
+  },
+  {
+    "id": "PS_GEN_343",
+    "name_en": "Ballari Cyber Police Station",
+    "district_id": "Ballari",
+    "lat": 15.110155851022622,
+    "lng": 76.28355784788177
+  },
+  {
+    "id": "PS_GEN_344",
+    "name_en": "Ballari Town Police Station",
+    "district_id": "Ballari",
+    "lat": 15.618588868647919,
+    "lng": 76.85528519649117
+  },
+  {
+    "id": "PS_GEN_345",
+    "name_en": "Ballari Local Police Station",
+    "district_id": "Ballari",
+    "lat": 14.982587089723067,
+    "lng": 76.45370760584778
+  },
+  {
+    "id": "PS_GEN_346",
+    "name_en": "Ballari Railway Police Station",
+    "district_id": "Ballari",
+    "lat": 14.846833483906602,
+    "lng": 76.28281874274145
+  },
+  {
+    "id": "PS_GEN_347",
+    "name_en": "Ballari Cyber Police Station",
+    "district_id": "Ballari",
+    "lat": 14.97696065664661,
+    "lng": 76.50989696335898
+  },
+  {
+    "id": "PS_GEN_348",
+    "name_en": "Ballari Local Police Station",
+    "district_id": "Ballari",
+    "lat": 14.883681330759861,
+    "lng": 76.08619248254794
+  },
+  {
+    "id": "PS_GEN_349",
+    "name_en": "Ballari Central Police Station",
+    "district_id": "Ballari",
+    "lat": 14.995421485891507,
+    "lng": 76.68169160041077
+  },
+  {
+    "id": "PS_GEN_350",
+    "name_en": "Ballari Local Police Station",
+    "district_id": "Ballari",
+    "lat": 15.503825051872514,
+    "lng": 76.7962434831177
+  },
+  {
+    "id": "PS_GEN_351",
+    "name_en": "Ballari Central Police Station",
+    "district_id": "Ballari",
+    "lat": 14.879698543249539,
+    "lng": 76.42386781601151
+  },
+  {
+    "id": "PS_GEN_352",
+    "name_en": "Ballari City Police Station",
+    "district_id": "Ballari",
+    "lat": 15.299677795990009,
+    "lng": 76.61798558523785
+  },
+  {
+    "id": "PS_GEN_353",
+    "name_en": "Ballari Railway Police Station",
+    "district_id": "Ballari",
+    "lat": 14.843120689452041,
+    "lng": 75.75456689602095
+  },
+  {
+    "id": "PS_GEN_354",
+    "name_en": "Ballari Town Police Station",
+    "district_id": "Ballari",
+    "lat": 14.70339397823927,
+    "lng": 76.61982638563536
+  },
+  {
+    "id": "PS_GEN_355",
+    "name_en": "Ballari Rural Police Station",
+    "district_id": "Ballari",
+    "lat": 14.949878167311923,
+    "lng": 75.9786635854252
+  },
+  {
+    "id": "PS_GEN_356",
+    "name_en": "Ballari Town Police Station",
+    "district_id": "Ballari",
+    "lat": 15.072008205443982,
+    "lng": 76.92238255790093
+  },
+  {
+    "id": "PS_GEN_357",
+    "name_en": "Ballari South Police Station",
+    "district_id": "Ballari",
+    "lat": 15.698905519811305,
+    "lng": 76.99818541850625
+  },
+  {
+    "id": "PS_GEN_358",
+    "name_en": "Ballari Traffic Police Station",
+    "district_id": "Ballari",
+    "lat": 15.152203455241855,
+    "lng": 76.26174860540283
+  },
+  {
+    "id": "PS_GEN_359",
+    "name_en": "Ballari North Police Station",
+    "district_id": "Ballari",
+    "lat": 15.229541438680837,
+    "lng": 76.90940646901048
+  },
+  {
+    "id": "PS_GEN_360",
+    "name_en": "Ballari West Police Station",
+    "district_id": "Ballari",
+    "lat": 14.830528715211909,
+    "lng": 75.77698862605232
+  },
+  {
+    "id": "PS_GEN_361",
+    "name_en": "Dharwad Rural Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.50096147471469,
+    "lng": 75.41179524713894
+  },
+  {
+    "id": "PS_GEN_362",
+    "name_en": "Dharwad Central Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.357678926712579,
+    "lng": 75.35902140115171
+  },
+  {
+    "id": "PS_GEN_363",
+    "name_en": "Dharwad City Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.650693038466732,
+    "lng": 75.38726787280366
+  },
+  {
+    "id": "PS_GEN_364",
+    "name_en": "Dharwad Women Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.258085802962368,
+    "lng": 75.19733341027404
+  },
+  {
+    "id": "PS_GEN_365",
+    "name_en": "Dharwad Railway Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.627832995262256,
+    "lng": 75.45541529100421
+  },
+  {
+    "id": "PS_GEN_366",
+    "name_en": "Dharwad Cyber Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.559656969502285,
+    "lng": 75.02122780575264
+  },
+  {
+    "id": "PS_GEN_367",
+    "name_en": "Dharwad Traffic Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.326628683056148,
+    "lng": 75.41340784047938
+  },
+  {
+    "id": "PS_GEN_368",
+    "name_en": "Dharwad East Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.4167759007072,
+    "lng": 75.10700254424704
+  },
+  {
+    "id": "PS_GEN_369",
+    "name_en": "Dharwad North Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.196757599045615,
+    "lng": 75.10075118114118
+  },
+  {
+    "id": "PS_GEN_370",
+    "name_en": "Dharwad Special Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.257492675581783,
+    "lng": 75.10541000187693
+  },
+  {
+    "id": "PS_GEN_371",
+    "name_en": "Dharwad City Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.502184375790074,
+    "lng": 75.32906459944074
+  },
+  {
+    "id": "PS_GEN_372",
+    "name_en": "Dharwad Special Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.345214618139059,
+    "lng": 75.26084912442954
+  },
+  {
+    "id": "PS_GEN_373",
+    "name_en": "Dharwad Rural Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.365053525551899,
+    "lng": 75.20540344458473
+  },
+  {
+    "id": "PS_GEN_374",
+    "name_en": "Dharwad North Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.19625170300834,
+    "lng": 75.20326847640484
+  },
+  {
+    "id": "PS_GEN_375",
+    "name_en": "Dharwad Traffic Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.096753550809815,
+    "lng": 75.38549673913587
+  },
+  {
+    "id": "PS_GEN_376",
+    "name_en": "Dharwad Traffic Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.232777033857339,
+    "lng": 75.23487035564843
+  },
+  {
+    "id": "PS_GEN_377",
+    "name_en": "Dharwad Central Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.317851872765011,
+    "lng": 74.97488870640426
+  },
+  {
+    "id": "PS_GEN_378",
+    "name_en": "Dharwad Local Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.134952132177114,
+    "lng": 75.3716867793973
+  },
+  {
+    "id": "PS_GEN_379",
+    "name_en": "Dharwad Traffic Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.658119443921114,
+    "lng": 75.40670991716836
+  },
+  {
+    "id": "PS_GEN_380",
+    "name_en": "Dharwad Special Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.261991640563743,
+    "lng": 75.33289677679808
+  },
+  {
+    "id": "PS_GEN_381",
+    "name_en": "Dharwad Local Police Station",
+    "district_id": "Dharwad",
+    "lat": 15.113303826667213,
+    "lng": 75.05146211041188
+  },
+  {
+    "id": "PS_GEN_382",
+    "name_en": "Uttara Kannada Central Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.857027124407084,
+    "lng": 74.8399072979992
+  },
+  {
+    "id": "PS_GEN_383",
+    "name_en": "Uttara Kannada Town Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.828653370739119,
+    "lng": 75.0126254072687
+  },
+  {
+    "id": "PS_GEN_384",
+    "name_en": "Uttara Kannada Special Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.249235757382898,
+    "lng": 74.87541784960915
+  },
+  {
+    "id": "PS_GEN_385",
+    "name_en": "Uttara Kannada Town Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.800171538813055,
+    "lng": 74.67360014837503
+  },
+  {
+    "id": "PS_GEN_386",
+    "name_en": "Uttara Kannada Central Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.166213373431837,
+    "lng": 74.78081897862461
+  },
+  {
+    "id": "PS_GEN_387",
+    "name_en": "Uttara Kannada Town Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.910655021289545,
+    "lng": 74.88334405679758
+  },
+  {
+    "id": "PS_GEN_388",
+    "name_en": "Uttara Kannada City Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.409380163391532,
+    "lng": 74.36511014940574
+  },
+  {
+    "id": "PS_GEN_389",
+    "name_en": "Uttara Kannada Town Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.862768680044883,
+    "lng": 74.62206458564901
+  },
+  {
+    "id": "PS_GEN_390",
+    "name_en": "Uttara Kannada Traffic Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.05204603074319,
+    "lng": 74.33907071600335
+  },
+  {
+    "id": "PS_GEN_391",
+    "name_en": "Uttara Kannada Cyber Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.077393743432774,
+    "lng": 74.46045895451638
+  },
+  {
+    "id": "PS_GEN_392",
+    "name_en": "Uttara Kannada Special Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.8955031429601,
+    "lng": 74.91168179291344
+  },
+  {
+    "id": "PS_GEN_393",
+    "name_en": "Uttara Kannada South Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.321186114771262,
+    "lng": 74.71349901106159
+  },
+  {
+    "id": "PS_GEN_394",
+    "name_en": "Uttara Kannada North Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.006642840263998,
+    "lng": 74.44947435106208
+  },
+  {
+    "id": "PS_GEN_395",
+    "name_en": "Uttara Kannada East Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.762067642102028,
+    "lng": 74.28495642983049
+  },
+  {
+    "id": "PS_GEN_396",
+    "name_en": "Uttara Kannada Town Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.083304457032384,
+    "lng": 74.35392252218469
+  },
+  {
+    "id": "PS_GEN_397",
+    "name_en": "Uttara Kannada Traffic Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.495264969981504,
+    "lng": 74.32761007150351
+  },
+  {
+    "id": "PS_GEN_398",
+    "name_en": "Uttara Kannada Central Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.255117483727947,
+    "lng": 74.44603217335855
+  },
+  {
+    "id": "PS_GEN_399",
+    "name_en": "Uttara Kannada Central Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.907357200285439,
+    "lng": 74.23809747605318
+  },
+  {
+    "id": "PS_GEN_400",
+    "name_en": "Uttara Kannada Town Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.345520985198048,
+    "lng": 74.67793490957175
+  },
+  {
+    "id": "PS_GEN_401",
+    "name_en": "Uttara Kannada South Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.44890031742365,
+    "lng": 74.51126248680306
+  },
+  {
+    "id": "PS_GEN_402",
+    "name_en": "Uttara Kannada Special Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.705714869125995,
+    "lng": 74.28737540380541
+  },
+  {
+    "id": "PS_GEN_403",
+    "name_en": "Uttara Kannada East Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.820421373878052,
+    "lng": 75.06761155024513
+  },
+  {
+    "id": "PS_GEN_404",
+    "name_en": "Uttara Kannada South Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 15.244680278448826,
+    "lng": 74.77839276900589
+  },
+  {
+    "id": "PS_GEN_405",
+    "name_en": "Uttara Kannada Local Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.759451945917418,
+    "lng": 74.75449672722742
+  },
+  {
+    "id": "PS_GEN_406",
+    "name_en": "Uttara Kannada South Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.886380347569261,
+    "lng": 74.94651645082386
+  },
+  {
+    "id": "PS_GEN_407",
+    "name_en": "Uttara Kannada West Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.607410531236011,
+    "lng": 74.46111023627907
+  },
+  {
+    "id": "PS_GEN_408",
+    "name_en": "Uttara Kannada Town Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.728943947708302,
+    "lng": 74.920580841773
+  },
+  {
+    "id": "PS_GEN_409",
+    "name_en": "Uttara Kannada North Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.28346716635694,
+    "lng": 74.89142266797897
+  },
+  {
+    "id": "PS_GEN_410",
+    "name_en": "Uttara Kannada Special Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.23547501198683,
+    "lng": 74.45828313361461
+  },
+  {
+    "id": "PS_GEN_411",
+    "name_en": "Uttara Kannada Rural Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.650220404921438,
+    "lng": 74.80532134759261
+  },
+  {
+    "id": "PS_GEN_412",
+    "name_en": "Uttara Kannada City Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.539952516138595,
+    "lng": 74.90209339848857
+  },
+  {
+    "id": "PS_GEN_413",
+    "name_en": "Uttara Kannada West Police Station",
+    "district_id": "Uttara Kannada",
+    "lat": 14.612323236267803,
+    "lng": 74.45094283669232
+  },
+  {
+    "id": "PS_GEN_414",
+    "name_en": "Haveri Local Police Station",
+    "district_id": "Haveri",
+    "lat": 14.846446546368433,
+    "lng": 75.5109296726292
+  },
+  {
+    "id": "PS_GEN_415",
+    "name_en": "Haveri West Police Station",
+    "district_id": "Haveri",
+    "lat": 14.9448870565411,
+    "lng": 75.45976310521986
+  },
+  {
+    "id": "PS_GEN_416",
+    "name_en": "Haveri Town Police Station",
+    "district_id": "Haveri",
+    "lat": 14.948140281409332,
+    "lng": 75.52442428071755
+  },
+  {
+    "id": "PS_GEN_417",
+    "name_en": "Haveri West Police Station",
+    "district_id": "Haveri",
+    "lat": 14.844974816479743,
+    "lng": 75.5703652273316
+  },
+  {
+    "id": "PS_GEN_418",
+    "name_en": "Haveri Town Police Station",
+    "district_id": "Haveri",
+    "lat": 14.47294564914531,
+    "lng": 75.57384003359411
+  },
+  {
+    "id": "PS_GEN_419",
+    "name_en": "Haveri Town Police Station",
+    "district_id": "Haveri",
+    "lat": 14.963777927129554,
+    "lng": 75.15404621220338
+  },
+  {
+    "id": "PS_GEN_420",
+    "name_en": "Haveri North Police Station",
+    "district_id": "Haveri",
+    "lat": 15.086957506356805,
+    "lng": 75.11443406247402
+  },
+  {
+    "id": "PS_GEN_421",
+    "name_en": "Haveri West Police Station",
+    "district_id": "Haveri",
+    "lat": 14.694868303720861,
+    "lng": 75.42834282549866
+  },
+  {
+    "id": "PS_GEN_422",
+    "name_en": "Haveri Special Police Station",
+    "district_id": "Haveri",
+    "lat": 14.667331280817063,
+    "lng": 75.1462359141773
+  },
+  {
+    "id": "PS_GEN_423",
+    "name_en": "Haveri Local Police Station",
+    "district_id": "Haveri",
+    "lat": 14.981624538337625,
+    "lng": 75.24402074594296
+  },
+  {
+    "id": "PS_GEN_424",
+    "name_en": "Haveri West Police Station",
+    "district_id": "Haveri",
+    "lat": 14.644512583013992,
+    "lng": 75.68632541335415
+  },
+  {
+    "id": "PS_GEN_425",
+    "name_en": "Haveri Central Police Station",
+    "district_id": "Haveri",
+    "lat": 14.822701916427766,
+    "lng": 75.39524040210345
+  },
+  {
+    "id": "PS_GEN_426",
+    "name_en": "Haveri Rural Police Station",
+    "district_id": "Haveri",
+    "lat": 14.91684380500361,
+    "lng": 75.36936538691026
+  },
+  {
+    "id": "PS_GEN_427",
+    "name_en": "Haveri Town Police Station",
+    "district_id": "Haveri",
+    "lat": 14.753680315658968,
+    "lng": 75.5228536576902
+  },
+  {
+    "id": "PS_GEN_428",
+    "name_en": "Haveri Traffic Police Station",
+    "district_id": "Haveri",
+    "lat": 14.897932623344484,
+    "lng": 75.42830922485804
+  },
+  {
+    "id": "PS_GEN_429",
+    "name_en": "Haveri Central Police Station",
+    "district_id": "Haveri",
+    "lat": 14.658421916385457,
+    "lng": 75.74546193208329
+  },
+  {
+    "id": "PS_GEN_430",
+    "name_en": "Haveri Traffic Police Station",
+    "district_id": "Haveri",
+    "lat": 14.80316069906268,
+    "lng": 75.52116693710302
+  },
+  {
+    "id": "PS_GEN_431",
+    "name_en": "Haveri South Police Station",
+    "district_id": "Haveri",
+    "lat": 14.894326272319642,
+    "lng": 75.73055404160118
+  },
+  {
+    "id": "PS_GEN_432",
+    "name_en": "Haveri South Police Station",
+    "district_id": "Haveri",
+    "lat": 15.003249254637506,
+    "lng": 75.40045657273652
+  },
+  {
+    "id": "PS_GEN_433",
+    "name_en": "Haveri Railway Police Station",
+    "district_id": "Haveri",
+    "lat": 14.858382264880317,
+    "lng": 75.12166483477385
+  },
+  {
+    "id": "PS_GEN_434",
+    "name_en": "Haveri Local Police Station",
+    "district_id": "Haveri",
+    "lat": 14.459995577672954,
+    "lng": 75.48897082139351
+  },
+  {
+    "id": "PS_GEN_435",
+    "name_en": "Haveri Cyber Police Station",
+    "district_id": "Haveri",
+    "lat": 14.728015879884671,
+    "lng": 75.5838099096925
+  },
+  {
+    "id": "PS_GEN_436",
+    "name_en": "Haveri City Police Station",
+    "district_id": "Haveri",
+    "lat": 14.521109599069256,
+    "lng": 75.75465652177384
+  },
+  {
+    "id": "PS_GEN_437",
+    "name_en": "Haveri West Police Station",
+    "district_id": "Haveri",
+    "lat": 14.912114528275271,
+    "lng": 75.59700422044929
+  },
+  {
+    "id": "PS_GEN_438",
+    "name_en": "Haveri Women Police Station",
+    "district_id": "Haveri",
+    "lat": 15.107983517453528,
+    "lng": 75.11693813747227
+  },
+  {
+    "id": "PS_GEN_439",
+    "name_en": "Haveri North Police Station",
+    "district_id": "Haveri",
+    "lat": 14.471038367795561,
+    "lng": 75.47481333775937
+  },
+  {
+    "id": "PS_GEN_440",
+    "name_en": "Haveri Traffic Police Station",
+    "district_id": "Haveri",
+    "lat": 14.561002598899382,
+    "lng": 75.41891790178657
+  },
+  {
+    "id": "PS_GEN_441",
+    "name_en": "Haveri South Police Station",
+    "district_id": "Haveri",
+    "lat": 14.871039692408715,
+    "lng": 75.1672425967526
+  },
+  {
+    "id": "PS_GEN_442",
+    "name_en": "Haveri Special Police Station",
+    "district_id": "Haveri",
+    "lat": 14.92511769914262,
+    "lng": 75.46864115791738
+  },
+  {
+    "id": "PS_GEN_443",
+    "name_en": "Haveri Railway Police Station",
+    "district_id": "Haveri",
+    "lat": 14.66160217861596,
+    "lng": 75.10622357566012
+  },
+  {
+    "id": "PS_GEN_444",
+    "name_en": "Haveri Women Police Station",
+    "district_id": "Haveri",
+    "lat": 14.63646627238359,
+    "lng": 75.47130783725748
+  },
+  {
+    "id": "PS_GEN_445",
+    "name_en": "Haveri Traffic Police Station",
+    "district_id": "Haveri",
+    "lat": 14.644006021215286,
+    "lng": 75.75542028951935
+  },
+  {
+    "id": "PS_GEN_446",
+    "name_en": "Haveri South Police Station",
+    "district_id": "Haveri",
+    "lat": 14.956238787533852,
+    "lng": 75.22505758465263
+  },
+  {
+    "id": "PS_GEN_447",
+    "name_en": "Chitradurga Rural Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.861043153942889,
+    "lng": 76.6816928256376
+  },
+  {
+    "id": "PS_GEN_448",
+    "name_en": "Chitradurga Cyber Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.068812964312496,
+    "lng": 76.78513140764105
+  },
+  {
+    "id": "PS_GEN_449",
+    "name_en": "Chitradurga City Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.770607733444201,
+    "lng": 76.78734357253897
+  },
+  {
+    "id": "PS_GEN_450",
+    "name_en": "Chitradurga Local Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.02950204183321,
+    "lng": 76.63148836525305
+  },
+  {
+    "id": "PS_GEN_451",
+    "name_en": "Chitradurga City Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.574455469363958,
+    "lng": 76.7760775794385
+  },
+  {
+    "id": "PS_GEN_452",
+    "name_en": "Chitradurga Central Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.78408911067892,
+    "lng": 76.6728264411751
+  },
+  {
+    "id": "PS_GEN_453",
+    "name_en": "Chitradurga Railway Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.67203429274573,
+    "lng": 76.4761592039151
+  },
+  {
+    "id": "PS_GEN_454",
+    "name_en": "Chitradurga South Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.791810396514757,
+    "lng": 76.26739025316627
+  },
+  {
+    "id": "PS_GEN_455",
+    "name_en": "Chitradurga North Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.700952687527932,
+    "lng": 76.30212709646305
+  },
+  {
+    "id": "PS_GEN_456",
+    "name_en": "Chitradurga Town Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.267809361574153,
+    "lng": 76.344236569292
+  },
+  {
+    "id": "PS_GEN_457",
+    "name_en": "Chitradurga Cyber Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.68489285929084,
+    "lng": 76.25797973034318
+  },
+  {
+    "id": "PS_GEN_458",
+    "name_en": "Chitradurga Town Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.857323698339561,
+    "lng": 76.31125807068055
+  },
+  {
+    "id": "PS_GEN_459",
+    "name_en": "Chitradurga Central Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.931702528036737,
+    "lng": 76.67241002949079
+  },
+  {
+    "id": "PS_GEN_460",
+    "name_en": "Chitradurga West Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.53264454947122,
+    "lng": 76.62998528866063
+  },
+  {
+    "id": "PS_GEN_461",
+    "name_en": "Chitradurga Cyber Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.813036729488676,
+    "lng": 76.18844749202307
+  },
+  {
+    "id": "PS_GEN_462",
+    "name_en": "Chitradurga City Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.858663018707174,
+    "lng": 76.59424445550513
+  },
+  {
+    "id": "PS_GEN_463",
+    "name_en": "Chitradurga Central Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.799858629476953,
+    "lng": 76.29838237430361
+  },
+  {
+    "id": "PS_GEN_464",
+    "name_en": "Chitradurga Women Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.29443489498306,
+    "lng": 76.28880091679972
+  },
+  {
+    "id": "PS_GEN_465",
+    "name_en": "Chitradurga City Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.273761585529178,
+    "lng": 76.42371705122237
+  },
+  {
+    "id": "PS_GEN_466",
+    "name_en": "Chitradurga East Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.028289152380886,
+    "lng": 76.102570374904
+  },
+  {
+    "id": "PS_GEN_467",
+    "name_en": "Chitradurga Town Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.187473208187393,
+    "lng": 76.81786148329886
+  },
+  {
+    "id": "PS_GEN_468",
+    "name_en": "Chitradurga Women Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.89549544260729,
+    "lng": 76.50675683914052
+  },
+  {
+    "id": "PS_GEN_469",
+    "name_en": "Chitradurga City Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.95564112989554,
+    "lng": 76.6668025989493
+  },
+  {
+    "id": "PS_GEN_470",
+    "name_en": "Chitradurga Special Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.19666741864933,
+    "lng": 76.98877830982849
+  },
+  {
+    "id": "PS_GEN_471",
+    "name_en": "Chitradurga Rural Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.232651911437992,
+    "lng": 76.32184952944277
+  },
+  {
+    "id": "PS_GEN_472",
+    "name_en": "Chitradurga Women Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.076276996794208,
+    "lng": 76.54830264995928
+  },
+  {
+    "id": "PS_GEN_473",
+    "name_en": "Chitradurga Central Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.116263594420337,
+    "lng": 76.93011101081905
+  },
+  {
+    "id": "PS_GEN_474",
+    "name_en": "Chitradurga Traffic Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.16009375947279,
+    "lng": 76.48926677582836
+  },
+  {
+    "id": "PS_GEN_475",
+    "name_en": "Chitradurga East Police Station",
+    "district_id": "Chitradurga",
+    "lat": 14.338122509783602,
+    "lng": 76.83657748853437
+  },
+  {
+    "id": "PS_GEN_476",
+    "name_en": "Chitradurga Town Police Station",
+    "district_id": "Chitradurga",
+    "lat": 13.978396667484072,
+    "lng": 76.20306820199038
+  },
+  {
+    "id": "PS_GEN_477",
+    "name_en": "Davanagere City Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.547388292162973,
+    "lng": 76.49458755139291
+  },
+  {
+    "id": "PS_GEN_478",
+    "name_en": "Davanagere Rural Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.00808797324981,
+    "lng": 75.89095255443334
+  },
+  {
+    "id": "PS_GEN_479",
+    "name_en": "Davanagere Town Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.132231258728288,
+    "lng": 75.60592088607642
+  },
+  {
+    "id": "PS_GEN_480",
+    "name_en": "Davanagere Town Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.656890909094248,
+    "lng": 76.08257988345638
+  },
+  {
+    "id": "PS_GEN_481",
+    "name_en": "Davanagere Railway Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.833512280997782,
+    "lng": 76.10360614298854
+  },
+  {
+    "id": "PS_GEN_482",
+    "name_en": "Davanagere Traffic Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.306470880222442,
+    "lng": 75.84063079805854
+  },
+  {
+    "id": "PS_GEN_483",
+    "name_en": "Davanagere Special Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.337602715571746,
+    "lng": 75.80954688535864
+  },
+  {
+    "id": "PS_GEN_484",
+    "name_en": "Davanagere Traffic Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.541492019093198,
+    "lng": 76.01155326600457
+  },
+  {
+    "id": "PS_GEN_485",
+    "name_en": "Davanagere City Police Station",
+    "district_id": "Davanagere",
+    "lat": 13.98225234923333,
+    "lng": 76.03452680401008
+  },
+  {
+    "id": "PS_GEN_486",
+    "name_en": "Davanagere East Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.237864330335483,
+    "lng": 75.77629466812854
+  },
+  {
+    "id": "PS_GEN_487",
+    "name_en": "Davanagere City Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.421779315720414,
+    "lng": 76.12124161382022
+  },
+  {
+    "id": "PS_GEN_488",
+    "name_en": "Davanagere West Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.390849282789265,
+    "lng": 76.1356811396781
+  },
+  {
+    "id": "PS_GEN_489",
+    "name_en": "Davanagere Cyber Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.597128170797902,
+    "lng": 75.85182108750982
+  },
+  {
+    "id": "PS_GEN_490",
+    "name_en": "Davanagere City Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.365713661003934,
+    "lng": 75.65913570000193
+  },
+  {
+    "id": "PS_GEN_491",
+    "name_en": "Davanagere Railway Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.159215903698454,
+    "lng": 75.61783198292139
+  },
+  {
+    "id": "PS_GEN_492",
+    "name_en": "Davanagere North Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.325092388550566,
+    "lng": 76.00035708557176
+  },
+  {
+    "id": "PS_GEN_493",
+    "name_en": "Davanagere Cyber Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.628024913050023,
+    "lng": 75.8090662019668
+  },
+  {
+    "id": "PS_GEN_494",
+    "name_en": "Davanagere Special Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.419334345754443,
+    "lng": 75.70420036967538
+  },
+  {
+    "id": "PS_GEN_495",
+    "name_en": "Davanagere West Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.105874476034108,
+    "lng": 75.99112410073607
+  },
+  {
+    "id": "PS_GEN_496",
+    "name_en": "Davanagere City Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.127842407523032,
+    "lng": 75.77040129540568
+  },
+  {
+    "id": "PS_GEN_497",
+    "name_en": "Davanagere South Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.314745659398968,
+    "lng": 76.05028087621503
+  },
+  {
+    "id": "PS_GEN_498",
+    "name_en": "Davanagere Local Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.480257730711076,
+    "lng": 76.23298024259904
+  },
+  {
+    "id": "PS_GEN_499",
+    "name_en": "Davanagere East Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.18540715535053,
+    "lng": 75.93862843419791
+  },
+  {
+    "id": "PS_GEN_500",
+    "name_en": "Davanagere Special Police Station",
+    "district_id": "Davanagere",
+    "lat": 13.946853928058108,
+    "lng": 75.88587493156167
+  },
+  {
+    "id": "PS_GEN_501",
+    "name_en": "Davanagere Cyber Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.438796443255551,
+    "lng": 75.95446681679697
+  },
+  {
+    "id": "PS_GEN_502",
+    "name_en": "Davanagere South Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.770575817133661,
+    "lng": 76.16587695178873
+  },
+  {
+    "id": "PS_GEN_503",
+    "name_en": "Davanagere North Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.339490493913749,
+    "lng": 75.64260261624476
+  },
+  {
+    "id": "PS_GEN_504",
+    "name_en": "Davanagere North Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.253393773511005,
+    "lng": 75.78036610531272
+  },
+  {
+    "id": "PS_GEN_505",
+    "name_en": "Davanagere South Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.228253938800545,
+    "lng": 75.95154329456611
+  },
+  {
+    "id": "PS_GEN_506",
+    "name_en": "Davanagere Special Police Station",
+    "district_id": "Davanagere",
+    "lat": 14.368739624943947,
+    "lng": 76.06556864645982
+  },
+  {
+    "id": "PS_GEN_507",
+    "name_en": "Shivamogga South Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.619837006690949,
+    "lng": 75.19251522914335
+  },
+  {
+    "id": "PS_GEN_508",
+    "name_en": "Shivamogga Traffic Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.96032568944657,
+    "lng": 75.05406798208749
+  },
+  {
+    "id": "PS_GEN_509",
+    "name_en": "Shivamogga Cyber Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.311789780817579,
+    "lng": 75.44401958959534
+  },
+  {
+    "id": "PS_GEN_510",
+    "name_en": "Shivamogga Local Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.012613097138859,
+    "lng": 75.51184424182702
+  },
+  {
+    "id": "PS_GEN_511",
+    "name_en": "Shivamogga Special Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.361470971211657,
+    "lng": 75.10128304615581
+  },
+  {
+    "id": "PS_GEN_512",
+    "name_en": "Shivamogga East Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.029406705810405,
+    "lng": 75.27918324814515
+  },
+  {
+    "id": "PS_GEN_513",
+    "name_en": "Shivamogga City Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.963658412539528,
+    "lng": 75.02285148255974
+  },
+  {
+    "id": "PS_GEN_514",
+    "name_en": "Shivamogga Special Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.735158796076576,
+    "lng": 75.39857372715977
+  },
+  {
+    "id": "PS_GEN_515",
+    "name_en": "Shivamogga South Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.924933678591504,
+    "lng": 74.82709247791236
+  },
+  {
+    "id": "PS_GEN_516",
+    "name_en": "Shivamogga East Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.516493725299553,
+    "lng": 74.93816331613327
+  },
+  {
+    "id": "PS_GEN_517",
+    "name_en": "Shivamogga Traffic Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.828444196937227,
+    "lng": 75.0961401216482
+  },
+  {
+    "id": "PS_GEN_518",
+    "name_en": "Shivamogga Special Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.741377096207508,
+    "lng": 75.33423983882605
+  },
+  {
+    "id": "PS_GEN_519",
+    "name_en": "Shivamogga Town Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.468492696111463,
+    "lng": 75.10333604807661
+  },
+  {
+    "id": "PS_GEN_520",
+    "name_en": "Shivamogga Local Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.137644041943798,
+    "lng": 74.88091953560246
+  },
+  {
+    "id": "PS_GEN_521",
+    "name_en": "Shivamogga Railway Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.183450128693586,
+    "lng": 75.3094802144598
+  },
+  {
+    "id": "PS_GEN_522",
+    "name_en": "Shivamogga Rural Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.973183903718972,
+    "lng": 75.35813407361424
+  },
+  {
+    "id": "PS_GEN_523",
+    "name_en": "Shivamogga Town Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.049414093091906,
+    "lng": 75.01003543884524
+  },
+  {
+    "id": "PS_GEN_524",
+    "name_en": "Shivamogga Local Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.883476394370776,
+    "lng": 74.9720451935615
+  },
+  {
+    "id": "PS_GEN_525",
+    "name_en": "Shivamogga Central Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.034832417306438,
+    "lng": 75.13748633156247
+  },
+  {
+    "id": "PS_GEN_526",
+    "name_en": "Shivamogga East Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.477971838233199,
+    "lng": 75.3032299558524
+  },
+  {
+    "id": "PS_GEN_527",
+    "name_en": "Shivamogga Women Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.836777671153238,
+    "lng": 75.11879283323643
+  },
+  {
+    "id": "PS_GEN_528",
+    "name_en": "Shivamogga Railway Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.121714799631665,
+    "lng": 75.16304764685286
+  },
+  {
+    "id": "PS_GEN_529",
+    "name_en": "Shivamogga Town Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.59875189436915,
+    "lng": 75.16722151106316
+  },
+  {
+    "id": "PS_GEN_530",
+    "name_en": "Shivamogga Special Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.667306524305069,
+    "lng": 75.22363895921804
+  },
+  {
+    "id": "PS_GEN_531",
+    "name_en": "Shivamogga Rural Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.23947100340977,
+    "lng": 74.93557801094143
+  },
+  {
+    "id": "PS_GEN_532",
+    "name_en": "Shivamogga Local Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.936514969569446,
+    "lng": 75.5848148442429
+  },
+  {
+    "id": "PS_GEN_533",
+    "name_en": "Shivamogga City Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.910278789103574,
+    "lng": 74.99786439525592
+  },
+  {
+    "id": "PS_GEN_534",
+    "name_en": "Shivamogga Central Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.62120607637921,
+    "lng": 75.0571350826694
+  },
+  {
+    "id": "PS_GEN_535",
+    "name_en": "Shivamogga North Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.710666374648559,
+    "lng": 75.33354532483526
+  },
+  {
+    "id": "PS_GEN_536",
+    "name_en": "Shivamogga Women Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.050379040162008,
+    "lng": 74.79216543205489
+  },
+  {
+    "id": "PS_GEN_537",
+    "name_en": "Shivamogga Traffic Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.127800447147958,
+    "lng": 75.40382427930388
+  },
+  {
+    "id": "PS_GEN_538",
+    "name_en": "Shivamogga Rural Police Station",
+    "district_id": "Shivamogga",
+    "lat": 14.492888114553418,
+    "lng": 74.9190097108692
+  },
+  {
+    "id": "PS_GEN_539",
+    "name_en": "Shivamogga Cyber Police Station",
+    "district_id": "Shivamogga",
+    "lat": 13.941327728834164,
+    "lng": 75.34364047294781
+  },
+  {
+    "id": "PS_GEN_540",
+    "name_en": "Udupi East Police Station",
+    "district_id": "Udupi",
+    "lat": 13.738019658650378,
+    "lng": 74.65775315274135
+  },
+  {
+    "id": "PS_GEN_541",
+    "name_en": "Udupi East Police Station",
+    "district_id": "Udupi",
+    "lat": 13.490206146714447,
+    "lng": 74.83040063996678
+  },
+  {
+    "id": "PS_GEN_542",
+    "name_en": "Udupi North Police Station",
+    "district_id": "Udupi",
+    "lat": 13.851580250979755,
+    "lng": 74.64000435203434
+  },
+  {
+    "id": "PS_GEN_543",
+    "name_en": "Udupi City Police Station",
+    "district_id": "Udupi",
+    "lat": 13.249921631096925,
+    "lng": 74.93297086297117
+  },
+  {
+    "id": "PS_GEN_544",
+    "name_en": "Udupi Central Police Station",
+    "district_id": "Udupi",
+    "lat": 13.153680748727556,
+    "lng": 75.04985808023015
+  },
+  {
+    "id": "PS_GEN_545",
+    "name_en": "Udupi Central Police Station",
+    "district_id": "Udupi",
+    "lat": 13.278608167333504,
+    "lng": 75.03194359104714
+  },
+  {
+    "id": "PS_GEN_546",
+    "name_en": "Udupi West Police Station",
+    "district_id": "Udupi",
+    "lat": 13.288047851179277,
+    "lng": 74.75821436563407
+  },
+  {
+    "id": "PS_GEN_547",
+    "name_en": "Udupi North Police Station",
+    "district_id": "Udupi",
+    "lat": 13.698097528972495,
+    "lng": 74.79301476987776
+  },
+  {
+    "id": "PS_GEN_548",
+    "name_en": "Udupi North Police Station",
+    "district_id": "Udupi",
+    "lat": 13.320871736290448,
+    "lng": 74.96154740012882
+  },
+  {
+    "id": "PS_GEN_549",
+    "name_en": "Udupi Town Police Station",
+    "district_id": "Udupi",
+    "lat": 13.16686458927285,
+    "lng": 74.9600854714817
+  },
+  {
+    "id": "PS_GEN_550",
+    "name_en": "Udupi Women Police Station",
+    "district_id": "Udupi",
+    "lat": 13.841013054047519,
+    "lng": 74.65044166895692
+  },
+  {
+    "id": "PS_GEN_551",
+    "name_en": "Udupi City Police Station",
+    "district_id": "Udupi",
+    "lat": 13.768630943160279,
+    "lng": 74.93295005298063
+  },
+  {
+    "id": "PS_GEN_552",
+    "name_en": "Udupi Local Police Station",
+    "district_id": "Udupi",
+    "lat": 13.179281564923304,
+    "lng": 75.07056045447713
+  },
+  {
+    "id": "PS_GEN_553",
+    "name_en": "Udupi North Police Station",
+    "district_id": "Udupi",
+    "lat": 13.35876135537235,
+    "lng": 74.80124466911096
+  },
+  {
+    "id": "PS_GEN_554",
+    "name_en": "Udupi West Police Station",
+    "district_id": "Udupi",
+    "lat": 13.180054331389474,
+    "lng": 74.88351356510701
+  },
+  {
+    "id": "PS_GEN_555",
+    "name_en": "Udupi Railway Police Station",
+    "district_id": "Udupi",
+    "lat": 13.54325961356248,
+    "lng": 74.76732705779423
+  },
+  {
+    "id": "PS_GEN_556",
+    "name_en": "Udupi Cyber Police Station",
+    "district_id": "Udupi",
+    "lat": 13.451099194272736,
+    "lng": 75.06945525483297
+  },
+  {
+    "id": "PS_GEN_557",
+    "name_en": "Udupi Town Police Station",
+    "district_id": "Udupi",
+    "lat": 13.40529482023591,
+    "lng": 75.05852796839221
+  },
+  {
+    "id": "PS_GEN_558",
+    "name_en": "Udupi Traffic Police Station",
+    "district_id": "Udupi",
+    "lat": 13.860677179090537,
+    "lng": 74.83571218832331
+  },
+  {
+    "id": "PS_GEN_559",
+    "name_en": "Udupi South Police Station",
+    "district_id": "Udupi",
+    "lat": 13.316855058742712,
+    "lng": 74.87575843340231
+  },
+  {
+    "id": "PS_GEN_560",
+    "name_en": "Chikkamagaluru Railway Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.585977127595454,
+    "lng": 76.3171790821927
+  },
+  {
+    "id": "PS_GEN_561",
+    "name_en": "Chikkamagaluru Women Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.236657485583597,
+    "lng": 75.54740275504754
+  },
+  {
+    "id": "PS_GEN_562",
+    "name_en": "Chikkamagaluru Traffic Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.672330300322518,
+    "lng": 75.98776268804255
+  },
+  {
+    "id": "PS_GEN_563",
+    "name_en": "Chikkamagaluru Central Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.404896582115953,
+    "lng": 75.28384759700741
+  },
+  {
+    "id": "PS_GEN_564",
+    "name_en": "Chikkamagaluru Town Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.455196326635095,
+    "lng": 75.36368892940294
+  },
+  {
+    "id": "PS_GEN_565",
+    "name_en": "Chikkamagaluru North Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.450453188376251,
+    "lng": 75.47157103187763
+  },
+  {
+    "id": "PS_GEN_566",
+    "name_en": "Chikkamagaluru City Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.603822620954123,
+    "lng": 75.4621184487407
+  },
+  {
+    "id": "PS_GEN_567",
+    "name_en": "Chikkamagaluru Special Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.472340474530712,
+    "lng": 75.93305820639496
+  },
+  {
+    "id": "PS_GEN_568",
+    "name_en": "Chikkamagaluru Cyber Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.301146210626733,
+    "lng": 75.11017951925741
+  },
+  {
+    "id": "PS_GEN_569",
+    "name_en": "Chikkamagaluru North Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.3066857146797,
+    "lng": 75.36903806332818
+  },
+  {
+    "id": "PS_GEN_570",
+    "name_en": "Chikkamagaluru Railway Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.689692918943546,
+    "lng": 75.93981474920861
+  },
+  {
+    "id": "PS_GEN_571",
+    "name_en": "Chikkamagaluru North Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.348107107318366,
+    "lng": 76.03248780321647
+  },
+  {
+    "id": "PS_GEN_572",
+    "name_en": "Chikkamagaluru East Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.17380408361593,
+    "lng": 75.66626045258882
+  },
+  {
+    "id": "PS_GEN_573",
+    "name_en": "Chikkamagaluru Local Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.377611737264184,
+    "lng": 75.3984322832527
+  },
+  {
+    "id": "PS_GEN_574",
+    "name_en": "Chikkamagaluru Rural Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.375933789593065,
+    "lng": 75.15798414450639
+  },
+  {
+    "id": "PS_GEN_575",
+    "name_en": "Chikkamagaluru West Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.439928846340802,
+    "lng": 75.32659724011182
+  },
+  {
+    "id": "PS_GEN_576",
+    "name_en": "Chikkamagaluru Special Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.16280137606131,
+    "lng": 75.66598276650794
+  },
+  {
+    "id": "PS_GEN_577",
+    "name_en": "Chikkamagaluru Cyber Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.396546829783821,
+    "lng": 75.39231000570605
+  },
+  {
+    "id": "PS_GEN_578",
+    "name_en": "Chikkamagaluru Town Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.097166068494808,
+    "lng": 75.4814460490768
+  },
+  {
+    "id": "PS_GEN_579",
+    "name_en": "Chikkamagaluru West Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.615810930160386,
+    "lng": 75.83118847351736
+  },
+  {
+    "id": "PS_GEN_580",
+    "name_en": "Chikkamagaluru Central Police Station",
+    "district_id": "Chikkamagaluru",
+    "lat": 13.192610743506437,
+    "lng": 75.43578578568179
+  },
+  {
+    "id": "PS_GEN_581",
+    "name_en": "Chikkaballapura City Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.33866850853932,
+    "lng": 77.83036536406469
+  },
+  {
+    "id": "PS_GEN_582",
+    "name_en": "Chikkaballapura South Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.566752240987007,
+    "lng": 77.95179118503292
+  },
+  {
+    "id": "PS_GEN_583",
+    "name_en": "Chikkaballapura Special Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.741195053902967,
+    "lng": 77.9635747672148
+  },
+  {
+    "id": "PS_GEN_584",
+    "name_en": "Chikkaballapura Cyber Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.594354969963419,
+    "lng": 77.73100855990397
+  },
+  {
+    "id": "PS_GEN_585",
+    "name_en": "Chikkaballapura Local Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.281567822320339,
+    "lng": 77.93668512354853
+  },
+  {
+    "id": "PS_GEN_586",
+    "name_en": "Chikkaballapura Women Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.832517846106379,
+    "lng": 77.94772398283585
+  },
+  {
+    "id": "PS_GEN_587",
+    "name_en": "Chikkaballapura West Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.677232071016808,
+    "lng": 77.92049103846179
+  },
+  {
+    "id": "PS_GEN_588",
+    "name_en": "Chikkaballapura Town Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.580323879289471,
+    "lng": 77.82667579003626
+  },
+  {
+    "id": "PS_GEN_589",
+    "name_en": "Chikkaballapura Town Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.415241060228203,
+    "lng": 77.7072430811557
+  },
+  {
+    "id": "PS_GEN_590",
+    "name_en": "Chikkaballapura South Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.723226281632373,
+    "lng": 77.61389866809262
+  },
+  {
+    "id": "PS_GEN_591",
+    "name_en": "Chikkaballapura Railway Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.634774607825914,
+    "lng": 77.38378679467114
+  },
+  {
+    "id": "PS_GEN_592",
+    "name_en": "Chikkaballapura Women Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.630646506682535,
+    "lng": 77.60397003709673
+  },
+  {
+    "id": "PS_GEN_593",
+    "name_en": "Chikkaballapura Railway Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.600693319630821,
+    "lng": 77.64482310356354
+  },
+  {
+    "id": "PS_GEN_594",
+    "name_en": "Chikkaballapura Local Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.46306346006557,
+    "lng": 77.93807084613195
+  },
+  {
+    "id": "PS_GEN_595",
+    "name_en": "Chikkaballapura Special Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.609487761511467,
+    "lng": 77.6827533416939
+  },
+  {
+    "id": "PS_GEN_596",
+    "name_en": "Chikkaballapura Railway Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.48359772919828,
+    "lng": 77.9884981822911
+  },
+  {
+    "id": "PS_GEN_597",
+    "name_en": "Chikkaballapura Special Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.59318367974313,
+    "lng": 77.776356005786
+  },
+  {
+    "id": "PS_GEN_598",
+    "name_en": "Chikkaballapura Special Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.6804917256401,
+    "lng": 77.93366575014093
+  },
+  {
+    "id": "PS_GEN_599",
+    "name_en": "Chikkaballapura West Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.510635734654889,
+    "lng": 78.05226053474237
+  },
+  {
+    "id": "PS_GEN_600",
+    "name_en": "Chikkaballapura Rural Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.780332024502803,
+    "lng": 77.94296451862154
+  },
+  {
+    "id": "PS_GEN_601",
+    "name_en": "Chikkaballapura Women Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.656687622959483,
+    "lng": 78.15591618878692
+  },
+  {
+    "id": "PS_GEN_602",
+    "name_en": "Chikkaballapura Railway Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.250569413691945,
+    "lng": 77.85054571787892
+  },
+  {
+    "id": "PS_GEN_603",
+    "name_en": "Chikkaballapura Rural Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.42972299701412,
+    "lng": 77.80173035644378
+  },
+  {
+    "id": "PS_GEN_604",
+    "name_en": "Chikkaballapura Central Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.537714594494858,
+    "lng": 77.47932842231812
+  },
+  {
+    "id": "PS_GEN_605",
+    "name_en": "Chikkaballapura Local Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.461458141280021,
+    "lng": 77.75731489543679
+  },
+  {
+    "id": "PS_GEN_606",
+    "name_en": "Chikkaballapura South Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.425487400657676,
+    "lng": 77.80707806728728
+  },
+  {
+    "id": "PS_GEN_607",
+    "name_en": "Chikkaballapura North Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.441726440915492,
+    "lng": 77.76235220062163
+  },
+  {
+    "id": "PS_GEN_608",
+    "name_en": "Chikkaballapura East Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.509112602910594,
+    "lng": 77.6742963335801
+  },
+  {
+    "id": "PS_GEN_609",
+    "name_en": "Chikkaballapura Railway Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.387846199435469,
+    "lng": 77.69201495874958
+  },
+  {
+    "id": "PS_GEN_610",
+    "name_en": "Chikkaballapura West Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.625873222653025,
+    "lng": 77.4771744429824
+  },
+  {
+    "id": "PS_GEN_611",
+    "name_en": "Chikkaballapura Central Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.629070333890091,
+    "lng": 77.90947999803394
+  },
+  {
+    "id": "PS_GEN_612",
+    "name_en": "Chikkaballapura East Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.65074329832154,
+    "lng": 77.55728851820218
+  },
+  {
+    "id": "PS_GEN_613",
+    "name_en": "Chikkaballapura Central Police Station",
+    "district_id": "Chikkaballapura",
+    "lat": 13.301228668384862,
+    "lng": 77.8600959386712
+  },
+  {
+    "id": "PS_GEN_614",
+    "name_en": "Hassan Cyber Police Station",
+    "district_id": "Hassan",
+    "lat": 12.61593811325181,
+    "lng": 75.96018715824282
+  },
+  {
+    "id": "PS_GEN_615",
+    "name_en": "Hassan North Police Station",
+    "district_id": "Hassan",
+    "lat": 12.857468012736708,
+    "lng": 76.2951692843376
+  },
+  {
+    "id": "PS_GEN_616",
+    "name_en": "Hassan North Police Station",
+    "district_id": "Hassan",
+    "lat": 13.195475756861958,
+    "lng": 76.29258771690468
+  },
+  {
+    "id": "PS_GEN_617",
+    "name_en": "Hassan Women Police Station",
+    "district_id": "Hassan",
+    "lat": 12.728529992014856,
+    "lng": 75.74691205487025
+  },
+  {
+    "id": "PS_GEN_618",
+    "name_en": "Hassan Central Police Station",
+    "district_id": "Hassan",
+    "lat": 13.232198144177696,
+    "lng": 75.95650147253201
+  },
+  {
+    "id": "PS_GEN_619",
+    "name_en": "Hassan Local Police Station",
+    "district_id": "Hassan",
+    "lat": 13.252196374019913,
+    "lng": 75.94718148421946
+  },
+  {
+    "id": "PS_GEN_620",
+    "name_en": "Hassan South Police Station",
+    "district_id": "Hassan",
+    "lat": 12.574243596312042,
+    "lng": 76.11458413691385
+  },
+  {
+    "id": "PS_GEN_621",
+    "name_en": "Hassan Central Police Station",
+    "district_id": "Hassan",
+    "lat": 12.994908704417204,
+    "lng": 76.21251057776341
+  },
+  {
+    "id": "PS_GEN_622",
+    "name_en": "Hassan Local Police Station",
+    "district_id": "Hassan",
+    "lat": 13.424193944414123,
+    "lng": 76.205484551742
+  },
+  {
+    "id": "PS_GEN_623",
+    "name_en": "Hassan East Police Station",
+    "district_id": "Hassan",
+    "lat": 13.078422388477188,
+    "lng": 75.85785314421375
+  },
+  {
+    "id": "PS_GEN_624",
+    "name_en": "Hassan Central Police Station",
+    "district_id": "Hassan",
+    "lat": 13.451725992971612,
+    "lng": 76.38355488719328
+  },
+  {
+    "id": "PS_GEN_625",
+    "name_en": "Hassan North Police Station",
+    "district_id": "Hassan",
+    "lat": 12.735393911423088,
+    "lng": 76.32527122901901
+  },
+  {
+    "id": "PS_GEN_626",
+    "name_en": "Hassan West Police Station",
+    "district_id": "Hassan",
+    "lat": 12.724842566500945,
+    "lng": 75.65357996427454
+  },
+  {
+    "id": "PS_GEN_627",
+    "name_en": "Hassan Traffic Police Station",
+    "district_id": "Hassan",
+    "lat": 12.64758998277294,
+    "lng": 76.24448809603035
+  },
+  {
+    "id": "PS_GEN_628",
+    "name_en": "Hassan South Police Station",
+    "district_id": "Hassan",
+    "lat": 12.90739877753584,
+    "lng": 76.29690355150139
+  },
+  {
+    "id": "PS_GEN_629",
+    "name_en": "Hassan City Police Station",
+    "district_id": "Hassan",
+    "lat": 12.783441254058085,
+    "lng": 75.7887500319087
+  },
+  {
+    "id": "PS_GEN_630",
+    "name_en": "Hassan North Police Station",
+    "district_id": "Hassan",
+    "lat": 12.850832525301636,
+    "lng": 75.9834167179332
+  },
+  {
+    "id": "PS_GEN_631",
+    "name_en": "Hassan East Police Station",
+    "district_id": "Hassan",
+    "lat": 13.265295105733374,
+    "lng": 76.05534665856283
+  },
+  {
+    "id": "PS_GEN_632",
+    "name_en": "Hassan Cyber Police Station",
+    "district_id": "Hassan",
+    "lat": 12.753569983278473,
+    "lng": 75.74221028558073
+  },
+  {
+    "id": "PS_GEN_633",
+    "name_en": "Hassan North Police Station",
+    "district_id": "Hassan",
+    "lat": 12.954136999802406,
+    "lng": 75.65793416042804
+  },
+  {
+    "id": "PS_GEN_634",
+    "name_en": "Hassan Women Police Station",
+    "district_id": "Hassan",
+    "lat": 13.34368557012106,
+    "lng": 76.08340821972382
+  },
+  {
+    "id": "PS_GEN_635",
+    "name_en": "Kolar Rural Police Station",
+    "district_id": "Kolar",
+    "lat": 12.969706604549554,
+    "lng": 78.36018344006366
+  },
+  {
+    "id": "PS_GEN_636",
+    "name_en": "Kolar East Police Station",
+    "district_id": "Kolar",
+    "lat": 12.864834225891567,
+    "lng": 77.9616426960282
+  },
+  {
+    "id": "PS_GEN_637",
+    "name_en": "Kolar Central Police Station",
+    "district_id": "Kolar",
+    "lat": 12.891355913060535,
+    "lng": 78.20534042233186
+  },
+  {
+    "id": "PS_GEN_638",
+    "name_en": "Kolar Town Police Station",
+    "district_id": "Kolar",
+    "lat": 12.996417148356585,
+    "lng": 78.2149006786158
+  },
+  {
+    "id": "PS_GEN_639",
+    "name_en": "Kolar Town Police Station",
+    "district_id": "Kolar",
+    "lat": 12.887157394872744,
+    "lng": 78.22621046278961
+  },
+  {
+    "id": "PS_GEN_640",
+    "name_en": "Kolar Women Police Station",
+    "district_id": "Kolar",
+    "lat": 13.568158569646435,
+    "lng": 78.34051186391491
+  },
+  {
+    "id": "PS_GEN_641",
+    "name_en": "Kolar Traffic Police Station",
+    "district_id": "Kolar",
+    "lat": 13.044241084292993,
+    "lng": 78.05346144248229
+  },
+  {
+    "id": "PS_GEN_642",
+    "name_en": "Kolar Cyber Police Station",
+    "district_id": "Kolar",
+    "lat": 13.19869185516682,
+    "lng": 78.20866244062212
+  },
+  {
+    "id": "PS_GEN_643",
+    "name_en": "Kolar West Police Station",
+    "district_id": "Kolar",
+    "lat": 13.289180453106821,
+    "lng": 78.35808514696161
+  },
+  {
+    "id": "PS_GEN_644",
+    "name_en": "Kolar South Police Station",
+    "district_id": "Kolar",
+    "lat": 13.25195285104133,
+    "lng": 78.23255053497562
+  },
+  {
+    "id": "PS_GEN_645",
+    "name_en": "Kolar City Police Station",
+    "district_id": "Kolar",
+    "lat": 13.00912154552191,
+    "lng": 78.38636769268162
+  },
+  {
+    "id": "PS_GEN_646",
+    "name_en": "Kolar Town Police Station",
+    "district_id": "Kolar",
+    "lat": 13.036076994035039,
+    "lng": 78.37681164514638
+  },
+  {
+    "id": "PS_GEN_647",
+    "name_en": "Kolar Rural Police Station",
+    "district_id": "Kolar",
+    "lat": 12.897834896815194,
+    "lng": 77.93004051491131
+  },
+  {
+    "id": "PS_GEN_648",
+    "name_en": "Kolar West Police Station",
+    "district_id": "Kolar",
+    "lat": 13.197777788016504,
+    "lng": 78.113338449862
+  },
+  {
+    "id": "PS_GEN_649",
+    "name_en": "Kolar Special Police Station",
+    "district_id": "Kolar",
+    "lat": 13.450889872998255,
+    "lng": 78.31897448885603
+  },
+  {
+    "id": "PS_GEN_650",
+    "name_en": "Kolar Traffic Police Station",
+    "district_id": "Kolar",
+    "lat": 12.851598681097173,
+    "lng": 78.21702778298548
+  },
+  {
+    "id": "PS_GEN_651",
+    "name_en": "Kolar South Police Station",
+    "district_id": "Kolar",
+    "lat": 13.016121612267606,
+    "lng": 78.04808223203608
+  },
+  {
+    "id": "PS_GEN_652",
+    "name_en": "Kolar Town Police Station",
+    "district_id": "Kolar",
+    "lat": 13.057478624411182,
+    "lng": 78.34657336726899
+  },
+  {
+    "id": "PS_GEN_653",
+    "name_en": "Kolar Rural Police Station",
+    "district_id": "Kolar",
+    "lat": 13.399757758898724,
+    "lng": 78.18660280246687
+  },
+  {
+    "id": "PS_GEN_654",
+    "name_en": "Kolar Local Police Station",
+    "district_id": "Kolar",
+    "lat": 13.08238361619205,
+    "lng": 78.06251887177757
+  },
+  {
+    "id": "PS_GEN_655",
+    "name_en": "Kolar South Police Station",
+    "district_id": "Kolar",
+    "lat": 12.99317386090764,
+    "lng": 78.17820057245146
+  },
+  {
+    "id": "PS_GEN_656",
+    "name_en": "Kolar East Police Station",
+    "district_id": "Kolar",
+    "lat": 13.133781825655955,
+    "lng": 78.18085226640295
+  },
+  {
+    "id": "PS_GEN_657",
+    "name_en": "Bengaluru Rural Town Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.340000674284163,
+    "lng": 77.75067880271054
+  },
+  {
+    "id": "PS_GEN_658",
+    "name_en": "Bengaluru Rural Special Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.188147854445983,
+    "lng": 77.86396266221422
+  },
+  {
+    "id": "PS_GEN_659",
+    "name_en": "Bengaluru Rural Cyber Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.158885167705497,
+    "lng": 77.26798718418924
+  },
+  {
+    "id": "PS_GEN_660",
+    "name_en": "Bengaluru Rural Rural Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.115904531693225,
+    "lng": 77.74353305774882
+  },
+  {
+    "id": "PS_GEN_661",
+    "name_en": "Bengaluru Rural Cyber Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.22526822227549,
+    "lng": 77.7583814394366
+  },
+  {
+    "id": "PS_GEN_662",
+    "name_en": "Bengaluru Rural Local Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.306582810659268,
+    "lng": 77.77167276263194
+  },
+  {
+    "id": "PS_GEN_663",
+    "name_en": "Bengaluru Rural Town Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.255056305840107,
+    "lng": 77.34603408652227
+  },
+  {
+    "id": "PS_GEN_664",
+    "name_en": "Bengaluru Rural Town Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.30439444892083,
+    "lng": 77.75091852381397
+  },
+  {
+    "id": "PS_GEN_665",
+    "name_en": "Bengaluru Rural South Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.291930954067476,
+    "lng": 77.69439328260178
+  },
+  {
+    "id": "PS_GEN_666",
+    "name_en": "Bengaluru Rural Central Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.13612832580318,
+    "lng": 77.84672479510364
+  },
+  {
+    "id": "PS_GEN_667",
+    "name_en": "Bengaluru Rural Local Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.248076759107047,
+    "lng": 77.59313964562449
+  },
+  {
+    "id": "PS_GEN_668",
+    "name_en": "Bengaluru Rural Women Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.180129653220224,
+    "lng": 77.8922399968083
+  },
+  {
+    "id": "PS_GEN_669",
+    "name_en": "Bengaluru Rural Railway Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.416209306145582,
+    "lng": 77.38718934353886
+  },
+  {
+    "id": "PS_GEN_670",
+    "name_en": "Bengaluru Rural Central Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.323809272226134,
+    "lng": 77.47807403939065
+  },
+  {
+    "id": "PS_GEN_671",
+    "name_en": "Bengaluru Rural Rural Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.22165268834559,
+    "lng": 77.8948795482441
+  },
+  {
+    "id": "PS_GEN_672",
+    "name_en": "Bengaluru Rural Central Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.23651052020395,
+    "lng": 77.23436398702874
+  },
+  {
+    "id": "PS_GEN_673",
+    "name_en": "Bengaluru Rural West Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.18909551232609,
+    "lng": 77.45260934912494
+  },
+  {
+    "id": "PS_GEN_674",
+    "name_en": "Bengaluru Rural Cyber Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.202435175869152,
+    "lng": 77.22839100064387
+  },
+  {
+    "id": "PS_GEN_675",
+    "name_en": "Bengaluru Rural Rural Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.236503080113781,
+    "lng": 77.9281697362036
+  },
+  {
+    "id": "PS_GEN_676",
+    "name_en": "Bengaluru Rural City Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.35291426237905,
+    "lng": 77.51857877627404
+  },
+  {
+    "id": "PS_GEN_677",
+    "name_en": "Bengaluru Rural Railway Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 12.999913641957022,
+    "lng": 77.3579092845115
+  },
+  {
+    "id": "PS_GEN_678",
+    "name_en": "Bengaluru Rural Town Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.348948193056096,
+    "lng": 77.76498511619839
+  },
+  {
+    "id": "PS_GEN_679",
+    "name_en": "Bengaluru Rural West Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.324757427987814,
+    "lng": 77.33268189089975
+  },
+  {
+    "id": "PS_GEN_680",
+    "name_en": "Bengaluru Rural City Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.226673296656406,
+    "lng": 77.24499591138915
+  },
+  {
+    "id": "PS_GEN_681",
+    "name_en": "Bengaluru Rural North Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.191288056257676,
+    "lng": 77.89794368428147
+  },
+  {
+    "id": "PS_GEN_682",
+    "name_en": "Bengaluru Rural Central Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.335736370768826,
+    "lng": 77.57754421018194
+  },
+  {
+    "id": "PS_GEN_683",
+    "name_en": "Bengaluru Rural Rural Police Station",
+    "district_id": "Bengaluru Rural",
+    "lat": 13.30722103008804,
+    "lng": 77.56301440202566
+  },
+  {
+    "id": "PS_GEN_684",
+    "name_en": "Dakshina Kannada Town Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.648531268325735,
+    "lng": 75.57156414054923
+  },
+  {
+    "id": "PS_GEN_685",
+    "name_en": "Dakshina Kannada West Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.519576667104277,
+    "lng": 75.41278493540322
+  },
+  {
+    "id": "PS_GEN_686",
+    "name_en": "Dakshina Kannada Town Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.76747182895574,
+    "lng": 75.0235843988811
+  },
+  {
+    "id": "PS_GEN_687",
+    "name_en": "Dakshina Kannada Cyber Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.818342848180688,
+    "lng": 74.93129792083609
+  },
+  {
+    "id": "PS_GEN_688",
+    "name_en": "Dakshina Kannada North Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 13.028013369714497,
+    "lng": 75.0068837922364
+  },
+  {
+    "id": "PS_GEN_689",
+    "name_en": "Dakshina Kannada Cyber Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.966494645370442,
+    "lng": 75.24307304183885
+  },
+  {
+    "id": "PS_GEN_690",
+    "name_en": "Dakshina Kannada Local Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.551974753741348,
+    "lng": 75.53578827639777
+  },
+  {
+    "id": "PS_GEN_691",
+    "name_en": "Dakshina Kannada Rural Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 13.089958053593097,
+    "lng": 74.8797945668684
+  },
+  {
+    "id": "PS_GEN_692",
+    "name_en": "Dakshina Kannada East Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 13.034705173327659,
+    "lng": 74.86178095554597
+  },
+  {
+    "id": "PS_GEN_693",
+    "name_en": "Dakshina Kannada Local Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.546163135197428,
+    "lng": 75.58838451378868
+  },
+  {
+    "id": "PS_GEN_694",
+    "name_en": "Dakshina Kannada Railway Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 13.04461893547035,
+    "lng": 74.88522718656495
+  },
+  {
+    "id": "PS_GEN_695",
+    "name_en": "Dakshina Kannada Rural Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.9764042149231,
+    "lng": 75.46666721478964
+  },
+  {
+    "id": "PS_GEN_696",
+    "name_en": "Dakshina Kannada South Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.799100701503805,
+    "lng": 74.86943013807911
+  },
+  {
+    "id": "PS_GEN_697",
+    "name_en": "Dakshina Kannada Town Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.594755766980674,
+    "lng": 75.5447832337685
+  },
+  {
+    "id": "PS_GEN_698",
+    "name_en": "Dakshina Kannada East Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.85653990147968,
+    "lng": 75.5526438658988
+  },
+  {
+    "id": "PS_GEN_699",
+    "name_en": "Dakshina Kannada East Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.96372937292264,
+    "lng": 74.82165799699312
+  },
+  {
+    "id": "PS_GEN_700",
+    "name_en": "Dakshina Kannada City Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 13.049591223221528,
+    "lng": 75.42059342021858
+  },
+  {
+    "id": "PS_GEN_701",
+    "name_en": "Dakshina Kannada Railway Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 13.081535843817452,
+    "lng": 75.22162890188748
+  },
+  {
+    "id": "PS_GEN_702",
+    "name_en": "Dakshina Kannada West Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.92021709471007,
+    "lng": 75.03473916344588
+  },
+  {
+    "id": "PS_GEN_703",
+    "name_en": "Dakshina Kannada North Police Station",
+    "district_id": "Dakshina Kannada",
+    "lat": 12.864960161509146,
+    "lng": 75.22533420278947
+  },
+  {
+    "id": "PS_GEN_704",
+    "name_en": "Bengaluru Urban Women Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.036217914979542,
+    "lng": 77.48825428862803
+  },
+  {
+    "id": "PS_GEN_705",
+    "name_en": "Bengaluru Urban Cyber Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.80244768887079,
+    "lng": 77.70452315979792
+  },
+  {
+    "id": "PS_GEN_706",
+    "name_en": "Bengaluru Urban Women Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.007802534196108,
+    "lng": 77.53126195182647
+  },
+  {
+    "id": "PS_GEN_707",
+    "name_en": "Bengaluru Urban West Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.877927161685259,
+    "lng": 77.6056733733218
+  },
+  {
+    "id": "PS_GEN_708",
+    "name_en": "Bengaluru Urban Traffic Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.898678980541744,
+    "lng": 77.38323717927538
+  },
+  {
+    "id": "PS_GEN_709",
+    "name_en": "Bengaluru Urban South Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.964512353411124,
+    "lng": 77.3707108894235
+  },
+  {
+    "id": "PS_GEN_710",
+    "name_en": "Bengaluru Urban West Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.725651197824941,
+    "lng": 77.67261088002778
+  },
+  {
+    "id": "PS_GEN_711",
+    "name_en": "Bengaluru Urban Rural Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.039424207670404,
+    "lng": 77.46781366736958
+  },
+  {
+    "id": "PS_GEN_712",
+    "name_en": "Bengaluru Urban Central Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.01472870766156,
+    "lng": 77.49633006404794
+  },
+  {
+    "id": "PS_GEN_713",
+    "name_en": "Bengaluru Urban West Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.153450090198852,
+    "lng": 77.56860379794124
+  },
+  {
+    "id": "PS_GEN_714",
+    "name_en": "Bengaluru Urban Local Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.026346167249972,
+    "lng": 77.47150264417374
+  },
+  {
+    "id": "PS_GEN_715",
+    "name_en": "Bengaluru Urban East Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.034130093049782,
+    "lng": 77.76560616853276
+  },
+  {
+    "id": "PS_GEN_716",
+    "name_en": "Bengaluru Urban South Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.078031013462027,
+    "lng": 77.53181581505189
+  },
+  {
+    "id": "PS_GEN_717",
+    "name_en": "Bengaluru Urban Local Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.074903594228473,
+    "lng": 77.47662017324103
+  },
+  {
+    "id": "PS_GEN_718",
+    "name_en": "Bengaluru Urban Women Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.160788302810696,
+    "lng": 77.67387295781047
+  },
+  {
+    "id": "PS_GEN_719",
+    "name_en": "Bengaluru Urban Women Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.921079682570259,
+    "lng": 77.49023047344369
+  },
+  {
+    "id": "PS_GEN_720",
+    "name_en": "Bengaluru Urban Local Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.820637909901732,
+    "lng": 77.52687561956614
+  },
+  {
+    "id": "PS_GEN_721",
+    "name_en": "Bengaluru Urban Special Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.90170204272247,
+    "lng": 77.61964595213588
+  },
+  {
+    "id": "PS_GEN_722",
+    "name_en": "Bengaluru Urban South Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.09989991752208,
+    "lng": 77.47078940586835
+  },
+  {
+    "id": "PS_GEN_723",
+    "name_en": "Bengaluru Urban Local Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.0462799913369,
+    "lng": 77.64845529359135
+  },
+  {
+    "id": "PS_GEN_724",
+    "name_en": "Bengaluru Urban Special Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.904196136216624,
+    "lng": 77.79880897818903
+  },
+  {
+    "id": "PS_GEN_725",
+    "name_en": "Bengaluru Urban South Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.822538768247393,
+    "lng": 77.71019910599367
+  },
+  {
+    "id": "PS_GEN_726",
+    "name_en": "Bengaluru Urban West Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.021218097637714,
+    "lng": 77.71272916576555
+  },
+  {
+    "id": "PS_GEN_727",
+    "name_en": "Bengaluru Urban Special Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.952331198669583,
+    "lng": 77.72677572929949
+  },
+  {
+    "id": "PS_GEN_728",
+    "name_en": "Bengaluru Urban Rural Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 12.972451507053794,
+    "lng": 77.35516170016348
+  },
+  {
+    "id": "PS_GEN_729",
+    "name_en": "Bengaluru Urban Rural Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.100498273268865,
+    "lng": 77.49031819104138
+  },
+  {
+    "id": "PS_GEN_730",
+    "name_en": "Bengaluru Urban Special Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.058903751318546,
+    "lng": 77.57221539559234
+  },
+  {
+    "id": "PS_GEN_731",
+    "name_en": "Bengaluru Urban Cyber Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.156054622289812,
+    "lng": 77.6624464131261
+  },
+  {
+    "id": "PS_GEN_732",
+    "name_en": "Bengaluru Urban Cyber Police Station",
+    "district_id": "Bengaluru Urban",
+    "lat": 13.026541837968223,
+    "lng": 77.60020482799682
+  },
+  {
+    "id": "PS_GEN_733",
+    "name_en": "Kodagu South Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.53301170427385,
+    "lng": 75.69773506471758
+  },
+  {
+    "id": "PS_GEN_734",
+    "name_en": "Kodagu South Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.188868604177632,
+    "lng": 75.90128081367688
+  },
+  {
+    "id": "PS_GEN_735",
+    "name_en": "Kodagu East Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.19251792873716,
+    "lng": 75.64263324301419
+  },
+  {
+    "id": "PS_GEN_736",
+    "name_en": "Kodagu Cyber Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.226898030641898,
+    "lng": 76.07449074114984
+  },
+  {
+    "id": "PS_GEN_737",
+    "name_en": "Kodagu Women Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.22617384377696,
+    "lng": 75.80321124279196
+  },
+  {
+    "id": "PS_GEN_738",
+    "name_en": "Kodagu Cyber Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.28520292712888,
+    "lng": 75.8385600328526
+  },
+  {
+    "id": "PS_GEN_739",
+    "name_en": "Kodagu North Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.038264286655489,
+    "lng": 76.16359396952724
+  },
+  {
+    "id": "PS_GEN_740",
+    "name_en": "Kodagu Women Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.465564933597424,
+    "lng": 75.92993209331341
+  },
+  {
+    "id": "PS_GEN_741",
+    "name_en": "Kodagu Traffic Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.62561443082505,
+    "lng": 75.69021504259906
+  },
+  {
+    "id": "PS_GEN_742",
+    "name_en": "Kodagu Railway Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.44674752969024,
+    "lng": 75.406785277608
+  },
+  {
+    "id": "PS_GEN_743",
+    "name_en": "Kodagu East Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.210572930385013,
+    "lng": 76.04428666006034
+  },
+  {
+    "id": "PS_GEN_744",
+    "name_en": "Kodagu Cyber Police Station",
+    "district_id": "Kodagu",
+    "lat": 11.961102613088904,
+    "lng": 75.94482425109057
+  },
+  {
+    "id": "PS_GEN_745",
+    "name_en": "Kodagu Railway Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.42820349980627,
+    "lng": 75.85398094721872
+  },
+  {
+    "id": "PS_GEN_746",
+    "name_en": "Kodagu Special Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.331307285625183,
+    "lng": 75.79685335662901
+  },
+  {
+    "id": "PS_GEN_747",
+    "name_en": "Kodagu Special Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.795037404719464,
+    "lng": 75.88484596153805
+  },
+  {
+    "id": "PS_GEN_748",
+    "name_en": "Kodagu North Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.202700807372675,
+    "lng": 76.0525711405264
+  },
+  {
+    "id": "PS_GEN_749",
+    "name_en": "Kodagu Railway Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.467930760532974,
+    "lng": 75.71767653355384
+  },
+  {
+    "id": "PS_GEN_750",
+    "name_en": "Kodagu Cyber Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.15286653194072,
+    "lng": 76.04674887745995
+  },
+  {
+    "id": "PS_GEN_751",
+    "name_en": "Kodagu Local Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.217959185414864,
+    "lng": 75.95001272356615
+  },
+  {
+    "id": "PS_GEN_752",
+    "name_en": "Kodagu East Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.513138458003183,
+    "lng": 75.89142443804707
+  },
+  {
+    "id": "PS_GEN_753",
+    "name_en": "Kodagu Rural Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.469452326598425,
+    "lng": 75.42284353257614
+  },
+  {
+    "id": "PS_GEN_754",
+    "name_en": "Kodagu West Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.304416378402133,
+    "lng": 75.98932905620457
+  },
+  {
+    "id": "PS_GEN_755",
+    "name_en": "Kodagu Rural Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.017519902613007,
+    "lng": 76.02288894728738
+  },
+  {
+    "id": "PS_GEN_756",
+    "name_en": "Kodagu South Police Station",
+    "district_id": "Kodagu",
+    "lat": 12.250602575148038,
+    "lng": 75.91484343855898
+  },
+  {
+    "id": "PS_GEN_757",
+    "name_en": "Chamarajanagara Railway Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.094277836433898,
+    "lng": 77.52265475957549
+  },
+  {
+    "id": "PS_GEN_758",
+    "name_en": "Chamarajanagara Cyber Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.793563552758506,
+    "lng": 77.04390452067304
+  },
+  {
+    "id": "PS_GEN_759",
+    "name_en": "Chamarajanagara West Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.860616498211924,
+    "lng": 77.1464853101781
+  },
+  {
+    "id": "PS_GEN_760",
+    "name_en": "Chamarajanagara Cyber Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.782125420267558,
+    "lng": 76.51649341147447
+  },
+  {
+    "id": "PS_GEN_761",
+    "name_en": "Chamarajanagara Cyber Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.039619473885153,
+    "lng": 77.07204401963243
+  },
+  {
+    "id": "PS_GEN_762",
+    "name_en": "Chamarajanagara North Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.863525210229357,
+    "lng": 77.1993015445781
+  },
+  {
+    "id": "PS_GEN_763",
+    "name_en": "Chamarajanagara Rural Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.723460640884408,
+    "lng": 76.58981024386782
+  },
+  {
+    "id": "PS_GEN_764",
+    "name_en": "Chamarajanagara West Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.666825450687568,
+    "lng": 76.63892912728059
+  },
+  {
+    "id": "PS_GEN_765",
+    "name_en": "Chamarajanagara West Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.154436875520934,
+    "lng": 76.84533131649235
+  },
+  {
+    "id": "PS_GEN_766",
+    "name_en": "Chamarajanagara Women Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.93123982711997,
+    "lng": 76.84526796087574
+  },
+  {
+    "id": "PS_GEN_767",
+    "name_en": "Chamarajanagara Cyber Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.973608755302303,
+    "lng": 77.47766855720819
+  },
+  {
+    "id": "PS_GEN_768",
+    "name_en": "Chamarajanagara West Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.796578367500658,
+    "lng": 76.66863895217153
+  },
+  {
+    "id": "PS_GEN_769",
+    "name_en": "Chamarajanagara Women Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.943418414590413,
+    "lng": 77.2255348579864
+  },
+  {
+    "id": "PS_GEN_770",
+    "name_en": "Chamarajanagara Traffic Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.230186099548186,
+    "lng": 77.15684782398488
+  },
+  {
+    "id": "PS_GEN_771",
+    "name_en": "Chamarajanagara Traffic Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.087440392683407,
+    "lng": 77.21163991598458
+  },
+  {
+    "id": "PS_GEN_772",
+    "name_en": "Chamarajanagara East Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.101553173303573,
+    "lng": 77.60042700641347
+  },
+  {
+    "id": "PS_GEN_773",
+    "name_en": "Chamarajanagara North Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.856882815296943,
+    "lng": 76.7764240089293
+  },
+  {
+    "id": "PS_GEN_774",
+    "name_en": "Chamarajanagara West Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.859871161748009,
+    "lng": 76.57881636485688
+  },
+  {
+    "id": "PS_GEN_775",
+    "name_en": "Chamarajanagara City Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.87356864508775,
+    "lng": 76.65349550773455
+  },
+  {
+    "id": "PS_GEN_776",
+    "name_en": "Chamarajanagara West Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.861877059594171,
+    "lng": 77.16469069151304
+  },
+  {
+    "id": "PS_GEN_777",
+    "name_en": "Chamarajanagara South Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.014537871334017,
+    "lng": 77.39431847634621
+  },
+  {
+    "id": "PS_GEN_778",
+    "name_en": "Chamarajanagara West Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.006007316214475,
+    "lng": 77.54933284802257
+  },
+  {
+    "id": "PS_GEN_779",
+    "name_en": "Chamarajanagara South Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.650906347590256,
+    "lng": 76.70298332368996
+  },
+  {
+    "id": "PS_GEN_780",
+    "name_en": "Chamarajanagara Traffic Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.656668984076052,
+    "lng": 76.71984727523612
+  },
+  {
+    "id": "PS_GEN_781",
+    "name_en": "Chamarajanagara North Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.148904860203041,
+    "lng": 77.36834578920377
+  },
+  {
+    "id": "PS_GEN_782",
+    "name_en": "Chamarajanagara Rural Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.160249116570007,
+    "lng": 76.9950614909098
+  },
+  {
+    "id": "PS_GEN_783",
+    "name_en": "Chamarajanagara City Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.01577655689724,
+    "lng": 77.61607016163924
+  },
+  {
+    "id": "PS_GEN_784",
+    "name_en": "Chamarajanagara City Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 12.071148357158467,
+    "lng": 77.17963798479698
+  },
+  {
+    "id": "PS_GEN_785",
+    "name_en": "Chamarajanagara Rural Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.984554270497341,
+    "lng": 77.68433812791761
+  },
+  {
+    "id": "PS_GEN_786",
+    "name_en": "Chamarajanagara Women Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.96620804695815,
+    "lng": 76.59852172450701
+  },
+  {
+    "id": "PS_GEN_787",
+    "name_en": "Chamarajanagara Town Police Station",
+    "district_id": "Chamarajanagara",
+    "lat": 11.852260873442734,
+    "lng": 77.07879910889095
+  },
+  {
+    "id": "PS_GEN_788",
+    "name_en": "Tumakuru Rural Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.610198242221934,
+    "lng": 76.63731629796817
+  },
+  {
+    "id": "PS_GEN_789",
+    "name_en": "Tumakuru Town Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.139690360154336,
+    "lng": 77.04965313165465
+  },
+  {
+    "id": "PS_GEN_790",
+    "name_en": "Tumakuru Local Police Station",
+    "district_id": "Tumakuru",
+    "lat": 12.873985017874249,
+    "lng": 77.0194058310912
+  },
+  {
+    "id": "PS_GEN_791",
+    "name_en": "Tumakuru Local Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.361312770731079,
+    "lng": 76.46999418891515
+  },
+  {
+    "id": "PS_GEN_792",
+    "name_en": "Tumakuru South Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.589811336038787,
+    "lng": 77.33239592779614
+  },
+  {
+    "id": "PS_GEN_793",
+    "name_en": "Tumakuru Railway Police Station",
+    "district_id": "Tumakuru",
+    "lat": 14.08793550216689,
+    "lng": 77.05867958695094
+  },
+  {
+    "id": "PS_GEN_794",
+    "name_en": "Tumakuru East Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.382805269349781,
+    "lng": 77.08578691269041
+  },
+  {
+    "id": "PS_GEN_795",
+    "name_en": "Tumakuru Town Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.586010414284194,
+    "lng": 76.72220862981095
+  },
+  {
+    "id": "PS_GEN_796",
+    "name_en": "Tumakuru Town Police Station",
+    "district_id": "Tumakuru",
+    "lat": 12.885880863562011,
+    "lng": 76.94084048278569
+  },
+  {
+    "id": "PS_GEN_797",
+    "name_en": "Tumakuru Local Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.774348807963115,
+    "lng": 76.91855501038386
+  },
+  {
+    "id": "PS_GEN_798",
+    "name_en": "Tumakuru Women Police Station",
+    "district_id": "Tumakuru",
+    "lat": 12.983428306161798,
+    "lng": 76.9656409506843
+  },
+  {
+    "id": "PS_GEN_799",
+    "name_en": "Tumakuru South Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.317934946289565,
+    "lng": 76.71663992250842
+  },
+  {
+    "id": "PS_GEN_800",
+    "name_en": "Tumakuru East Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.816157495142392,
+    "lng": 77.2666236290947
+  },
+  {
+    "id": "PS_GEN_801",
+    "name_en": "Tumakuru West Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.264904788132606,
+    "lng": 76.36458761797913
+  },
+  {
+    "id": "PS_GEN_802",
+    "name_en": "Tumakuru Women Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.869850786047573,
+    "lng": 76.74865044478746
+  },
+  {
+    "id": "PS_GEN_803",
+    "name_en": "Tumakuru Women Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.105886401248355,
+    "lng": 76.71044173521548
+  },
+  {
+    "id": "PS_GEN_804",
+    "name_en": "Tumakuru East Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.976243779429643,
+    "lng": 76.87693155881078
+  },
+  {
+    "id": "PS_GEN_805",
+    "name_en": "Tumakuru East Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.519606902528368,
+    "lng": 77.2165099674776
+  },
+  {
+    "id": "PS_GEN_806",
+    "name_en": "Tumakuru North Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.692475478554268,
+    "lng": 76.91198456998613
+  },
+  {
+    "id": "PS_GEN_807",
+    "name_en": "Tumakuru Rural Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.244069561035523,
+    "lng": 76.914109307423
+  },
+  {
+    "id": "PS_GEN_808",
+    "name_en": "Tumakuru Local Police Station",
+    "district_id": "Tumakuru",
+    "lat": 14.162937916393485,
+    "lng": 77.31788425223468
+  },
+  {
+    "id": "PS_GEN_809",
+    "name_en": "Tumakuru City Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.616638722788926,
+    "lng": 77.30543775417084
+  },
+  {
+    "id": "PS_GEN_810",
+    "name_en": "Tumakuru Railway Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.881553420641763,
+    "lng": 76.91305019344881
+  },
+  {
+    "id": "PS_GEN_811",
+    "name_en": "Tumakuru Special Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.38374354608581,
+    "lng": 76.86435869715098
+  },
+  {
+    "id": "PS_GEN_812",
+    "name_en": "Tumakuru Women Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.05074932246393,
+    "lng": 76.78734681895246
+  },
+  {
+    "id": "PS_GEN_813",
+    "name_en": "Tumakuru Railway Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.391477477827202,
+    "lng": 76.61133271801694
+  },
+  {
+    "id": "PS_GEN_814",
+    "name_en": "Tumakuru Women Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.15654356577085,
+    "lng": 76.81787420109649
+  },
+  {
+    "id": "PS_GEN_815",
+    "name_en": "Tumakuru Cyber Police Station",
+    "district_id": "Tumakuru",
+    "lat": 13.121011869640283,
+    "lng": 76.78457255940921
+  },
+  {
+    "id": "PS_GEN_816",
+    "name_en": "Ramanagara South Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.813092266977021,
+    "lng": 77.30913543818589
+  },
+  {
+    "id": "PS_GEN_817",
+    "name_en": "Ramanagara Local Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.804476062812158,
+    "lng": 77.26647042921753
+  },
+  {
+    "id": "PS_GEN_818",
+    "name_en": "Ramanagara Local Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.807556483717121,
+    "lng": 77.38740395643225
+  },
+  {
+    "id": "PS_GEN_819",
+    "name_en": "Ramanagara Central Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.611753730937968,
+    "lng": 77.31815213283032
+  },
+  {
+    "id": "PS_GEN_820",
+    "name_en": "Ramanagara Women Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.6117747036695,
+    "lng": 77.34808753879177
+  },
+  {
+    "id": "PS_GEN_821",
+    "name_en": "Ramanagara North Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.422735409968912,
+    "lng": 77.36286738395032
+  },
+  {
+    "id": "PS_GEN_822",
+    "name_en": "Ramanagara Special Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.768835712353916,
+    "lng": 77.25070383764027
+  },
+  {
+    "id": "PS_GEN_823",
+    "name_en": "Ramanagara South Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.672484882406014,
+    "lng": 77.50405511562202
+  },
+  {
+    "id": "PS_GEN_824",
+    "name_en": "Ramanagara North Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.82082185409827,
+    "lng": 77.32521836549962
+  },
+  {
+    "id": "PS_GEN_825",
+    "name_en": "Ramanagara Railway Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.435548377824045,
+    "lng": 77.28983271552636
+  },
+  {
+    "id": "PS_GEN_826",
+    "name_en": "Ramanagara Local Police Station",
+    "district_id": "Ramanagara",
+    "lat": 13.119749412940438,
+    "lng": 77.14217050550151
+  },
+  {
+    "id": "PS_GEN_827",
+    "name_en": "Ramanagara North Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.741210576686086,
+    "lng": 77.41702106677879
+  },
+  {
+    "id": "PS_GEN_828",
+    "name_en": "Ramanagara Special Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.31546881478394,
+    "lng": 77.50310158109708
+  },
+  {
+    "id": "PS_GEN_829",
+    "name_en": "Ramanagara North Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.537991654569515,
+    "lng": 77.32284911034475
+  },
+  {
+    "id": "PS_GEN_830",
+    "name_en": "Ramanagara City Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.72787221525608,
+    "lng": 77.2370020858457
+  },
+  {
+    "id": "PS_GEN_831",
+    "name_en": "Ramanagara Special Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.57991511590795,
+    "lng": 77.3870530366812
+  },
+  {
+    "id": "PS_GEN_832",
+    "name_en": "Ramanagara West Police Station",
+    "district_id": "Ramanagara",
+    "lat": 13.009056120864555,
+    "lng": 77.27722098559032
+  },
+  {
+    "id": "PS_GEN_833",
+    "name_en": "Ramanagara Town Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.680989934517216,
+    "lng": 77.28323241164381
+  },
+  {
+    "id": "PS_GEN_834",
+    "name_en": "Ramanagara Cyber Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.747815719552149,
+    "lng": 77.15915801544949
+  },
+  {
+    "id": "PS_GEN_835",
+    "name_en": "Ramanagara Local Police Station",
+    "district_id": "Ramanagara",
+    "lat": 13.182758381400205,
+    "lng": 77.18471677360533
+  },
+  {
+    "id": "PS_GEN_836",
+    "name_en": "Ramanagara Town Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.874297177894904,
+    "lng": 77.25666871543824
+  },
+  {
+    "id": "PS_GEN_837",
+    "name_en": "Ramanagara Women Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.866695608202855,
+    "lng": 77.1324108882228
+  },
+  {
+    "id": "PS_GEN_838",
+    "name_en": "Ramanagara Railway Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.45942975498175,
+    "lng": 77.56866499989124
+  },
+  {
+    "id": "PS_GEN_839",
+    "name_en": "Ramanagara South Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.700152092976298,
+    "lng": 77.12260493552502
+  },
+  {
+    "id": "PS_GEN_840",
+    "name_en": "Ramanagara Rural Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.671688768869217,
+    "lng": 77.50331423276683
+  },
+  {
+    "id": "PS_GEN_841",
+    "name_en": "Ramanagara Traffic Police Station",
+    "district_id": "Ramanagara",
+    "lat": 12.700191604316931,
+    "lng": 77.3559208311559
+  },
+  {
+    "id": "PS_GEN_842",
+    "name_en": "Mandya Local Police Station",
+    "district_id": "Mandya",
+    "lat": 12.798309326809761,
+    "lng": 76.77070022488637
+  },
+  {
+    "id": "PS_GEN_843",
+    "name_en": "Mandya Cyber Police Station",
+    "district_id": "Mandya",
+    "lat": 12.694031029155742,
+    "lng": 76.96085861107038
+  },
+  {
+    "id": "PS_GEN_844",
+    "name_en": "Mandya Rural Police Station",
+    "district_id": "Mandya",
+    "lat": 12.619704163918628,
+    "lng": 77.0683064360437
+  },
+  {
+    "id": "PS_GEN_845",
+    "name_en": "Mandya Railway Police Station",
+    "district_id": "Mandya",
+    "lat": 12.705381071430976,
+    "lng": 76.90402802566896
+  },
+  {
+    "id": "PS_GEN_846",
+    "name_en": "Mandya Town Police Station",
+    "district_id": "Mandya",
+    "lat": 12.712215564516523,
+    "lng": 76.37186136282354
+  },
+  {
+    "id": "PS_GEN_847",
+    "name_en": "Mandya Railway Police Station",
+    "district_id": "Mandya",
+    "lat": 12.857760144574243,
+    "lng": 76.66295643946512
+  },
+  {
+    "id": "PS_GEN_848",
+    "name_en": "Mandya West Police Station",
+    "district_id": "Mandya",
+    "lat": 12.707081363859439,
+    "lng": 76.88100691116402
+  },
+  {
+    "id": "PS_GEN_849",
+    "name_en": "Mandya Railway Police Station",
+    "district_id": "Mandya",
+    "lat": 12.24231518355776,
+    "lng": 77.07500784002589
+  },
+  {
+    "id": "PS_GEN_850",
+    "name_en": "Mandya Central Police Station",
+    "district_id": "Mandya",
+    "lat": 12.775494418528977,
+    "lng": 76.461883270709
+  },
+  {
+    "id": "PS_GEN_851",
+    "name_en": "Mandya Cyber Police Station",
+    "district_id": "Mandya",
+    "lat": 12.859835000798912,
+    "lng": 76.83642273788716
+  },
+  {
+    "id": "PS_GEN_852",
+    "name_en": "Mandya City Police Station",
+    "district_id": "Mandya",
+    "lat": 12.296972154057098,
+    "lng": 77.0144490038354
+  },
+  {
+    "id": "PS_GEN_853",
+    "name_en": "Mandya Traffic Police Station",
+    "district_id": "Mandya",
+    "lat": 12.661294977225708,
+    "lng": 76.84134649978108
+  },
+  {
+    "id": "PS_GEN_854",
+    "name_en": "Mandya South Police Station",
+    "district_id": "Mandya",
+    "lat": 12.994116870544339,
+    "lng": 76.76969281650639
+  },
+  {
+    "id": "PS_GEN_855",
+    "name_en": "Mandya Rural Police Station",
+    "district_id": "Mandya",
+    "lat": 12.519047939319435,
+    "lng": 76.61285535286896
+  },
+  {
+    "id": "PS_GEN_856",
+    "name_en": "Mandya Town Police Station",
+    "district_id": "Mandya",
+    "lat": 12.892972814906749,
+    "lng": 76.81800292278098
+  },
+  {
+    "id": "PS_GEN_857",
+    "name_en": "Mandya City Police Station",
+    "district_id": "Mandya",
+    "lat": 12.87313462297447,
+    "lng": 76.74027343493714
+  },
+  {
+    "id": "PS_GEN_858",
+    "name_en": "Mandya Local Police Station",
+    "district_id": "Mandya",
+    "lat": 12.504151046804697,
+    "lng": 76.62495674325659
+  },
+  {
+    "id": "PS_GEN_859",
+    "name_en": "Mandya South Police Station",
+    "district_id": "Mandya",
+    "lat": 12.594869845996476,
+    "lng": 76.85566934306914
+  },
+  {
+    "id": "PS_GEN_860",
+    "name_en": "Mandya Special Police Station",
+    "district_id": "Mandya",
+    "lat": 12.685057890674715,
+    "lng": 76.6390331620834
+  },
+  {
+    "id": "PS_GEN_861",
+    "name_en": "Mandya West Police Station",
+    "district_id": "Mandya",
+    "lat": 12.752345197365765,
+    "lng": 76.63847441901791
+  },
+  {
+    "id": "PS_GEN_862",
+    "name_en": "Mysuru Rural Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.527381856177298,
+    "lng": 76.38008429563618
+  },
+  {
+    "id": "PS_GEN_863",
+    "name_en": "Mysuru Rural Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.130628358840449,
+    "lng": 76.7966110690643
+  },
+  {
+    "id": "PS_GEN_864",
+    "name_en": "Mysuru North Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.380765304074293,
+    "lng": 76.40838217299134
+  },
+  {
+    "id": "PS_GEN_865",
+    "name_en": "Mysuru East Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.441124342411726,
+    "lng": 76.17868515220418
+  },
+  {
+    "id": "PS_GEN_866",
+    "name_en": "Mysuru Traffic Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.519111797957661,
+    "lng": 76.42884583404509
+  },
+  {
+    "id": "PS_GEN_867",
+    "name_en": "Mysuru Traffic Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.566801824775737,
+    "lng": 76.18597196275608
+  },
+  {
+    "id": "PS_GEN_868",
+    "name_en": "Mysuru South Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.108521270573563,
+    "lng": 76.52718415100738
+  },
+  {
+    "id": "PS_GEN_869",
+    "name_en": "Mysuru Local Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.332196794825602,
+    "lng": 76.28667296210658
+  },
+  {
+    "id": "PS_GEN_870",
+    "name_en": "Mysuru West Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.226027291010892,
+    "lng": 76.23933101956358
+  },
+  {
+    "id": "PS_GEN_871",
+    "name_en": "Mysuru Women Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.222602105680313,
+    "lng": 76.67276597436927
+  },
+  {
+    "id": "PS_GEN_872",
+    "name_en": "Mysuru Central Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.191957339079787,
+    "lng": 76.49315808729453
+  },
+  {
+    "id": "PS_GEN_873",
+    "name_en": "Mysuru Women Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.283564624084015,
+    "lng": 76.32968755581336
+  },
+  {
+    "id": "PS_GEN_874",
+    "name_en": "Mysuru Town Police Station",
+    "district_id": "Mysuru",
+    "lat": 11.791722703624322,
+    "lng": 76.38178522194966
+  },
+  {
+    "id": "PS_GEN_875",
+    "name_en": "Mysuru Central Police Station",
+    "district_id": "Mysuru",
+    "lat": 11.938151018424863,
+    "lng": 76.13450250110019
+  },
+  {
+    "id": "PS_GEN_876",
+    "name_en": "Mysuru Town Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.503084899347611,
+    "lng": 76.28431003078458
+  },
+  {
+    "id": "PS_GEN_877",
+    "name_en": "Mysuru Railway Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.524484217415482,
+    "lng": 76.14268482797641
+  },
+  {
+    "id": "PS_GEN_878",
+    "name_en": "Mysuru Railway Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.411321844740854,
+    "lng": 76.29510986440178
+  },
+  {
+    "id": "PS_GEN_879",
+    "name_en": "Mysuru West Police Station",
+    "district_id": "Mysuru",
+    "lat": 11.880595910991751,
+    "lng": 76.19408604960894
+  },
+  {
+    "id": "PS_GEN_880",
+    "name_en": "Mysuru East Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.20439724861452,
+    "lng": 76.90084826501811
+  },
+  {
+    "id": "PS_GEN_881",
+    "name_en": "Mysuru Rural Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.049054471746905,
+    "lng": 76.47307439616355
+  },
+  {
+    "id": "PS_GEN_882",
+    "name_en": "Mysuru South Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.257985293627454,
+    "lng": 76.65829287289408
+  },
+  {
+    "id": "PS_GEN_883",
+    "name_en": "Mysuru Women Police Station",
+    "district_id": "Mysuru",
+    "lat": 11.867108343933303,
+    "lng": 76.35888550295742
+  },
+  {
+    "id": "PS_GEN_884",
+    "name_en": "Mysuru Special Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.020479873318779,
+    "lng": 76.1635144324797
+  },
+  {
+    "id": "PS_GEN_885",
+    "name_en": "Mysuru Cyber Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.072310501147673,
+    "lng": 76.51247741103461
+  },
+  {
+    "id": "PS_GEN_886",
+    "name_en": "Mysuru Local Police Station",
+    "district_id": "Mysuru",
+    "lat": 11.947988299921235,
+    "lng": 76.23753704569701
+  },
+  {
+    "id": "PS_GEN_887",
+    "name_en": "Mysuru Special Police Station",
+    "district_id": "Mysuru",
+    "lat": 12.519478472023321,
+    "lng": 76.1399271040209
+  },
+  {
+    "id": "PS_GEN_888",
+    "name_en": "Vijayapura South Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.94655673915251,
+    "lng": 75.65959368640047
+  },
+  {
+    "id": "PS_GEN_889",
+    "name_en": "Vijayapura Local Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.84744506773152,
+    "lng": 75.69425936113177
+  },
+  {
+    "id": "PS_GEN_890",
+    "name_en": "Vijayapura City Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.473240925749597,
+    "lng": 75.787940528376
+  },
+  {
+    "id": "PS_GEN_891",
+    "name_en": "Vijayapura Town Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.226221255134387,
+    "lng": 76.1223465963943
+  },
+  {
+    "id": "PS_GEN_892",
+    "name_en": "Vijayapura East Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.893644516867642,
+    "lng": 75.84520237990246
+  },
+  {
+    "id": "PS_GEN_893",
+    "name_en": "Vijayapura Railway Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.500436465529127,
+    "lng": 75.960650064186
+  },
+  {
+    "id": "PS_GEN_894",
+    "name_en": "Vijayapura West Police Station",
+    "district_id": "Vijayapura",
+    "lat": 17.37060827866244,
+    "lng": 75.61610481432544
+  },
+  {
+    "id": "PS_GEN_895",
+    "name_en": "Vijayapura Local Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.861684519044385,
+    "lng": 75.74390940392468
+  },
+  {
+    "id": "PS_GEN_896",
+    "name_en": "Vijayapura South Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.884490114725594,
+    "lng": 76.01286483761064
+  },
+  {
+    "id": "PS_GEN_897",
+    "name_en": "Vijayapura Women Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.20978110536387,
+    "lng": 76.28406870019025
+  },
+  {
+    "id": "PS_GEN_898",
+    "name_en": "Vijayapura Central Police Station",
+    "district_id": "Vijayapura",
+    "lat": 17.38819778364689,
+    "lng": 75.86422033530867
+  },
+  {
+    "id": "PS_GEN_899",
+    "name_en": "Vijayapura Rural Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.983081609288107,
+    "lng": 76.371541634808
+  },
+  {
+    "id": "PS_GEN_900",
+    "name_en": "Vijayapura Rural Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.520148761271294,
+    "lng": 76.3503677655129
+  },
+  {
+    "id": "PS_GEN_901",
+    "name_en": "Vijayapura North Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.888440303845538,
+    "lng": 76.12570448571138
+  },
+  {
+    "id": "PS_GEN_902",
+    "name_en": "Vijayapura Railway Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.78016214511004,
+    "lng": 75.51876582722
+  },
+  {
+    "id": "PS_GEN_903",
+    "name_en": "Vijayapura South Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.879773900947928,
+    "lng": 76.1202527206482
+  },
+  {
+    "id": "PS_GEN_904",
+    "name_en": "Vijayapura Central Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.64331597137546,
+    "lng": 76.04004300079289
+  },
+  {
+    "id": "PS_GEN_905",
+    "name_en": "Vijayapura Local Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.884468584768136,
+    "lng": 76.3132723089649
+  },
+  {
+    "id": "PS_GEN_906",
+    "name_en": "Vijayapura North Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.60358017155994,
+    "lng": 76.37968891815152
+  },
+  {
+    "id": "PS_GEN_907",
+    "name_en": "Vijayapura Rural Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.445833967167193,
+    "lng": 75.97255607652534
+  },
+  {
+    "id": "PS_GEN_908",
+    "name_en": "Vijayapura Railway Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.623466602281887,
+    "lng": 75.54568058032112
+  },
+  {
+    "id": "PS_GEN_909",
+    "name_en": "Vijayapura Railway Police Station",
+    "district_id": "Vijayapura",
+    "lat": 16.46098245563129,
+    "lng": 75.75325540866992
+  },
+  {
+    "id": "PS_GEN_910",
+    "name_en": "Vijayapura Special Police Station",
+    "district_id": "Vijayapura",
+    "lat": 17.015527600873767,
+    "lng": 76.01260642244141
+  },
+  {
+    "id": "PS_GEN_911",
+    "name_en": "Vijayapura East Police Station",
+    "district_id": "Vijayapura",
+    "lat": 17.271425235045207,
+    "lng": 76.05294389987094
   }
 ]

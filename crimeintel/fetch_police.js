@@ -16,10 +16,10 @@ async function run() {
     const res = await fetch('https://overpass-api.de/api/interpreter', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         'User-Agent': 'CrimeIntel/1.0 (test@example.com)'
       },
-      body: params
+      body: params.toString()
     });
     const dataText = await res.text();
     if (!dataText.startsWith('{')) {
