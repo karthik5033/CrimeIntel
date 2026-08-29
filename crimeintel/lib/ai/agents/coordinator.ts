@@ -4,6 +4,9 @@ import { GraphAgent } from './graphAgent';
 import { VectorAgent } from './vectorAgent';
 import { AnalyticsAgent } from './analyticsAgent';
 import { FinancialAgent } from './financialAgent';
+import { ThreatAgent } from './threatAgent';
+import { SpatialAgent } from './spatialAgent';
+import { MOAgent } from './moAgent';
 
 export interface RetrievedEvidence {
   source: string;
@@ -39,13 +42,45 @@ export class Coordinator {
         break;
       }
 
-      case 'AGGREGATE_ANALYTICAL': {
+      case 'AGGREGATE_ANALYTICAL':
+      case 'STATISTICAL_ANALYSIS': {
         const [analyticsData, aggSqlData] = await Promise.all([
           AnalyticsAgent.retrieve(parsedQuery),
           SQLAgent.retrieve(parsedQuery)
         ]);
         evidence.push({ source: 'AnalyticsAgent', data: analyticsData });
         if (aggSqlData.length > 0) evidence.push({ source: 'SQLAgent', data: aggSqlData });
+        break;
+      }
+
+      case 'PREDICTIVE_ANALYSIS': {
+        const { PredictiveAgent } = await import('./predictiveAgent');
+        const [predictiveData, pSqlData] = await Promise.all([
+          PredictiveAgent.retrieve(parsedQuery),
+          SQLAgent.retrieve(parsedQuery)
+        ]);
+        evidence.push({ source: 'PredictiveAgent', data: predictiveData });
+        if (pSqlData.length > 0) evidence.push({ source: 'SQLAgent', data: pSqlData });
+        break;
+      }
+
+      case 'GENERATE_REPORT': {
+        const { PredictiveAgent } = await import('./predictiveAgent');
+        const [sql, analytics, predictive, threat, spatial, mo] = await Promise.all([
+          SQLAgent.retrieve(parsedQuery),
+          AnalyticsAgent.retrieve(parsedQuery),
+          PredictiveAgent.retrieve(parsedQuery),
+          ThreatAgent.retrieve(parsedQuery),
+          SpatialAgent.retrieve(parsedQuery),
+          MOAgent.retrieve(parsedQuery)
+        ]);
+        
+        evidence.push({ source: 'ThreatAgent', data: threat });
+        evidence.push({ source: 'SpatialAgent', data: spatial });
+        evidence.push({ source: 'MOAgent', data: mo });
+        evidence.push({ source: 'PredictiveAgent', data: predictive });
+        evidence.push({ source: 'AnalyticsAgent', data: analytics });
+        if (sql.length > 0) evidence.push({ source: 'SQLAgent', data: sql });
         break;
       }
 

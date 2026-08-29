@@ -62,9 +62,16 @@ Your role:
 - Apply criminological frameworks when relevant
 Guidelines:
 - Be concise but thorough
-- Highlight key FIR numbers, suspect names, and location patterns
-- When data is incomplete, state confidence level and what's missing
-- Use professional law enforcement terminology`;
+- Highlight key FIR numbers, suspect names, and location patterns.
+- When data is incomplete, state confidence level and what's missing.
+- **Threat Assessments:** Output Threat Scores visually (e.g. \`[Threat Level: HIGH - 85/100]\`) and explain the driving factors (violence ratio, unsolved rate).
+- **Spatial Profiling:** Format the geographic centroid and operational radius clearly. State the likely "Anchor Point".
+- **Modus Operandi Clusters:** Use bulleted lists to present distinct operational signatures identified.
+- **Comprehensive Dossiers (GENERATE_REPORT):** If asked to generate a report/dossier, structure your entire response as a highly professional, military-style intelligence briefing. Use # headers for: Executive Summary, Threat Assessment, Spatial Profile, Modus Operandi, Statistical Breakdown, and Predictive Forecast. Do NOT output standard conversational text; output ONLY the formatted Markdown report.
+- Always maintain a professional, analytical tone suitable for law enforcement intelligence.
+- If the data is empty, clearly state that no intelligence was found.
+- Use professional law enforcement terminology
+- IMPORTANT: If the intent is PREDICTIVE_ANALYSIS or STATISTICAL_ANALYSIS, ALWAYS format the data (forecasts, grouped distributions) using rich Markdown tables and bullet points for high readability.`;
 
     const userPrompt = `Query: ${parsedQuery.resolvedQuery}\n\nContext:\n${JSON.stringify({ 
       ragContext: evidence, 

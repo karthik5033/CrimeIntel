@@ -61,6 +61,37 @@ export class AnalyticsAgent {
          count = parseInt(row.ROWID || row['COUNT(ROWID)'], 10) || 0;
       }
 
+      if (parsedQuery.intent === 'STATISTICAL_ANALYSIS') {
+        const typeQuery = `SELECT crime_type_en, COUNT(ROWID) FROM FIRs${whereClause} GROUP BY crime_type_en`;
+        const stationQuery = `SELECT police_station_id, COUNT(ROWID) FROM FIRs${whereClause} GROUP BY police_station_id`;
+        
+        const [typeRes, stationRes] = await Promise.all([
+          zcql.executeZCQLQuery(typeQuery).catch(() => []),
+          zcql.executeZCQLQuery(stationQuery).catch(() => [])
+        ]);
+
+        const crimeDistribution = typeRes.map((r: any) => {
+          const row = r.FIRs || r;
+          return { type: row.crime_type_en, count: parseInt(row.ROWID || row['COUNT(ROWID)'], 10) || 0 };
+        }).sort((a: any, b: any) => b.count - a.count);
+
+        const stationDistribution = stationRes.map((r: any) => {
+          const row = r.FIRs || r;
+          return { station: row.police_station_id, count: parseInt(row.ROWID || row['COUNT(ROWID)'], 10) || 0 };
+        }).sort((a: any, b: any) => b.count - a.count).slice(0, 5); // top 5
+
+        return [{
+          type: 'StatisticalResult',
+          metric: "Detailed Statistical Distribution",
+          total_incidents: count,
+          distributions: {
+            by_crime_type: crimeDistribution,
+            by_police_station: stationDistribution
+          },
+          context: parsedQuery.entities
+        }];
+      }
+
       return [{
         type: 'AnalyticsResult',
         metric: "Incident Count",

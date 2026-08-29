@@ -6,6 +6,9 @@ export type QueryIntent =
   | 'AGGREGATE_ANALYTICAL'
   | 'RELATIONSHIP_QUERY'
   | 'REASONING_QUERY'
+  | 'STATISTICAL_ANALYSIS'
+  | 'PREDICTIVE_ANALYSIS'
+  | 'GENERATE_REPORT'
   | 'FOLLOW_UP'
   | 'CONVERSATIONAL';
 
@@ -59,6 +62,47 @@ function normalizeCrimeType(rawType: string): string {
   return rawType.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
 }
 
+// Levenshtein distance for fuzzy string matching
+function levenshteinDistance(a: string, b: string): number {
+  const matrix = [];
+  for (let i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
+  }
+  for (let j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) == a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1, // substitution
+          Math.min(matrix[i][j - 1] + 1, // insertion
+          matrix[i - 1][j] + 1) // deletion
+        );
+      }
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+const KNOWN_SUSPECTS = ['Manoj', 'Kavya', 'Anitha', 'Ravi', 'Raju', 'Ganesh', 'Kumar', 'Suresh', 'Manju'];
+
+function resolveAlias(rawName: string): string {
+  let bestMatch = rawName;
+  let minDistance = 3; // Max threshold for typo correction
+  
+  for (const known of KNOWN_SUSPECTS) {
+    const dist = levenshteinDistance(rawName.toLowerCase(), known.toLowerCase());
+    if (dist < minDistance) {
+      minDistance = dist;
+      bestMatch = known;
+    }
+  }
+  return bestMatch;
+}
+
 export class IntentClassifier {
   /**
    * Parses the user's natural language query into a structured format
@@ -79,7 +123,10 @@ export class IntentClassifier {
       
       Possible Intents:
       - DIRECT_RETRIEVAL: Asking for specific records (e.g. "Show me FIRs in Mysuru", "Find cases of theft")
-      - AGGREGATE_ANALYTICAL: Asking for trends or counts (e.g. "How many thefts last month?", "Compare hotspots")
+      - AGGREGATE_ANALYTICAL: Asking for basic trends or counts (e.g. "How many thefts last month?", "Compare hotspots")
+      - STATISTICAL_ANALYSIS: Asking for detailed statistical data, distributions, or metrics (e.g. "give me statistical data", "distribution of crimes")
+      - PREDICTIVE_ANALYSIS: Asking for forecasts, predictions, or future projections (e.g. "predict future crimes", "what will happen next year?")
+      - GENERATE_REPORT: Asking for a full, comprehensive dossier, report, or briefing on all data (e.g. "generate a report on thefts", "brief me on murders in mysuru")
       - RELATIONSHIP_QUERY: Asking about connections (e.g. "How is John linked to Smith?")
       - REASONING_QUERY: Asking for analysis or explanations (e.g. "Why is this area flagged?")
       - FOLLOW_UP: A query that relies on previous context (e.g. "What about last year?", "Who is he?")
@@ -106,7 +153,7 @@ export class IntentClassifier {
         properties: {
           intent: {
             type: 'STRING',
-            enum: ['DIRECT_RETRIEVAL', 'AGGREGATE_ANALYTICAL', 'RELATIONSHIP_QUERY', 'REASONING_QUERY', 'FOLLOW_UP', 'CONVERSATIONAL']
+            enum: ['DIRECT_RETRIEVAL', 'AGGREGATE_ANALYTICAL', 'STATISTICAL_ANALYSIS', 'PREDICTIVE_ANALYSIS', 'GENERATE_REPORT', 'RELATIONSHIP_QUERY', 'REASONING_QUERY', 'FOLLOW_UP', 'CONVERSATIONAL']
           },
           confidence: { type: 'NUMBER' },
           entities: {
@@ -157,6 +204,10 @@ export class IntentClassifier {
       if (parsed.entities && parsed.entities.crime_types && parsed.entities.crime_types.length > 0) {
         parsed.entities.crime_types = parsed.entities.crime_types.map(normalizeCrimeType);
       }
+      
+      if (parsed.entities && parsed.entities.person_names && parsed.entities.person_names.length > 0) {
+        parsed.entities.person_names = parsed.entities.person_names.map(resolveAlias);
+      }
 
       return parsed;
     } catch (error) {
@@ -172,9 +223,18 @@ export class IntentClassifier {
     let intent: QueryIntent = 'CONVERSATIONAL'; // Default to conversational for unrecognized gibberish
     let confidence = 0.5; // Default low confidence for heuristics
 
-    if (/\b(how many|trend|compare|hotspots?|most|highest|top|areas?|which areas?)\b/.test(lowerQuery)) {
+    if (/\b(how many|compare|hotspots?|most|highest|top|areas?|which areas?)\b/.test(lowerQuery)) {
       intent = 'AGGREGATE_ANALYTICAL';
       confidence = 0.8;
+    } else if (/\b(predict|forecast|future|prediction|expect|next)\b/.test(lowerQuery)) {
+      intent = 'PREDICTIVE_ANALYSIS';
+      confidence = 0.9;
+    } else if (/\b(report|dossier|briefing|generate report|full report)\b/.test(lowerQuery)) {
+      intent = 'GENERATE_REPORT';
+      confidence = 0.95;
+    } else if (/\b(statistics|stats|distribution|analyze data|statistical|metrics|variance)\b/.test(lowerQuery)) {
+      intent = 'STATISTICAL_ANALYSIS';
+      confidence = 0.9;
     } else if (/\b(connect|link|relation|network)\b/.test(lowerQuery)) {
       intent = 'RELATIONSHIP_QUERY';
       confidence = 0.8;
@@ -237,7 +297,7 @@ export class IntentClassifier {
     // Extract potential names (capitalized words not at start of string)
     const nameMatches = query.match(/(?<!^)\b[A-Z][a-z]+\b/g);
     if (nameMatches && nameMatches.length > 0) {
-      entities.person_names = nameMatches;
+      entities.person_names = nameMatches.map(resolveAlias);
       // If we found a name but intent is DIRECT_RETRIEVAL, it might be a reasoning/relationship query
       if (intent === 'DIRECT_RETRIEVAL' && /\b(who|suspect|victim|person)\b/.test(lowerQuery)) {
         intent = 'REASONING_QUERY';
