@@ -3,7 +3,7 @@ import { translateText } from '@/lib/nlp/translate';
 import { ContextManager } from '@/lib/ai/chat/contextManager';
 import { IntentClassifier } from '@/lib/ai/chat/intentClassifier';
 import { Coordinator } from '@/lib/ai/agents/coordinator';
-import { CatalystQuickML } from '@/lib/catalyst/quickml';
+import { GeminiService } from '@/lib/ai/gemini';
 import { ReasoningEngine } from '@/lib/reasoning/engine';
 
 export async function POST(request: Request) {
@@ -54,13 +54,32 @@ export async function POST(request: Request) {
     }
 
     // 5. Final LLM Response Composition
-    let quickMLResponse = await CatalystQuickML.generateResponse(parsedQuery.resolvedQuery, { 
+    const systemPrompt = `You are an AI intelligence assistant for Karnataka State Police CrimeIntel system.
+Your role:
+- Analyze FIR data from Karnataka State Police databases
+- Identify crime patterns, suspect connections, and investigative leads
+- Summarize complex intelligence data in clear, actionable insights
+- Apply criminological frameworks when relevant
+Guidelines:
+- Be concise but thorough
+- Highlight key FIR numbers, suspect names, and location patterns
+- When data is incomplete, state confidence level and what's missing
+- Use professional law enforcement terminology`;
+
+    const userPrompt = `Query: ${parsedQuery.resolvedQuery}\n\nContext:\n${JSON.stringify({ 
       ragContext: evidence, 
       intent: parsedQuery.intent 
-    });
+    }).substring(0, 8000)} // truncate to prevent context overflow if too large`;
 
-    if (quickMLResponse) {
-      quickMLResponse = "*(Intelligence retrieved via Pre-computational RAG and Graph RAG)*\n\n" + quickMLResponse;
+    let finalResponse = null;
+    try {
+      finalResponse = await GeminiService.generateResponse(userPrompt, systemPrompt, 'gemini-2.5-flash');
+    } catch (e) {
+      console.warn("Gemini final response generation failed:", e);
+    }
+
+    if (finalResponse) {
+      finalResponse = "*(Intelligence retrieved via Pre-computational RAG and Graph RAG)*\n\n" + finalResponse;
     }
 
     // 5.1 Trigger Reasoning Engine for analytical traces
@@ -70,14 +89,14 @@ export async function POST(request: Request) {
     } catch (e) {
       console.warn("Reasoning Engine failed to process query:", e);
     }
-    // Fallback if QuickML is unavailable
-    if (!quickMLResponse) {
-      quickMLResponse = "I retrieved the relevant data but the generative model is currently unavailable to summarize it.";
+    // Fallback if Gemini is unavailable
+    if (!finalResponse) {
+      finalResponse = "I retrieved the relevant data but the generative model is currently unavailable to summarize it.";
     }
 
     // 6. Translate response back to Kannada if necessary
     if (language === 'kn') {
-      quickMLResponse = await translateText(quickMLResponse, 'en', 'kn');
+      finalResponse = await translateText(finalResponse, 'en', 'kn');
     }
 
     // 7. Save updated context to NoSQL
@@ -92,7 +111,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({
-      text_summary: quickMLResponse,
+      text_summary: finalResponse,
       data_table: dataTable.length > 0 ? dataTable : undefined,
       rag_context: evidence,
       reasoning_block: reasoningBlockOutput,

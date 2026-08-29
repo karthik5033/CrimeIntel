@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Shield, User, FileText, Database, Volume2, VolumeX } from "lucide-react";
+import { Shield, User, FileText, Database, Volume2, VolumeX, Loader2 } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 import { ReasoningBlock } from "./ReasoningBlock";
 import { SemanticSearchWidget } from "./SemanticSearchWidget";
@@ -19,42 +19,67 @@ export function ChatMessage({ message }: ChatMessageProps) {
   const isAI = message.role === "assistant";
   const { language, t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isSynthesizing, setIsSynthesizing] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Stop playing if unmounted
   useEffect(() => {
     return () => {
-      if (isPlaying && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
       }
     };
-  }, [isPlaying]);
+  }, []);
 
-  const toggleSpeech = () => {
-    if (!window.speechSynthesis) return;
-
-    if (isPlaying) {
-      window.speechSynthesis.cancel();
+  const toggleSpeech = async () => {
+    if (isPlaying && audioRef.current) {
+      audioRef.current.pause();
       setIsPlaying(false);
-    } else {
-      if (!message.content) return;
-      
-      const utterance = new SpeechSynthesisUtterance(message.content);
-      
-      // Select voice based on language
-      const voices = window.speechSynthesis.getVoices();
-      if (language === 'kn') {
-        utterance.lang = 'kn-IN';
-        const kannadaVoice = voices.find(v => v.lang.includes('kn'));
-        if (kannadaVoice) utterance.voice = kannadaVoice;
-      } else {
-        utterance.lang = 'en-US';
-      }
+      return;
+    }
 
-      utterance.onend = () => setIsPlaying(false);
-      utterance.onerror = () => setIsPlaying(false);
+    if (!message.content || isSynthesizing) return;
+    
+    setIsSynthesizing(true);
+    try {
+      // Auto-detect Kannada characters to pass correct language code
+      const isKannada = /[\u0C80-\u0CFF]/.test(message.content);
+      const targetLang = isKannada ? 'kn-IN' : (language === 'hi' ? 'hi-IN' : 'en-IN');
+
+      const response = await fetch('/api/voice/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: message.content,
+          language_code: targetLang
+        })
+      });
+
+      if (!response.ok) throw new Error('TTS failed');
       
-      window.speechSynthesis.speak(utterance);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      
+      const audio = new Audio(url);
+      audioRef.current = audio;
+      
+      audio.onended = () => {
+        setIsPlaying(false);
+        URL.revokeObjectURL(url);
+      };
+      
+      audio.onerror = () => {
+        setIsPlaying(false);
+        URL.revokeObjectURL(url);
+      };
+      
+      await audio.play();
       setIsPlaying(true);
+    } catch (e) {
+      console.error("Audio playback error:", e);
+    } finally {
+      setIsSynthesizing(false);
     }
   };
 
@@ -155,10 +180,17 @@ export function ChatMessage({ message }: ChatMessageProps) {
             <div className="mt-1 flex items-center gap-2">
               <button 
                 onClick={toggleSpeech}
-                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors p-1"
+                disabled={isSynthesizing}
+                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors p-1 disabled:opacity-50"
                 title={isPlaying ? t('chat.stopListening') : t('chat.listenAI')}
               >
-                {isPlaying ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                {isSynthesizing ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : isPlaying ? (
+                  <VolumeX className="h-3.5 w-3.5" />
+                ) : (
+                  <Volume2 className="h-3.5 w-3.5" />
+                )}
                 <span className="sr-only">{isPlaying ? t('chat.stopListening') : t('chat.listenAI')}</span>
               </button>
               

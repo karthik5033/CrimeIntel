@@ -1,4 +1,4 @@
-import { CatalystQuickML } from '@/lib/catalyst/quickml';
+import { GeminiService } from '@/lib/ai/gemini';
 import { ChatContext } from './contextManager';
 
 export type QueryIntent = 
@@ -64,20 +64,34 @@ export class IntentClassifier {
     `;
 
     try {
-      const response = await CatalystQuickML.generateResponse(prompt);
-      
-      if (!response) {
-        throw new Error("No response from QuickML");
-      }
+      const schema = {
+        type: 'OBJECT',
+        properties: {
+          intent: {
+            type: 'STRING',
+            enum: ['DIRECT_RETRIEVAL', 'AGGREGATE_ANALYTICAL', 'RELATIONSHIP_QUERY', 'REASONING_QUERY', 'FOLLOW_UP', 'CONVERSATIONAL']
+          },
+          confidence: { type: 'NUMBER' },
+          entities: {
+            type: 'OBJECT',
+            properties: {
+              district: { type: 'STRING' },
+              crime_types: { type: 'ARRAY', items: { type: 'STRING' } },
+              time_window: { type: 'STRING' },
+              person_names: { type: 'ARRAY', items: { type: 'STRING' } },
+              fir_numbers: { type: 'ARRAY', items: { type: 'STRING' } }
+            }
+          },
+          resolvedQuery: { type: 'STRING' }
+        },
+        required: ['intent', 'confidence', 'entities', 'resolvedQuery']
+      };
 
-      // Try to parse the JSON response from QuickML
-      // Strip markdown code block if present
-      const jsonStr = response.replace(/```json/g, '').replace(/```/g, '').trim();
-      const parsed = JSON.parse(jsonStr) as ParsedQuery;
+      const parsed = await GeminiService.generateJsonResponse<ParsedQuery>(prompt, schema, undefined, 'gemini-2.5-flash');
       
       // Ensure it has required fields
       if (!parsed.intent || !parsed.entities) {
-        throw new Error("Invalid format returned by QuickML");
+        throw new Error("Invalid format returned by Gemini");
       }
       
       if (parsed.confidence === undefined) {
@@ -86,7 +100,7 @@ export class IntentClassifier {
 
       return parsed;
     } catch (error) {
-      
+      console.error("IntentClassifier Gemini Error:", error);
       // Fallback basic heuristic parsing
       return this.basicHeuristicClassification(query, context);
     }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { Send, Mic, ChevronUp, MicOff, AlertCircle } from "lucide-react";
+import { Send, Mic, ChevronUp, MicOff, AlertCircle, Loader2 } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 
 interface ChatInputProps {
@@ -66,63 +66,85 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
     }
   };
 
-  // Initialize Speech Recognition
+  const [isProcessingAudio, setIsProcessingAudio] = useState(false);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<BlobPart[]>([]);
+
+  // Cleanup MediaRecorder on unmount
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        recognitionRef.current = new SpeechRecognition();
-        recognitionRef.current.continuous = true;
-        recognitionRef.current.interimResults = true;
-
-        recognitionRef.current.onresult = (event: any) => {
-          let interimTranscript = "";
-          let finalTranscript = "";
-
-          for (let i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-              finalTranscript += event.results[i][0].transcript;
-            } else {
-              interimTranscript += event.results[i][0].transcript;
-            }
-          }
-
-          if (finalTranscript) {
-            setInput((prev) => prev + (prev ? " " : "") + finalTranscript);
-          }
-        };
-
-        recognitionRef.current.onerror = (event: any) => {
-          console.error("Speech recognition error", event.error);
-          setVoiceError("Error: " + event.error);
-          setIsListening(false);
-        };
-
-        recognitionRef.current.onend = () => {
-          setIsListening(false);
-        };
+    return () => {
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
+        mediaRecorderRef.current.stop();
       }
-    }
+    };
   }, []);
 
-  const toggleListening = () => {
-    if (!recognitionRef.current) {
-      setVoiceError(t('chat.voiceNotSupported'));
-      return;
-    }
+  const startRecording = async () => {
+    setVoiceError("");
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorderRef.current = mediaRecorder;
+      audioChunksRef.current = [];
 
-    if (isListening) {
-      recognitionRef.current.stop();
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = async () => {
+        setIsListening(false);
+        setIsProcessingAudio(true);
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+        
+        try {
+          const formData = new FormData();
+          formData.append("file", audioBlob, "recording.webm");
+
+          const response = await fetch("/api/voice/stt", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            if (data.transcript) {
+              setInput((prev) => prev + (prev ? " " : "") + data.transcript);
+            }
+          } else {
+            setVoiceError(t('chat.errorProcess') || "Failed to process audio");
+          }
+        } catch (error) {
+          console.error("STT Error:", error);
+          setVoiceError(t('chat.errorConnect') || "Connection error");
+        } finally {
+          setIsProcessingAudio(false);
+          // Stop all audio tracks
+          stream.getTracks().forEach(track => track.stop());
+        }
+      };
+
+      mediaRecorder.start();
+      setIsListening(true);
+    } catch (error) {
+      console.error("Microphone error:", error);
+      setVoiceError(t('chat.voiceNotSupported') || "Microphone access denied");
       setIsListening(false);
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
+      mediaRecorderRef.current.stop();
+    }
+  };
+
+  const toggleListening = () => {
+    if (isListening) {
+      stopRecording();
     } else {
-      setVoiceError("");
-      try {
-        recognitionRef.current.lang = language === 'kn' ? 'kn-IN' : 'en-IN';
-        recognitionRef.current.start();
-        setIsListening(true);
-      } catch (e) {
-        console.error("Error starting recognition:", e);
-      }
+      startRecording();
     }
   };
 
@@ -171,9 +193,9 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={isListening ? t('chat.listening') : t('chat.placeholder')}
-          disabled={disabled}
-          className={`flex-1 max-h-[120px] bg-transparent border-0 focus:ring-0 resize-none py-2 px-1 text-sm text-foreground placeholder:text-muted-foreground min-h-[40px] ${isListening ? 'text-primary' : ''}`}
+          placeholder={isProcessingAudio ? "Processing audio..." : isListening ? t('chat.listening') : t('chat.placeholder')}
+          disabled={disabled || isProcessingAudio}
+          className={`flex-1 max-h-[120px] bg-transparent border-0 focus:ring-0 resize-none py-2 px-1 text-sm text-foreground placeholder:text-muted-foreground min-h-[40px] ${isListening || isProcessingAudio ? 'text-primary' : ''}`}
           rows={1}
         />
 
@@ -187,25 +209,34 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
           <button
             type="button"
             onClick={toggleListening}
-            className={`p-2 rounded-lg transition-colors relative ${
+            disabled={isProcessingAudio}
+            className={`p-2.5 rounded-full transition-colors relative flex items-center justify-center ${
               isListening 
                 ? 'text-destructive bg-destructive/10 hover:bg-destructive/20' 
-                : 'text-muted-foreground hover:text-primary hover:bg-primary/10'
+                : isProcessingAudio
+                  ? 'text-muted-foreground opacity-50 cursor-not-allowed bg-secondary/50'
+                  : 'text-primary bg-primary/10 hover:bg-primary/20'
             }`}
             title={isListening ? t('chat.stopListening') : t('chat.voiceInput')}
           >
             {isListening && (
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-destructive animate-ping"></span>
+              <span className="absolute top-0 right-0 w-2.5 h-2.5 rounded-full bg-destructive animate-ping"></span>
             )}
-            {isListening ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+            {isProcessingAudio ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : isListening ? (
+              <MicOff className="h-5 w-5" />
+            ) : (
+              <Mic className="h-5 w-5" />
+            )}
           </button>
           
           <button
             type="submit"
             disabled={!input.trim() || disabled}
-            className="p-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="p-2.5 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
           >
-            <Send className="h-4 w-4" />
+            <Send className="h-5 w-5 ml-0.5" />
           </button>
         </div>
       </form>
