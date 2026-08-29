@@ -22,6 +22,43 @@ export interface ParsedQuery {
   resolvedQuery: string; // The query with anaphora resolved
 }
 
+function normalizeDistrict(rawDistrict: string): string {
+  if (!rawDistrict) return rawDistrict;
+  const lower = rawDistrict.toLowerCase().trim();
+  
+  if (lower.includes('bangalore') || lower.includes('banglore') || lower.includes('bengaluru')) return 'Bengaluru Urban';
+  if (lower.includes('mysore') || lower.includes('mysuru')) return 'Mysuru';
+  if (lower.includes('mangalore') || lower.includes('mangaluru') || lower.includes('dakshina')) return 'Dakshina Kannada';
+  if (lower.includes('hubli') || lower.includes('dharwad') || lower.includes('hubballi')) return 'Dharwad';
+  if (lower.includes('belgaum') || lower.includes('belagavi') || lower.includes('belgavi')) return 'Belagavi';
+  if (lower.includes('gulbarga') || lower.includes('kalaburagi')) return 'Kalaburagi';
+  if (lower.includes('bellary') || lower.includes('ballari')) return 'Ballari';
+  if (lower.includes('mandya')) return 'Mandya';
+  
+  return rawDistrict.charAt(0).toUpperCase() + rawDistrict.slice(1);
+}
+
+function normalizeCrimeType(rawType: string): string {
+  if (!rawType) return rawType;
+  const lower = rawType.toLowerCase().trim();
+  
+  if (lower.includes('attempt to murder') || lower.includes('attempted murder')) return 'Attempt to Murder';
+  if (lower.includes('murder') || lower.includes('homicide') || lower.includes('kill')) return 'Murder';
+  if (lower.includes('theft') || lower.includes('steal') || lower.includes('stolen')) return 'Theft';
+  if (lower.includes('robbery') || lower.includes('robbed') || lower.includes('dacoity')) return 'Robbery';
+  if (lower.includes('burglary') || lower.includes('break in')) return 'Burglary';
+  if (lower.includes('assault') || lower.includes('attack') || lower.includes('beat')) return 'Assault';
+  if (lower.includes('fraud') || lower.includes('scam') || lower.includes('cheat')) return 'Online Fraud';
+  if (lower.includes('harass') || lower.includes('molest')) return 'Sexual Harassment';
+  if (lower.includes('rape') || lower.includes('sexual')) return 'Rape';
+  if (lower.includes('hit and run') || lower.includes('accident')) return 'Hit and Run';
+  if (lower.includes('cheat') || lower.includes('deceive')) return 'Cheating';
+  if (lower.includes('cyber') || lower.includes('stalk')) return 'Cyber Stalking';
+  
+  // Title case fallback
+  return rawType.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+}
+
 export class IntentClassifier {
   /**
    * Parses the user's natural language query into a structured format
@@ -97,6 +134,29 @@ export class IntentClassifier {
       if (parsed.confidence === undefined) {
         parsed.confidence = 1.0;
       }
+      
+      if (!parsed.resolvedQuery || parsed.resolvedQuery.toLowerCase() === 'none') {
+        parsed.resolvedQuery = query;
+      }
+      
+      const lowerQuery = query.toLowerCase();
+      
+      // Heuristic fallback for missing district
+      if (!parsed.entities.district) {
+        if (lowerQuery.includes('bengaluru') || lowerQuery.includes('bangalore') || lowerQuery.includes('banglore')) parsed.entities.district = 'Bengaluru Urban';
+        else if (lowerQuery.includes('mysuru') || lowerQuery.includes('mysore')) parsed.entities.district = 'Mysuru';
+        else if (lowerQuery.includes('belgavi') || lowerQuery.includes('belagavi') || lowerQuery.includes('belgaum')) parsed.entities.district = 'Belagavi';
+        else if (lowerQuery.includes('mangaluru') || lowerQuery.includes('mangalore')) parsed.entities.district = 'Dakshina Kannada';
+        else if (lowerQuery.includes('hubballi') || lowerQuery.includes('hubli') || lowerQuery.includes('dharwad')) parsed.entities.district = 'Dharwad';
+      }
+      
+      if (parsed.entities && parsed.entities.district) {
+        parsed.entities.district = normalizeDistrict(parsed.entities.district);
+      }
+      
+      if (parsed.entities && parsed.entities.crime_types && parsed.entities.crime_types.length > 0) {
+        parsed.entities.crime_types = parsed.entities.crime_types.map(normalizeCrimeType);
+      }
 
       return parsed;
     } catch (error) {
@@ -131,8 +191,11 @@ export class IntentClassifier {
 
     // Basic entity extraction (very naive fallback)
     const entities: any = {};
-    if (lowerQuery.includes('bengaluru') || lowerQuery.includes('bangalore') || lowerQuery.includes('banglore')) entities.district = 'Bengaluru';
+    if (lowerQuery.includes('bengaluru') || lowerQuery.includes('bangalore') || lowerQuery.includes('banglore')) entities.district = 'Bengaluru Urban';
     if (lowerQuery.includes('mysuru') || lowerQuery.includes('mysore')) entities.district = 'Mysuru';
+    if (lowerQuery.includes('belgavi') || lowerQuery.includes('belagavi') || lowerQuery.includes('belgaum')) entities.district = 'Belagavi';
+    if (lowerQuery.includes('mangaluru') || lowerQuery.includes('mangalore')) entities.district = 'Dakshina Kannada';
+    if (lowerQuery.includes('hubballi') || lowerQuery.includes('hubli') || lowerQuery.includes('dharwad')) entities.district = 'Dharwad';
     
     const CRIME_TYPE_MAPPINGS: Record<string, string[]> = {
       'Theft': ['theft', 'steal', 'stolen', 'kalla', 'kallathana', 'thefit'],

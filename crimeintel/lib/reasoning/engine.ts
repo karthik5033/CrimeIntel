@@ -11,154 +11,143 @@ export class ReasoningEngine {
   
   static async processQuery(query: string, contextData: any = {}): Promise<ReasoningOutput> {
     try {
-      const systemPrompt = `You are a Criminological Reasoning Engine. Your task is to analyze the user's query against the provided Context and evaluate it using one of three theories:
-1. Routine Activity Theory
-2. Crime Pattern Theory
-3. Rational Choice Theory
-4. Social Disorganization Theory`;
-
-      const userMessage = `Query: ${query}\n\nContext: ${JSON.stringify(contextData)}`;
-
-      const schema = {
-        type: 'OBJECT',
-        properties: {
-          id: { type: 'STRING' },
-          query: { type: 'STRING' },
-          claim: { type: 'STRING', description: 'A one-sentence summary of your finding' },
-          mechanisms: {
-            type: 'ARRAY',
-            items: {
-              type: 'OBJECT',
-              properties: {
-                name: { type: 'STRING' },
-                description: { type: 'STRING' },
-                theory: { type: 'STRING', enum: ['Routine Activity Theory', 'Crime Pattern Theory', 'Rational Choice Theory', 'Social Disorganization Theory', 'Custom'] },
-                factors: { type: 'ARRAY', items: { type: 'STRING' } }
-              },
-              required: ['name', 'description', 'theory', 'factors']
-            }
-          },
-          evidence: {
-            type: 'ARRAY',
-            items: {
-              type: 'OBJECT',
-              properties: {
-                id: { type: 'STRING' },
-                type: { type: 'STRING', enum: ['FIR', 'Person', 'Case', 'Graph', 'Statistic'] },
-                description: { type: 'STRING' }
-              },
-              required: ['id', 'type', 'description']
-            }
-          },
-          alternatives: {
-            type: 'ARRAY',
-            items: {
-              type: 'OBJECT',
-              properties: {
-                hypothesis: { type: 'STRING' },
-                status: { type: 'STRING', enum: ['Supported', 'Partially Supported', 'Rejected'] },
-                reasoning: { type: 'STRING' }
-              },
-              required: ['hypothesis', 'status', 'reasoning']
-            }
-          },
-          confidence: {
-            type: 'OBJECT',
-            properties: {
-              level: { type: 'STRING', enum: ['Low', 'Moderate', 'Moderate-High', 'High'] },
-              score: { type: 'NUMBER', description: '0-100' },
-              factors: { type: 'ARRAY', items: { type: 'STRING' } }
-            },
-            required: ['level', 'score', 'factors']
-          },
-          timestamp: { type: 'STRING', description: 'ISO date' }
-        },
-        required: ['id', 'query', 'claim', 'mechanisms', 'evidence', 'alternatives', 'confidence', 'timestamp']
-      };
-
-      const output = await GeminiService.generateJsonResponse<ReasoningOutput>(userMessage, schema, systemPrompt, 'gemini-2.5-flash');
-
-      // Automatically persist to Catalyst NoSQL
-      if (output.id) {
-        CatalystNoSQL.saveReasoningOutput(output.id, output).catch(console.error);
-      }
-
-      return output;
+      return await this.fallbackReasoning(query, contextData, "");
     } catch (error: any) {
-      console.error("Reasoning Engine Gemini Error:", error);
-      return this.fallbackReasoning(query, error.message || String(error));
+      console.error("Reasoning Engine Error:", error);
+      return await this.fallbackReasoning(query, contextData, error.message || String(error));
     }
   }
 
-  private static fallbackReasoning(query: string, errorMsg: string = ""): ReasoningOutput {
-    const lowerQuery = query.toLowerCase();
-    
-    // Default to Routine Activity Theory
-    let theory: any = "Routine Activity Theory";
-    let claim = "Analysis of the entities suggests a convergence of motivated offenders and suitable targets in time and space.";
-    let mechanisms = [
-      {
-        name: "Convergence in Space and Time",
-        description: "The incidents occur in areas lacking capable guardianship during vulnerable hours.",
-        theory: "Routine Activity Theory" as any,
-        factors: ["Lack of Guardianship", "Target Suitability", "Offender Motivation"]
-      }
-    ];
-
-    if (lowerQuery.includes('hotspot') || lowerQuery.includes('area') || lowerQuery.includes('map')) {
-      theory = "Crime Pattern Theory";
-      claim = "Crime incidents cluster around specific geographic nodes, indicating awareness space overlap.";
-      mechanisms = [
-        {
-          name: "Geographic Clustering",
-          description: "Activity nodes (e.g., transit hubs, commercial zones) attract repeat offenses.",
-          theory,
-          factors: ["Activity Nodes", "Paths", "Edges"]
+  private static async fallbackReasoning(query: string, contextData: any, errorMsg: string = ""): Promise<ReasoningOutput> {
+    // 1. Extract FIRs from contextData
+    let firs: any[] = [];
+    if (Array.isArray(contextData)) {
+      contextData.forEach((agent: any) => {
+        if (agent.data && Array.isArray(agent.data)) {
+          firs = firs.concat(agent.data.filter((i: any) => i.lat && i.lng || i.date || i.fir_no));
         }
-      ];
-    } else if (lowerQuery.includes('why') || lowerQuery.includes('motive') || lowerQuery.includes('financial')) {
-      theory = "Rational Choice Theory";
-      claim = "Offenders appear to be evaluating the risk vs. reward, opting for targets with high payoff and low detection probability.";
-      mechanisms = [
-        {
-          name: "Cost-Benefit Calculation",
-          description: "The selection of targets indicates a calculated decision to maximize illicit gain while minimizing exposure.",
-          theory,
-          factors: ["Perceived Risk", "Expected Reward", "Effort Required"]
-        }
-      ];
-    } else if (lowerQuery.includes('network') || lowerQuery.includes('gang') || lowerQuery.includes('community')) {
-      theory = "Social Disorganization Theory";
-      claim = "Systemic community vulnerabilities and breakdown of informal social controls facilitate organized criminal networks.";
-      mechanisms = [
-        {
-          name: "Breakdown of Social Control",
-          description: "Lack of community cohesion allows illicit networks to establish strongholds.",
-          theory,
-          factors: ["Transiency", "Economic Deprivation", "Network Formation"]
-        }
-      ];
+      });
     }
 
-    return {
-      id: `res-${Date.now()}`,
-      query,
-      claim,
-      mechanisms,
-      evidence: [],
-      alternatives: [
-        {
-          hypothesis: "The pattern is purely coincidental and lacks underlying systemic drivers.",
-          status: "Rejected" as any,
-          reasoning: "The frequency and spatial clustering of events strongly suggest coordinated or systematic behavior rather than random chance."
-        }
-      ],
-      confidence: {
-        level: 'Moderate' as any,
-        score: 65,
-        factors: ["Heuristic analysis applied", "LLM reasoning unavailable", `Matched query intent to ${theory}`, `Error: ${errorMsg}`]
-      },
-      timestamp: new Date().toISOString()
-    };
+    let theory: any = "General Inquiry";
+    let claim = "The provided intelligence dataset lacks sufficient spatial or temporal patterns for a specific criminological theory.";
+    let mechanisms: any[] = [];
+    let confidenceScore = 15;
+    let confidenceLevel: any = "Low";
+    
+    const lats = firs.map(f => parseFloat(f.lat)).filter(l => !isNaN(l));
+    const lngs = firs.map(f => parseFloat(f.lng)).filter(l => !isNaN(l));
+    
+    let spatialVarianceKm = null;
+    if (lats.length >= 2) {
+      const meanLat = lats.reduce((a, b) => a + b, 0) / lats.length;
+      const meanLng = lngs.reduce((a, b) => a + b, 0) / lngs.length;
+      
+      const varLat = lats.reduce((a, b) => a + Math.pow(b - meanLat, 2), 0) / lats.length;
+      const varLng = lngs.reduce((a, b) => a + Math.pow(b - meanLng, 2), 0) / lngs.length;
+      
+      // roughly convert degrees to km (1 deg ~ 111km)
+      spatialVarianceKm = Math.sqrt(varLat + varLng) * 111; 
+    }
+
+    const hours = firs.map(f => {
+      if (!f.date) return null;
+      try {
+        const d = new Date(f.date);
+        if (isNaN(d.getTime())) return null;
+        return d.getUTCHours() + (d.getUTCMinutes() / 60);
+      } catch { return null; }
+    }).filter(h => h !== null) as number[];
+
+    let temporalVarianceHours = null;
+    if (hours.length >= 2) {
+      const meanHour = hours.reduce((a, b) => a + b, 0) / hours.length;
+      temporalVarianceHours = Math.sqrt(hours.reduce((a, b) => a + Math.pow(b - meanHour, 2), 0) / hours.length);
+    }
+
+    // Mathematical Heuristics String for Prompt
+    let mathHints = "";
+    if (spatialVarianceKm !== null && spatialVarianceKm < 5.0) {
+      mathHints += `- Highly clustered geographically (Spatial Variance: ${spatialVarianceKm.toFixed(2)}km). Strongly implies Crime Pattern Theory (Activity Nodes).\n`;
+    } else if (temporalVarianceHours !== null && temporalVarianceHours < 3.0) {
+      mathHints += `- Highly clustered temporally (Temporal Variance: ${temporalVarianceHours.toFixed(2)}hrs). Strongly implies Routine Activity Theory.\n`;
+    } else if (firs.length > 5) {
+      mathHints += `- Widespread dispersed cases (${firs.length} cases). Implies Social Disorganization Theory.\n`;
+    } else {
+      mathHints += `- Limited variance data. Rely on motive or rational choice theory if applicable.\n`;
+    }
+
+    const systemPrompt = `You are a forensic reasoning engine. Analyze the query and the mathematical heuristics provided, then output a structured criminological reasoning block in JSON.
+Your JSON must match this structure exactly:
+{
+  "claim": "A 1-2 sentence core hypothesis based on the heuristics",
+  "mechanisms": [{
+    "name": "Name of criminological mechanism (e.g. Geographic Clustering)",
+    "description": "Short explanation",
+    "theory": "The overarching theory (e.g. Crime Pattern Theory)",
+    "factors": ["Factor 1", "Factor 2"]
+  }],
+  "alternatives": [{
+    "hypothesis": "An opposing or alternative view",
+    "status": "Rejected" | "Under Investigation",
+    "reasoning": "Why it was rejected or kept"
+  }],
+  "confidenceScore": <number 0-100>,
+  "confidenceLevel": "Low" | "Moderate" | "High"
+}`;
+
+    const userPrompt = `Query: ${query}\n\nComputed Heuristics:\n${mathHints}\n\nEvidence Summary:\n${firs.slice(0,5).map(f => f.description).join('\n')}`;
+
+    try {
+      const generated = await GeminiService.generateJsonResponse<any>(userPrompt, {
+        type: "object",
+        properties: {
+          claim: { type: "string" },
+          mechanisms: { type: "array", items: { type: "object", properties: { name: { type: "string" }, description: { type: "string" }, theory: { type: "string" }, factors: { type: "array", items: { type: "string" } } } } },
+          alternatives: { type: "array", items: { type: "object", properties: { hypothesis: { type: "string" }, status: { type: "string" }, reasoning: { type: "string" } } } },
+          confidenceScore: { type: "number" },
+          confidenceLevel: { type: "string" }
+        },
+        required: ["claim", "mechanisms", "alternatives", "confidenceScore", "confidenceLevel"]
+      }, undefined, 'gemini-2.5-flash');
+
+      return {
+        id: `res-${Date.now()}`,
+        query,
+        claim: generated.claim,
+        mechanisms: generated.mechanisms,
+        evidence: firs.slice(0, 5).map(f => ({
+          type: "Data Correlation",
+          source: f.fir_no ? `FIR ${f.fir_no}` : "Database Record",
+          description: f.description || `Incident recorded in dataset`,
+          reliability: "High"
+        })),
+        alternatives: generated.alternatives,
+        confidence: {
+          level: generated.confidenceLevel,
+          score: generated.confidenceScore,
+          factors: [
+            `Analyzed ${firs.length} evidence records`,
+            spatialVarianceKm !== null ? `Spatial Variance: ${spatialVarianceKm.toFixed(2)}km` : "No spatial data",
+            temporalVarianceHours !== null ? `Temporal Variance: ${temporalVarianceHours.toFixed(2)}hrs` : "No temporal data"
+          ]
+        },
+        timestamp: new Date().toISOString()
+      };
+    } catch (e: any) {
+      console.warn("Reasoning Engine LLM failed, using fallback:", e);
+      // Fallback
+      return {
+        id: `res-${Date.now()}`,
+        query,
+        claim: "Mathematical variance suggests potential clustering, but full generation failed.",
+        mechanisms: [{ name: "Heuristic Fallback", description: "Fallback used due to generation failure", theory: "None", factors: [] }],
+        evidence: firs.slice(0, 3).map(f => ({ type: "Data", source: f.fir_no || "DB", description: f.description || "Record", reliability: "High" })),
+        alternatives: [],
+        confidence: { level: "Low", score: 15, factors: ["Heuristic fallback"] },
+        timestamp: new Date().toISOString()
+      };
+    }
   }
 }
+

@@ -39,10 +39,15 @@ export class Coordinator {
         break;
       }
 
-      case 'AGGREGATE_ANALYTICAL':
-        const analyticsData = await AnalyticsAgent.retrieve(parsedQuery);
+      case 'AGGREGATE_ANALYTICAL': {
+        const [analyticsData, aggSqlData] = await Promise.all([
+          AnalyticsAgent.retrieve(parsedQuery),
+          SQLAgent.retrieve(parsedQuery)
+        ]);
         evidence.push({ source: 'AnalyticsAgent', data: analyticsData });
+        if (aggSqlData.length > 0) evidence.push({ source: 'SQLAgent', data: aggSqlData });
         break;
+      }
 
       case 'RELATIONSHIP_QUERY':
         const graphData = await GraphAgent.retrieve(parsedQuery);

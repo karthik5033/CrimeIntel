@@ -497,6 +497,9 @@ function createMockCatalystInstance() {
               if (matchingRows.length > 0) {
                 console.log(`✅ MOCK: Found ${matchingRows.length} rows matching WHERE clause`);
                 return matchingRows.slice(0, limit).map((r: any) => ({ [tableName]: r }));
+              } else {
+                console.log(`❌ MOCK: Found 0 rows matching WHERE clause`);
+                return [];
               }
             }
           }

@@ -71,24 +71,26 @@ Guidelines:
       intent: parsedQuery.intent 
     }).substring(0, 8000)} // truncate to prevent context overflow if too large`;
 
-    let finalResponse = null;
-    try {
-      finalResponse = await GeminiService.generateResponse(userPrompt, systemPrompt, 'gemini-2.5-flash');
-    } catch (e) {
+    let finalResponsePromise = GeminiService.generateResponse(userPrompt, systemPrompt, 'gemini-2.5-flash').catch(e => {
       console.warn("Gemini final response generation failed:", e);
+      return null;
+    });
+
+    // 5.1 Trigger Reasoning Engine for analytical traces
+    let reasoningBlockPromise: Promise<any> = Promise.resolve(null);
+    if (parsedQuery.intent !== 'CONVERSATIONAL' && evidence.length > 0) {
+      reasoningBlockPromise = ReasoningEngine.processQuery(parsedQuery.resolvedQuery, evidence).catch(e => {
+        console.warn("Reasoning Engine failed to process query:", e);
+        return null;
+      });
     }
 
+    let [finalResponse, reasoningBlockOutput] = await Promise.all([finalResponsePromise, reasoningBlockPromise]);
+    
     if (finalResponse) {
       finalResponse = "*(Intelligence retrieved via Pre-computational RAG and Graph RAG)*\n\n" + finalResponse;
     }
-
-    // 5.1 Trigger Reasoning Engine for analytical traces
-    let reasoningBlockOutput = null;
-    try {
-      reasoningBlockOutput = await ReasoningEngine.processQuery(parsedQuery.resolvedQuery, evidence);
-    } catch (e) {
-      console.warn("Reasoning Engine failed to process query:", e);
-    }
+    
     // Fallback if Gemini is unavailable
     if (!finalResponse) {
       finalResponse = "I retrieved the relevant data but the generative model is currently unavailable to summarize it.";

@@ -96,18 +96,34 @@ export class SQLAgent {
       let conditions = [];
 
       if (parsedQuery.entities.district) {
-        const d = parsedQuery.entities.district;
+        let d = parsedQuery.entities.district.toLowerCase();
+        
+        // City to District alias map for common Karnataka cities
+        const cityToDistrictMap: Record<string, string> = {
+          'mangalore': 'dakshina kannada',
+          'mangaluru': 'dakshina kannada',
+          'bangalore': 'bengaluru urban',
+          'bengaluru': 'bengaluru urban',
+          'mysore': 'mysuru',
+          'hubli': 'dharwad',
+          'dharwad': 'dharwad',
+          'belgaum': 'belagavi'
+        };
+
+        if (cityToDistrictMap[d]) {
+          d = cityToDistrictMap[d];
+        }
         
         // Use dynamic district mapping
         const districtMapping = await getDistrictMapping();
-        const mappedDistrict = districtMapping[d.toLowerCase()] || d;
+        const mappedDistrict = districtMapping[d] || parsedQuery.entities.district;
         
         conditions.push(buildParameterizedQuery("district_id = '{district}'", { district: mappedDistrict }));
       }
       
       if (parsedQuery.entities.crime_types && parsedQuery.entities.crime_types.length > 0) {
         const ct = parsedQuery.entities.crime_types[0];
-        conditions.push(buildParameterizedQuery("crime_type_en LIKE '%{crimeType}%'", { crimeType: ct }));
+        conditions.push(buildParameterizedQuery("crime_type_en = '{crimeType}'", { crimeType: ct }));
       }
 
       if (parsedQuery.entities.fir_numbers && parsedQuery.entities.fir_numbers.length > 0) {
