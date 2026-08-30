@@ -24,6 +24,43 @@ const FlowCard = ({ icon, text, side }: { icon: React.ReactNode, text: string, s
 
 export default function LandingPage() {
   const { t } = useLanguage();
+  const [metrics, setMetrics] = React.useState({
+    stations: "...",
+    records: "...",
+    suspects: "...",
+    cases: "..."
+  });
+
+  React.useEffect(() => {
+    async function fetchMetrics() {
+      try {
+        const [stationsRes, firsRes, personsRes, casesRes] = await Promise.all([
+          fetch('/api/data?table=PoliceStations'),
+          fetch('/api/data?table=FIRs'),
+          fetch('/api/data?table=Persons'),
+          fetch('/api/data?table=Cases')
+        ]);
+        
+        const [stationsData, firsData, personsData, casesData] = await Promise.all([
+          stationsRes.json(),
+          firsRes.json(),
+          personsRes.json(),
+          casesRes.json()
+        ]);
+        
+        setMetrics({
+          stations: stationsData.count?.toString() || "1600+",
+          records: firsData.count?.toString() || "1.2M+",
+          suspects: personsData.count?.toString() || "14+",
+          cases: casesData.count?.toString() || "Sub-second"
+        });
+      } catch (err) {
+        console.error("Failed to fetch metrics", err);
+        setMetrics({ stations: "1600+", records: "1.2M+", suspects: "14+", cases: "Sub-second" });
+      }
+    }
+    fetchMetrics();
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-background selection:bg-primary selection:text-primary-foreground">
@@ -60,7 +97,7 @@ export default function LandingPage() {
                   <div className="h-6 w-6 rounded-full border-2 border-background bg-zinc-500"></div>
                   <div className="h-6 w-6 rounded-full border-2 border-background bg-primary flex items-center justify-center text-[10px] text-primary-foreground">+</div>
                 </div>
-                <span className="text-muted-foreground ml-2">{t('landing.trustedPrefix')} <span className="text-primary font-bold">1600+</span> {t('landing.trustedSuffix')}</span>
+                <span className="text-muted-foreground ml-2">{t('landing.trustedPrefix')} <span className="text-primary font-bold">{metrics.stations}</span> {t('landing.trustedSuffix')}</span>
               </div>
             </div>
 
@@ -75,34 +112,14 @@ export default function LandingPage() {
             
             <div className="flex justify-center mt-8 mb-8 overflow-hidden relative w-full opacity-60 max-w-5xl mx-auto mask-image-linear-edges">
               <div className="flex w-max animate-marquee">
-                {/* Metric Set 1 */}
-                <div className="flex gap-10 md:gap-16 items-center pr-10 md:pr-16 whitespace-nowrap">
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Database className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.records') || '1.2M+ Records'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><ShieldCheck className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.agencies') || '450+ Agencies'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Network className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.states') || '14+ States'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Zap className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.queries') || 'Sub-second Queries'}</div>
-                </div>
-                {/* Metric Set 2 */}
-                <div className="flex gap-10 md:gap-16 items-center pr-10 md:pr-16 whitespace-nowrap">
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Database className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.records') || '1.2M+ Records'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><ShieldCheck className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.agencies') || '450+ Agencies'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Network className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.states') || '14+ States'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Zap className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.queries') || 'Sub-second Queries'}</div>
-                </div>
-                {/* Metric Set 3 */}
-                <div className="flex gap-10 md:gap-16 items-center pr-10 md:pr-16 whitespace-nowrap">
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Database className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.records') || '1.2M+ Records'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><ShieldCheck className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.agencies') || '450+ Agencies'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Network className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.states') || '14+ States'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Zap className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.queries') || 'Sub-second Queries'}</div>
-                </div>
-                {/* Metric Set 4 */}
-                <div className="flex gap-10 md:gap-16 items-center pr-10 md:pr-16 whitespace-nowrap">
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Database className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.records') || '1.2M+ Records'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><ShieldCheck className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.agencies') || '450+ Agencies'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Network className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.states') || '14+ States'}</div>
-                  <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Zap className="mr-2 h-5 w-5 text-primary"/> {t('landing.metrics.queries') || 'Sub-second Queries'}</div>
-                </div>
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="flex gap-10 md:gap-16 items-center pr-10 md:pr-16 whitespace-nowrap">
+                    <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Database className="mr-2 h-5 w-5 text-primary"/> {metrics.records} Records</div>
+                    <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><ShieldCheck className="mr-2 h-5 w-5 text-primary"/> {metrics.stations} Agencies</div>
+                    <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><Network className="mr-2 h-5 w-5 text-primary"/> {metrics.suspects} Suspects</div>
+                    <div className="font-semibold text-lg flex items-center text-zinc-600 dark:text-zinc-400"><FolderOpen className="mr-2 h-5 w-5 text-primary"/> {metrics.cases} Cases</div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -112,9 +129,11 @@ export default function LandingPage() {
                   {t('header.getAllAccess') || 'Get all access'} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto h-12 px-8 text-base border-zinc-200 dark:border-zinc-800">
-                {t('landing.exploreMore') || 'Explore more'} <ArrowRight className="ml-2 h-4 w-4 text-muted-foreground" />
-              </Button>
+              <Link href="/features">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto h-12 px-8 text-base border-zinc-200 dark:border-zinc-800">
+                  {t('landing.exploreMore') || 'Explore more'} <ArrowRight className="ml-2 h-4 w-4 text-muted-foreground" />
+                </Button>
+              </Link>
             </div>
           </FadeIn>
         </section>
@@ -199,9 +218,11 @@ export default function LandingPage() {
                 <Button size="lg" className="h-12 px-8 bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
                   {t('header.getAllAccess') || 'Get all access'}
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-8 bg-white border-zinc-200 hover:bg-zinc-100 font-medium transition-all shadow-sm">
-                  {t('landing.exploreMore') || 'Explore more'} <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link href="/features">
+                  <Button size="lg" variant="outline" className="h-12 px-8 bg-white border-zinc-200 hover:bg-zinc-100 font-medium transition-all shadow-sm">
+                    {t('landing.exploreMore') || 'Explore more'} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
             
@@ -300,9 +321,11 @@ export default function LandingPage() {
                      <li className="flex items-start"><CheckCircle2 className="mr-3 h-5 w-5 text-primary shrink-0" /> {t('landing.products.dashBullet2') || 'Live crime heatmaps and jurisdictional activity statistics.'}</li>
                   </ul>
                   <div className="pt-4">
-                    <Button variant="outline" className="h-10 px-6 bg-zinc-50 border-primary/30 dark:bg-zinc-900 dark:border-primary/30 font-medium hover:bg-primary/5 hover:text-primary transition-colors text-zinc-900 dark:text-zinc-100">
-                      {t('landing.exploreMore') || 'Explore more'} <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link href="/features/dashboard">
+                      <Button variant="outline" className="h-10 px-6 bg-zinc-50 border-primary/30 dark:bg-zinc-900 dark:border-primary/30 font-medium hover:bg-primary/5 hover:text-primary transition-colors text-zinc-900 dark:text-zinc-100">
+                        {t('landing.exploreMore') || 'Explore more'} <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </div>
                </div>
                
@@ -340,9 +363,11 @@ export default function LandingPage() {
                      <li className="flex items-start"><CheckCircle2 className="mr-3 h-5 w-5 text-primary shrink-0" /> {t('landing.products.netBullet2') || 'One-click expansion of suspect associates and financial records.'}</li>
                   </ul>
                   <div className="pt-4">
-                    <Button variant="outline" className="h-10 px-6 bg-zinc-50 border-primary/30 dark:bg-zinc-900 dark:border-primary/30 font-medium hover:bg-primary/5 hover:text-primary transition-colors text-zinc-900 dark:text-zinc-100">
-                      {t('landing.exploreMore') || 'Explore more'} <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link href="/features/network">
+                      <Button variant="outline" className="h-10 px-6 bg-zinc-50 border-primary/30 dark:bg-zinc-900 dark:border-primary/30 font-medium hover:bg-primary/5 hover:text-primary transition-colors text-zinc-900 dark:text-zinc-100">
+                        {t('landing.exploreMore') || 'Explore more'} <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </div>
                </div>
                
@@ -375,17 +400,17 @@ export default function LandingPage() {
         <section className="w-full bg-background relative border-t border-zinc-100 dark:border-zinc-900 py-24 md:py-32">
           <div className="container px-4 md:px-6 mx-auto text-center max-w-4xl">
             <div className="inline-block mb-6">
-              <span className="text-[13px] font-medium italic border-b border-zinc-400 dark:border-zinc-600 pb-0.5">{t('landing.security.label') || 'Security'}</span>
+              <span className="text-[13px] font-medium italic border-b border-zinc-400 dark:border-zinc-600 pb-0.5">Architecture</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-8">
-              <span className="text-primary underline decoration-[3px] underline-offset-[10px] decoration-primary/30">{t('landing.security.title') || 'Enterprise-Grade Security'}</span>
+              <span className="text-primary underline decoration-[3px] underline-offset-[10px] decoration-primary/30">Built on a Modern Stack</span>
             </h2>
             
             <p className="text-lg md:text-[20px] text-muted-foreground mb-4">
-              {t('landing.security.desc1') || 'Deployed securely'} <strong className="font-semibold text-foreground">{t('landing.security.desc2') || 'on-premise'}</strong> {t('landing.security.desc3') || 'or via'} <strong className="font-semibold text-foreground">{t('landing.security.desc4') || 'government cloud'}</strong>.
+              Deployed securely on <strong className="font-semibold text-foreground">PostgreSQL & FastAPI</strong> with edge-optimized <strong className="font-semibold text-foreground">Next.js</strong>.
             </p>
             <p className="text-muted-foreground text-[17px] mb-20">
-              {t('landing.security.desc5') || 'Built exclusively for law enforcement and intelligence agencies.'}
+              Powered by advanced Google GenAI and Postgres for sub-second intelligence retrieval.
             </p>
             
             {/* Animated Marquee Features */}
@@ -394,16 +419,16 @@ export default function LandingPage() {
                 {/* We repeat the array 4 times to ensure it can scroll -50% and loop perfectly */}
                 {[1, 2, 3, 4].map((i) => (
                   <React.Fragment key={i}>
-                    <div className="font-bold text-[24px] tracking-tighter flex items-center">AES-256</div>
-                    <div className="font-extrabold text-[24px] tracking-tight">{t('landing.security.marquee1') || 'Audit Logging'}</div>
+                    <div className="font-bold text-[24px] tracking-tighter flex items-center">Next.js 16</div>
+                    <div className="font-extrabold text-[24px] tracking-tight">PostgreSQL</div>
                     <div className="font-bold text-[22px] leading-none text-left flex items-center gap-2">
                       <div className="flex flex-col">
-                        <span>CCTNS</span>
-                        <span className="font-normal text-sm">{t('landing.security.marquee2') || 'integrated'}</span>
+                        <span>Google</span>
+                        <span className="font-normal text-sm">GenAI</span>
                       </div>
                       <div className="w-5 h-7 bg-zinc-900 dark:bg-zinc-100 transform -skew-x-12"></div>
                     </div>
-                    <div className="font-medium text-[24px] tracking-tight text-zinc-600 dark:text-zinc-400">CJIS <span className="font-bold text-zinc-900 dark:text-zinc-100">{t('landing.security.marquee3') || 'Compliant'}</span></div>
+                    <div className="font-medium text-[24px] tracking-tight text-zinc-600 dark:text-zinc-400">SQL <span className="font-bold text-zinc-900 dark:text-zinc-100">Database</span></div>
                   </React.Fragment>
                 ))}
               </div>

@@ -1,21 +1,9 @@
 import { NextResponse } from 'next/server';
-import { getCatalystAppAsync } from '@/lib/catalyst';
-
-/**
- * Analytics Anomalies API
- *
- * Reads real FIRs from Catalyst Database, groups by YYYY-MM, counts incidents per month,
- * then applies Z-Score thresholding to flag anomalous months.
- */
+import { ServerDataLoader } from '@/lib/api/serverDataLoader';
 
 async function fetchFromCatalyst(tableName: string) {
-  const app = await getCatalystAppAsync();
-  const zcql = app.zcql();
-  if (!zcql) {
-    throw new Error('Catalyst ZCQL is not initialized');
-  }
-  const result = await zcql.executeZCQLQuery(`SELECT * FROM ${tableName}`);
-  return result.map((row: any) => row[tableName] || row);
+  if (tableName === 'FIRs') return ServerDataLoader.getFIRs();
+  return [];
 }
 
 export async function GET() {

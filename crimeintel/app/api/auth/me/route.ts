@@ -1,12 +1,20 @@
 import { NextResponse } from 'next/server';
-import { CatalystAuth } from '@/lib/catalyst/auth';
 
 export async function GET(request: Request) {
   try {
-    const user = await CatalystAuth.getCurrentUser();
+    const user = {
+      id: 'mock-user-id',
+      email: 'admin@crimeintel.gov.in',
+      first_name: 'Admin',
+      last_name: 'User',
+      role: 'Superintendent'
+    };
     return NextResponse.json(user);
   } catch (error) {
     console.error("Auth API Error:", error);
-    return NextResponse.json({ error: "Failed to get user" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch user data" },
+      { status: 500 }
+    );
   }
 }

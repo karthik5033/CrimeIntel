@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCatalystAppAsync } from '@/lib/catalyst';
 import { EntityExtractor } from '@/lib/services/entityExtractor';
 import { EntityStorage } from '@/lib/services/entityStorage';
 import { RelationshipBuilder } from '@/lib/services/relationshipBuilder';
@@ -36,22 +35,14 @@ export async function POST(request: NextRequest) {
 
     console.log(`🕸️  Building knowledge graph for FIR: ${firId}`);
 
-    // Get FIR with OCR text
-    const app = await getCatalystAppAsync();
-    const zcql = app.zcql();
+    const fir = await DataClient.getFIRById(firId);
     
-    const firQuery = await zcql.executeZCQLQuery(
-      `SELECT * FROM FIRs WHERE fir_no = '${firId}' LIMIT 1`
-    );
-    
-    if (!firQuery || firQuery.length === 0) {
+    if (!fir) {
       return NextResponse.json(
         { error: 'FIR not found' },
         { status: 404 }
       );
     }
-
-    const fir = firQuery[0].FIRs || firQuery[0];
 
     if (!fir.ocr_text) {
       return NextResponse.json(

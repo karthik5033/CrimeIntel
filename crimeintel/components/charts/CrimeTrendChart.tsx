@@ -134,24 +134,27 @@ export function CrimeTrendChart() {
             
             <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'var(--muted)', strokeWidth: 1, strokeDasharray: '4 4', fill: 'var(--muted)', opacity: 0.1 }} />
             
-            {/* Baseline Area */}
-            <Area 
+            {/* Baseline Track (Historic Average) */}
+            <Line 
               type="monotone" 
               dataKey="baseline" 
               name="Historic Baseline"
               stroke="var(--muted-foreground)"
-              strokeOpacity={0.3}
+              strokeDasharray="4 4"
+              strokeOpacity={0.6}
               strokeWidth={1.5}
-              fill="url(#areaFill)" 
+              dot={false}
+              activeDot={false}
             />
 
-            {/* Actual Track */}
-            <Line 
+            {/* Actual Track (Live Data with Shading) */}
+            <Area 
               type="monotone" 
               dataKey="telemetry" 
               name="Live Data"
               stroke="var(--primary)" 
               strokeWidth={2.5}
+              fill="url(#areaFill)"
               dot={{ r: 3, fill: "var(--background)", stroke: "var(--primary)", strokeWidth: 2 }}
               activeDot={{ r: 6, fill: "var(--primary)", stroke: "var(--background)", strokeWidth: 2 }}
             />

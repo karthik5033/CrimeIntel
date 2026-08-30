@@ -62,7 +62,7 @@ export function LiveMap() {
 
   if (hotspots.length === 0 || !selectedSpot) {
     return (
-      <Card className="col-span-full xl:col-span-3 overflow-hidden h-[500px] flex items-center justify-center bg-slate-50">
+      <Card className="col-span-full xl:col-span-3 overflow-hidden h-[600px] flex items-center justify-center bg-slate-50">
         <Loader2 className="h-8 w-8 text-primary animate-spin" />
       </Card>
     );
@@ -105,7 +105,7 @@ export function LiveMap() {
       </CardHeader>
       
       <CardContent className="p-0 border-t border-slate-100">
-        <div className="flex flex-col md:flex-row h-[500px]">
+        <div className="flex flex-col md:flex-row h-[600px]">
           {/* Map Area */}
           <div className="flex-1 relative bg-slate-50 overflow-hidden group">
             
@@ -188,8 +188,8 @@ export function LiveMap() {
           </div>
 
           {/* Right Stats Panel */}
-          <div className="w-full md:w-80 flex flex-col bg-white border-l border-slate-100 relative z-[1001] shadow-[-10px_0_15px_-10px_rgba(0,0,0,0.05)]">
-            <div className="p-6 h-full flex flex-col">
+          <div className="w-full md:w-80 flex flex-col bg-white border-l border-slate-100 relative z-[1001] shadow-[-10px_0_15px_-10px_rgba(0,0,0,0.05)] overflow-y-auto">
+            <div className="p-6 h-full flex flex-col min-h-max">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-3 bg-primary/10 rounded-xl relative overflow-hidden shrink-0">
                   <div className="absolute inset-0 bg-primary/20 animate-ping opacity-20" />

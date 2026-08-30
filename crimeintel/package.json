@@ -41,7 +41,6 @@
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.6.0",
-    "zcatalyst-sdk-node": "^3.4.0",
     "zustand": "^5.0.14"
   },
   "devDependencies": {

@@ -23,7 +23,10 @@ export function SemanticSearchWidget({ context }: RAGContextProps) {
       
       <div className="space-y-3">
         {context.map((agentEvidence, idx) => {
-          if (!agentEvidence.data || agentEvidence.data.length === 0) return null;
+          if (!agentEvidence.data) return null;
+          
+          const dataArray = Array.isArray(agentEvidence.data) ? agentEvidence.data : [agentEvidence.data];
+          if (dataArray.length === 0) return null;
           
           let Icon = Database;
           let label = "Database Records";
@@ -52,7 +55,7 @@ export function SemanticSearchWidget({ context }: RAGContextProps) {
               <div className="space-y-2">
                 {agentEvidence.source === 'VectorAgent' ? (
                   // Vector format
-                  agentEvidence.data.map((item: any, i) => (
+                  dataArray.map((item: any, i) => (
                     <div key={i} className="flex flex-col">
                       <div className="flex justify-between items-center">
                         <span className="text-xs font-medium text-foreground">{item.title || item.fir_no || 'Document'}</span>
@@ -67,7 +70,7 @@ export function SemanticSearchWidget({ context }: RAGContextProps) {
                   ))
                 ) : (
                   // Default format (FIRs/Cases)
-                  agentEvidence.data.slice(0, 3).map((item: any, i) => (
+                  dataArray.slice(0, 3).map((item: any, i) => (
                     <div key={i} className="text-xs flex items-center gap-2">
                       <span className="font-medium text-foreground">{item.fir_no || item.case_no || 'Record'}</span>
                       <span className="text-muted-foreground line-clamp-1">{item.crime_type_en || item.description || JSON.stringify(item)}</span>
@@ -75,9 +78,9 @@ export function SemanticSearchWidget({ context }: RAGContextProps) {
                   ))
                 )}
                 
-                {agentEvidence.data.length > 3 && agentEvidence.source !== 'VectorAgent' && (
+                {dataArray.length > 3 && agentEvidence.source !== 'VectorAgent' && (
                   <div className="text-xs text-indigo-500 font-medium italic">
-                    + {agentEvidence.data.length - 3} more records processed in background...
+                    + {dataArray.length - 3} more records processed in background...
                   </div>
                 )}
               </div>

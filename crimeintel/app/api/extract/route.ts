@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCatalystAppAsync } from '@/lib/catalyst';
+import { ServerDataLoader } from '@/lib/api/serverDataLoader';
 import { EntityExtractor } from '@/lib/services/entityExtractor';
 import { EntityStorage } from '@/lib/services/entityStorage';
 
@@ -42,21 +42,14 @@ export async function POST(request: NextRequest) {
 
     // If firId provided, fetch OCR text from Data Store
     if (firId && !ocrText) {
-      const app = await getCatalystAppAsync();
-      const zcql = app.zcql();
-      
-      const result = await zcql.executeZCQLQuery(
-        `SELECT ocr_text, ocr_status FROM FIRs WHERE fir_no = '${firId}' LIMIT 1`
-      );
+      const fir = await ServerDataLoader.getFIRById(firId);
 
-      if (!result || result.length === 0) {
+      if (!fir) {
         return NextResponse.json(
           { error: 'FIR not found' },
           { status: 404 }
         );
       }
-
-      const fir = result[0].FIRs || result[0];
 
       if (!fir.ocr_text) {
         return NextResponse.json(

@@ -1,10 +1,10 @@
-import { CatalystDataStore } from '@/lib/catalyst/datastore';
+import { LocalDataStore } from '@/lib/db/localStore';
 
 /**
  * ServerDataLoader — Server-side data access for Server Components
  * 
- * Strictly delegates to CatalystDataStore to enforce database connectivity.
- * No local file fallbacks are permitted here.
+ * Strictly delegates to FastAPI for implemented endpoints.
+ * Falls back to LocalDataStore for endpoints not yet in FastAPI.
  */
 export const ServerDataLoader = {
   getPersons: async () => {
@@ -12,20 +12,20 @@ export const ServerDataLoader = {
       const res = await fetch("http://127.0.0.1:8000/api/v1/persons");
       return await res.json();
     } catch {
-      return CatalystDataStore.getPersons();
+      return LocalDataStore.getPersons();
     }
   },
-  getPersonById: (id: string) => CatalystDataStore.getPersonById(id),
+  getPersonById: (id: string) => LocalDataStore.getPersonById(id),
 
-  getPoliceStations: () => CatalystDataStore.getPoliceStations(),
+  getPoliceStations: () => LocalDataStore.getPoliceStations(),
 
-  getFIRs: () => CatalystDataStore.getFIRs(),
+  getFIRs: () => LocalDataStore.getFIRs(),
   getFIRById: async (id: string) => {
     try {
       const res = await fetch(`http://127.0.0.1:8000/api/v1/cases/${id}`);
       return await res.json();
     } catch {
-      return CatalystDataStore.getFIRById(id);
+      return LocalDataStore.getFIRById(id);
     }
   },
 
@@ -44,39 +44,26 @@ export const ServerDataLoader = {
         district_id: c.ps_id
       }));
     } catch (e) {
-      return CatalystDataStore.getCases();
+      return LocalDataStore.getCases();
     }
   },
 
-  getVehicles: () => CatalystDataStore.getVehicles(),
-  getPhoneRecords: () => CatalystDataStore.getPhoneRecords(),
-  getBankAccounts: () => CatalystDataStore.getBankAccounts(),
-  getWeapons: () => CatalystDataStore.getWeapons(),
+  getVehicles: () => LocalDataStore.getVehicles(),
+  getPhoneRecords: () => LocalDataStore.getPhoneRecords(),
+  getBankAccounts: () => LocalDataStore.getBankAccounts(),
+  getWeapons: () => LocalDataStore.getWeapons(),
 
-  getEntityRelationships: () => CatalystDataStore.getEntityRelationships(),
-  getGraphForEntity: (id: string) => CatalystDataStore.getGraphForEntity(id),
+  getEntityRelationships: () => LocalDataStore.getEntityRelationships(),
+  getGraphForEntity: (id: string) => LocalDataStore.getGraphForEntity(id),
 
-  getSocioEconomicData: () => CatalystDataStore.getSocioEconomicData(),
-  getTransactions: () => CatalystDataStore.getTransactions(),
+  getSocioEconomicData: () => LocalDataStore.getSocioEconomicData(),
+  getTransactions: () => LocalDataStore.getTransactions(),
 
-  getDistricts: () => CatalystDataStore.getDistricts(),
-  getNotifications: () => CatalystDataStore.getNotifications(),
-  getSystemHealth: () => CatalystDataStore.getSystemHealth(),
+  getDistricts: () => LocalDataStore.getDistricts(),
+  getNotifications: () => LocalDataStore.getNotifications(),
+  getSystemHealth: () => LocalDataStore.getSystemHealth(),
   
-  // Note: AuditLogs may not be implemented in datastore.ts yet, 
-  // but it should also connect to Catalyst.
   getAuditLogs: async () => {
-    try {
-      const { getCatalystApp } = require('@/lib/catalyst');
-      const app = getCatalystApp();
-      const zcql = app.zcql();
-      if (zcql) {
-        const result = await zcql.executeZCQLQuery(`SELECT * FROM AuditLogs`);
-        return result.map((row: any) => row.AuditLogs || row);
-      }
-    } catch {
-      // Fallback to empty array if table doesn't exist
-    }
     return [];
   },
 };

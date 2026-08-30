@@ -1,23 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getCatalystAppAsync } from '@/lib/catalyst';
-
-/**
- * Analytics Correlations API
- * 
- * Reads from the REAL Catalyst database:
- *   FIRs       → each FIR has a `district_id`
- *   PoliceStations → maps police_station_id → district_id + name_en
- *   SocioEconomicData → maps district_id → unemployment_rate, literacy_rate, population_density
- */
+import { ServerDataLoader } from '@/lib/api/serverDataLoader';
 
 async function fetchFromCatalyst(tableName: string) {
-  const app = await getCatalystAppAsync();
-  const zcql = app.zcql();
-  if (!zcql) {
-    throw new Error('Catalyst ZCQL is not initialized');
-  }
-  const result = await zcql.executeZCQLQuery(`SELECT * FROM ${tableName}`);
-  return result.map((row: any) => row[tableName] || row);
+  if (tableName === 'FIRs') return ServerDataLoader.getFIRs();
+  if (tableName === 'PoliceStations') return ServerDataLoader.getPoliceStations();
+  if (tableName === 'SocioEconomicData') return ServerDataLoader.getSocioEconomicData();
+  return [];
 }
 
 export async function GET() {

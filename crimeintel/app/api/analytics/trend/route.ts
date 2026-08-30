@@ -33,29 +33,24 @@ export async function GET(request: Request) {
       const targetDate = new Date(maxDate);
       targetDate.setDate(targetDate.getDate() - i);
       const targetTime = targetDate.getTime();
+      const dateStr = targetDate.toISOString().split('T')[0];
       
-      // Calculate rolling sum for the target date
-      let rollingSum = 0;
-      for (let j = 0; j < ROLLING_WINDOW; j++) {
-        const d = new Date(targetDate);
-        d.setDate(d.getDate() - j);
-        const dateStr = d.toISOString().split('T')[0];
-        rollingSum += (dailyCounts[dateStr] || 0);
-      }
+      // Actual daily count
+      const dailyCount = dailyCounts[dateStr] || 0;
       
-      // Calculate a long-term baseline (e.g., 90-day sum scaled down to 14-day equivalent)
+      // Calculate a long-term baseline moving average (e.g., 30-day average)
       let baselineSum = 0;
       for (let j = 0; j < BASELINE_WINDOW; j++) {
         const d = new Date(targetDate);
         d.setDate(d.getDate() - j);
-        const dateStr = d.toISOString().split('T')[0];
-        baselineSum += (dailyCounts[dateStr] || 0);
+        const dStr = d.toISOString().split('T')[0];
+        baselineSum += (dailyCounts[dStr] || 0);
       }
       
-      const baseline = Math.round(baselineSum * (ROLLING_WINDOW / BASELINE_WINDOW));
+      const baseline = Math.round(baselineSum / BASELINE_WINDOW);
       
-      // Identify significant spikes (e.g. 50% above baseline and at least 5 incidents)
-      const isAnomaly = rollingSum > (baseline * 1.5) && rollingSum > 5;
+      // Identify significant spikes (e.g. above baseline by some margin)
+      const isAnomaly = dailyCount > (baseline * 1.5) && dailyCount >= 3;
       if (isAnomaly) {
         recentAnomalies++;
       }
@@ -64,8 +59,8 @@ export async function GET(request: Request) {
         time: targetDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         timestamp: targetTime,
         baseline,
-        telemetry: rollingSum,
-        anomaly: isAnomaly ? rollingSum : null
+        telemetry: dailyCount,
+        anomaly: isAnomaly ? dailyCount : null
       });
     }
 

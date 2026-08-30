@@ -20,9 +20,10 @@ export function PublicHeader() {
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium hidden md:flex">
-            <Link href="#features" className="transition-colors hover:text-foreground/80 text-foreground/60">{t('header.features') || 'Features'}</Link>
-            <Link href="#solutions" className="transition-colors hover:text-foreground/80 text-foreground/60">{t('header.solutions') || 'Solutions'}</Link>
-            <Link href="#pricing" className="transition-colors hover:text-foreground/80 text-foreground/60">{t('header.pricing') || 'Pricing'}</Link>
+            <Link href="/features/dashboard" className="transition-colors hover:text-foreground/80 text-foreground/60">Dashboard</Link>
+            <Link href="/features/network" className="transition-colors hover:text-foreground/80 text-foreground/60">Network Graph</Link>
+            <Link href="/features/predictive" className="transition-colors hover:text-foreground/80 text-foreground/60">Predictive AI</Link>
+            <Link href="/features/profiling" className="transition-colors hover:text-foreground/80 text-foreground/60">Suspect Profiling</Link>
           </nav>
         </div>
         

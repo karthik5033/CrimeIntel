@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { CatalystDataStore } from '@/lib/catalyst/datastore';
+import { ServerDataLoader } from '@/lib/api/serverDataLoader';
 
 /**
  * GET /api/data?table=FIRs
  * 
- * Strictly connects to Catalyst Database.
- * No local seed file fallbacks are permitted.
+ * Strictly connects to ServerDataLoader.
  */
 
 const VALID_TABLES = [
@@ -33,21 +32,21 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Strictly enforce Catalyst Database Connection
+    // Strictly enforce ServerDataLoader Connection
     let rows: any[] = [];
     
     switch (table) {
-      case 'Persons': rows = await CatalystDataStore.getPersons(); break;
-      case 'FIRs': rows = await CatalystDataStore.getFIRs(); break;
-      case 'Cases': rows = await CatalystDataStore.getCases(); break;
-      case 'PoliceStations': rows = await CatalystDataStore.getPoliceStations(); break;
-      case 'Vehicles': rows = await CatalystDataStore.getVehicles(); break;
-      case 'PhoneRecords': rows = await CatalystDataStore.getPhoneRecords(); break;
-      case 'BankAccounts': rows = await CatalystDataStore.getBankAccounts(); break;
-      case 'Weapons': rows = await CatalystDataStore.getWeapons(); break;
-      case 'EntityRelationships': rows = await CatalystDataStore.getEntityRelationships(); break;
-      case 'Transactions': rows = await CatalystDataStore.getTransactions(); break;
-      case 'SocioEconomicData': rows = await CatalystDataStore.getSocioEconomicData(); break;
+      case 'Persons': rows = await ServerDataLoader.getPersons(); break;
+      case 'FIRs': rows = await ServerDataLoader.getFIRs(); break;
+      case 'Cases': rows = await ServerDataLoader.getCases(); break;
+      case 'PoliceStations': rows = await ServerDataLoader.getPoliceStations(); break;
+      case 'Vehicles': rows = await ServerDataLoader.getVehicles(); break;
+      case 'PhoneRecords': rows = await ServerDataLoader.getPhoneRecords(); break;
+      case 'BankAccounts': rows = await ServerDataLoader.getBankAccounts(); break;
+      case 'Weapons': rows = await ServerDataLoader.getWeapons(); break;
+      case 'EntityRelationships': rows = await ServerDataLoader.getEntityRelationships(); break;
+      case 'Transactions': rows = await ServerDataLoader.getTransactions(); break;
+      case 'SocioEconomicData': rows = await ServerDataLoader.getSocioEconomicData(); break;
     }
 
     return NextResponse.json({ 

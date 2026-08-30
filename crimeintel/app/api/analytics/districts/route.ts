@@ -1,19 +1,9 @@
 import { NextResponse } from 'next/server';
-import { getCatalystAppAsync } from '@/lib/catalyst';
-
-/**
- * Returns the list of real districts from PoliceStations table in Catalyst
- * Used by the analytics UI to populate dropdowns.
- */
+import { ServerDataLoader } from '@/lib/api/serverDataLoader';
 
 async function fetchFromCatalyst(tableName: string) {
-  const app = await getCatalystAppAsync();
-  const zcql = app.zcql();
-  if (!zcql) {
-    throw new Error('Catalyst ZCQL is not initialized');
-  }
-  const result = await zcql.executeZCQLQuery(`SELECT * FROM ${tableName}`);
-  return result.map((row: any) => row[tableName] || row);
+  if (tableName === 'PoliceStations') return ServerDataLoader.getPoliceStations();
+  return [];
 }
 
 export async function GET() {

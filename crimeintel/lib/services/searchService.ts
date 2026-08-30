@@ -2,7 +2,7 @@
  * Phase 1 Step 10: Search Service
  * 
  * Combines multiple search strategies:
- * 1. Full-text search (ZCQL LIKE queries)
+ * 1. Full-text search (in-memory)
  * 2. Semantic search (vector embeddings)
  * 3. Entity-based search (persons, vehicles, phones)
  * 4. Metadata search (dates, locations, crime types)
@@ -11,7 +11,7 @@
  * cases, and entities across the entire database.
  */
 
-import { getCatalystApp } from '@/lib/catalyst';
+import { ServerDataLoader } from '@/lib/api/serverDataLoader';
 import { EmbeddingsService } from './embeddingsService';
 
 export interface SearchQuery {
@@ -138,68 +138,46 @@ export class SearchService {
   }
 
   /**
-   * Full-text search using ZCQL
+   * Full-text search using ServerDataLoader
    */
   static async fullTextSearch(
     query: SearchQuery,
     options: { limit?: number } = {}
   ): Promise<SearchResult[]> {
     const { limit = 20 } = options;
-    const app = getCatalystApp();
-    const zcql = app.zcql();
+    const firRows = await ServerDataLoader.getFIRs();
 
     const results: SearchResult[] = [];
 
     try {
-      // Build WHERE conditions
-      const conditions: string[] = [];
+      const filteredFirs = firRows.filter((fir: any) => {
+        if (query.text) {
+          const searchText = query.text.toLowerCase();
+          const descMatch = fir.description?.toLowerCase().includes(searchText);
+          const ocrMatch = fir.ocr_text?.toLowerCase().includes(searchText);
+          if (!descMatch && !ocrMatch) return false;
+        }
 
-      if (query.text) {
-        // Search in description and OCR text
-        const searchText = query.text.replace(/'/g, "''"); // Escape quotes
-        conditions.push(`(description LIKE '%${searchText}%' OR ocr_text LIKE '%${searchText}%')`);
-      }
+        if (query.crimeType && !fir.crime_type_en?.toLowerCase().includes(query.crimeType.toLowerCase())) {
+          return false;
+        }
 
-      if (query.crimeType) {
-        conditions.push(`crime_type_en LIKE '%${query.crimeType}%'`);
-      }
+        if (query.policeStation && fir.police_station_id !== query.policeStation) {
+          return false;
+        }
 
-      if (query.policeStation) {
-        conditions.push(`police_station_id = '${query.policeStation}'`);
-      }
+        if (query.dateFrom && fir.date < query.dateFrom) return false;
+        if (query.dateTo && fir.date > query.dateTo) return false;
+        if (query.status && fir.status_en !== query.status) return false;
+        if (query.firId && fir.fir_no !== query.firId) return false;
 
-      if (query.dateFrom) {
-        conditions.push(`date >= '${query.dateFrom}'`);
-      }
-
-      if (query.dateTo) {
-        conditions.push(`date <= '${query.dateTo}'`);
-      }
-
-      if (query.status) {
-        conditions.push(`status_en = '${query.status}'`);
-      }
-
-      if (query.firId) {
-        conditions.push(`fir_no = '${query.firId}'`);
-      }
-
-      // Execute search
-      const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
-      const firQuery = `
-        SELECT fir_no, crime_type_en, description, police_station_id, date, status_en, ocr_text 
-        FROM FIRs 
-        ${whereClause} 
-        ORDER BY date DESC 
-        LIMIT ${limit}
-      `;
-
-      const firRows = await zcql.executeZCQLQuery(firQuery);
+        return true;
+      }).sort((a: any, b: any) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      }).slice(0, limit);
 
       // Convert to SearchResult format
-      firRows.forEach((row: any) => {
-        const fir = row.FIRs || row;
-        
+      filteredFirs.forEach((fir: any) => {
         // Calculate relevance score based on matches
         let score = 0.5; // Base score
         
@@ -261,16 +239,11 @@ export class SearchService {
 
       for (const result of semanticResults) {
         // Get FIR details
-        const app = getCatalystApp();
-        const zcql = app.zcql();
-        
-        const firQuery = await zcql.executeZCQLQuery(
-          `SELECT fir_no, crime_type_en, description, police_station_id, date, status_en 
-           FROM FIRs WHERE fir_no = '${result.firId}' LIMIT 1`
-        );
+        const firs = await ServerDataLoader.getFIRs();
+        const firQuery = firs.filter((f: any) => f.fir_no === result.firId).slice(0, 1);
 
         if (firQuery.length > 0) {
-          const fir = firQuery[0].FIRs || firQuery[0];
+          const fir = firQuery[0];
           
           results.push({
             id: fir.fir_no,
@@ -305,24 +278,15 @@ export class SearchService {
     options: { limit?: number } = {}
   ): Promise<SearchResult[]> {
     const { limit = 10 } = options;
-    const app = getCatalystApp();
-    const zcql = app.zcql();
-
     try {
-      const escapedName = personName.replace(/'/g, "''");
-      const personsQuery = `
-        SELECT name, role, fir_id, phone, address 
-        FROM Persons 
-        WHERE name LIKE '%${escapedName}%' 
-        LIMIT ${limit}
-      `;
+      const allPersons = await ServerDataLoader.getPersons();
+      const persons = allPersons.filter((p: any) => 
+        p.name?.toLowerCase().includes(personName.toLowerCase())
+      ).slice(0, limit);
 
-      const persons = await zcql.executeZCQLQuery(personsQuery);
       const results: SearchResult[] = [];
 
-      for (const row of persons) {
-        const person = row.Persons || row;
-        
+      for (const person of persons) {
         results.push({
           id: `person_${person.name}_${person.fir_id}`,
           type: 'Person',
@@ -355,24 +319,15 @@ export class SearchService {
     options: { limit?: number } = {}
   ): Promise<SearchResult[]> {
     const { limit = 10 } = options;
-    const app = getCatalystApp();
-    const zcql = app.zcql();
-
     try {
-      const escapedReg = registration.replace(/'/g, "''");
-      const vehiclesQuery = `
-        SELECT registration, type, color, make, model, fir_id, owner 
-        FROM Vehicles 
-        WHERE registration LIKE '%${escapedReg}%' 
-        LIMIT ${limit}
-      `;
+      const allVehicles = await ServerDataLoader.getVehicles();
+      const vehicles = allVehicles.filter((v: any) => 
+        v.registration?.toLowerCase().includes(registration.toLowerCase())
+      ).slice(0, limit);
 
-      const vehicles = await zcql.executeZCQLQuery(vehiclesQuery);
       const results: SearchResult[] = [];
 
-      for (const row of vehicles) {
-        const vehicle = row.Vehicles || row;
-        
+      for (const vehicle of vehicles) {
         results.push({
           id: `vehicle_${vehicle.registration}`,
           type: 'Vehicle',
@@ -407,24 +362,15 @@ export class SearchService {
     options: { limit?: number } = {}
   ): Promise<SearchResult[]> {
     const { limit = 10 } = options;
-    const app = getCatalystApp();
-    const zcql = app.zcql();
-
     try {
-      const escapedPhone = phoneNumber.replace(/'/g, "''");
-      const phonesQuery = `
-        SELECT number, owner, type, fir_id, imei 
-        FROM PhoneRecords 
-        WHERE number LIKE '%${escapedPhone}%' 
-        LIMIT ${limit}
-      `;
+      const allPhones = await ServerDataLoader.getPhoneRecords();
+      const phones = allPhones.filter((p: any) => 
+        p.number?.toLowerCase().includes(phoneNumber.toLowerCase())
+      ).slice(0, limit);
 
-      const phones = await zcql.executeZCQLQuery(phonesQuery);
       const results: SearchResult[] = [];
 
-      for (const row of phones) {
-        const phone = row.PhoneRecords || row;
-        
+      for (const phone of phones) {
         results.push({
           id: `phone_${phone.number}`,
           type: 'Phone',
@@ -505,39 +451,34 @@ export class SearchService {
     policeStations: Array<{ station: string; count: number }>;
     dateRanges: Array<{ range: string; count: number }>;
   }> {
-    const app = getCatalystApp();
-    const zcql = app.zcql();
-
     try {
-      // Get crime type facets
-      const crimeTypesQuery = `
-        SELECT crime_type_en, COUNT(*) as count 
-        FROM FIRs 
-        GROUP BY crime_type_en 
-        ORDER BY count DESC 
-        LIMIT 10
-      `;
-      const crimeTypesResult = await zcql.executeZCQLQuery(crimeTypesQuery);
+      const allFirs = await ServerDataLoader.getFIRs();
+      
+      const crimeTypeMap = new Map<string, number>();
+      const stationMap = new Map<string, number>();
 
-      // Get police station facets
-      const stationsQuery = `
-        SELECT police_station_id, COUNT(*) as count 
-        FROM FIRs 
-        GROUP BY police_station_id 
-        ORDER BY count DESC 
-        LIMIT 10
-      `;
-      const stationsResult = await zcql.executeZCQLQuery(stationsQuery);
+      allFirs.forEach((fir: any) => {
+        if (fir.crime_type_en) {
+          crimeTypeMap.set(fir.crime_type_en, (crimeTypeMap.get(fir.crime_type_en) || 0) + 1);
+        }
+        if (fir.police_station_id) {
+          stationMap.set(fir.police_station_id, (stationMap.get(fir.police_station_id) || 0) + 1);
+        }
+      });
+
+      const crimeTypes = Array.from(crimeTypeMap.entries())
+        .map(([type, count]) => ({ type, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 10);
+
+      const policeStations = Array.from(stationMap.entries())
+        .map(([station, count]) => ({ station, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 10);
 
       return {
-        crimeTypes: crimeTypesResult.map((row: any) => ({
-          type: (row.FIRs || row).crime_type_en,
-          count: (row.FIRs || row).count,
-        })),
-        policeStations: stationsResult.map((row: any) => ({
-          station: (row.FIRs || row).police_station_id,
-          count: (row.FIRs || row).count,
-        })),
+        crimeTypes,
+        policeStations,
         dateRanges: [
           { range: 'Last 7 days', count: 0 },
           { range: 'Last 30 days', count: 0 },
@@ -582,17 +523,14 @@ export class SearchService {
       try {
         const similar = await EmbeddingsService.findSimilarFIRs(filters.similarTo, 20);
         const results: SearchResult[] = [];
+        
+        const firs = await ServerDataLoader.getFIRs();
 
         for (const sim of similar) {
-          const app = getCatalystApp();
-          const zcql = app.zcql();
-          
-          const firQuery = await zcql.executeZCQLQuery(
-            `SELECT * FROM FIRs WHERE fir_no = '${sim.firId}' LIMIT 1`
-          );
+          const firQuery = firs.filter((f: any) => f.fir_no === sim.firId).slice(0, 1);
 
           if (firQuery.length > 0) {
-            const fir = firQuery[0].FIRs || firQuery[0];
+            const fir = firQuery[0];
             results.push({
               id: fir.fir_no,
               type: 'FIR',
