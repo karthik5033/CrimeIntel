@@ -45,3 +45,8 @@ catalyst-debug.log
 
 # local persistent file store (dev only, not for AppSail deployment)
 /data/localdb/
+
+# Python backend
+/backend/venv/
+/backend/__pycache__/
+*.pyc
