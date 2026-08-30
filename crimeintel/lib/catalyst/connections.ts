@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 /**
  * Catalyst Connections Client Wrapper
@@ -10,7 +10,7 @@ export const CatalystConnections = {
    */
   getAccessToken: async (connectorName: string): Promise<string | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (app.connection) {
         const conn = await app.connection(connectorName).getAccessToken();
         return conn;

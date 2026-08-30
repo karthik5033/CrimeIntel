@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCatalystApp } from '@/lib/catalyst/index';
+import { getCatalystAppAsync } from '@/lib/catalyst/index';
 
 /**
  * Test endpoint to verify Catalyst bucket exists and is accessible
@@ -10,7 +10,7 @@ export async function GET() {
   try {
     console.log('🧪 Testing Catalyst bucket...');
     
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const filestore = app.filestore();
     
     if (!filestore) {

@@ -1,4 +1,4 @@
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 import { ParsedQuery } from '../chat/intentClassifier';
 
 /**
@@ -32,7 +32,7 @@ function buildParameterizedQuery(
 
 export class GraphAgent {
   static async retrieve(parsedQuery: ParsedQuery): Promise<any[]> {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
 
     if (!zcql) {

@@ -42,3 +42,6 @@ next-env.d.ts
 
 # catalyst logs
 catalyst-debug.log
+
+# local persistent file store (dev only, not for AppSail deployment)
+/data/localdb/

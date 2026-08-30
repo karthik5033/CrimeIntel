@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 
 // Use async/await instead of top-level imports to reduce bundle size
 async function getSeedData() {
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
   const results: Record<string, any> = {};
 
   try {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const datastore = app.datastore();
 
     // Load seed data dynamically (reduces serverless bundle size)

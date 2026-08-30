@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 
 /**
  * Returns the list of real districts from PoliceStations table in Catalyst
@@ -7,7 +7,7 @@ import { getCatalystApp } from '@/lib/catalyst';
  */
 
 async function fetchFromCatalyst(tableName: string) {
-  const app = getCatalystApp();
+  const app = await getCatalystAppAsync();
   const zcql = app.zcql();
   if (!zcql) {
     throw new Error('Catalyst ZCQL is not initialized');

@@ -1,9 +1,9 @@
 import { ParsedQuery } from '../chat/intentClassifier';
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 
 export class PredictiveAgent {
   static async retrieve(parsedQuery: ParsedQuery): Promise<any> {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
 
     if (!zcql) {

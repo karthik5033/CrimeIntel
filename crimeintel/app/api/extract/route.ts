@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 import { EntityExtractor } from '@/lib/services/entityExtractor';
 import { EntityStorage } from '@/lib/services/entityStorage';
 
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
 
     // If firId provided, fetch OCR text from Data Store
     if (firId && !ocrText) {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const zcql = app.zcql();
       
       const result = await zcql.executeZCQLQuery(

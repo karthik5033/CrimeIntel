@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 export interface CatalystUser {
   id: string;
@@ -102,7 +102,7 @@ export async function getSharedAccessToken(): Promise<string> {
 export const CatalystAuth = {
   getCurrentUser: async (): Promise<CatalystUser> => {
     try {
-      const app = await getCatalystApp();
+      const app = await getCatalystAppAsync();
       const userManagement = app.auth();
       if (userManagement && typeof userManagement.getCurrentUser === 'function') {
         const user = await userManagement.getCurrentUser();
@@ -140,7 +140,7 @@ export const CatalystAuth = {
 
   login: async (email: string, role: 'CONSTABLE' | 'INSPECTOR' | 'SUPERINTENDENT' | 'ADMIN' = 'INSPECTOR') => {
     try {
-      const app = await getCatalystApp();
+      const app = await getCatalystAppAsync();
       // In Catalyst Auth, user login is handled via Catalyst auth endpoints or OAuth
       console.log(`Authenticating ${email} as ${role} via Catalyst Auth...`);
       return { success: true, email, role };
@@ -151,7 +151,7 @@ export const CatalystAuth = {
 
   logout: async () => {
     try {
-      const app = await getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (app.auth()?.logout) {
         await app.auth().logout();
       }

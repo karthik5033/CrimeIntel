@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 export interface EmailOptions {
   toEmail: string;
@@ -18,7 +18,7 @@ export const CatalystMail = {
    */
   sendEmail: async (options: EmailOptions): Promise<boolean> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (app.email) {
         await app.email().sendMail({
           from_email: options.fromEmail || process.env.CATALYST_ALERT_FROM_EMAIL || 'alerts@crimeintel.ksp.gov.in',

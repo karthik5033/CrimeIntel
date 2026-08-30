@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 export interface CircuitExecutionOptions {
   circuitId: string;
@@ -21,7 +21,7 @@ export const CatalystCircuits = {
    */
   executeWorkflow: async (circuitName: string, payload: any): Promise<{ executionId: string; output: any }> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (app.circuits) {
         const execution = await app.circuits().circuit(circuitName).execute(payload);
         return {

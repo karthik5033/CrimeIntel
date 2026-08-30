@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 export interface ExtractedFirData {
   firNo?: string;
@@ -45,7 +45,7 @@ export const CatalystZiaOCR = {
     }
 
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const zia = app.zia?.();
       
       if (!zia) {

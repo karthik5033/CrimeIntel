@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 import fs from 'fs';
 import path from 'path';
 
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       }, { status: 400 });
     }
 
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const datastore = app.datastore();
 
     const seedDir = path.join(process.cwd(), 'data/seed');

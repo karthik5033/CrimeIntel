@@ -113,49 +113,45 @@ function PredictiveHeatmapLayer({ isVisible, mapStyle, recentSpikes }: { isVisib
   return null;
 }
 
-// Generates a tactical "Pro" circular area to simulate Wards dynamically around the selected spot using real FIR intersection
-function WardsGridLayer({ isVisible, selectedSpot, firPoints }: { isVisible: boolean, selectedSpot: any, firPoints: any[] }) {
-  if (!isVisible || !selectedSpot || !firPoints) return null;
+// BBMP Ward Boundaries Layer - Loads actual 198 ward boundaries for Bengaluru
+function BBMPWardsLayer({ isVisible, mapStyle }: { isVisible: boolean, mapStyle: string }) {
+  const [wardGeoJson, setWardGeoJson] = useState<any>(null);
 
-  const circles = [];
-  const maxRadiusKm = 25; // 25 km radius
-  const steps = 4; // 4 concentric circles
-  
-  // Count how many FIR points fall near the selected spot
-  let totalCount = 0;
-  for (const [flat, flng] of firPoints) {
-    // Rough distance calculation (not exact geodesic, but good enough for visual scale)
-    const dLat = flat - selectedSpot.lat;
-    const dLng = flng - selectedSpot.lng;
-    const distSq = dLat*dLat + dLng*dLng;
-    if (distSq < 0.05) { // Roughly 20-25km
-      totalCount++;
+  useEffect(() => {
+    if (isVisible) {
+      fetch('/bbmp_wards_sample.json')
+        .then(res => res.json())
+        .then(data => setWardGeoJson(data))
+        .catch(err => console.error("Failed to load BBMP wards", err));
     }
-  }
+  }, [isVisible]);
 
-  if (totalCount > 0) {
-    for(let i = 1; i <= steps; i++) {
-      const radius = (maxRadiusKm / steps) * i * 1000; // in meters
-      const fillOpacity = Math.max(0.02, 0.1 - (i * 0.02)); // Inner circles are darker
-      
-      circles.push(
-        <Circle 
-          key={i}
-          center={[selectedSpot.lat, selectedSpot.lng]}
-          radius={radius}
-          pathOptions={{ 
-            color: '#8b5cf6', 
-            weight: 1, 
-            opacity: 0.6,
-            fillColor: '#8b5cf6',
-            fillOpacity,
-            dashArray: '2, 4'
-          }}
-        />
-      );
-    }
-  }
-  return <LayerGroup>{circles}</LayerGroup>;
+  if (!isVisible || !wardGeoJson) return null;
+
+  return (
+    <GeoJSON 
+      key="bbmp-wards"
+      data={wardGeoJson} 
+      style={{
+        color: '#8b5cf6', // Purple to match UI toggle color
+        weight: 1.5,
+        opacity: 0.8,
+        fillColor: '#8b5cf6',
+        fillOpacity: 0.15,
+        lineJoin: 'round',
+        lineCap: 'round'
+      }}
+      onEachFeature={(feature, layer) => {
+        if (feature.properties && feature.properties.ward_no) {
+          const wardInfo = `Ward ${feature.properties.ward_no} - ${feature.properties.zone}`;
+          layer.bindTooltip(wardInfo, { 
+            direction: 'center', 
+            className: 'text-xs font-semibold bg-purple-50 dark:bg-purple-900/90 border border-purple-300 dark:border-purple-700 shadow-sm rounded px-2 py-1' 
+          });
+        }
+      }}
+    />
+  );
 }
 
 export default function LiveMapClient({ hotspots, firPoints, recentSpikes, policeStations, selectedSpot, onSelect, showHeatmap, showBoundaries, showWards, showPredictive, showPoliceStations, mapStyle }: any) {
@@ -219,8 +215,8 @@ export default function LiveMapClient({ hotspots, firPoints, recentSpikes, polic
           />
         )}
 
-        {/* Dynamic Wards Grid around active selection */}
-        <WardsGridLayer isVisible={showWards} selectedSpot={selectedSpot} firPoints={firPoints} />
+        {/* BBMP Ward Boundaries (198 wards across 8 zones) */}
+        <BBMPWardsLayer isVisible={showWards} mapStyle={mapStyle} />
         
         {/* Intensity Heatmap */}
         <HeatmapLayer isVisible={showHeatmap} mapStyle={mapStyle} firPoints={firPoints} />

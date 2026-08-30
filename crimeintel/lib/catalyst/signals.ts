@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 export interface CatalystEventPayload {
   eventName: 'FIR_CREATED' | 'PERSON_UPDATED' | 'CASE_STATUS_CHANGED' | 'ALERT_TRIGGERED';
@@ -30,7 +30,7 @@ export const CatalystSignals = {
    */
   publishEvent: async (payload: CatalystEventPayload): Promise<boolean> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (app.signals) {
         await app.signals().publish({
           topic: 'crimeintel_events',

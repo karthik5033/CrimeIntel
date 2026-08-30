@@ -7,15 +7,46 @@ import { CatalystDataStore } from '@/lib/catalyst/datastore';
  * No local file fallbacks are permitted here.
  */
 export const ServerDataLoader = {
-  getPersons: () => CatalystDataStore.getPersons(),
+  getPersons: async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/v1/persons");
+      return await res.json();
+    } catch {
+      return CatalystDataStore.getPersons();
+    }
+  },
   getPersonById: (id: string) => CatalystDataStore.getPersonById(id),
 
   getPoliceStations: () => CatalystDataStore.getPoliceStations(),
 
   getFIRs: () => CatalystDataStore.getFIRs(),
-  getFIRById: (id: string) => CatalystDataStore.getFIRById(id),
+  getFIRById: async (id: string) => {
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/api/v1/cases/${id}`);
+      return await res.json();
+    } catch {
+      return CatalystDataStore.getFIRById(id);
+    }
+  },
 
-  getCases: () => CatalystDataStore.getCases(),
+  getCases: async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/v1/cases");
+      const cases = await res.json();
+      // Map to the shape expected by the UI
+      return cases.map((c: any) => ({
+        id: c.fir_no, // Mapped from FastAPI
+        case_no: c.fir_no,
+        status: c.status_en,
+        firs: [c.id],
+        summary_en: c.brief_fact_en || "Fetched from FastAPI (PostgreSQL)",
+        crime_type: c.crime_type_en,
+        district_id: c.ps_id
+      }));
+    } catch (e) {
+      return CatalystDataStore.getCases();
+    }
+  },
 
   getVehicles: () => CatalystDataStore.getVehicles(),
   getPhoneRecords: () => CatalystDataStore.getPhoneRecords(),

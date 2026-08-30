@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 export interface PushNotificationPayload {
   title: string;
@@ -18,7 +18,7 @@ export const CatalystPush = {
    */
   sendNotification: async (payload: PushNotificationPayload): Promise<boolean> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (app.pushNotification) {
         await app.pushNotification().sendNotification({
           message: payload.body,

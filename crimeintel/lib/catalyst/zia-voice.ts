@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 export const CatalystZiaVoice = {
   /**
@@ -6,7 +6,7 @@ export const CatalystZiaVoice = {
    */
   speechToText: async (audioBlob: Blob, language: 'en' | 'kn' = 'en'): Promise<string | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (app.zia) {
         const result = await app.zia().speechToText({
           audio: audioBlob,
@@ -27,7 +27,7 @@ export const CatalystZiaVoice = {
    */
   textToSpeech: async (text: string, language: 'en' | 'kn' = 'en'): Promise<ArrayBuffer | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (app.zia) {
         const audioBuffer = await app.zia().textToSpeech({
           text,

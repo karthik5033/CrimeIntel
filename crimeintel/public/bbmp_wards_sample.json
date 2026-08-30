@@ -1,0 +1,7334 @@
+{
+  "type": "FeatureCollection",
+  "name": "BBMP_Wards_198_SAMPLE",
+  "note": "SAMPLE DATA - These are approximate ward boundaries for testing only. Replace with official BBMP data before production.",
+  "attribution": "SAMPLE DATA - Not for production use",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 1,
+        "ward_name": "Ward 1",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              12.85
+            ],
+            [
+              77.47142857142858,
+              12.85
+            ],
+            [
+              77.47142857142858,
+              12.871428571428572
+            ],
+            [
+              77.45,
+              12.871428571428572
+            ],
+            [
+              77.45,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 2,
+        "ward_name": "Ward 2",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              12.85
+            ],
+            [
+              77.49285714285715,
+              12.85
+            ],
+            [
+              77.49285714285715,
+              12.871428571428572
+            ],
+            [
+              77.47142857142858,
+              12.871428571428572
+            ],
+            [
+              77.47142857142858,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 3,
+        "ward_name": "Ward 3",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              12.85
+            ],
+            [
+              77.51428571428572,
+              12.85
+            ],
+            [
+              77.51428571428572,
+              12.871428571428572
+            ],
+            [
+              77.49285714285715,
+              12.871428571428572
+            ],
+            [
+              77.49285714285715,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 4,
+        "ward_name": "Ward 4",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              12.85
+            ],
+            [
+              77.53571428571429,
+              12.85
+            ],
+            [
+              77.53571428571429,
+              12.871428571428572
+            ],
+            [
+              77.51428571428572,
+              12.871428571428572
+            ],
+            [
+              77.51428571428572,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 5,
+        "ward_name": "Ward 5",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              12.85
+            ],
+            [
+              77.55714285714286,
+              12.85
+            ],
+            [
+              77.55714285714286,
+              12.871428571428572
+            ],
+            [
+              77.53571428571429,
+              12.871428571428572
+            ],
+            [
+              77.53571428571429,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 6,
+        "ward_name": "Ward 6",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              12.85
+            ],
+            [
+              77.57857142857144,
+              12.85
+            ],
+            [
+              77.57857142857144,
+              12.871428571428572
+            ],
+            [
+              77.55714285714286,
+              12.871428571428572
+            ],
+            [
+              77.55714285714286,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 7,
+        "ward_name": "Ward 7",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              12.85
+            ],
+            [
+              77.6,
+              12.85
+            ],
+            [
+              77.6,
+              12.871428571428572
+            ],
+            [
+              77.57857142857144,
+              12.871428571428572
+            ],
+            [
+              77.57857142857144,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 8,
+        "ward_name": "Ward 8",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              12.85
+            ],
+            [
+              77.62142857142857,
+              12.85
+            ],
+            [
+              77.62142857142857,
+              12.871428571428572
+            ],
+            [
+              77.6,
+              12.871428571428572
+            ],
+            [
+              77.6,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 9,
+        "ward_name": "Ward 9",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              12.85
+            ],
+            [
+              77.64285714285714,
+              12.85
+            ],
+            [
+              77.64285714285714,
+              12.871428571428572
+            ],
+            [
+              77.62142857142857,
+              12.871428571428572
+            ],
+            [
+              77.62142857142857,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 10,
+        "ward_name": "Ward 10",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              12.85
+            ],
+            [
+              77.66428571428571,
+              12.85
+            ],
+            [
+              77.66428571428571,
+              12.871428571428572
+            ],
+            [
+              77.64285714285714,
+              12.871428571428572
+            ],
+            [
+              77.64285714285714,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 11,
+        "ward_name": "Ward 11",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              12.85
+            ],
+            [
+              77.68571428571428,
+              12.85
+            ],
+            [
+              77.68571428571428,
+              12.871428571428572
+            ],
+            [
+              77.66428571428571,
+              12.871428571428572
+            ],
+            [
+              77.66428571428571,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 12,
+        "ward_name": "Ward 12",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              12.85
+            ],
+            [
+              77.70714285714286,
+              12.85
+            ],
+            [
+              77.70714285714286,
+              12.871428571428572
+            ],
+            [
+              77.68571428571428,
+              12.871428571428572
+            ],
+            [
+              77.68571428571428,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 13,
+        "ward_name": "Ward 13",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              12.85
+            ],
+            [
+              77.72857142857143,
+              12.85
+            ],
+            [
+              77.72857142857143,
+              12.871428571428572
+            ],
+            [
+              77.70714285714286,
+              12.871428571428572
+            ],
+            [
+              77.70714285714286,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 14,
+        "ward_name": "Ward 14",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              12.85
+            ],
+            [
+              77.75,
+              12.85
+            ],
+            [
+              77.75,
+              12.871428571428572
+            ],
+            [
+              77.72857142857143,
+              12.871428571428572
+            ],
+            [
+              77.72857142857143,
+              12.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 15,
+        "ward_name": "Ward 15",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              12.871428571428572
+            ],
+            [
+              77.47142857142858,
+              12.871428571428572
+            ],
+            [
+              77.47142857142858,
+              12.892857142857142
+            ],
+            [
+              77.45,
+              12.892857142857142
+            ],
+            [
+              77.45,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 16,
+        "ward_name": "Ward 16",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              12.871428571428572
+            ],
+            [
+              77.49285714285715,
+              12.871428571428572
+            ],
+            [
+              77.49285714285715,
+              12.892857142857142
+            ],
+            [
+              77.47142857142858,
+              12.892857142857142
+            ],
+            [
+              77.47142857142858,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 17,
+        "ward_name": "Ward 17",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              12.871428571428572
+            ],
+            [
+              77.51428571428572,
+              12.871428571428572
+            ],
+            [
+              77.51428571428572,
+              12.892857142857142
+            ],
+            [
+              77.49285714285715,
+              12.892857142857142
+            ],
+            [
+              77.49285714285715,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 18,
+        "ward_name": "Ward 18",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              12.871428571428572
+            ],
+            [
+              77.53571428571429,
+              12.871428571428572
+            ],
+            [
+              77.53571428571429,
+              12.892857142857142
+            ],
+            [
+              77.51428571428572,
+              12.892857142857142
+            ],
+            [
+              77.51428571428572,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 19,
+        "ward_name": "Ward 19",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              12.871428571428572
+            ],
+            [
+              77.55714285714286,
+              12.871428571428572
+            ],
+            [
+              77.55714285714286,
+              12.892857142857142
+            ],
+            [
+              77.53571428571429,
+              12.892857142857142
+            ],
+            [
+              77.53571428571429,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 20,
+        "ward_name": "Ward 20",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              12.871428571428572
+            ],
+            [
+              77.57857142857144,
+              12.871428571428572
+            ],
+            [
+              77.57857142857144,
+              12.892857142857142
+            ],
+            [
+              77.55714285714286,
+              12.892857142857142
+            ],
+            [
+              77.55714285714286,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 21,
+        "ward_name": "Ward 21",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              12.871428571428572
+            ],
+            [
+              77.6,
+              12.871428571428572
+            ],
+            [
+              77.6,
+              12.892857142857142
+            ],
+            [
+              77.57857142857144,
+              12.892857142857142
+            ],
+            [
+              77.57857142857144,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 22,
+        "ward_name": "Ward 22",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              12.871428571428572
+            ],
+            [
+              77.62142857142857,
+              12.871428571428572
+            ],
+            [
+              77.62142857142857,
+              12.892857142857142
+            ],
+            [
+              77.6,
+              12.892857142857142
+            ],
+            [
+              77.6,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 23,
+        "ward_name": "Ward 23",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              12.871428571428572
+            ],
+            [
+              77.64285714285714,
+              12.871428571428572
+            ],
+            [
+              77.64285714285714,
+              12.892857142857142
+            ],
+            [
+              77.62142857142857,
+              12.892857142857142
+            ],
+            [
+              77.62142857142857,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 24,
+        "ward_name": "Ward 24",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              12.871428571428572
+            ],
+            [
+              77.66428571428571,
+              12.871428571428572
+            ],
+            [
+              77.66428571428571,
+              12.892857142857142
+            ],
+            [
+              77.64285714285714,
+              12.892857142857142
+            ],
+            [
+              77.64285714285714,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 25,
+        "ward_name": "Ward 25",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              12.871428571428572
+            ],
+            [
+              77.68571428571428,
+              12.871428571428572
+            ],
+            [
+              77.68571428571428,
+              12.892857142857142
+            ],
+            [
+              77.66428571428571,
+              12.892857142857142
+            ],
+            [
+              77.66428571428571,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 26,
+        "ward_name": "Ward 26",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              12.871428571428572
+            ],
+            [
+              77.70714285714286,
+              12.871428571428572
+            ],
+            [
+              77.70714285714286,
+              12.892857142857142
+            ],
+            [
+              77.68571428571428,
+              12.892857142857142
+            ],
+            [
+              77.68571428571428,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 27,
+        "ward_name": "Ward 27",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              12.871428571428572
+            ],
+            [
+              77.72857142857143,
+              12.871428571428572
+            ],
+            [
+              77.72857142857143,
+              12.892857142857142
+            ],
+            [
+              77.70714285714286,
+              12.892857142857142
+            ],
+            [
+              77.70714285714286,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 28,
+        "ward_name": "Ward 28",
+        "zone": "Yelahanka",
+        "zone_no": 1,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              12.871428571428572
+            ],
+            [
+              77.75,
+              12.871428571428572
+            ],
+            [
+              77.75,
+              12.892857142857142
+            ],
+            [
+              77.72857142857143,
+              12.892857142857142
+            ],
+            [
+              77.72857142857143,
+              12.871428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 29,
+        "ward_name": "Ward 29",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              12.892857142857142
+            ],
+            [
+              77.47142857142858,
+              12.892857142857142
+            ],
+            [
+              77.47142857142858,
+              12.914285714285715
+            ],
+            [
+              77.45,
+              12.914285714285715
+            ],
+            [
+              77.45,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 30,
+        "ward_name": "Ward 30",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              12.892857142857142
+            ],
+            [
+              77.49285714285715,
+              12.892857142857142
+            ],
+            [
+              77.49285714285715,
+              12.914285714285715
+            ],
+            [
+              77.47142857142858,
+              12.914285714285715
+            ],
+            [
+              77.47142857142858,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 31,
+        "ward_name": "Ward 31",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              12.892857142857142
+            ],
+            [
+              77.51428571428572,
+              12.892857142857142
+            ],
+            [
+              77.51428571428572,
+              12.914285714285715
+            ],
+            [
+              77.49285714285715,
+              12.914285714285715
+            ],
+            [
+              77.49285714285715,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 32,
+        "ward_name": "Ward 32",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              12.892857142857142
+            ],
+            [
+              77.53571428571429,
+              12.892857142857142
+            ],
+            [
+              77.53571428571429,
+              12.914285714285715
+            ],
+            [
+              77.51428571428572,
+              12.914285714285715
+            ],
+            [
+              77.51428571428572,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 33,
+        "ward_name": "Ward 33",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              12.892857142857142
+            ],
+            [
+              77.55714285714286,
+              12.892857142857142
+            ],
+            [
+              77.55714285714286,
+              12.914285714285715
+            ],
+            [
+              77.53571428571429,
+              12.914285714285715
+            ],
+            [
+              77.53571428571429,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 34,
+        "ward_name": "Ward 34",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              12.892857142857142
+            ],
+            [
+              77.57857142857144,
+              12.892857142857142
+            ],
+            [
+              77.57857142857144,
+              12.914285714285715
+            ],
+            [
+              77.55714285714286,
+              12.914285714285715
+            ],
+            [
+              77.55714285714286,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 35,
+        "ward_name": "Ward 35",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              12.892857142857142
+            ],
+            [
+              77.6,
+              12.892857142857142
+            ],
+            [
+              77.6,
+              12.914285714285715
+            ],
+            [
+              77.57857142857144,
+              12.914285714285715
+            ],
+            [
+              77.57857142857144,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 36,
+        "ward_name": "Ward 36",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              12.892857142857142
+            ],
+            [
+              77.62142857142857,
+              12.892857142857142
+            ],
+            [
+              77.62142857142857,
+              12.914285714285715
+            ],
+            [
+              77.6,
+              12.914285714285715
+            ],
+            [
+              77.6,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 37,
+        "ward_name": "Ward 37",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              12.892857142857142
+            ],
+            [
+              77.64285714285714,
+              12.892857142857142
+            ],
+            [
+              77.64285714285714,
+              12.914285714285715
+            ],
+            [
+              77.62142857142857,
+              12.914285714285715
+            ],
+            [
+              77.62142857142857,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 38,
+        "ward_name": "Ward 38",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              12.892857142857142
+            ],
+            [
+              77.66428571428571,
+              12.892857142857142
+            ],
+            [
+              77.66428571428571,
+              12.914285714285715
+            ],
+            [
+              77.64285714285714,
+              12.914285714285715
+            ],
+            [
+              77.64285714285714,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 39,
+        "ward_name": "Ward 39",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              12.892857142857142
+            ],
+            [
+              77.68571428571428,
+              12.892857142857142
+            ],
+            [
+              77.68571428571428,
+              12.914285714285715
+            ],
+            [
+              77.66428571428571,
+              12.914285714285715
+            ],
+            [
+              77.66428571428571,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 40,
+        "ward_name": "Ward 40",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              12.892857142857142
+            ],
+            [
+              77.70714285714286,
+              12.892857142857142
+            ],
+            [
+              77.70714285714286,
+              12.914285714285715
+            ],
+            [
+              77.68571428571428,
+              12.914285714285715
+            ],
+            [
+              77.68571428571428,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 41,
+        "ward_name": "Ward 41",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              12.892857142857142
+            ],
+            [
+              77.72857142857143,
+              12.892857142857142
+            ],
+            [
+              77.72857142857143,
+              12.914285714285715
+            ],
+            [
+              77.70714285714286,
+              12.914285714285715
+            ],
+            [
+              77.70714285714286,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 42,
+        "ward_name": "Ward 42",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              12.892857142857142
+            ],
+            [
+              77.75,
+              12.892857142857142
+            ],
+            [
+              77.75,
+              12.914285714285715
+            ],
+            [
+              77.72857142857143,
+              12.914285714285715
+            ],
+            [
+              77.72857142857143,
+              12.892857142857142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 43,
+        "ward_name": "Ward 43",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              12.914285714285715
+            ],
+            [
+              77.47142857142858,
+              12.914285714285715
+            ],
+            [
+              77.47142857142858,
+              12.935714285714285
+            ],
+            [
+              77.45,
+              12.935714285714285
+            ],
+            [
+              77.45,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 44,
+        "ward_name": "Ward 44",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              12.914285714285715
+            ],
+            [
+              77.49285714285715,
+              12.914285714285715
+            ],
+            [
+              77.49285714285715,
+              12.935714285714285
+            ],
+            [
+              77.47142857142858,
+              12.935714285714285
+            ],
+            [
+              77.47142857142858,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 45,
+        "ward_name": "Ward 45",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              12.914285714285715
+            ],
+            [
+              77.51428571428572,
+              12.914285714285715
+            ],
+            [
+              77.51428571428572,
+              12.935714285714285
+            ],
+            [
+              77.49285714285715,
+              12.935714285714285
+            ],
+            [
+              77.49285714285715,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 46,
+        "ward_name": "Ward 46",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              12.914285714285715
+            ],
+            [
+              77.53571428571429,
+              12.914285714285715
+            ],
+            [
+              77.53571428571429,
+              12.935714285714285
+            ],
+            [
+              77.51428571428572,
+              12.935714285714285
+            ],
+            [
+              77.51428571428572,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 47,
+        "ward_name": "Ward 47",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              12.914285714285715
+            ],
+            [
+              77.55714285714286,
+              12.914285714285715
+            ],
+            [
+              77.55714285714286,
+              12.935714285714285
+            ],
+            [
+              77.53571428571429,
+              12.935714285714285
+            ],
+            [
+              77.53571428571429,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 48,
+        "ward_name": "Ward 48",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              12.914285714285715
+            ],
+            [
+              77.57857142857144,
+              12.914285714285715
+            ],
+            [
+              77.57857142857144,
+              12.935714285714285
+            ],
+            [
+              77.55714285714286,
+              12.935714285714285
+            ],
+            [
+              77.55714285714286,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 49,
+        "ward_name": "Ward 49",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              12.914285714285715
+            ],
+            [
+              77.6,
+              12.914285714285715
+            ],
+            [
+              77.6,
+              12.935714285714285
+            ],
+            [
+              77.57857142857144,
+              12.935714285714285
+            ],
+            [
+              77.57857142857144,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 50,
+        "ward_name": "Ward 50",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              12.914285714285715
+            ],
+            [
+              77.62142857142857,
+              12.914285714285715
+            ],
+            [
+              77.62142857142857,
+              12.935714285714285
+            ],
+            [
+              77.6,
+              12.935714285714285
+            ],
+            [
+              77.6,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 51,
+        "ward_name": "Ward 51",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              12.914285714285715
+            ],
+            [
+              77.64285714285714,
+              12.914285714285715
+            ],
+            [
+              77.64285714285714,
+              12.935714285714285
+            ],
+            [
+              77.62142857142857,
+              12.935714285714285
+            ],
+            [
+              77.62142857142857,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 52,
+        "ward_name": "Ward 52",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              12.914285714285715
+            ],
+            [
+              77.66428571428571,
+              12.914285714285715
+            ],
+            [
+              77.66428571428571,
+              12.935714285714285
+            ],
+            [
+              77.64285714285714,
+              12.935714285714285
+            ],
+            [
+              77.64285714285714,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 53,
+        "ward_name": "Ward 53",
+        "zone": "Dasarahalli",
+        "zone_no": 2,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              12.914285714285715
+            ],
+            [
+              77.68571428571428,
+              12.914285714285715
+            ],
+            [
+              77.68571428571428,
+              12.935714285714285
+            ],
+            [
+              77.66428571428571,
+              12.935714285714285
+            ],
+            [
+              77.66428571428571,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 54,
+        "ward_name": "Ward 54",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              12.914285714285715
+            ],
+            [
+              77.70714285714286,
+              12.914285714285715
+            ],
+            [
+              77.70714285714286,
+              12.935714285714285
+            ],
+            [
+              77.68571428571428,
+              12.935714285714285
+            ],
+            [
+              77.68571428571428,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 55,
+        "ward_name": "Ward 55",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              12.914285714285715
+            ],
+            [
+              77.72857142857143,
+              12.914285714285715
+            ],
+            [
+              77.72857142857143,
+              12.935714285714285
+            ],
+            [
+              77.70714285714286,
+              12.935714285714285
+            ],
+            [
+              77.70714285714286,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 56,
+        "ward_name": "Ward 56",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              12.914285714285715
+            ],
+            [
+              77.75,
+              12.914285714285715
+            ],
+            [
+              77.75,
+              12.935714285714285
+            ],
+            [
+              77.72857142857143,
+              12.935714285714285
+            ],
+            [
+              77.72857142857143,
+              12.914285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 57,
+        "ward_name": "Ward 57",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              12.935714285714285
+            ],
+            [
+              77.47142857142858,
+              12.935714285714285
+            ],
+            [
+              77.47142857142858,
+              12.957142857142857
+            ],
+            [
+              77.45,
+              12.957142857142857
+            ],
+            [
+              77.45,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 58,
+        "ward_name": "Ward 58",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              12.935714285714285
+            ],
+            [
+              77.49285714285715,
+              12.935714285714285
+            ],
+            [
+              77.49285714285715,
+              12.957142857142857
+            ],
+            [
+              77.47142857142858,
+              12.957142857142857
+            ],
+            [
+              77.47142857142858,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 59,
+        "ward_name": "Ward 59",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              12.935714285714285
+            ],
+            [
+              77.51428571428572,
+              12.935714285714285
+            ],
+            [
+              77.51428571428572,
+              12.957142857142857
+            ],
+            [
+              77.49285714285715,
+              12.957142857142857
+            ],
+            [
+              77.49285714285715,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 60,
+        "ward_name": "Ward 60",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              12.935714285714285
+            ],
+            [
+              77.53571428571429,
+              12.935714285714285
+            ],
+            [
+              77.53571428571429,
+              12.957142857142857
+            ],
+            [
+              77.51428571428572,
+              12.957142857142857
+            ],
+            [
+              77.51428571428572,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 61,
+        "ward_name": "Ward 61",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              12.935714285714285
+            ],
+            [
+              77.55714285714286,
+              12.935714285714285
+            ],
+            [
+              77.55714285714286,
+              12.957142857142857
+            ],
+            [
+              77.53571428571429,
+              12.957142857142857
+            ],
+            [
+              77.53571428571429,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 62,
+        "ward_name": "Ward 62",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              12.935714285714285
+            ],
+            [
+              77.57857142857144,
+              12.935714285714285
+            ],
+            [
+              77.57857142857144,
+              12.957142857142857
+            ],
+            [
+              77.55714285714286,
+              12.957142857142857
+            ],
+            [
+              77.55714285714286,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 63,
+        "ward_name": "Ward 63",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              12.935714285714285
+            ],
+            [
+              77.6,
+              12.935714285714285
+            ],
+            [
+              77.6,
+              12.957142857142857
+            ],
+            [
+              77.57857142857144,
+              12.957142857142857
+            ],
+            [
+              77.57857142857144,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 64,
+        "ward_name": "Ward 64",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              12.935714285714285
+            ],
+            [
+              77.62142857142857,
+              12.935714285714285
+            ],
+            [
+              77.62142857142857,
+              12.957142857142857
+            ],
+            [
+              77.6,
+              12.957142857142857
+            ],
+            [
+              77.6,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 65,
+        "ward_name": "Ward 65",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              12.935714285714285
+            ],
+            [
+              77.64285714285714,
+              12.935714285714285
+            ],
+            [
+              77.64285714285714,
+              12.957142857142857
+            ],
+            [
+              77.62142857142857,
+              12.957142857142857
+            ],
+            [
+              77.62142857142857,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 66,
+        "ward_name": "Ward 66",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              12.935714285714285
+            ],
+            [
+              77.66428571428571,
+              12.935714285714285
+            ],
+            [
+              77.66428571428571,
+              12.957142857142857
+            ],
+            [
+              77.64285714285714,
+              12.957142857142857
+            ],
+            [
+              77.64285714285714,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 67,
+        "ward_name": "Ward 67",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              12.935714285714285
+            ],
+            [
+              77.68571428571428,
+              12.935714285714285
+            ],
+            [
+              77.68571428571428,
+              12.957142857142857
+            ],
+            [
+              77.66428571428571,
+              12.957142857142857
+            ],
+            [
+              77.66428571428571,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 68,
+        "ward_name": "Ward 68",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              12.935714285714285
+            ],
+            [
+              77.70714285714286,
+              12.935714285714285
+            ],
+            [
+              77.70714285714286,
+              12.957142857142857
+            ],
+            [
+              77.68571428571428,
+              12.957142857142857
+            ],
+            [
+              77.68571428571428,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 69,
+        "ward_name": "Ward 69",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              12.935714285714285
+            ],
+            [
+              77.72857142857143,
+              12.935714285714285
+            ],
+            [
+              77.72857142857143,
+              12.957142857142857
+            ],
+            [
+              77.70714285714286,
+              12.957142857142857
+            ],
+            [
+              77.70714285714286,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 70,
+        "ward_name": "Ward 70",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              12.935714285714285
+            ],
+            [
+              77.75,
+              12.935714285714285
+            ],
+            [
+              77.75,
+              12.957142857142857
+            ],
+            [
+              77.72857142857143,
+              12.957142857142857
+            ],
+            [
+              77.72857142857143,
+              12.935714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 71,
+        "ward_name": "Ward 71",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              12.957142857142857
+            ],
+            [
+              77.47142857142858,
+              12.957142857142857
+            ],
+            [
+              77.47142857142858,
+              12.978571428571428
+            ],
+            [
+              77.45,
+              12.978571428571428
+            ],
+            [
+              77.45,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 72,
+        "ward_name": "Ward 72",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              12.957142857142857
+            ],
+            [
+              77.49285714285715,
+              12.957142857142857
+            ],
+            [
+              77.49285714285715,
+              12.978571428571428
+            ],
+            [
+              77.47142857142858,
+              12.978571428571428
+            ],
+            [
+              77.47142857142858,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 73,
+        "ward_name": "Ward 73",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              12.957142857142857
+            ],
+            [
+              77.51428571428572,
+              12.957142857142857
+            ],
+            [
+              77.51428571428572,
+              12.978571428571428
+            ],
+            [
+              77.49285714285715,
+              12.978571428571428
+            ],
+            [
+              77.49285714285715,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 74,
+        "ward_name": "Ward 74",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              12.957142857142857
+            ],
+            [
+              77.53571428571429,
+              12.957142857142857
+            ],
+            [
+              77.53571428571429,
+              12.978571428571428
+            ],
+            [
+              77.51428571428572,
+              12.978571428571428
+            ],
+            [
+              77.51428571428572,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 75,
+        "ward_name": "Ward 75",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              12.957142857142857
+            ],
+            [
+              77.55714285714286,
+              12.957142857142857
+            ],
+            [
+              77.55714285714286,
+              12.978571428571428
+            ],
+            [
+              77.53571428571429,
+              12.978571428571428
+            ],
+            [
+              77.53571428571429,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 76,
+        "ward_name": "Ward 76",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              12.957142857142857
+            ],
+            [
+              77.57857142857144,
+              12.957142857142857
+            ],
+            [
+              77.57857142857144,
+              12.978571428571428
+            ],
+            [
+              77.55714285714286,
+              12.978571428571428
+            ],
+            [
+              77.55714285714286,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 77,
+        "ward_name": "Ward 77",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              12.957142857142857
+            ],
+            [
+              77.6,
+              12.957142857142857
+            ],
+            [
+              77.6,
+              12.978571428571428
+            ],
+            [
+              77.57857142857144,
+              12.978571428571428
+            ],
+            [
+              77.57857142857144,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 78,
+        "ward_name": "Ward 78",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              12.957142857142857
+            ],
+            [
+              77.62142857142857,
+              12.957142857142857
+            ],
+            [
+              77.62142857142857,
+              12.978571428571428
+            ],
+            [
+              77.6,
+              12.978571428571428
+            ],
+            [
+              77.6,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 79,
+        "ward_name": "Ward 79",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              12.957142857142857
+            ],
+            [
+              77.64285714285714,
+              12.957142857142857
+            ],
+            [
+              77.64285714285714,
+              12.978571428571428
+            ],
+            [
+              77.62142857142857,
+              12.978571428571428
+            ],
+            [
+              77.62142857142857,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 80,
+        "ward_name": "Ward 80",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              12.957142857142857
+            ],
+            [
+              77.66428571428571,
+              12.957142857142857
+            ],
+            [
+              77.66428571428571,
+              12.978571428571428
+            ],
+            [
+              77.64285714285714,
+              12.978571428571428
+            ],
+            [
+              77.64285714285714,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 81,
+        "ward_name": "Ward 81",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              12.957142857142857
+            ],
+            [
+              77.68571428571428,
+              12.957142857142857
+            ],
+            [
+              77.68571428571428,
+              12.978571428571428
+            ],
+            [
+              77.66428571428571,
+              12.978571428571428
+            ],
+            [
+              77.66428571428571,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 82,
+        "ward_name": "Ward 82",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              12.957142857142857
+            ],
+            [
+              77.70714285714286,
+              12.957142857142857
+            ],
+            [
+              77.70714285714286,
+              12.978571428571428
+            ],
+            [
+              77.68571428571428,
+              12.978571428571428
+            ],
+            [
+              77.68571428571428,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 83,
+        "ward_name": "Ward 83",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              12.957142857142857
+            ],
+            [
+              77.72857142857143,
+              12.957142857142857
+            ],
+            [
+              77.72857142857143,
+              12.978571428571428
+            ],
+            [
+              77.70714285714286,
+              12.978571428571428
+            ],
+            [
+              77.70714285714286,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 84,
+        "ward_name": "Ward 84",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              12.957142857142857
+            ],
+            [
+              77.75,
+              12.957142857142857
+            ],
+            [
+              77.75,
+              12.978571428571428
+            ],
+            [
+              77.72857142857143,
+              12.978571428571428
+            ],
+            [
+              77.72857142857143,
+              12.957142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 85,
+        "ward_name": "Ward 85",
+        "zone": "Mahadevapura",
+        "zone_no": 3,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              12.978571428571428
+            ],
+            [
+              77.47142857142858,
+              12.978571428571428
+            ],
+            [
+              77.47142857142858,
+              13
+            ],
+            [
+              77.45,
+              13
+            ],
+            [
+              77.45,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 86,
+        "ward_name": "Ward 86",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              12.978571428571428
+            ],
+            [
+              77.49285714285715,
+              12.978571428571428
+            ],
+            [
+              77.49285714285715,
+              13
+            ],
+            [
+              77.47142857142858,
+              13
+            ],
+            [
+              77.47142857142858,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 87,
+        "ward_name": "Ward 87",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              12.978571428571428
+            ],
+            [
+              77.51428571428572,
+              12.978571428571428
+            ],
+            [
+              77.51428571428572,
+              13
+            ],
+            [
+              77.49285714285715,
+              13
+            ],
+            [
+              77.49285714285715,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 88,
+        "ward_name": "Ward 88",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              12.978571428571428
+            ],
+            [
+              77.53571428571429,
+              12.978571428571428
+            ],
+            [
+              77.53571428571429,
+              13
+            ],
+            [
+              77.51428571428572,
+              13
+            ],
+            [
+              77.51428571428572,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 89,
+        "ward_name": "Ward 89",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              12.978571428571428
+            ],
+            [
+              77.55714285714286,
+              12.978571428571428
+            ],
+            [
+              77.55714285714286,
+              13
+            ],
+            [
+              77.53571428571429,
+              13
+            ],
+            [
+              77.53571428571429,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 90,
+        "ward_name": "Ward 90",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              12.978571428571428
+            ],
+            [
+              77.57857142857144,
+              12.978571428571428
+            ],
+            [
+              77.57857142857144,
+              13
+            ],
+            [
+              77.55714285714286,
+              13
+            ],
+            [
+              77.55714285714286,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 91,
+        "ward_name": "Ward 91",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              12.978571428571428
+            ],
+            [
+              77.6,
+              12.978571428571428
+            ],
+            [
+              77.6,
+              13
+            ],
+            [
+              77.57857142857144,
+              13
+            ],
+            [
+              77.57857142857144,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 92,
+        "ward_name": "Ward 92",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              12.978571428571428
+            ],
+            [
+              77.62142857142857,
+              12.978571428571428
+            ],
+            [
+              77.62142857142857,
+              13
+            ],
+            [
+              77.6,
+              13
+            ],
+            [
+              77.6,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 93,
+        "ward_name": "Ward 93",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              12.978571428571428
+            ],
+            [
+              77.64285714285714,
+              12.978571428571428
+            ],
+            [
+              77.64285714285714,
+              13
+            ],
+            [
+              77.62142857142857,
+              13
+            ],
+            [
+              77.62142857142857,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 94,
+        "ward_name": "Ward 94",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              12.978571428571428
+            ],
+            [
+              77.66428571428571,
+              12.978571428571428
+            ],
+            [
+              77.66428571428571,
+              13
+            ],
+            [
+              77.64285714285714,
+              13
+            ],
+            [
+              77.64285714285714,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 95,
+        "ward_name": "Ward 95",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              12.978571428571428
+            ],
+            [
+              77.68571428571428,
+              12.978571428571428
+            ],
+            [
+              77.68571428571428,
+              13
+            ],
+            [
+              77.66428571428571,
+              13
+            ],
+            [
+              77.66428571428571,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 96,
+        "ward_name": "Ward 96",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              12.978571428571428
+            ],
+            [
+              77.70714285714286,
+              12.978571428571428
+            ],
+            [
+              77.70714285714286,
+              13
+            ],
+            [
+              77.68571428571428,
+              13
+            ],
+            [
+              77.68571428571428,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 97,
+        "ward_name": "Ward 97",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              12.978571428571428
+            ],
+            [
+              77.72857142857143,
+              12.978571428571428
+            ],
+            [
+              77.72857142857143,
+              13
+            ],
+            [
+              77.70714285714286,
+              13
+            ],
+            [
+              77.70714285714286,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 98,
+        "ward_name": "Ward 98",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              12.978571428571428
+            ],
+            [
+              77.75,
+              12.978571428571428
+            ],
+            [
+              77.75,
+              13
+            ],
+            [
+              77.72857142857143,
+              13
+            ],
+            [
+              77.72857142857143,
+              12.978571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 99,
+        "ward_name": "Ward 99",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              13
+            ],
+            [
+              77.47142857142858,
+              13
+            ],
+            [
+              77.47142857142858,
+              13.021428571428572
+            ],
+            [
+              77.45,
+              13.021428571428572
+            ],
+            [
+              77.45,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 100,
+        "ward_name": "Ward 100",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              13
+            ],
+            [
+              77.49285714285715,
+              13
+            ],
+            [
+              77.49285714285715,
+              13.021428571428572
+            ],
+            [
+              77.47142857142858,
+              13.021428571428572
+            ],
+            [
+              77.47142857142858,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 101,
+        "ward_name": "Ward 101",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              13
+            ],
+            [
+              77.51428571428572,
+              13
+            ],
+            [
+              77.51428571428572,
+              13.021428571428572
+            ],
+            [
+              77.49285714285715,
+              13.021428571428572
+            ],
+            [
+              77.49285714285715,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 102,
+        "ward_name": "Ward 102",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              13
+            ],
+            [
+              77.53571428571429,
+              13
+            ],
+            [
+              77.53571428571429,
+              13.021428571428572
+            ],
+            [
+              77.51428571428572,
+              13.021428571428572
+            ],
+            [
+              77.51428571428572,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 103,
+        "ward_name": "Ward 103",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              13
+            ],
+            [
+              77.55714285714286,
+              13
+            ],
+            [
+              77.55714285714286,
+              13.021428571428572
+            ],
+            [
+              77.53571428571429,
+              13.021428571428572
+            ],
+            [
+              77.53571428571429,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 104,
+        "ward_name": "Ward 104",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              13
+            ],
+            [
+              77.57857142857144,
+              13
+            ],
+            [
+              77.57857142857144,
+              13.021428571428572
+            ],
+            [
+              77.55714285714286,
+              13.021428571428572
+            ],
+            [
+              77.55714285714286,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 105,
+        "ward_name": "Ward 105",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              13
+            ],
+            [
+              77.6,
+              13
+            ],
+            [
+              77.6,
+              13.021428571428572
+            ],
+            [
+              77.57857142857144,
+              13.021428571428572
+            ],
+            [
+              77.57857142857144,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 106,
+        "ward_name": "Ward 106",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              13
+            ],
+            [
+              77.62142857142857,
+              13
+            ],
+            [
+              77.62142857142857,
+              13.021428571428572
+            ],
+            [
+              77.6,
+              13.021428571428572
+            ],
+            [
+              77.6,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 107,
+        "ward_name": "Ward 107",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              13
+            ],
+            [
+              77.64285714285714,
+              13
+            ],
+            [
+              77.64285714285714,
+              13.021428571428572
+            ],
+            [
+              77.62142857142857,
+              13.021428571428572
+            ],
+            [
+              77.62142857142857,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 108,
+        "ward_name": "Ward 108",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              13
+            ],
+            [
+              77.66428571428571,
+              13
+            ],
+            [
+              77.66428571428571,
+              13.021428571428572
+            ],
+            [
+              77.64285714285714,
+              13.021428571428572
+            ],
+            [
+              77.64285714285714,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 109,
+        "ward_name": "Ward 109",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              13
+            ],
+            [
+              77.68571428571428,
+              13
+            ],
+            [
+              77.68571428571428,
+              13.021428571428572
+            ],
+            [
+              77.66428571428571,
+              13.021428571428572
+            ],
+            [
+              77.66428571428571,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 110,
+        "ward_name": "Ward 110",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              13
+            ],
+            [
+              77.70714285714286,
+              13
+            ],
+            [
+              77.70714285714286,
+              13.021428571428572
+            ],
+            [
+              77.68571428571428,
+              13.021428571428572
+            ],
+            [
+              77.68571428571428,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 111,
+        "ward_name": "Ward 111",
+        "zone": "Bommanahalli",
+        "zone_no": 4,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              13
+            ],
+            [
+              77.72857142857143,
+              13
+            ],
+            [
+              77.72857142857143,
+              13.021428571428572
+            ],
+            [
+              77.70714285714286,
+              13.021428571428572
+            ],
+            [
+              77.70714285714286,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 112,
+        "ward_name": "Ward 112",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              13
+            ],
+            [
+              77.75,
+              13
+            ],
+            [
+              77.75,
+              13.021428571428572
+            ],
+            [
+              77.72857142857143,
+              13.021428571428572
+            ],
+            [
+              77.72857142857143,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 113,
+        "ward_name": "Ward 113",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              13.021428571428572
+            ],
+            [
+              77.47142857142858,
+              13.021428571428572
+            ],
+            [
+              77.47142857142858,
+              13.042857142857143
+            ],
+            [
+              77.45,
+              13.042857142857143
+            ],
+            [
+              77.45,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 114,
+        "ward_name": "Ward 114",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              13.021428571428572
+            ],
+            [
+              77.49285714285715,
+              13.021428571428572
+            ],
+            [
+              77.49285714285715,
+              13.042857142857143
+            ],
+            [
+              77.47142857142858,
+              13.042857142857143
+            ],
+            [
+              77.47142857142858,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 115,
+        "ward_name": "Ward 115",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              13.021428571428572
+            ],
+            [
+              77.51428571428572,
+              13.021428571428572
+            ],
+            [
+              77.51428571428572,
+              13.042857142857143
+            ],
+            [
+              77.49285714285715,
+              13.042857142857143
+            ],
+            [
+              77.49285714285715,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 116,
+        "ward_name": "Ward 116",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              13.021428571428572
+            ],
+            [
+              77.53571428571429,
+              13.021428571428572
+            ],
+            [
+              77.53571428571429,
+              13.042857142857143
+            ],
+            [
+              77.51428571428572,
+              13.042857142857143
+            ],
+            [
+              77.51428571428572,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 117,
+        "ward_name": "Ward 117",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              13.021428571428572
+            ],
+            [
+              77.55714285714286,
+              13.021428571428572
+            ],
+            [
+              77.55714285714286,
+              13.042857142857143
+            ],
+            [
+              77.53571428571429,
+              13.042857142857143
+            ],
+            [
+              77.53571428571429,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 118,
+        "ward_name": "Ward 118",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              13.021428571428572
+            ],
+            [
+              77.57857142857144,
+              13.021428571428572
+            ],
+            [
+              77.57857142857144,
+              13.042857142857143
+            ],
+            [
+              77.55714285714286,
+              13.042857142857143
+            ],
+            [
+              77.55714285714286,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 119,
+        "ward_name": "Ward 119",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              13.021428571428572
+            ],
+            [
+              77.6,
+              13.021428571428572
+            ],
+            [
+              77.6,
+              13.042857142857143
+            ],
+            [
+              77.57857142857144,
+              13.042857142857143
+            ],
+            [
+              77.57857142857144,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 120,
+        "ward_name": "Ward 120",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              13.021428571428572
+            ],
+            [
+              77.62142857142857,
+              13.021428571428572
+            ],
+            [
+              77.62142857142857,
+              13.042857142857143
+            ],
+            [
+              77.6,
+              13.042857142857143
+            ],
+            [
+              77.6,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 121,
+        "ward_name": "Ward 121",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              13.021428571428572
+            ],
+            [
+              77.64285714285714,
+              13.021428571428572
+            ],
+            [
+              77.64285714285714,
+              13.042857142857143
+            ],
+            [
+              77.62142857142857,
+              13.042857142857143
+            ],
+            [
+              77.62142857142857,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 122,
+        "ward_name": "Ward 122",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              13.021428571428572
+            ],
+            [
+              77.66428571428571,
+              13.021428571428572
+            ],
+            [
+              77.66428571428571,
+              13.042857142857143
+            ],
+            [
+              77.64285714285714,
+              13.042857142857143
+            ],
+            [
+              77.64285714285714,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 123,
+        "ward_name": "Ward 123",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              13.021428571428572
+            ],
+            [
+              77.68571428571428,
+              13.021428571428572
+            ],
+            [
+              77.68571428571428,
+              13.042857142857143
+            ],
+            [
+              77.66428571428571,
+              13.042857142857143
+            ],
+            [
+              77.66428571428571,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 124,
+        "ward_name": "Ward 124",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              13.021428571428572
+            ],
+            [
+              77.70714285714286,
+              13.021428571428572
+            ],
+            [
+              77.70714285714286,
+              13.042857142857143
+            ],
+            [
+              77.68571428571428,
+              13.042857142857143
+            ],
+            [
+              77.68571428571428,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 125,
+        "ward_name": "Ward 125",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              13.021428571428572
+            ],
+            [
+              77.72857142857143,
+              13.021428571428572
+            ],
+            [
+              77.72857142857143,
+              13.042857142857143
+            ],
+            [
+              77.70714285714286,
+              13.042857142857143
+            ],
+            [
+              77.70714285714286,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 126,
+        "ward_name": "Ward 126",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              13.021428571428572
+            ],
+            [
+              77.75,
+              13.021428571428572
+            ],
+            [
+              77.75,
+              13.042857142857143
+            ],
+            [
+              77.72857142857143,
+              13.042857142857143
+            ],
+            [
+              77.72857142857143,
+              13.021428571428572
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 127,
+        "ward_name": "Ward 127",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              13.042857142857143
+            ],
+            [
+              77.47142857142858,
+              13.042857142857143
+            ],
+            [
+              77.47142857142858,
+              13.064285714285715
+            ],
+            [
+              77.45,
+              13.064285714285715
+            ],
+            [
+              77.45,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 128,
+        "ward_name": "Ward 128",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              13.042857142857143
+            ],
+            [
+              77.49285714285715,
+              13.042857142857143
+            ],
+            [
+              77.49285714285715,
+              13.064285714285715
+            ],
+            [
+              77.47142857142858,
+              13.064285714285715
+            ],
+            [
+              77.47142857142858,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 129,
+        "ward_name": "Ward 129",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              13.042857142857143
+            ],
+            [
+              77.51428571428572,
+              13.042857142857143
+            ],
+            [
+              77.51428571428572,
+              13.064285714285715
+            ],
+            [
+              77.49285714285715,
+              13.064285714285715
+            ],
+            [
+              77.49285714285715,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 130,
+        "ward_name": "Ward 130",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              13.042857142857143
+            ],
+            [
+              77.53571428571429,
+              13.042857142857143
+            ],
+            [
+              77.53571428571429,
+              13.064285714285715
+            ],
+            [
+              77.51428571428572,
+              13.064285714285715
+            ],
+            [
+              77.51428571428572,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 131,
+        "ward_name": "Ward 131",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              13.042857142857143
+            ],
+            [
+              77.55714285714286,
+              13.042857142857143
+            ],
+            [
+              77.55714285714286,
+              13.064285714285715
+            ],
+            [
+              77.53571428571429,
+              13.064285714285715
+            ],
+            [
+              77.53571428571429,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 132,
+        "ward_name": "Ward 132",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              13.042857142857143
+            ],
+            [
+              77.57857142857144,
+              13.042857142857143
+            ],
+            [
+              77.57857142857144,
+              13.064285714285715
+            ],
+            [
+              77.55714285714286,
+              13.064285714285715
+            ],
+            [
+              77.55714285714286,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 133,
+        "ward_name": "Ward 133",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              13.042857142857143
+            ],
+            [
+              77.6,
+              13.042857142857143
+            ],
+            [
+              77.6,
+              13.064285714285715
+            ],
+            [
+              77.57857142857144,
+              13.064285714285715
+            ],
+            [
+              77.57857142857144,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 134,
+        "ward_name": "Ward 134",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              13.042857142857143
+            ],
+            [
+              77.62142857142857,
+              13.042857142857143
+            ],
+            [
+              77.62142857142857,
+              13.064285714285715
+            ],
+            [
+              77.6,
+              13.064285714285715
+            ],
+            [
+              77.6,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 135,
+        "ward_name": "Ward 135",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              13.042857142857143
+            ],
+            [
+              77.64285714285714,
+              13.042857142857143
+            ],
+            [
+              77.64285714285714,
+              13.064285714285715
+            ],
+            [
+              77.62142857142857,
+              13.064285714285715
+            ],
+            [
+              77.62142857142857,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 136,
+        "ward_name": "Ward 136",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              13.042857142857143
+            ],
+            [
+              77.66428571428571,
+              13.042857142857143
+            ],
+            [
+              77.66428571428571,
+              13.064285714285715
+            ],
+            [
+              77.64285714285714,
+              13.064285714285715
+            ],
+            [
+              77.64285714285714,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 137,
+        "ward_name": "Ward 137",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              13.042857142857143
+            ],
+            [
+              77.68571428571428,
+              13.042857142857143
+            ],
+            [
+              77.68571428571428,
+              13.064285714285715
+            ],
+            [
+              77.66428571428571,
+              13.064285714285715
+            ],
+            [
+              77.66428571428571,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 138,
+        "ward_name": "Ward 138",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              13.042857142857143
+            ],
+            [
+              77.70714285714286,
+              13.042857142857143
+            ],
+            [
+              77.70714285714286,
+              13.064285714285715
+            ],
+            [
+              77.68571428571428,
+              13.064285714285715
+            ],
+            [
+              77.68571428571428,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 139,
+        "ward_name": "Ward 139",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              13.042857142857143
+            ],
+            [
+              77.72857142857143,
+              13.042857142857143
+            ],
+            [
+              77.72857142857143,
+              13.064285714285715
+            ],
+            [
+              77.70714285714286,
+              13.064285714285715
+            ],
+            [
+              77.70714285714286,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 140,
+        "ward_name": "Ward 140",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              13.042857142857143
+            ],
+            [
+              77.75,
+              13.042857142857143
+            ],
+            [
+              77.75,
+              13.064285714285715
+            ],
+            [
+              77.72857142857143,
+              13.064285714285715
+            ],
+            [
+              77.72857142857143,
+              13.042857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 141,
+        "ward_name": "Ward 141",
+        "zone": "East",
+        "zone_no": 5,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              13.064285714285715
+            ],
+            [
+              77.47142857142858,
+              13.064285714285715
+            ],
+            [
+              77.47142857142858,
+              13.085714285714285
+            ],
+            [
+              77.45,
+              13.085714285714285
+            ],
+            [
+              77.45,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 142,
+        "ward_name": "Ward 142",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              13.064285714285715
+            ],
+            [
+              77.49285714285715,
+              13.064285714285715
+            ],
+            [
+              77.49285714285715,
+              13.085714285714285
+            ],
+            [
+              77.47142857142858,
+              13.085714285714285
+            ],
+            [
+              77.47142857142858,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 143,
+        "ward_name": "Ward 143",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              13.064285714285715
+            ],
+            [
+              77.51428571428572,
+              13.064285714285715
+            ],
+            [
+              77.51428571428572,
+              13.085714285714285
+            ],
+            [
+              77.49285714285715,
+              13.085714285714285
+            ],
+            [
+              77.49285714285715,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 144,
+        "ward_name": "Ward 144",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              13.064285714285715
+            ],
+            [
+              77.53571428571429,
+              13.064285714285715
+            ],
+            [
+              77.53571428571429,
+              13.085714285714285
+            ],
+            [
+              77.51428571428572,
+              13.085714285714285
+            ],
+            [
+              77.51428571428572,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 145,
+        "ward_name": "Ward 145",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              13.064285714285715
+            ],
+            [
+              77.55714285714286,
+              13.064285714285715
+            ],
+            [
+              77.55714285714286,
+              13.085714285714285
+            ],
+            [
+              77.53571428571429,
+              13.085714285714285
+            ],
+            [
+              77.53571428571429,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 146,
+        "ward_name": "Ward 146",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              13.064285714285715
+            ],
+            [
+              77.57857142857144,
+              13.064285714285715
+            ],
+            [
+              77.57857142857144,
+              13.085714285714285
+            ],
+            [
+              77.55714285714286,
+              13.085714285714285
+            ],
+            [
+              77.55714285714286,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 147,
+        "ward_name": "Ward 147",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              13.064285714285715
+            ],
+            [
+              77.6,
+              13.064285714285715
+            ],
+            [
+              77.6,
+              13.085714285714285
+            ],
+            [
+              77.57857142857144,
+              13.085714285714285
+            ],
+            [
+              77.57857142857144,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 148,
+        "ward_name": "Ward 148",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              13.064285714285715
+            ],
+            [
+              77.62142857142857,
+              13.064285714285715
+            ],
+            [
+              77.62142857142857,
+              13.085714285714285
+            ],
+            [
+              77.6,
+              13.085714285714285
+            ],
+            [
+              77.6,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 149,
+        "ward_name": "Ward 149",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              13.064285714285715
+            ],
+            [
+              77.64285714285714,
+              13.064285714285715
+            ],
+            [
+              77.64285714285714,
+              13.085714285714285
+            ],
+            [
+              77.62142857142857,
+              13.085714285714285
+            ],
+            [
+              77.62142857142857,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 150,
+        "ward_name": "Ward 150",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              13.064285714285715
+            ],
+            [
+              77.66428571428571,
+              13.064285714285715
+            ],
+            [
+              77.66428571428571,
+              13.085714285714285
+            ],
+            [
+              77.64285714285714,
+              13.085714285714285
+            ],
+            [
+              77.64285714285714,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 151,
+        "ward_name": "Ward 151",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              13.064285714285715
+            ],
+            [
+              77.68571428571428,
+              13.064285714285715
+            ],
+            [
+              77.68571428571428,
+              13.085714285714285
+            ],
+            [
+              77.66428571428571,
+              13.085714285714285
+            ],
+            [
+              77.66428571428571,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 152,
+        "ward_name": "Ward 152",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              13.064285714285715
+            ],
+            [
+              77.70714285714286,
+              13.064285714285715
+            ],
+            [
+              77.70714285714286,
+              13.085714285714285
+            ],
+            [
+              77.68571428571428,
+              13.085714285714285
+            ],
+            [
+              77.68571428571428,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 153,
+        "ward_name": "Ward 153",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              13.064285714285715
+            ],
+            [
+              77.72857142857143,
+              13.064285714285715
+            ],
+            [
+              77.72857142857143,
+              13.085714285714285
+            ],
+            [
+              77.70714285714286,
+              13.085714285714285
+            ],
+            [
+              77.70714285714286,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 154,
+        "ward_name": "Ward 154",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              13.064285714285715
+            ],
+            [
+              77.75,
+              13.064285714285715
+            ],
+            [
+              77.75,
+              13.085714285714285
+            ],
+            [
+              77.72857142857143,
+              13.085714285714285
+            ],
+            [
+              77.72857142857143,
+              13.064285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 155,
+        "ward_name": "Ward 155",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              13.085714285714285
+            ],
+            [
+              77.47142857142858,
+              13.085714285714285
+            ],
+            [
+              77.47142857142858,
+              13.107142857142858
+            ],
+            [
+              77.45,
+              13.107142857142858
+            ],
+            [
+              77.45,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 156,
+        "ward_name": "Ward 156",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              13.085714285714285
+            ],
+            [
+              77.49285714285715,
+              13.085714285714285
+            ],
+            [
+              77.49285714285715,
+              13.107142857142858
+            ],
+            [
+              77.47142857142858,
+              13.107142857142858
+            ],
+            [
+              77.47142857142858,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 157,
+        "ward_name": "Ward 157",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              13.085714285714285
+            ],
+            [
+              77.51428571428572,
+              13.085714285714285
+            ],
+            [
+              77.51428571428572,
+              13.107142857142858
+            ],
+            [
+              77.49285714285715,
+              13.107142857142858
+            ],
+            [
+              77.49285714285715,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 158,
+        "ward_name": "Ward 158",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              13.085714285714285
+            ],
+            [
+              77.53571428571429,
+              13.085714285714285
+            ],
+            [
+              77.53571428571429,
+              13.107142857142858
+            ],
+            [
+              77.51428571428572,
+              13.107142857142858
+            ],
+            [
+              77.51428571428572,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 159,
+        "ward_name": "Ward 159",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              13.085714285714285
+            ],
+            [
+              77.55714285714286,
+              13.085714285714285
+            ],
+            [
+              77.55714285714286,
+              13.107142857142858
+            ],
+            [
+              77.53571428571429,
+              13.107142857142858
+            ],
+            [
+              77.53571428571429,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 160,
+        "ward_name": "Ward 160",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              13.085714285714285
+            ],
+            [
+              77.57857142857144,
+              13.085714285714285
+            ],
+            [
+              77.57857142857144,
+              13.107142857142858
+            ],
+            [
+              77.55714285714286,
+              13.107142857142858
+            ],
+            [
+              77.55714285714286,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 161,
+        "ward_name": "Ward 161",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              13.085714285714285
+            ],
+            [
+              77.6,
+              13.085714285714285
+            ],
+            [
+              77.6,
+              13.107142857142858
+            ],
+            [
+              77.57857142857144,
+              13.107142857142858
+            ],
+            [
+              77.57857142857144,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 162,
+        "ward_name": "Ward 162",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              13.085714285714285
+            ],
+            [
+              77.62142857142857,
+              13.085714285714285
+            ],
+            [
+              77.62142857142857,
+              13.107142857142858
+            ],
+            [
+              77.6,
+              13.107142857142858
+            ],
+            [
+              77.6,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 163,
+        "ward_name": "Ward 163",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              13.085714285714285
+            ],
+            [
+              77.64285714285714,
+              13.085714285714285
+            ],
+            [
+              77.64285714285714,
+              13.107142857142858
+            ],
+            [
+              77.62142857142857,
+              13.107142857142858
+            ],
+            [
+              77.62142857142857,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 164,
+        "ward_name": "Ward 164",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              13.085714285714285
+            ],
+            [
+              77.66428571428571,
+              13.085714285714285
+            ],
+            [
+              77.66428571428571,
+              13.107142857142858
+            ],
+            [
+              77.64285714285714,
+              13.107142857142858
+            ],
+            [
+              77.64285714285714,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 165,
+        "ward_name": "Ward 165",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              13.085714285714285
+            ],
+            [
+              77.68571428571428,
+              13.085714285714285
+            ],
+            [
+              77.68571428571428,
+              13.107142857142858
+            ],
+            [
+              77.66428571428571,
+              13.107142857142858
+            ],
+            [
+              77.66428571428571,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 166,
+        "ward_name": "Ward 166",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              13.085714285714285
+            ],
+            [
+              77.70714285714286,
+              13.085714285714285
+            ],
+            [
+              77.70714285714286,
+              13.107142857142858
+            ],
+            [
+              77.68571428571428,
+              13.107142857142858
+            ],
+            [
+              77.68571428571428,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 167,
+        "ward_name": "Ward 167",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              13.085714285714285
+            ],
+            [
+              77.72857142857143,
+              13.085714285714285
+            ],
+            [
+              77.72857142857143,
+              13.107142857142858
+            ],
+            [
+              77.70714285714286,
+              13.107142857142858
+            ],
+            [
+              77.70714285714286,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 168,
+        "ward_name": "Ward 168",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              13.085714285714285
+            ],
+            [
+              77.75,
+              13.085714285714285
+            ],
+            [
+              77.75,
+              13.107142857142858
+            ],
+            [
+              77.72857142857143,
+              13.107142857142858
+            ],
+            [
+              77.72857142857143,
+              13.085714285714285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 169,
+        "ward_name": "Ward 169",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              13.107142857142858
+            ],
+            [
+              77.47142857142858,
+              13.107142857142858
+            ],
+            [
+              77.47142857142858,
+              13.128571428571428
+            ],
+            [
+              77.45,
+              13.128571428571428
+            ],
+            [
+              77.45,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 170,
+        "ward_name": "Ward 170",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              13.107142857142858
+            ],
+            [
+              77.49285714285715,
+              13.107142857142858
+            ],
+            [
+              77.49285714285715,
+              13.128571428571428
+            ],
+            [
+              77.47142857142858,
+              13.128571428571428
+            ],
+            [
+              77.47142857142858,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 171,
+        "ward_name": "Ward 171",
+        "zone": "South",
+        "zone_no": 6,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              13.107142857142858
+            ],
+            [
+              77.51428571428572,
+              13.107142857142858
+            ],
+            [
+              77.51428571428572,
+              13.128571428571428
+            ],
+            [
+              77.49285714285715,
+              13.128571428571428
+            ],
+            [
+              77.49285714285715,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 172,
+        "ward_name": "Ward 172",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              13.107142857142858
+            ],
+            [
+              77.53571428571429,
+              13.107142857142858
+            ],
+            [
+              77.53571428571429,
+              13.128571428571428
+            ],
+            [
+              77.51428571428572,
+              13.128571428571428
+            ],
+            [
+              77.51428571428572,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 173,
+        "ward_name": "Ward 173",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              13.107142857142858
+            ],
+            [
+              77.55714285714286,
+              13.107142857142858
+            ],
+            [
+              77.55714285714286,
+              13.128571428571428
+            ],
+            [
+              77.53571428571429,
+              13.128571428571428
+            ],
+            [
+              77.53571428571429,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 174,
+        "ward_name": "Ward 174",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              13.107142857142858
+            ],
+            [
+              77.57857142857144,
+              13.107142857142858
+            ],
+            [
+              77.57857142857144,
+              13.128571428571428
+            ],
+            [
+              77.55714285714286,
+              13.128571428571428
+            ],
+            [
+              77.55714285714286,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 175,
+        "ward_name": "Ward 175",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              13.107142857142858
+            ],
+            [
+              77.6,
+              13.107142857142858
+            ],
+            [
+              77.6,
+              13.128571428571428
+            ],
+            [
+              77.57857142857144,
+              13.128571428571428
+            ],
+            [
+              77.57857142857144,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 176,
+        "ward_name": "Ward 176",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              13.107142857142858
+            ],
+            [
+              77.62142857142857,
+              13.107142857142858
+            ],
+            [
+              77.62142857142857,
+              13.128571428571428
+            ],
+            [
+              77.6,
+              13.128571428571428
+            ],
+            [
+              77.6,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 177,
+        "ward_name": "Ward 177",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              13.107142857142858
+            ],
+            [
+              77.64285714285714,
+              13.107142857142858
+            ],
+            [
+              77.64285714285714,
+              13.128571428571428
+            ],
+            [
+              77.62142857142857,
+              13.128571428571428
+            ],
+            [
+              77.62142857142857,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 178,
+        "ward_name": "Ward 178",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              13.107142857142858
+            ],
+            [
+              77.66428571428571,
+              13.107142857142858
+            ],
+            [
+              77.66428571428571,
+              13.128571428571428
+            ],
+            [
+              77.64285714285714,
+              13.128571428571428
+            ],
+            [
+              77.64285714285714,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 179,
+        "ward_name": "Ward 179",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              13.107142857142858
+            ],
+            [
+              77.68571428571428,
+              13.107142857142858
+            ],
+            [
+              77.68571428571428,
+              13.128571428571428
+            ],
+            [
+              77.66428571428571,
+              13.128571428571428
+            ],
+            [
+              77.66428571428571,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 180,
+        "ward_name": "Ward 180",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              13.107142857142858
+            ],
+            [
+              77.70714285714286,
+              13.107142857142858
+            ],
+            [
+              77.70714285714286,
+              13.128571428571428
+            ],
+            [
+              77.68571428571428,
+              13.128571428571428
+            ],
+            [
+              77.68571428571428,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 181,
+        "ward_name": "Ward 181",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              13.107142857142858
+            ],
+            [
+              77.72857142857143,
+              13.107142857142858
+            ],
+            [
+              77.72857142857143,
+              13.128571428571428
+            ],
+            [
+              77.70714285714286,
+              13.128571428571428
+            ],
+            [
+              77.70714285714286,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 182,
+        "ward_name": "Ward 182",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              13.107142857142858
+            ],
+            [
+              77.75,
+              13.107142857142858
+            ],
+            [
+              77.75,
+              13.128571428571428
+            ],
+            [
+              77.72857142857143,
+              13.128571428571428
+            ],
+            [
+              77.72857142857143,
+              13.107142857142858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 183,
+        "ward_name": "Ward 183",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              13.128571428571428
+            ],
+            [
+              77.47142857142858,
+              13.128571428571428
+            ],
+            [
+              77.47142857142858,
+              13.15
+            ],
+            [
+              77.45,
+              13.15
+            ],
+            [
+              77.45,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 184,
+        "ward_name": "Ward 184",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              13.128571428571428
+            ],
+            [
+              77.49285714285715,
+              13.128571428571428
+            ],
+            [
+              77.49285714285715,
+              13.15
+            ],
+            [
+              77.47142857142858,
+              13.15
+            ],
+            [
+              77.47142857142858,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 185,
+        "ward_name": "Ward 185",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.49285714285715,
+              13.128571428571428
+            ],
+            [
+              77.51428571428572,
+              13.128571428571428
+            ],
+            [
+              77.51428571428572,
+              13.15
+            ],
+            [
+              77.49285714285715,
+              13.15
+            ],
+            [
+              77.49285714285715,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 186,
+        "ward_name": "Ward 186",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.51428571428572,
+              13.128571428571428
+            ],
+            [
+              77.53571428571429,
+              13.128571428571428
+            ],
+            [
+              77.53571428571429,
+              13.15
+            ],
+            [
+              77.51428571428572,
+              13.15
+            ],
+            [
+              77.51428571428572,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 187,
+        "ward_name": "Ward 187",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53571428571429,
+              13.128571428571428
+            ],
+            [
+              77.55714285714286,
+              13.128571428571428
+            ],
+            [
+              77.55714285714286,
+              13.15
+            ],
+            [
+              77.53571428571429,
+              13.15
+            ],
+            [
+              77.53571428571429,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 188,
+        "ward_name": "Ward 188",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.55714285714286,
+              13.128571428571428
+            ],
+            [
+              77.57857142857144,
+              13.128571428571428
+            ],
+            [
+              77.57857142857144,
+              13.15
+            ],
+            [
+              77.55714285714286,
+              13.15
+            ],
+            [
+              77.55714285714286,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 189,
+        "ward_name": "Ward 189",
+        "zone": "West",
+        "zone_no": 7,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.57857142857144,
+              13.128571428571428
+            ],
+            [
+              77.6,
+              13.128571428571428
+            ],
+            [
+              77.6,
+              13.15
+            ],
+            [
+              77.57857142857144,
+              13.15
+            ],
+            [
+              77.57857142857144,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 190,
+        "ward_name": "Ward 190",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6,
+              13.128571428571428
+            ],
+            [
+              77.62142857142857,
+              13.128571428571428
+            ],
+            [
+              77.62142857142857,
+              13.15
+            ],
+            [
+              77.6,
+              13.15
+            ],
+            [
+              77.6,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 191,
+        "ward_name": "Ward 191",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.62142857142857,
+              13.128571428571428
+            ],
+            [
+              77.64285714285714,
+              13.128571428571428
+            ],
+            [
+              77.64285714285714,
+              13.15
+            ],
+            [
+              77.62142857142857,
+              13.15
+            ],
+            [
+              77.62142857142857,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 192,
+        "ward_name": "Ward 192",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.64285714285714,
+              13.128571428571428
+            ],
+            [
+              77.66428571428571,
+              13.128571428571428
+            ],
+            [
+              77.66428571428571,
+              13.15
+            ],
+            [
+              77.64285714285714,
+              13.15
+            ],
+            [
+              77.64285714285714,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 193,
+        "ward_name": "Ward 193",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.66428571428571,
+              13.128571428571428
+            ],
+            [
+              77.68571428571428,
+              13.128571428571428
+            ],
+            [
+              77.68571428571428,
+              13.15
+            ],
+            [
+              77.66428571428571,
+              13.15
+            ],
+            [
+              77.66428571428571,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 194,
+        "ward_name": "Ward 194",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.68571428571428,
+              13.128571428571428
+            ],
+            [
+              77.70714285714286,
+              13.128571428571428
+            ],
+            [
+              77.70714285714286,
+              13.15
+            ],
+            [
+              77.68571428571428,
+              13.15
+            ],
+            [
+              77.68571428571428,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 195,
+        "ward_name": "Ward 195",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.70714285714286,
+              13.128571428571428
+            ],
+            [
+              77.72857142857143,
+              13.128571428571428
+            ],
+            [
+              77.72857142857143,
+              13.15
+            ],
+            [
+              77.70714285714286,
+              13.15
+            ],
+            [
+              77.70714285714286,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 196,
+        "ward_name": "Ward 196",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.72857142857143,
+              13.128571428571428
+            ],
+            [
+              77.75,
+              13.128571428571428
+            ],
+            [
+              77.75,
+              13.15
+            ],
+            [
+              77.72857142857143,
+              13.15
+            ],
+            [
+              77.72857142857143,
+              13.128571428571428
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 197,
+        "ward_name": "Ward 197",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.45,
+              13.15
+            ],
+            [
+              77.47142857142858,
+              13.15
+            ],
+            [
+              77.47142857142858,
+              13.171428571428573
+            ],
+            [
+              77.45,
+              13.171428571428573
+            ],
+            [
+              77.45,
+              13.15
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ward_no": 198,
+        "ward_name": "Ward 198",
+        "zone": "RR Nagar",
+        "zone_no": 8,
+        "note": "SAMPLE DATA - Replace with official boundaries"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.47142857142858,
+              13.15
+            ],
+            [
+              77.49285714285715,
+              13.15
+            ],
+            [
+              77.49285714285715,
+              13.171428571428573
+            ],
+            [
+              77.47142857142858,
+              13.171428571428573
+            ],
+            [
+              77.47142857142858,
+              13.15
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

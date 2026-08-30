@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 /**
  * Catalyst NoSQL Client
@@ -87,7 +87,7 @@ export const CatalystNoSQL = {
    */
   saveDocumentMetadata: async (metadata: DocumentMetadata): Promise<boolean> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       // Ensure we use the proper NoSQL API instead of datastore
       const nosql = app.nosql();
       
@@ -139,7 +139,7 @@ export const CatalystNoSQL = {
     extractedEntities?: any
   ): Promise<boolean> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const nosql = app.nosql();
       
       if (!nosql) {
@@ -196,7 +196,7 @@ export const CatalystNoSQL = {
    */
   getDocumentMetadata: async (fileId: string): Promise<DocumentMetadata | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const nosql = app.nosql();
       
       if (!nosql) {
@@ -239,7 +239,7 @@ export const CatalystNoSQL = {
   // Save Chat Session
   saveChatSession: async (sessionId: string, sessionData: any): Promise<boolean> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const nosql = app.nosql();
       if (!nosql) {
         console.warn('⚠️ NoSQL not available, session not persisted');
@@ -310,7 +310,7 @@ export const CatalystNoSQL = {
   // Get Chat Session
   getChatSession: async (sessionId: string): Promise<ChatSession | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const nosql = app.nosql();
       if (!nosql) {
         console.warn('⚠️ NoSQL not available, returning empty session template');
@@ -352,7 +352,7 @@ export const CatalystNoSQL = {
   // Delete Chat Session
   deleteChatSession: async (sessionId: string) => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const nosql = app.nosql();
       if (nosql) {
         const table = nosql.table('ChatSessions');
@@ -374,7 +374,7 @@ export const CatalystNoSQL = {
   // Save Reasoning Output
   saveReasoningOutput: async (queryId: string, reasoning: any) => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const nosql = app.nosql();
       if (nosql) {
         const table = nosql.table('ReasoningOutputs');

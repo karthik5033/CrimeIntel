@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCatalystApp } from '@/lib/catalyst/index';
+import { getCatalystAppAsync } from '@/lib/catalyst/index';
 
 /**
  * Catalyst Status Check Endpoint
@@ -34,7 +34,7 @@ export async function GET() {
 
     // Check 2: Catalyst SDK Initialization
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       results.checks.sdkInit = {
         status: 'ok',
         message: 'Catalyst SDK initialized successfully',

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 import { EntityExtractor } from '@/lib/services/entityExtractor';
 import { EntityStorage } from '@/lib/services/entityStorage';
 import { RelationshipBuilder } from '@/lib/services/relationshipBuilder';
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     console.log(`🕸️  Building knowledge graph for FIR: ${firId}`);
 
     // Get FIR with OCR text
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     const firQuery = await zcql.executeZCQLQuery(

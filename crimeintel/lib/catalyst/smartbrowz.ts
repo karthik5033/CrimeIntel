@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 /**
  * Catalyst SmartBrowz Client
@@ -10,7 +10,7 @@ export const CatalystSmartBrowz = {
    */
   generatePdf: async (htmlContent: string, title: string = 'CrimeIntel Report'): Promise<Buffer | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       // Execute SmartBrowz service via Catalyst PDF/Headless Browser component
       if (app.smartbrowz) {
         const result = await app.smartbrowz().convertHtmlToPdf({

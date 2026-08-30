@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 export interface CatalystHealthStatus {
   status: 'HEALTHY' | 'DEGRADED' | 'UNHEALTHY';
@@ -26,7 +26,7 @@ export const CatalystHealth = {
     };
 
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       if (!app) {
         servicesStatus.datastore = 'DOWN';
       }

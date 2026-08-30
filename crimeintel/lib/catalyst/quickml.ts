@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 import { getSharedAccessToken } from './auth';
 
 /**
@@ -111,7 +111,7 @@ Current query context: ${contextData?.intent || 'general inquiry'}`;
 
     // ── SDK QuickML Pipeline path ──────────────────────────────────────
     try {
-      const app = await getCatalystApp();
+      const app = await getCatalystAppAsync();
       const quickml = typeof app.quickML === 'function' ? app.quickML() : (app as any).quickml?.();
 
       if (!endpointKey && process.env.NODE_ENV !== 'development') {
@@ -181,7 +181,7 @@ Current query context: ${contextData?.intent || 'general inquiry'}`;
   // Embedding Generation via Pipeline Endpoint
   generateEmbedding: async (text: string): Promise<number[] | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const quickml = typeof app.quickML === 'function' ? app.quickML() : (app as any).quickml?.();
       
       const endpointKey = process.env.QUICKML_EMBEDDING_ENDPOINT_KEY || process.env.QUICKML_ENDPOINT_KEY;

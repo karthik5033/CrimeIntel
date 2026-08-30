@@ -1,4 +1,4 @@
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 import { ParsedQuery } from '../chat/intentClassifier';
 
 /**
@@ -48,7 +48,7 @@ async function getDistrictMapping(): Promise<Record<string, string>> {
     return districtMappingCache;
   }
   
-  const app = getCatalystApp();
+  const app = await getCatalystAppAsync();
   const zcql = app.zcql();
   
   if (!zcql) {
@@ -84,7 +84,7 @@ async function getDistrictMapping(): Promise<Record<string, string>> {
 
 export class SQLAgent {
   static async retrieve(parsedQuery: ParsedQuery): Promise<any[]> {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
 
     if (!zcql) {

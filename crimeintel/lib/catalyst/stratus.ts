@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 import { uploadToStratus as directUploadToStratus, isDirectAPIConfigured } from './direct-api';
 
 /**
@@ -58,7 +58,7 @@ export const CatalystStratus = {
     }
     
     // Fallback to SDK method (will use mock if SDK not authenticated)
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const filestream = app.filestore();
     
     if (!filestream) {
@@ -150,7 +150,7 @@ export const CatalystStratus = {
    * @returns File download URL
    */
   getFIR: async (fileId: string): Promise<{ url: string; fileName: string }> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const filestream = app.filestore();
     
     if (!filestream) {
@@ -181,7 +181,7 @@ export const CatalystStratus = {
    * @returns Success status
    */
   deleteFIR: async (fileId: string): Promise<boolean> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const filestream = app.filestore();
     
     if (!filestream) {
@@ -202,7 +202,7 @@ export const CatalystStratus = {
    * Upload evidence file (images, videos, documents)
    */
   uploadEvidence: async (file: File | Buffer, caseId: string, evidenceType: string): Promise<UploadResult> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const filestream = app.filestore();
     
     if (!filestream) {
@@ -251,7 +251,7 @@ export const CatalystStratus = {
    */
   uploadFile: async (bucketName: string, fileName: string, fileBuffer: Buffer | Blob): Promise<string | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const filestream = app.filestore();
       
       if (filestream) {
@@ -279,7 +279,7 @@ export const CatalystStratus = {
    */
   getFileUrl: async (bucketName: string, fileId: string): Promise<string> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const filestream = app.filestore();
       
       if (filestream) {
@@ -297,7 +297,7 @@ export const CatalystStratus = {
    * Initialize FIR bucket (run once during setup)
    */
   initializeBuckets: async (): Promise<void> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const filestream = app.filestore();
     
     if (!filestream) {

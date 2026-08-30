@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { createFileStoreCatalystInstance } from '@/lib/db/fileStore';
 
 export const catalystConfig = {
   projectId: process.env.CATALYST_PROJECT_ID || process.env.NEXT_PUBLIC_CATALYST_PROJECT_ID || '55949000000013025',
@@ -9,8 +10,8 @@ export const catalystConfig = {
 
 let catalystInstance: any = null;
 
-// Check if we should use mock mode
-const USE_MOCK = process.env.USE_MOCK_CATALYST === 'true' || process.env.NODE_ENV === 'test';
+// USE_MOCK is only true in test environments now; local dev uses the persistent FileStore
+const USE_MOCK = process.env.NODE_ENV === 'test';
 
 // Persistent mock data store (shared across requests and Next.js hot-reloads)
 const globalAny = global as any;
@@ -59,18 +60,16 @@ export function getCatalystApp(req?: any): any {
     return catalystInstance;
   }
 
-  // If mock mode, return mock instance immediately
+  // If mock mode (tests only), return file store instance
   if (USE_MOCK) {
-    console.log('⚠️ Using MOCK Catalyst instance');
-    catalystInstance = createMockCatalystInstance();
+    catalystInstance = createFileStoreCatalystInstance();
     return catalystInstance;
   }
 
-  // Async init hasn't completed yet. For non-awaiting callers, we MUST
-  // return a working instance right now. Fall back to mock.
-  // The eager init (below) will replace this with the real SDK once ready.
-  console.warn('⚠️ Catalyst SDK not yet initialized (async init in progress). Using MOCK for now.');
-  catalystInstance = createMockCatalystInstance();
+  // Async init hasn't completed yet — return file store for now.
+  // The eager init will replace this with the real Catalyst SDK once ready.
+  console.warn('⚠️ Catalyst SDK not yet initialized. Using FileStore temporarily.');
+  catalystInstance = createFileStoreCatalystInstance();
   return catalystInstance;
 }
 
@@ -82,7 +81,7 @@ export async function getCatalystAppAsync(req?: any): Promise<any> {
   if (catalystInstance) return catalystInstance;
   
   if (USE_MOCK) {
-    catalystInstance = createMockCatalystInstance();
+    catalystInstance = createFileStoreCatalystInstance();
     return catalystInstance;
   }
 
@@ -108,7 +107,7 @@ export async function getCatalystAppAsync(req?: any): Promise<any> {
 export function getCatalystAppSync(): any {
   if (catalystInstance) return catalystInstance;
   if (USE_MOCK) {
-    catalystInstance = createMockCatalystInstance();
+    catalystInstance = createFileStoreCatalystInstance();
     return catalystInstance;
   }
   return null;
@@ -225,10 +224,10 @@ async function performAsyncInit(): Promise<any> {
   } catch (error) {
     console.warn('⚠️ Catalyst initialization failed:', (error as Error).message);
     
-    // When USE_MOCK is false, fall back to mock with a warning instead of crashing.
-    // This ensures the app remains functional during local dev even without full cloud auth.
-    console.warn('⚠️ Falling back to MOCK mode for development (SDK init failed)');
-    catalystInstance = createMockCatalystInstance();
+    // Fall back to persistent FileStore for local development.
+    // On AppSail, Catalyst SDK always initializes successfully so this branch is never hit.
+    console.warn('💾 Falling back to FileStore (persistent local store) for development.');
+    catalystInstance = createFileStoreCatalystInstance();
     return catalystInstance;
   }
 }

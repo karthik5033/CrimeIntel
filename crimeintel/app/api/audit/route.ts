@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getCatalystApp } from '@/lib/catalyst';
+import { getCatalystAppAsync } from '@/lib/catalyst';
 
 export async function POST(request: Request) {
   try {
     const log = await request.json();
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const datastore = app.datastore();
     await datastore.table('AuditLog').insertRow({
       event_type: log.event_type,
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   try {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     const rows = await zcql.executeZCQLQuery(
       `SELECT * FROM AuditLog ORDER BY timestamp DESC LIMIT 500`

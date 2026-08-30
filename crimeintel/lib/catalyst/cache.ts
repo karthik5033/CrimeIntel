@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 /**
  * Catalyst Cache Segment Wrapper
@@ -7,7 +7,7 @@ import { getCatalystApp } from './index';
 export const CatalystCache = {
   get: async (key: string): Promise<any | null> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const cache = app.cache();
       if (cache) {
         const segment = cache.segment();
@@ -24,7 +24,7 @@ export const CatalystCache = {
 
   put: async (key: string, value: any, ttlInMinutes: number = 10): Promise<boolean> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const cache = app.cache();
       if (cache) {
         const segment = cache.segment();
@@ -39,7 +39,7 @@ export const CatalystCache = {
 
   delete: async (key: string): Promise<boolean> => {
     try {
-      const app = getCatalystApp();
+      const app = await getCatalystAppAsync();
       const cache = app.cache();
       if (cache) {
         const segment = cache.segment();

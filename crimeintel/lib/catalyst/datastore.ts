@@ -1,4 +1,4 @@
-import { getCatalystApp } from './index';
+import { getCatalystAppAsync } from './index';
 
 /**
  * Builds a parameterized ZCQL query with safe parameter substitution.
@@ -58,7 +58,7 @@ function buildParameterizedQuery(
 export const CatalystDataStore = {
   // Persons Table
   getPersons: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -70,7 +70,7 @@ export const CatalystDataStore = {
   },
 
   getPersonById: async (id: string): Promise<any | null> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -87,7 +87,7 @@ export const CatalystDataStore = {
 
   // PoliceStations Table
   getPoliceStations: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -100,7 +100,7 @@ export const CatalystDataStore = {
 
   // FIRs Table
   getFIRs: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -112,24 +112,49 @@ export const CatalystDataStore = {
   },
 
   getFIRById: async (id: string): Promise<any | null> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
       throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
     
-    const query = buildParameterizedQuery(
+    // Try by ROWID first
+    const rowidQuery = buildParameterizedQuery(
       "SELECT * FROM FIRs WHERE ROWID = '{id}'",
       { id }
     );
-    const queryResult = await zcql.executeZCQLQuery(query);
-    return queryResult.length > 0 ? (queryResult[0].FIRs || queryResult[0]) : null;
+    const rowidResult = await zcql.executeZCQLQuery(rowidQuery);
+    if (rowidResult.length > 0) {
+      return rowidResult[0].FIRs || rowidResult[0];
+    }
+
+    // Try by fir_no field (for uploaded FIRs stored with fir_no)
+    const firNoQuery = buildParameterizedQuery(
+      "SELECT * FROM FIRs WHERE fir_no = '{id}'",
+      { id }
+    );
+    const firNoResult = await zcql.executeZCQLQuery(firNoQuery);
+    if (firNoResult.length > 0) {
+      return firNoResult[0].FIRs || firNoResult[0];
+    }
+
+    // Try by id field
+    const idQuery = buildParameterizedQuery(
+      "SELECT * FROM FIRs WHERE id = '{id}'",
+      { id }
+    );
+    const idResult = await zcql.executeZCQLQuery(idQuery);
+    if (idResult.length > 0) {
+      return idResult[0].FIRs || idResult[0];
+    }
+
+    return null;
   },
 
   // Cases Table
   getCases: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -142,7 +167,7 @@ export const CatalystDataStore = {
 
   // Vehicles Table
   getVehicles: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -155,7 +180,7 @@ export const CatalystDataStore = {
 
   // Phone Records Table
   getPhoneRecords: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -168,7 +193,7 @@ export const CatalystDataStore = {
 
   // Bank Accounts Table
   getBankAccounts: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -181,7 +206,7 @@ export const CatalystDataStore = {
 
   // Weapons Table
   getWeapons: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -194,7 +219,7 @@ export const CatalystDataStore = {
 
   // Entity Relationships (Graph Edges) Table
   getEntityRelationships: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -206,24 +231,37 @@ export const CatalystDataStore = {
   },
 
   getGraphForEntity: async (entityId: string): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
       throw new Error('Catalyst ZCQL not initialized. Check your Catalyst configuration.');
     }
     
+    // Try source/target fields (original schema)
     const query = buildParameterizedQuery(
       "SELECT * FROM EntityRelationships WHERE source = '{entityId}' OR target = '{entityId}'",
       { entityId }
     );
     const queryResult = await zcql.executeZCQLQuery(query);
-    return queryResult.map((row: any) => row.EntityRelationships || row);
+    let results = queryResult.map((row: any) => row.EntityRelationships || row);
+
+    // Also try fir_id / source_entity_id / target_entity_id fields (uploaded FIRs schema)
+    if (results.length === 0) {
+      const altQuery = buildParameterizedQuery(
+        "SELECT * FROM EntityRelationships WHERE fir_id = '{entityId}'",
+        { entityId }
+      );
+      const altResult = await zcql.executeZCQLQuery(altQuery);
+      results = altResult.map((row: any) => row.EntityRelationships || row);
+    }
+
+    return results;
   },
 
   // Socio Economic Data Table
   getSocioEconomicData: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -236,7 +274,7 @@ export const CatalystDataStore = {
 
   // Financial Transactions Table
   getTransactions: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     
     if (!zcql) {
@@ -249,7 +287,7 @@ export const CatalystDataStore = {
 
   // Districts Table
   getDistricts: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     if (!zcql) throw new Error('Catalyst ZCQL not initialized.');
     const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Districts');
@@ -258,7 +296,7 @@ export const CatalystDataStore = {
 
   // Notifications Table
   getNotifications: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     if (!zcql) throw new Error('Catalyst ZCQL not initialized.');
     const queryResult = await zcql.executeZCQLQuery('SELECT * FROM Notifications ORDER BY timestamp DESC');
@@ -267,7 +305,7 @@ export const CatalystDataStore = {
 
   // System Health Table
   getSystemHealth: async (): Promise<any[]> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const zcql = app.zcql();
     if (!zcql) throw new Error('Catalyst ZCQL not initialized.');
     const queryResult = await zcql.executeZCQLQuery('SELECT * FROM SystemHealth');
@@ -276,7 +314,7 @@ export const CatalystDataStore = {
 
   // Insert Methods for Data Loading
   insertFIRs: async (firs: any[]): Promise<void> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const table = app.datastore().table('FIRs');
     
     const batchSize = 100;
@@ -288,7 +326,7 @@ export const CatalystDataStore = {
   },
 
   insertPersons: async (persons: any[]): Promise<void> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const table = app.datastore().table('Persons');
     
     const batchSize = 100;
@@ -300,7 +338,7 @@ export const CatalystDataStore = {
   },
 
   insertVehicles: async (vehicles: any[]): Promise<void> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const table = app.datastore().table('Vehicles');
     
     const batchSize = 100;
@@ -311,7 +349,7 @@ export const CatalystDataStore = {
   },
 
   insertPoliceStations: async (stations: any[]): Promise<void> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const table = app.datastore().table('PoliceStations');
     
     const batchSize = 100;
@@ -323,7 +361,7 @@ export const CatalystDataStore = {
   },
 
   insertRelationships: async (relationships: any[]): Promise<void> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const table = app.datastore().table('EntityRelationships');
     
     const batchSize = 100;
@@ -334,7 +372,7 @@ export const CatalystDataStore = {
   },
 
   insertTransactions: async (transactions: any[]): Promise<void> => {
-    const app = getCatalystApp();
+    const app = await getCatalystAppAsync();
     const table = app.datastore().table('Transactions');
     
     const batchSize = 100;

@@ -71,19 +71,41 @@ export default function ChatPage() {
     });
 
     try {
+      // Build conversation history from the current session (excluding thinking placeholders)
+      const history = (activeSession?.messages ?? [])
+        .filter(m => !m.isThinking && m.content.trim())
+        .map(m => ({ role: m.role as 'user' | 'assistant', content: m.content }));
+
       // Simulate network request to our mock API
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: content, language, sessionId: activeSessionId })
+        body: JSON.stringify({ message: content, language, sessionId: activeSessionId, history })
       });
 
       const data = await response.json();
 
-      // The API should take ~4 seconds to return to simulate thinking
+      if (!response.ok) {
+        const errMsg = data?.error || data?.details || 'Request failed — please try again.';
+        console.error('Chat API error:', errMsg);
+        updateLastMessage({
+          isThinking: false,
+          content: `⚠️ ${errMsg}`,
+        });
+        setIsProcessing(false);
+        return;
+      }
+
+      const aiText = data.text_summary || data.response || data.text;
+      if (!aiText) {
+        updateLastMessage({ isThinking: false, content: '⚠️ No response received. Please try again.' });
+        setIsProcessing(false);
+        return;
+      }
+
       updateLastMessage({
         isThinking: false,
-        content: data.text_summary || t('chat.errorProcess'),
+        content: aiText,
         tableData: data.data_table,
         reasoningBlock: data.reasoning_block,
         ragContext: data.rag_context,
@@ -93,7 +115,7 @@ export default function ChatPage() {
       console.error(error);
       updateLastMessage({
         isThinking: false,
-        content: t('chat.errorConnect')
+        content: '⚠️ Network error — check your connection and try again.'
       });
     } finally {
       setIsProcessing(false);
