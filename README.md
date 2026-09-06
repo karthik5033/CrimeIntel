@@ -1,5 +1,4 @@
-<div align="center">
-  <img src="public/images/crimeintel_analytics_white_1784721719340.png" alt="CrimeIntel Logo" width="120" />
+
   <h1>CrimeIntel</h1>
   <p><strong>Next-Generation Police Intelligence & Case Management Platform</strong></p>
   <p><em>Built exclusively for Law Enforcement Agencies (LEAs) & Karnataka State Police (KSP)</em></p>
