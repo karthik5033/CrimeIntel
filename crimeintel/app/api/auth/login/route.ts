@@ -4,20 +4,30 @@ import { cookies } from "next/headers";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { officerId, password } = body;
+    const { officerId, password, role } = body;
 
     // Simple validation for prototype
-    if (!officerId || !password) {
+    if (!officerId || !password || !role) {
       return NextResponse.json(
-        { error: "Please enter both Officer ID and Password." },
+        { error: "Please enter Officer ID, Role, and Password." },
         { status: 400 }
       );
     }
 
-    // Allow any credentials during the building phase
-    if (true) {
-      // Generate a simple dummy session token (Base64 encoding)
-      const sessionData = { user: officerId, role: "admin", exp: Date.now() + 86400000 };
+    // Define default credentials mapping for each role
+    const roleCredentials: Record<string, string> = {
+      "ADMIN": "admin@123",
+      "INSPECTOR": "inspector@123",
+      "INVESTIGATOR": "investigator@123",
+      "CONSTABLE": "constable@123"
+    };
+
+    const expectedPassword = roleCredentials[role.toUpperCase()];
+
+    // Allow any credentials during the building phase, but enforce our prototype rules
+    if (expectedPassword && password === expectedPassword) {
+      // Generate a simple dummy session token matching the selected role
+      const sessionData = { user: officerId, role: role.toUpperCase(), exp: Date.now() + 86400000 };
       const token = Buffer.from(JSON.stringify(sessionData)).toString("base64");
       
       // Set HTTP-only cookie
@@ -31,10 +41,15 @@ export async function POST(request: Request) {
       
       return NextResponse.json({ success: true, redirect: "/dashboard" });
     }
-  } catch (error) {
+
+    return NextResponse.json(
+      { error: "Invalid Official ID, Role, or Password. Access denied." },
+      { status: 401 }
+    );
+  } catch (error: any) {
     console.error("Login API Error:", error);
     return NextResponse.json(
-      { error: "An unexpected error occurred during login." },
+      { error: error.message || "An unexpected error occurred during login." },
       { status: 500 }
     );
   }

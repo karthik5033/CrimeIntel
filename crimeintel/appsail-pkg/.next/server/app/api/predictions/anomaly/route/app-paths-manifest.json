@@ -1,0 +1,3 @@
+{
+  "/api/predictions/anomaly/route": "app/api/predictions/anomaly/route.js"
+}

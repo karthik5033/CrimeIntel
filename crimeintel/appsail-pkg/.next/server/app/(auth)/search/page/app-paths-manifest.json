@@ -1,0 +1,3 @@
+{
+  "/(auth)/search/page": "app/(auth)/search/page.js"
+}

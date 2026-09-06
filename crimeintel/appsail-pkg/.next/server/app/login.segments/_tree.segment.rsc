@@ -1,0 +1,9 @@
+:HL["/_next/static/chunks/2uzee22txw1be.css","style"]
+:HL["/_next/static/chunks/2kwey9ww2o1jq.css","style"]
+:HL["/_next/static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"(public)","param":null,"prefetchHints":0,"slots":{"children":{"name":"login","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"gxbPinvYEgYR4ClqH258L"}

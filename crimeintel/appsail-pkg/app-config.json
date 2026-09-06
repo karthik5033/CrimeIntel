@@ -1,0 +1,1 @@
+{"command":"node server.js","stack":"node20","memory":1024,"env_variables":{"NODE_ENV":"production","HOSTNAME":"0.0.0.0"}}

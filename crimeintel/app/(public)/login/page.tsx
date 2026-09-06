@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ShieldAlert, ArrowRight, Loader2, LockKeyhole, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { login } from "@/app/actions/auth";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -17,11 +19,28 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
     
-    const formData = new FormData(e.currentTarget);
-    const result = await login(formData);
-    
-    if (result?.error) {
-      setError(result.error);
+    try {
+      const formData = new FormData(e.currentTarget);
+      const officerId = formData.get("officerId") as string;
+      const password = formData.get("password") as string;
+      const role = formData.get("role") as string;
+      
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ officerId, password, role })
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok || result?.error) {
+        setError(result?.error || "Login failed.");
+        setLoading(false);
+      } else if (result?.success && result?.redirect) {
+        router.push(result.redirect);
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred during login.");
       setLoading(false);
     }
   }

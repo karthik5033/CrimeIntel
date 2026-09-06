@@ -1,0 +1,3 @@
+{
+  "/(auth)/network/page": "app/(auth)/network/page.js"
+}

@@ -1,5 +1,5 @@
 {
-  "project_name": "Project-Rainfall",
+    "project_name": "Project-Rainfall",
   "framework": "nextjs",
   "node_version": "20",
   "runtime": "nodejs20.x",
@@ -9,6 +9,16 @@
     "install_command": "npm install --production=false",
     "output_directory": ".next"
   },
+  "appsail": [
+    {
+      "name": "crimeintel-v2",
+      "source": "appsail-pkg"
+    },
+    {
+      "name": "crimeintel-probe",
+      "source": "appsail-probe"
+    }
+  ],
   "functions": [],
   "cache_segments": [],
   "event_listeners": []

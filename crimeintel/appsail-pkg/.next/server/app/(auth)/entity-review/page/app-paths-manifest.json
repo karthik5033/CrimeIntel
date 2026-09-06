@@ -1,0 +1,3 @@
+{
+  "/(auth)/entity-review/page": "app/(auth)/entity-review/page.js"
+}

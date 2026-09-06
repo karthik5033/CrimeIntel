@@ -1,0 +1,3 @@
+{
+  "/(auth)/settings/permissions/page": "app/(auth)/settings/permissions/page.js"
+}

@@ -1,0 +1,10 @@
+{
+	"command": "node scripts/start.js",
+	"build_path": ".",
+	"stack": "node22",
+	"memory": 2048,
+	"env_variables": {
+		"NODE_ENV": "production",
+		"HOSTNAME": "0.0.0.0"
+	}
+}

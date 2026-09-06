@@ -1,0 +1,602 @@
+[
+  {
+    "id": "BANK_1",
+    "account_no": "34569267",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC7686"
+  },
+  {
+    "id": "BANK_2",
+    "account_no": "06061363",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC9713"
+  },
+  {
+    "id": "BANK_3",
+    "account_no": "12390144",
+    "bank_name": "SBI",
+    "ifsc": "IFSC5672"
+  },
+  {
+    "id": "BANK_4",
+    "account_no": "88647784",
+    "bank_name": "SBI",
+    "ifsc": "IFSC3747"
+  },
+  {
+    "id": "BANK_5",
+    "account_no": "84056958",
+    "bank_name": "SBI",
+    "ifsc": "IFSC6512"
+  },
+  {
+    "id": "BANK_6",
+    "account_no": "58490774",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC6620"
+  },
+  {
+    "id": "BANK_7",
+    "account_no": "72628556",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC2394"
+  },
+  {
+    "id": "BANK_8",
+    "account_no": "57156924",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC5907"
+  },
+  {
+    "id": "BANK_9",
+    "account_no": "75250543",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC1259"
+  },
+  {
+    "id": "BANK_10",
+    "account_no": "05241395",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC7061"
+  },
+  {
+    "id": "BANK_11",
+    "account_no": "09165268",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC3897"
+  },
+  {
+    "id": "BANK_12",
+    "account_no": "13166691",
+    "bank_name": "SBI",
+    "ifsc": "IFSC1157"
+  },
+  {
+    "id": "BANK_13",
+    "account_no": "65749174",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC3887"
+  },
+  {
+    "id": "BANK_14",
+    "account_no": "72167644",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC5304"
+  },
+  {
+    "id": "BANK_15",
+    "account_no": "95534996",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC8403"
+  },
+  {
+    "id": "BANK_16",
+    "account_no": "03471035",
+    "bank_name": "Axis",
+    "ifsc": "IFSC2374"
+  },
+  {
+    "id": "BANK_17",
+    "account_no": "02516537",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC5025"
+  },
+  {
+    "id": "BANK_18",
+    "account_no": "15779454",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC8783"
+  },
+  {
+    "id": "BANK_19",
+    "account_no": "90698362",
+    "bank_name": "Axis",
+    "ifsc": "IFSC5255"
+  },
+  {
+    "id": "BANK_20",
+    "account_no": "46125327",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC6597"
+  },
+  {
+    "id": "BANK_21",
+    "account_no": "91987893",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC5788"
+  },
+  {
+    "id": "BANK_22",
+    "account_no": "16792406",
+    "bank_name": "SBI",
+    "ifsc": "IFSC1556"
+  },
+  {
+    "id": "BANK_23",
+    "account_no": "53448758",
+    "bank_name": "Axis",
+    "ifsc": "IFSC6151"
+  },
+  {
+    "id": "BANK_24",
+    "account_no": "30514499",
+    "bank_name": "SBI",
+    "ifsc": "IFSC7674"
+  },
+  {
+    "id": "BANK_25",
+    "account_no": "89542929",
+    "bank_name": "Axis",
+    "ifsc": "IFSC7170"
+  },
+  {
+    "id": "BANK_26",
+    "account_no": "75082407",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC8488"
+  },
+  {
+    "id": "BANK_27",
+    "account_no": "34908060",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC3471"
+  },
+  {
+    "id": "BANK_28",
+    "account_no": "96731435",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC7346"
+  },
+  {
+    "id": "BANK_29",
+    "account_no": "16329487",
+    "bank_name": "Axis",
+    "ifsc": "IFSC6924"
+  },
+  {
+    "id": "BANK_30",
+    "account_no": "17876991",
+    "bank_name": "SBI",
+    "ifsc": "IFSC5434"
+  },
+  {
+    "id": "BANK_31",
+    "account_no": "95980392",
+    "bank_name": "SBI",
+    "ifsc": "IFSC3813"
+  },
+  {
+    "id": "BANK_32",
+    "account_no": "54397886",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC2641"
+  },
+  {
+    "id": "BANK_33",
+    "account_no": "68981369",
+    "bank_name": "SBI",
+    "ifsc": "IFSC2301"
+  },
+  {
+    "id": "BANK_34",
+    "account_no": "48982408",
+    "bank_name": "SBI",
+    "ifsc": "IFSC2335"
+  },
+  {
+    "id": "BANK_35",
+    "account_no": "17388633",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC1132"
+  },
+  {
+    "id": "BANK_36",
+    "account_no": "02570834",
+    "bank_name": "Axis",
+    "ifsc": "IFSC8012"
+  },
+  {
+    "id": "BANK_37",
+    "account_no": "35048232",
+    "bank_name": "SBI",
+    "ifsc": "IFSC2977"
+  },
+  {
+    "id": "BANK_38",
+    "account_no": "42995505",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC1788"
+  },
+  {
+    "id": "BANK_39",
+    "account_no": "57453788",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC9331"
+  },
+  {
+    "id": "BANK_40",
+    "account_no": "73887309",
+    "bank_name": "Axis",
+    "ifsc": "IFSC4972"
+  },
+  {
+    "id": "BANK_41",
+    "account_no": "83737454",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC4195"
+  },
+  {
+    "id": "BANK_42",
+    "account_no": "51925669",
+    "bank_name": "SBI",
+    "ifsc": "IFSC3860"
+  },
+  {
+    "id": "BANK_43",
+    "account_no": "24750035",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC7840"
+  },
+  {
+    "id": "BANK_44",
+    "account_no": "20924475",
+    "bank_name": "SBI",
+    "ifsc": "IFSC2072"
+  },
+  {
+    "id": "BANK_45",
+    "account_no": "12204158",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC3550"
+  },
+  {
+    "id": "BANK_46",
+    "account_no": "02735519",
+    "bank_name": "Axis",
+    "ifsc": "IFSC3685"
+  },
+  {
+    "id": "BANK_47",
+    "account_no": "77364903",
+    "bank_name": "Axis",
+    "ifsc": "IFSC7899"
+  },
+  {
+    "id": "BANK_48",
+    "account_no": "11783869",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC4334"
+  },
+  {
+    "id": "BANK_49",
+    "account_no": "85632345",
+    "bank_name": "Axis",
+    "ifsc": "IFSC5045"
+  },
+  {
+    "id": "BANK_50",
+    "account_no": "07449897",
+    "bank_name": "SBI",
+    "ifsc": "IFSC4492"
+  },
+  {
+    "id": "BANK_51",
+    "account_no": "52397283",
+    "bank_name": "SBI",
+    "ifsc": "IFSC4293"
+  },
+  {
+    "id": "BANK_52",
+    "account_no": "04963072",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC2386"
+  },
+  {
+    "id": "BANK_53",
+    "account_no": "33902837",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC7154"
+  },
+  {
+    "id": "BANK_54",
+    "account_no": "95996901",
+    "bank_name": "Axis",
+    "ifsc": "IFSC7656"
+  },
+  {
+    "id": "BANK_55",
+    "account_no": "89800201",
+    "bank_name": "Axis",
+    "ifsc": "IFSC1346"
+  },
+  {
+    "id": "BANK_56",
+    "account_no": "83901382",
+    "bank_name": "Axis",
+    "ifsc": "IFSC7460"
+  },
+  {
+    "id": "BANK_57",
+    "account_no": "43921706",
+    "bank_name": "SBI",
+    "ifsc": "IFSC6014"
+  },
+  {
+    "id": "BANK_58",
+    "account_no": "77058805",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC8474"
+  },
+  {
+    "id": "BANK_59",
+    "account_no": "68539573",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC3785"
+  },
+  {
+    "id": "BANK_60",
+    "account_no": "86688141",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC6952"
+  },
+  {
+    "id": "BANK_61",
+    "account_no": "44514097",
+    "bank_name": "Axis",
+    "ifsc": "IFSC1235"
+  },
+  {
+    "id": "BANK_62",
+    "account_no": "11350800",
+    "bank_name": "SBI",
+    "ifsc": "IFSC4819"
+  },
+  {
+    "id": "BANK_63",
+    "account_no": "81321746",
+    "bank_name": "Axis",
+    "ifsc": "IFSC9637"
+  },
+  {
+    "id": "BANK_64",
+    "account_no": "52708890",
+    "bank_name": "Axis",
+    "ifsc": "IFSC6833"
+  },
+  {
+    "id": "BANK_65",
+    "account_no": "15115983",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC5788"
+  },
+  {
+    "id": "BANK_66",
+    "account_no": "81916187",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC6543"
+  },
+  {
+    "id": "BANK_67",
+    "account_no": "55479180",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC3999"
+  },
+  {
+    "id": "BANK_68",
+    "account_no": "84974531",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC4306"
+  },
+  {
+    "id": "BANK_69",
+    "account_no": "43653992",
+    "bank_name": "SBI",
+    "ifsc": "IFSC5367"
+  },
+  {
+    "id": "BANK_70",
+    "account_no": "93888869",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC8957"
+  },
+  {
+    "id": "BANK_71",
+    "account_no": "79068188",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC3639"
+  },
+  {
+    "id": "BANK_72",
+    "account_no": "39496327",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC4855"
+  },
+  {
+    "id": "BANK_73",
+    "account_no": "12929777",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC7275"
+  },
+  {
+    "id": "BANK_74",
+    "account_no": "72738840",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC4522"
+  },
+  {
+    "id": "BANK_75",
+    "account_no": "46093032",
+    "bank_name": "SBI",
+    "ifsc": "IFSC4152"
+  },
+  {
+    "id": "BANK_76",
+    "account_no": "55276056",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC6479"
+  },
+  {
+    "id": "BANK_77",
+    "account_no": "19070254",
+    "bank_name": "Axis",
+    "ifsc": "IFSC6085"
+  },
+  {
+    "id": "BANK_78",
+    "account_no": "10214558",
+    "bank_name": "SBI",
+    "ifsc": "IFSC7028"
+  },
+  {
+    "id": "BANK_79",
+    "account_no": "85637868",
+    "bank_name": "SBI",
+    "ifsc": "IFSC2368"
+  },
+  {
+    "id": "BANK_80",
+    "account_no": "38764162",
+    "bank_name": "Axis",
+    "ifsc": "IFSC5947"
+  },
+  {
+    "id": "BANK_81",
+    "account_no": "81110208",
+    "bank_name": "Axis",
+    "ifsc": "IFSC2444"
+  },
+  {
+    "id": "BANK_82",
+    "account_no": "68063095",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC6480"
+  },
+  {
+    "id": "BANK_83",
+    "account_no": "23314204",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC7495"
+  },
+  {
+    "id": "BANK_84",
+    "account_no": "35620436",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC4268"
+  },
+  {
+    "id": "BANK_85",
+    "account_no": "54678578",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC6407"
+  },
+  {
+    "id": "BANK_86",
+    "account_no": "93182011",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC8574"
+  },
+  {
+    "id": "BANK_87",
+    "account_no": "96130227",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC8538"
+  },
+  {
+    "id": "BANK_88",
+    "account_no": "42774604",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC1430"
+  },
+  {
+    "id": "BANK_89",
+    "account_no": "92575762",
+    "bank_name": "Axis",
+    "ifsc": "IFSC2368"
+  },
+  {
+    "id": "BANK_90",
+    "account_no": "06951882",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC4110"
+  },
+  {
+    "id": "BANK_91",
+    "account_no": "28261234",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC7098"
+  },
+  {
+    "id": "BANK_92",
+    "account_no": "06237699",
+    "bank_name": "Axis",
+    "ifsc": "IFSC9952"
+  },
+  {
+    "id": "BANK_93",
+    "account_no": "72914425",
+    "bank_name": "Axis",
+    "ifsc": "IFSC4292"
+  },
+  {
+    "id": "BANK_94",
+    "account_no": "18380492",
+    "bank_name": "Axis",
+    "ifsc": "IFSC9191"
+  },
+  {
+    "id": "BANK_95",
+    "account_no": "57424498",
+    "bank_name": "Axis",
+    "ifsc": "IFSC2482"
+  },
+  {
+    "id": "BANK_96",
+    "account_no": "96786079",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC6506"
+  },
+  {
+    "id": "BANK_97",
+    "account_no": "84212415",
+    "bank_name": "SBI",
+    "ifsc": "IFSC5956"
+  },
+  {
+    "id": "BANK_98",
+    "account_no": "64139088",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC6428"
+  },
+  {
+    "id": "BANK_99",
+    "account_no": "00086948",
+    "bank_name": "HDFC",
+    "ifsc": "IFSC2592"
+  },
+  {
+    "id": "BANK_100",
+    "account_no": "90346423",
+    "bank_name": "ICICI",
+    "ifsc": "IFSC4372"
+  }
+]

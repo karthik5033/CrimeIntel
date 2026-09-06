@@ -1,0 +1,223 @@
+{
+  "app": {
+    "[project]/app/(auth)/admin/data-loader/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/alerts/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/analytics/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/audit/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/cases/[id]/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/cases/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/chat/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/dashboard/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/data-ingestion/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/entity-review/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/financial/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/firs/[id]/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/network/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/profiles/[id]/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/profiles/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/search/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/settings/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/settings/permissions/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(auth)/test-upload/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/(public)/login/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/_not-found/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/features/dashboard/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/features/network/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/features/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/features/predictive/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/features/profiling/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ],
+    "[project]/app/page": [
+      "static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2",
+      "static/media/noto_sans_kannada_kannada_400_normal-s.p.3vx92-_uw74au.woff2",
+      "static/media/noto_sans_kannada_kannada_500_normal-s.p.3hz826i2sbzgt.woff2",
+      "static/media/noto_sans_kannada_kannada_600_normal-s.p.2f1o8sfwd07x7.woff2",
+      "static/media/noto_sans_kannada_kannada_700_normal-s.p.02_pank5s9bbq.woff2",
+      "static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}
