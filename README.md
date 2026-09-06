@@ -34,15 +34,7 @@ Built with performance and operational security in mind, the system uses modern 
 
 ---
 
-## 📸 Screenshots
 
-| Intelligence Graph | Case File UI |
-| :---: | :---: |
-| <img src="public/images/intelligence_graph_ui_1784723448238.png" width="400" /> | <img src="public/images/crime_case_file_ui_1784723422475.png" width="400" /> |
-| **Real-time Heatmap** | **Live CAD Dispatch** |
-| <img src="public/images/crime_heatmap_ui_1784728718764.png" width="400" /> | <img src="public/images/police_cad_dashboard_ui_1784723433845.png" width="400" /> |
-
----
 
 ## 🏗️ System Architecture
 
